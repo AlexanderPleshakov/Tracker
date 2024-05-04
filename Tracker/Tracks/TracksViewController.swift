@@ -12,9 +12,11 @@ class TracksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .green
+        view.backgroundColor = Resources.Colors.white
+        
+        navigationItem.title = "Трекеры"
+        navigationItem.titleView?.tintColor = .black
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
-
-
 }
 

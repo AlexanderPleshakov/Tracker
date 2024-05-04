@@ -11,25 +11,36 @@ final class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        tabBar.barTintColor = .white
+        configure()
+    }
+    
+    private func configure() {
+        view.backgroundColor = Resources.Colors.white
+        tabBar.barTintColor = Resources.Colors.white
         tabBar.isTranslucent = false
         
-        let tracksViewController = TracksViewController()
+        addTabs()
+    }
+    
+    private func addTabs() {
+        let tracks = createTab(title: "Трекеры",
+                               image: Resources.Images.tracksTab,
+                               for: TracksViewController())
+        let statistic = createTab(title: "Статистика",
+                               image: Resources.Images.statisticTab,
+                               for: StatisticViewController())
+        self.viewControllers  = [tracks, statistic]
+    }
+    
+    private func createTab(title: String, image: UIImage, for viewController: UIViewController) -> UINavigationController {
+        let tracks = UINavigationController(rootViewController: viewController)
         
-        let statisticViewController = StatisticViewController()
-        
-        tracksViewController.tabBarItem = UITabBarItem(
-            title: "Трекеры",
-            image: UIImage(named: Constants.Images.tracksTab),
+        viewController.tabBarItem = UITabBarItem(
+            title: title,
+            image: image,
             selectedImage: nil
         )
         
-        statisticViewController.tabBarItem = UITabBarItem(
-            title: "Статистика",
-            image: UIImage(named: Constants.Images.statisticTab),
-            selectedImage: nil)
-            
-        self.viewControllers  = [tracksViewController, statisticViewController]
+        return tracks
     }
 }
