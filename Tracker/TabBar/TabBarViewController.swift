@@ -33,7 +33,7 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func createTab(title: String, image: UIImage, for viewController: UIViewController) -> UINavigationController {
-        let tracks = UINavigationController(rootViewController: viewController)
+        let nav = UINavigationController(rootViewController: viewController)
         
         viewController.tabBarItem = UITabBarItem(
             title: title,
@@ -41,6 +41,6 @@ final class TabBarViewController: UITabBarController {
             selectedImage: nil
         )
         
-        return tracks
+        return nav
     }
 }
