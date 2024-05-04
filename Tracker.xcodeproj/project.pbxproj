@@ -14,7 +14,7 @@
 		1630D3D72BE4C01300A59A82 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1630D3D62BE4C01300A59A82 /* Base */; };
 		16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */; };
 		16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */; };
-		16AFE7A12BE6559F00F4FDFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7A02BE6559F00F4FDFF /* Constants.swift */; };
+		16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7A02BE6559F00F4FDFF /* Resources.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		1630D3D82BE4C01300A59A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
-		16AFE7A02BE6559F00F4FDFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		16AFE7A02BE6559F00F4FDFF /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,7 @@
 		16AFE7982BE64E5900F4FDFF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				16AFE7A02BE6559F00F4FDFF /* Constants.swift */,
+				16AFE7A02BE6559F00F4FDFF /* Resources.swift */,
 				1630D3D32BE4C01300A59A82 /* Assets.xcassets */,
 				1630D3D52BE4C01300A59A82 /* LaunchScreen.storyboard */,
 				1630D3D82BE4C01300A59A82 /* Info.plist */,
@@ -180,7 +180,7 @@
 				1630D3CB2BE4C00F00A59A82 /* AppDelegate.swift in Sources */,
 				16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */,
 				1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */,
-				16AFE7A12BE6559F00F4FDFF /* Constants.swift in Sources */,
+				16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
