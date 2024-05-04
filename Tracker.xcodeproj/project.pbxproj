@@ -57,11 +57,19 @@
 				1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */,
 				1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */,
 				1630D3CE2BE4C00F00A59A82 /* ViewController.swift */,
+				16AFE7982BE64E5900F4FDFF /* Resources */,
+			);
+			path = Tracker;
+			sourceTree = "<group>";
+		};
+		16AFE7982BE64E5900F4FDFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				1630D3D32BE4C01300A59A82 /* Assets.xcassets */,
 				1630D3D52BE4C01300A59A82 /* LaunchScreen.storyboard */,
 				1630D3D82BE4C01300A59A82 /* Info.plist */,
 			);
-			path = Tracker;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,7 +290,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KD22N7R738;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tracker/Info.plist;
+				INFOPLIST_FILE = Tracker/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -314,7 +322,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KD22N7R738;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tracker/Info.plist;
+				INFOPLIST_FILE = Tracker/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
