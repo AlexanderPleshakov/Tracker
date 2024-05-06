@@ -37,6 +37,7 @@ extension TracksViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: Resources.Images.addButton,
                                                            style: .plain,
                                                            target: self, action: nil)
+        navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.black
         
         let datePickerView = DatePickerView(date: getDate())
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerView)
