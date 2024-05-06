@@ -18,5 +18,6 @@ enum Resources {
     enum Colors {
         static let black = UIColor(named: "TBlack")
         static let white = UIColor(named: "TWhite")
+        static let lightGray = UIColor(named: "TLightGray")
     }
 }
