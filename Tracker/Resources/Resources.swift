@@ -13,6 +13,7 @@ enum Resources {
         static let tracksTab = UIImage(named: "TabTracks") ?? UIImage()
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
         static let addButton = UIImage(named: "AddButton") ?? UIImage()
+        static let stubTrackersImage = UIImage(named: "StubImage") ?? UIImage()
     }
     
     enum Colors {
