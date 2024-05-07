@@ -16,8 +16,8 @@ final class TabBarViewController: UITabBarController {
     
     private func configure() {
         view.backgroundColor = Resources.Colors.white
-        tabBar.barTintColor = Resources.Colors.white
         tabBar.isTranslucent = false
+        tabBar.addTopBorder(color: Resources.Colors.searchTextGray, thickness: 0.5)
         
         addTabs()
     }
@@ -42,5 +42,21 @@ final class TabBarViewController: UITabBarController {
         )
         
         return nav
+    }
+}
+
+extension UITabBar {
+    func addTopBorder(color: UIColor?, thickness: CGFloat) {
+        let subview = UIView()
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        subview.backgroundColor = color
+        self.addSubview(subview)
+        
+        NSLayoutConstraint.activate([
+            subview.leftAnchor.constraint(equalTo: self.leftAnchor),
+            subview.rightAnchor.constraint(equalTo: self.rightAnchor),
+            subview.heightAnchor.constraint(equalToConstant: thickness),
+            subview.topAnchor.constraint(equalTo: self.topAnchor)
+        ])
     }
 }
