@@ -116,8 +116,18 @@ extension TrackersViewController {
     }
     
     private func setDatePicker() {
-        let datePickerView = DatePickerView(date: getDate())
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerView)
+        let datePicker = UIDatePicker()
+        
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        
+        datePicker.backgroundColor = Resources.Colors.lightGray
+        datePicker.tintColor = Resources.Colors.blue
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
     }
     
     private func setSubviews() {
@@ -144,5 +154,13 @@ extension TrackersViewController {
             stubImage.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
             stubImage.trailingAnchor.constraint(equalTo: vStack.trailingAnchor)
         ])
+    }
+    
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        let selectedDate = sender.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
+        let formattedDate = dateFormatter.string(from: selectedDate)
+        print("Выбранная дата: \(formattedDate)")
     }
 }
