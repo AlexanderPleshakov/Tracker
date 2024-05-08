@@ -9,20 +9,23 @@
 /* Begin PBXBuildFile section */
 		1630D3CB2BE4C00F00A59A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */; };
 		1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */; };
-		1630D3CF2BE4C00F00A59A82 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630D3CE2BE4C00F00A59A82 /* TracksViewController.swift */; };
+		1630D3CF2BE4C00F00A59A82 /* TrackersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630D3CE2BE4C00F00A59A82 /* TrackersViewController.swift */; };
 		1630D3D42BE4C01300A59A82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1630D3D32BE4C01300A59A82 /* Assets.xcassets */; };
 		1630D3D72BE4C01300A59A82 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1630D3D62BE4C01300A59A82 /* Base */; };
 		16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */; };
 		16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */; };
 		16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7A02BE6559F00F4FDFF /* Resources.swift */; };
 		16AFE7A42BE8E98F00F4FDFF /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7A32BE8E98F00F4FDFF /* DatePickerView.swift */; };
+		16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */; };
+		16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */; };
+		16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1630D3C72BE4C00F00A59A82 /* Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1630D3CE2BE4C00F00A59A82 /* TracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
+		1630D3CE2BE4C00F00A59A82 /* TrackersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewController.swift; sourceTree = "<group>"; };
 		1630D3D32BE4C01300A59A82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1630D3D62BE4C01300A59A82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1630D3D82BE4C01300A59A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,6 +33,9 @@
 		16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		16AFE7A02BE6559F00F4FDFF /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		16AFE7A32BE8E98F00F4FDFF /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
+		16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
+		16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +70,7 @@
 			children = (
 				1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */,
 				1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */,
-				16AFE79E2BE6551B00F4FDFF /* Tracks */,
+				16AFE79E2BE6551B00F4FDFF /* Trackers */,
 				16AFE79F2BE6553100F4FDFF /* Statistic */,
 				16AFE79B2BE6517C00F4FDFF /* TabBar */,
 				16AFE7982BE64E5900F4FDFF /* Resources */,
@@ -91,13 +97,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		16AFE79E2BE6551B00F4FDFF /* Tracks */ = {
+		16AFE79E2BE6551B00F4FDFF /* Trackers */ = {
 			isa = PBXGroup;
 			children = (
+				16AFE7CB2BEBF05600F4FDFF /* Models */,
 				16AFE7A22BE8E97400F4FDFF /* Views */,
-				1630D3CE2BE4C00F00A59A82 /* TracksViewController.swift */,
+				1630D3CE2BE4C00F00A59A82 /* TrackersViewController.swift */,
 			);
-			path = Tracks;
+			path = Trackers;
 			sourceTree = "<group>";
 		};
 		16AFE79F2BE6553100F4FDFF /* Statistic */ = {
@@ -114,6 +121,16 @@
 				16AFE7A32BE8E98F00F4FDFF /* DatePickerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		16AFE7CB2BEBF05600F4FDFF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */,
+				16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */,
+				16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,10 +203,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */,
 				16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */,
-				1630D3CF2BE4C00F00A59A82 /* TracksViewController.swift in Sources */,
+				1630D3CF2BE4C00F00A59A82 /* TrackersViewController.swift in Sources */,
 				16AFE7A42BE8E98F00F4FDFF /* DatePickerView.swift in Sources */,
 				1630D3CB2BE4C00F00A59A82 /* AppDelegate.swift in Sources */,
+				16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */,
+				16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */,
 				16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */,
 				1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */,
 				16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */,

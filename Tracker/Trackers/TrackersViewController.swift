@@ -1,5 +1,5 @@
 //
-//  TracksViewController.swift
+//  TrackersViewController.swift
 //  Tracker
 //
 //  Created by Александр Плешаков on 03.05.2024.
@@ -7,8 +7,11 @@
 
 import UIKit
 
-final class TracksViewController: UIViewController {
+final class TrackersViewController: UIViewController {
     // MARK: Properties
+    
+    var categories: [TrackerCategory] = []
+    var completedTrackers: [TrackerRecord] = []
     
     private let searchField: UISearchTextField = {
         let field = UISearchTextField()
@@ -80,7 +83,7 @@ final class TracksViewController: UIViewController {
 
 // MARK: UI configuration
 
-extension TracksViewController {
+extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
@@ -113,8 +116,18 @@ extension TracksViewController {
     }
     
     private func setDatePicker() {
-        let datePickerView = DatePickerView(date: getDate())
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerView)
+        let datePicker = UIDatePicker()
+        
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        
+        datePicker.backgroundColor = Resources.Colors.lightGray
+        datePicker.tintColor = Resources.Colors.blue
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
     }
     
     private func setSubviews() {
@@ -141,5 +154,13 @@ extension TracksViewController {
             stubImage.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
             stubImage.trailingAnchor.constraint(equalTo: vStack.trailingAnchor)
         ])
+    }
+    
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        let selectedDate = sender.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
+        let formattedDate = dateFormatter.string(from: selectedDate)
+        print("Выбранная дата: \(formattedDate)")
     }
 }
