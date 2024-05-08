@@ -10,6 +10,9 @@ import UIKit
 final class TrackersViewController: UIViewController {
     // MARK: Properties
     
+    var categories: [TrackerCategory] = []
+    var completedTrackers: [TrackerRecord] = []
+    
     private let searchField: UISearchTextField = {
         let field = UISearchTextField()
         field.translatesAutoresizingMaskIntoConstraints = false
