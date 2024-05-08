@@ -1,5 +1,5 @@
 //
-//  TracksViewController.swift
+//  TrackersViewController.swift
 //  Tracker
 //
 //  Created by Александр Плешаков on 03.05.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TracksViewController: UIViewController {
+final class TrackersViewController: UIViewController {
     // MARK: Properties
     
     private let searchField: UISearchTextField = {
@@ -80,7 +80,7 @@ final class TracksViewController: UIViewController {
 
 // MARK: UI configuration
 
-extension TracksViewController {
+extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         

@@ -25,7 +25,7 @@ final class TabBarViewController: UITabBarController {
     private func addTabs() {
         let tracks = createTab(title: "Трекеры",
                                image: Resources.Images.tracksTab,
-                               for: TracksViewController())
+                               for: TrackersViewController())
         let statistic = createTab(title: "Статистика",
                                image: Resources.Images.statisticTab,
                                for: StatisticViewController())
