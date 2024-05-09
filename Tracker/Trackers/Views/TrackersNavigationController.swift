@@ -38,7 +38,6 @@ final class TrackersNavigationController: UINavigationController {
     private func setTitle() {
         delegateController.navigationItem.titleView?.tintColor = Resources.Colors.black
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.titleView?.topAnchor.co
         
         delegateController.navigationItem.title = "Трекеры"
         let attributes = [
