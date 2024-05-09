@@ -13,13 +13,7 @@ final class TrackersViewController: UIViewController {
     var categories: [TrackerCategory] = []
     var completedTrackers: [TrackerRecord] = []
     
-    private let searchController: UISearchController = {
-        let search = UISearchController(searchResultsController: nil)
-        search.searchBar.placeholder = "Поиск"
-        search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
-        
-        return search
-    }()
+    // MARK: Views
     
     private let stubView = StubView()
     
@@ -33,23 +27,7 @@ final class TrackersViewController: UIViewController {
     
     // MARK: Methods
     
-    private func getDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy"
-        return dateFormatter.string(from: Date())
-    }
     
-    @objc private func datePickerTapped() {
-        print("Date picker tapped")
-    }
-    
-    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        let selectedDate = sender.date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
-        let formattedDate = dateFormatter.string(from: selectedDate)
-        print("Выбранная дата: \(formattedDate)")
-    }
 }
 
 // MARK: UI configuration
@@ -58,51 +36,10 @@ extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
-        navBarConfig()
-        setSubviews()
+        setupSubviews()
     }
     
-    private func navBarConfig() {
-        setTitle()
-        setAddButton()
-        setDatePicker()
-        navigationItem.searchController = searchController
-    }
-    
-    private func setTitle() {
-        navigationItem.titleView?.tintColor = Resources.Colors.black
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        navigationItem.title = "Трекеры"
-        let attributes = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 34)
-        ]
-        UINavigationBar.appearance().titleTextAttributes = attributes
-    }
-    
-    private func setAddButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Resources.Images.addButton,
-                                                           style: .plain,
-                                                           target: self, action: nil)
-        navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.black
-    }
-    
-    private func setDatePicker() {
-        let datePicker = UIDatePicker()
-        
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .compact
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
-        
-        datePicker.backgroundColor = Resources.Colors.lightGray
-        datePicker.tintColor = Resources.Colors.blue
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
-    }
-    
-    private func setSubviews() {
+    private func setupSubviews() {
         addStubView()
     }
     
@@ -115,5 +52,19 @@ extension TrackersViewController {
             stubView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             stubView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
+    }
+}
+
+extension TrackersViewController: TrackersNavigationControllerDelegate {
+    func dateWasChanged(date: Date) {
+        let selectedDate = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
+        let formattedDate = dateFormatter.string(from: selectedDate)
+        print("Выбранная дата: \(formattedDate)")
+    }
+    
+    func addButtonTapped() {
+        print("Add button tapped")
     }
 }
