@@ -8,6 +8,7 @@
 import UIKit
 
 final class NewTrackerViewController: UIViewController {
+    // MARK: Properties
     
     private let newHabitButton: UIButton = {
         let button = UIButton()
@@ -32,6 +33,8 @@ final class NewTrackerViewController: UIViewController {
         
         return button
     }()
+    
+    // MARK: Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +74,12 @@ final class NewTrackerViewController: UIViewController {
         ])
     }
     
+    // MARK: Actions
+    
     @objc private func newHabitButtonTapped() {
-        
+        let habitViewController = NewHabitViewController()
+        let habitNav = UINavigationController(rootViewController: habitViewController)
+        present(habitNav, animated: true)
     }
     
     @objc private func newEventButtonTapped() {

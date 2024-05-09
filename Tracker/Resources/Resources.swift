@@ -23,5 +23,6 @@ enum Resources {
         static let lightGray = UIColor(named: "TLightGray")
         static let searchBackgroundGray = UIColor(named: "TSearchBackgroundGray")
         static let searchTextGray = UIColor(named: "TSearchTextGray")
+        static let cellBackground = UIColor(named: "TCellBackgroundGray")
     }
 }
