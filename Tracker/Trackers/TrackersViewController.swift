@@ -13,52 +13,9 @@ final class TrackersViewController: UIViewController {
     var categories: [TrackerCategory] = []
     var completedTrackers: [TrackerRecord] = []
     
-    private let searchField: UISearchTextField = {
-        let field = UISearchTextField()
-        field.translatesAutoresizingMaskIntoConstraints = false
-        
-        field.backgroundColor = Resources.Colors.searchBackgroundGray
-        field.textColor = Resources.Colors.black
-        field.tintColor = Resources.Colors.blue
-        field.leftView?.tintColor = Resources.Colors.searchTextGray
-        
-        let placeholderAttributes = [NSAttributedString.Key.foregroundColor : Resources.Colors.searchTextGray]
-        let attributedPlaceholder = NSAttributedString(string: "Поиск", attributes: placeholderAttributes as [NSAttributedString.Key : Any])
-        field.attributedPlaceholder = attributedPlaceholder
-        
-        field.font = UIFont.systemFont(ofSize: 17)
-        
-        return field
-    }()
+    // MARK: Views
     
-    private let vStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.spacing = 8
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stack
-    }()
-    
-    private let stubLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textAlignment = .center
-        label.textColor = Resources.Colors.black
-        label.text = "Что будем отслеживать?"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    private let stubImage: UIImageView = {
-        let imageView = UIImageView(image: Resources.Images.stubTrackersImage)
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return imageView
-    }()
+    private let stubView = StubView()
     
     // MARK: Init
 
@@ -70,15 +27,7 @@ final class TrackersViewController: UIViewController {
     
     // MARK: Methods
     
-    private func getDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy"
-        return dateFormatter.string(from: Date())
-    }
     
-    @objc private func datePickerTapped() {
-        print("Date picker tapped")
-    }
 }
 
 // MARK: UI configuration
@@ -87,80 +36,35 @@ extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
-        navBarConfig()
-        setSubviews()
+        setupSubviews()
     }
     
-    private func navBarConfig() {
-        setTitle()
-        setAddButton()
-        setDatePicker()
+    private func setupSubviews() {
+        addStubView()
     }
     
-    private func setTitle() {
-        navigationItem.titleView?.tintColor = Resources.Colors.black
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        navigationItem.title = "Трекеры"
-        let attributes = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 34)
-        ]
-        UINavigationBar.appearance().titleTextAttributes = attributes
-    }
-    
-    private func setAddButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Resources.Images.addButton,
-                                                           style: .plain,
-                                                           target: self, action: nil)
-        navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.black
-    }
-    
-    private func setDatePicker() {
-        let datePicker = UIDatePicker()
-        
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .compact
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
-        
-        datePicker.backgroundColor = Resources.Colors.lightGray
-        datePicker.tintColor = Resources.Colors.blue
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
-    }
-    
-    private func setSubviews() {
-        vStack.addArrangedSubview(stubImage)
-        vStack.addArrangedSubview(stubLabel)
-        
-        view.addSubview(vStack)
-        view.addSubview(searchField)
+    private func addStubView() {
+        view.addSubview(stubView)
         
         NSLayoutConstraint.activate([
-            searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            searchField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            searchField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            searchField.heightAnchor.constraint(equalToConstant: 36),
-            
-            vStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            vStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            vStack.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            vStack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
-            stubImage.heightAnchor.constraint(equalToConstant: 80),
-            stubImage.widthAnchor.constraint(equalToConstant: 80),
-            
-            stubImage.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
-            stubImage.trailingAnchor.constraint(equalTo: vStack.trailingAnchor)
+            stubView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stubView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stubView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            stubView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
-    
-    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        let selectedDate = sender.date
+}
+
+extension TrackersViewController: TrackersNavigationControllerDelegate {
+    func dateWasChanged(date: Date) {
+        let selectedDate = date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
         let formattedDate = dateFormatter.string(from: selectedDate)
         print("Выбранная дата: \(formattedDate)")
+    }
+    
+    func addButtonTapped() {
+        print("Add button tapped")
     }
 }

@@ -33,7 +33,7 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func createTab(title: String, image: UIImage, for viewController: UIViewController) -> UINavigationController {
-        let nav = UINavigationController(rootViewController: viewController)
+        let nav = (viewController as? TrackersNavigationControllerDelegate) != nil ? TrackersNavigationController(rootViewController: viewController as! TrackersNavigationControllerDelegate) : UINavigationController(rootViewController: viewController)
         
         viewController.tabBarItem = UITabBarItem(
             title: title,
