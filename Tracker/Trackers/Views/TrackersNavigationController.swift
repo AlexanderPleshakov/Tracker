@@ -40,10 +40,6 @@ final class TrackersNavigationController: UINavigationController {
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
         
         delegateController.navigationItem.title = "Трекеры"
-        let attributes = [
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 34)
-        ]
-        UINavigationBar.appearance().titleTextAttributes = attributes
     }
     
     private func setAddButton() {
