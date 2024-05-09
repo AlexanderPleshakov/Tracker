@@ -59,7 +59,6 @@ final class TrackersNavigationController: UINavigationController {
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
-        datePicker.backgroundColor = Resources.Colors.lightGray
         datePicker.tintColor = Resources.Colors.blue
         
         delegateController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
