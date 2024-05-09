@@ -26,7 +26,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="BlueTracker"/>
+                        <color key="backgroundColor" name="TBlue"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cYi-Md-e2W" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8es-rm-Bxe"/>
@@ -41,7 +41,7 @@
     </scenes>
     <resources>
         <image name="Logo" width="91" height="94"/>
-        <namedColor name="BlueTracker">
+        <namedColor name="TBlue">
             <color red="0.21600000560283661" green="0.44699999690055847" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
