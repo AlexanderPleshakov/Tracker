@@ -65,6 +65,8 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     }
     
     func addButtonTapped() {
-        print("Add button tapped")
+        let viewController = NewTrackerViewController()
+        let nav = UINavigationController(rootViewController: viewController)
+        present(nav, animated: true)
     }
 }
