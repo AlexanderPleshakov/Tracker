@@ -13,22 +13,12 @@ final class TrackersViewController: UIViewController {
     var categories: [TrackerCategory] = []
     var completedTrackers: [TrackerRecord] = []
     
-    private let searchField: UISearchTextField = {
-        let field = UISearchTextField()
-        field.translatesAutoresizingMaskIntoConstraints = false
+    private let searchController: UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.searchBar.placeholder = "Поиск"
+        search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         
-        field.backgroundColor = Resources.Colors.searchBackgroundGray
-        field.textColor = Resources.Colors.black
-        field.tintColor = Resources.Colors.blue
-        field.leftView?.tintColor = Resources.Colors.searchTextGray
-        
-        let placeholderAttributes = [NSAttributedString.Key.foregroundColor : Resources.Colors.searchTextGray]
-        let attributedPlaceholder = NSAttributedString(string: "Поиск", attributes: placeholderAttributes as [NSAttributedString.Key : Any])
-        field.attributedPlaceholder = attributedPlaceholder
-        
-        field.font = UIFont.systemFont(ofSize: 17)
-        
-        return field
+        return search
     }()
     
     private let stubView = StubView()
@@ -76,6 +66,7 @@ extension TrackersViewController {
         setTitle()
         setAddButton()
         setDatePicker()
+        navigationItem.searchController = searchController
     }
     
     private func setTitle() {
@@ -112,16 +103,7 @@ extension TrackersViewController {
     }
     
     private func setSubviews() {
-
-        view.addSubview(searchField)
         addStubView()
-        
-        NSLayoutConstraint.activate([
-            searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            searchField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            searchField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            searchField.heightAnchor.constraint(equalToConstant: 36),
-        ])
     }
     
     private func addStubView() {
