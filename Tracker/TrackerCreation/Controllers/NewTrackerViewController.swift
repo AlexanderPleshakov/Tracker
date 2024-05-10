@@ -8,30 +8,12 @@
 import UIKit
 
 final class NewTrackerViewController: UIViewController {
+    // MARK: Properties
     
-    private let newHabitButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = Resources.Colors.black
-        button.tintColor = Resources.Colors.white
-        button.layer.cornerRadius = 16
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.setTitle("Привычка", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+    private let newHabitButton = BasicLargeButton(title: "Привычка")
+    private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
     
-    private let newEventButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = Resources.Colors.black
-        button.tintColor = Resources.Colors.white
-        button.layer.cornerRadius = 16
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.setTitle("Нерегулярное событие", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+    // MARK: Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +37,12 @@ final class NewTrackerViewController: UIViewController {
     }
     
     private func setupSubviews() {
+        newEventButton.translatesAutoresizingMaskIntoConstraints = false
+        newHabitButton.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(newHabitButton)
         view.addSubview(newEventButton)
+        
         
         NSLayoutConstraint.activate([
             newHabitButton.topAnchor.constraint(equalTo: view.centerYAnchor),
@@ -71,11 +57,25 @@ final class NewTrackerViewController: UIViewController {
         ])
     }
     
+    // MARK: Actions
+    
     @objc private func newHabitButtonTapped() {
-        
+        let habitViewController = NewHabitOrEventViewController(type: .habit)
+        habitViewController.delegate = self
+        let habitNav = UINavigationController(rootViewController: habitViewController)
+        present(habitNav, animated: true)
     }
     
     @objc private func newEventButtonTapped() {
-        
+        let eventViewController = NewHabitOrEventViewController(type: .event)
+        eventViewController.delegate = self
+        let eventNav = UINavigationController(rootViewController: eventViewController)
+        present(eventNav, animated: true)
+    }
+}
+
+extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
+    func closeController() {
+        self.dismiss(animated: true)
     }
 }
