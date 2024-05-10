@@ -13,6 +13,7 @@ final class NewHabitOrEventViewController: UIViewController {
     private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper!
+    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     // MARK: Views
     
@@ -76,7 +77,8 @@ final class NewHabitOrEventViewController: UIViewController {
     // MARK: Methods
     
     @objc private func buttonCancelTapped() {
-        print("Cancel tap")
+        dismiss(animated: true)
+        delegate?.closeController()
     }
     
     @objc private func buttonCreateTapped() {
@@ -96,8 +98,6 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     func presentCategories() {
         
     }
-    
-    
 }
 
 // MARK: UI configure

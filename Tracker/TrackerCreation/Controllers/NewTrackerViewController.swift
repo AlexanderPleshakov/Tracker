@@ -61,13 +61,21 @@ final class NewTrackerViewController: UIViewController {
     
     @objc private func newHabitButtonTapped() {
         let habitViewController = NewHabitOrEventViewController(type: .habit)
+        habitViewController.delegate = self
         let habitNav = UINavigationController(rootViewController: habitViewController)
         present(habitNav, animated: true)
     }
     
     @objc private func newEventButtonTapped() {
-        let habitViewController = NewHabitOrEventViewController(type: .event)
-        let habitNav = UINavigationController(rootViewController: habitViewController)
-        present(habitNav, animated: true)
+        let eventViewController = NewHabitOrEventViewController(type: .event)
+        eventViewController.delegate = self
+        let eventNav = UINavigationController(rootViewController: eventViewController)
+        present(eventNav, animated: true)
+    }
+}
+
+extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
+    func closeController() {
+        self.dismiss(animated: true)
     }
 }

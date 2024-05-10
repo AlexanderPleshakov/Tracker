@@ -9,7 +9,7 @@ import UIKit
 
 final class HabitAndEventTableViewHelper: NSObject {
     let numbersOfRows: [Int]
-    let delegateController: HabitAndEventTableViewDelegate!
+    weak var delegateController: HabitAndEventTableViewDelegate!
     
     init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]

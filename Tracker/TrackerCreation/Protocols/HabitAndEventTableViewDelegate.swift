@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol HabitAndEventTableViewDelegate: UIViewController {
+protocol HabitAndEventTableViewDelegate: NSObject {
     func presentTimetable()
     func presentCategories()
 }
