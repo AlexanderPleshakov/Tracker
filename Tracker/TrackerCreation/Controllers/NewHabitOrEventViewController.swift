@@ -12,7 +12,7 @@ final class NewHabitOrEventViewController: UIViewController {
     
     private let type: TrackerType
     private let navTitle: String
-    private let tableViewHelper: HabitAndEventTableViewHelper
+    private var tableViewHelper: HabitAndEventTableViewHelper!
     
     // MARK: Views
     
@@ -57,8 +57,6 @@ final class NewHabitOrEventViewController: UIViewController {
     init(type: TrackerType) {
         self.type = type
         self.navTitle = (type == .habit) ? "Новая привычка" : "Новое нерегулярное событие"
-        self.tableViewHelper = HabitAndEventTableViewHelper(type: type)
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,6 +69,7 @@ final class NewHabitOrEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableViewHelper = HabitAndEventTableViewHelper(type: type, delegate: self)
         configure()
     }
     
@@ -83,6 +82,22 @@ final class NewHabitOrEventViewController: UIViewController {
     @objc private func buttonCreateTapped() {
         print("Create tap")
     }
+}
+
+// MARK: HabitAndEventTableViewDelegate
+
+extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
+    func presentTimetable() {
+        let timetable = TimetableViewController()
+        let timetableNav = UINavigationController(rootViewController: timetable)
+        present(timetableNav, animated: true)
+    }
+    
+    func presentCategories() {
+        
+    }
+    
+    
 }
 
 // MARK: UI configure

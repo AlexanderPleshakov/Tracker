@@ -9,9 +9,11 @@ import UIKit
 
 final class HabitAndEventTableViewHelper: NSObject {
     let numbersOfRows: [Int]
+    let delegateController: HabitAndEventTableViewDelegate!
     
-    init(type: TrackerType) {
+    init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
+        self.delegateController = delegate
     }
 }
 
@@ -39,6 +41,10 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.row == 1 {
+            delegateController.presentTimetable()
+        }
     }
 }
 
