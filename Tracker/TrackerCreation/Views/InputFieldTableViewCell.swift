@@ -37,13 +37,13 @@ final class InputFieldTableViewCell: UITableViewCell {
     private func setupSubviews() {
         backgroundColor = Resources.Colors.cellBackground
         
-        addSubview(textField)
+        contentView.addSubview(textField)
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: topAnchor),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
             textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16)
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
 }
