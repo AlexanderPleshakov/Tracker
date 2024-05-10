@@ -1,5 +1,5 @@
 //
-//  NewHabitViewController.swift
+//  NewHabitOrEventViewController.swift
 //  Tracker
 //
 //  Created by Александр Плешаков on 10.05.2024.
@@ -7,10 +7,12 @@
 
 import UIKit
 
-final class NewHabitViewController: UIViewController {
+final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
     
-    private let tableViewHelper = HabitAndEventTableViewHelper()
+    private let type: TrackerType
+    private let navTitle: String
+    private let tableViewHelper: HabitAndEventTableViewHelper
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -22,6 +24,18 @@ final class NewHabitViewController: UIViewController {
     }()
     
     // MARK: Init
+    
+    init(type: TrackerType) {
+        self.type = type
+        self.navTitle = (type == .habit) ? "Новая привычка" : "Новое нерегулярное событие"
+        self.tableViewHelper = HabitAndEventTableViewHelper(type: type)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +53,7 @@ final class NewHabitViewController: UIViewController {
         
         tableView.backgroundColor = Resources.Colors.white
         
-        title = "Новая привычка"
+        title = navTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium)
         ]

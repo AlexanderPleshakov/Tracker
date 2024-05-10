@@ -16,7 +16,7 @@
 		16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */; };
 		16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */; };
 		16818AC12BED6CA10025D5D4 /* NewTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */; };
-		16818AC32BED798F0025D5D4 /* NewHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC22BED798F0025D5D4 /* NewHabitViewController.swift */; };
+		16818AC32BED798F0025D5D4 /* NewHabitOrEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */; };
 		16818AC62BED7D490025D5D4 /* InputFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC52BED7D490025D5D4 /* InputFieldTableViewCell.swift */; };
 		16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */; };
 		16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */; };
@@ -25,6 +25,7 @@
 		16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */; };
 		16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */; };
 		16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */; };
+		16F659282BEE8B1100DA7164 /* TrackerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659272BEE8B1100DA7164 /* TrackerType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +40,7 @@
 		16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationController.swift; sourceTree = "<group>"; };
 		16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackerViewController.swift; sourceTree = "<group>"; };
-		16818AC22BED798F0025D5D4 /* NewHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitViewController.swift; sourceTree = "<group>"; };
+		16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitOrEventViewController.swift; sourceTree = "<group>"; };
 		16818AC52BED7D490025D5D4 /* InputFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldTableViewCell.swift; sourceTree = "<group>"; };
 		16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
 		16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
 		16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAndEventTableViewHelper.swift; sourceTree = "<group>"; };
+		16F659272BEE8B1100DA7164 /* TrackerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,7 @@
 			children = (
 				16818AC42BED7D270025D5D4 /* Views */,
 				16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */,
-				16818AC22BED798F0025D5D4 /* NewHabitViewController.swift */,
+				16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */,
 				16F659262BEE63C200DA7164 /* Helpers */,
 			);
 			path = TrackerCreation;
@@ -178,6 +180,7 @@
 		16F659262BEE63C200DA7164 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				16F659272BEE8B1100DA7164 /* TrackerType.swift */,
 				16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */,
 			);
 			path = Helpers;
@@ -256,6 +259,7 @@
 				16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */,
 				16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */,
 				16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */,
+				16F659282BEE8B1100DA7164 /* TrackerType.swift in Sources */,
 				16818AC12BED6CA10025D5D4 /* NewTrackerViewController.swift in Sources */,
 				16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */,
 				1630D3CF2BE4C00F00A59A82 /* TrackersViewController.swift in Sources */,
@@ -267,7 +271,7 @@
 				16818AB92BED22A90025D5D4 /* StubView.swift in Sources */,
 				1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */,
 				16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */,
-				16818AC32BED798F0025D5D4 /* NewHabitViewController.swift in Sources */,
+				16818AC32BED798F0025D5D4 /* NewHabitOrEventViewController.swift in Sources */,
 				16818AC62BED7D490025D5D4 /* InputFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

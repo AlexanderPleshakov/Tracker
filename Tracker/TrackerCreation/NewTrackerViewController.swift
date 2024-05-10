@@ -77,12 +77,14 @@ final class NewTrackerViewController: UIViewController {
     // MARK: Actions
     
     @objc private func newHabitButtonTapped() {
-        let habitViewController = NewHabitViewController()
+        let habitViewController = NewHabitOrEventViewController(type: .habit)
         let habitNav = UINavigationController(rootViewController: habitViewController)
         present(habitNav, animated: true)
     }
     
     @objc private func newEventButtonTapped() {
-        
+        let habitViewController = NewHabitOrEventViewController(type: .event)
+        let habitNav = UINavigationController(rootViewController: habitViewController)
+        present(habitNav, animated: true)
     }
 }

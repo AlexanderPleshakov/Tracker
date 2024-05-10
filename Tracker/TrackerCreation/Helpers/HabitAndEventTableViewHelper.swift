@@ -10,8 +10,8 @@ import UIKit
 final class HabitAndEventTableViewHelper: NSObject {
     let numbersOfRows: [Int]
     
-    init(numbersOfRows: [Int] = [1, 2]) {
-        self.numbersOfRows = numbersOfRows.count == 2 ? numbersOfRows : [1, 2]
+    init(type: TrackerType) {
+        self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
     }
 }
 
