@@ -21,7 +21,6 @@
 		16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */; };
 		16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */; };
 		16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7A02BE6559F00F4FDFF /* Resources.swift */; };
-		16AFE7A42BE8E98F00F4FDFF /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7A32BE8E98F00F4FDFF /* DatePickerView.swift */; };
 		16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */; };
 		16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */; };
 		16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */; };
@@ -44,7 +43,6 @@
 		16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		16AFE7A02BE6559F00F4FDFF /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
-		16AFE7A32BE8E98F00F4FDFF /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
 		16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 		16AFE7A22BE8E97400F4FDFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				16AFE7A32BE8E98F00F4FDFF /* DatePickerView.swift */,
 				16818AB82BED22A90025D5D4 /* StubView.swift */,
 				16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */,
 			);
@@ -250,7 +247,6 @@
 				16818AC12BED6CA10025D5D4 /* NewTrackerViewController.swift in Sources */,
 				16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */,
 				1630D3CF2BE4C00F00A59A82 /* TrackersViewController.swift in Sources */,
-				16AFE7A42BE8E98F00F4FDFF /* DatePickerView.swift in Sources */,
 				1630D3CB2BE4C00F00A59A82 /* AppDelegate.swift in Sources */,
 				16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */,
 				16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */,
