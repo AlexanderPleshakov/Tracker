@@ -62,12 +62,8 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-            let cellText: String
-            if numbersOfRows[1] == 1 {
-                cellText = "Расписание"
-            } else {
-                cellText = indexPath.row == 0 ? "Категория" : "Расписание"
-            }
+            
+            let cellText = indexPath.row == 0 ? "Категория" : "Расписание"
             
             cell.backgroundColor = Resources.Colors.cellBackground
             cell.accessoryType = .disclosureIndicator
