@@ -105,8 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				16818AC42BED7D270025D5D4 /* Views */,
-				16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */,
-				16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */,
+				16F659292BEE990C00DA7164 /* Controllers */,
 				16F659262BEE63C200DA7164 /* Helpers */,
 			);
 			path = TrackerCreation;
@@ -184,6 +183,15 @@
 				16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		16F659292BEE990C00DA7164 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */,
+				16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
