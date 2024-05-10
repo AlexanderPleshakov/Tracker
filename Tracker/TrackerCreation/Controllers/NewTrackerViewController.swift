@@ -10,29 +10,8 @@ import UIKit
 final class NewTrackerViewController: UIViewController {
     // MARK: Properties
     
-    private let newHabitButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = Resources.Colors.black
-        button.tintColor = Resources.Colors.white
-        button.layer.cornerRadius = 16
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.setTitle("Привычка", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
-    
-    private let newEventButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = Resources.Colors.black
-        button.tintColor = Resources.Colors.white
-        button.layer.cornerRadius = 16
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.setTitle("Нерегулярное событие", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+    private let newHabitButton = BasicLargeButton(title: "Привычка")
+    private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
     
     // MARK: Init
     
@@ -58,8 +37,12 @@ final class NewTrackerViewController: UIViewController {
     }
     
     private func setupSubviews() {
+        newEventButton.translatesAutoresizingMaskIntoConstraints = false
+        newHabitButton.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(newHabitButton)
         view.addSubview(newEventButton)
+        
         
         NSLayoutConstraint.activate([
             newHabitButton.topAnchor.constraint(equalTo: view.centerYAnchor),
