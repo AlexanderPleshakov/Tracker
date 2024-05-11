@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class CategoriesViewController: UIViewController {
+final class CategoriesViewController: UIViewController, NewCategoryViewControllerDelegate {
     // MARK: Properties
     
     weak var delegate: CategoriesViewControllerDelegate?
     
-    private var categories: [TrackerCategory] = TrackersViewController.categories
+    var categories: [TrackerCategory] = TrackersViewController.categories
     private var selectedCategory: TrackerCategory? = nil
     
     // MARK: Init
@@ -55,7 +55,7 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configure()
         tableView.reloadData()
     }
@@ -70,6 +70,12 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Methods
     
+    func removeStubAndShowCategories() {
+        stubView.removeFromSuperview()
+        setupTableView()
+        tableView.reloadData()
+    }
+    
     private func categoryDidSelect(category: TrackerCategory) {
         selectedCategory = category
         self.dismiss(animated: true)
@@ -79,8 +85,11 @@ final class CategoriesViewController: UIViewController {
         selectedCategory = nil
     }
     
-    @objc private func buttonDoneTapped() {
-        self.dismiss(animated: true)
+    @objc private func buttonAddTapped() {
+        let newCategoryViewController = NewCategoryViewController()
+        newCategoryViewController.delegate = self
+        let nav = UINavigationController(rootViewController: newCategoryViewController)
+        present(nav, animated: true)
     }
 }
 
@@ -152,7 +161,7 @@ extension CategoriesViewController {
         
         tableView.backgroundColor = Resources.Colors.white
         
-        addButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(buttonAddTapped), for: .touchUpInside)
         
         title = "Категория"
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
@@ -168,7 +177,7 @@ extension CategoriesViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         setupDoneButton()
-        categories.isEmpty ? setupStubView() : setupTableView()
+        TrackersViewController.categories.isEmpty ? setupStubView() : setupTableView()
     }
     
     private func setupStubView() {

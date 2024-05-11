@@ -10,7 +10,7 @@ import UIKit
 final class TrackersViewController: UIViewController {
     // MARK: Properties
     
-    var categories: [TrackerCategory] = []
+    static var categories: [TrackerCategory] = []
     var completedTrackers: [TrackerRecord] = []
     
     // MARK: Views
