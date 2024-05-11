@@ -24,7 +24,6 @@ final class StubView: UIView {
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .center
         label.textColor = Resources.Colors.black
-        label.text = "Что будем отслеживать?"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -38,9 +37,10 @@ final class StubView: UIView {
         return imageView
     }()
     
-    init() {
+    init(text: String) {
         super.init(frame: .zero)
         
+        stubLabel.text = text
         configure()
     }
     

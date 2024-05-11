@@ -15,7 +15,7 @@ final class TrackersViewController: UIViewController {
     
     // MARK: Views
     
-    private let stubView = StubView()
+    private let stubView = StubView(text: "Что будем отслеживать?")
     
     // MARK: Init
 
