@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController {
+final class NewHabitOrEventViewController: UIViewController, TimetableDelegate {
     // MARK: Properties
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
@@ -101,14 +101,6 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func presentCategories() {
-        
-    }
-}
-
-// MARK: TimetableDelegate
-
-extension NewHabitOrEventViewController: TimetableDelegate {
-    func changeSubtitle() {
         
     }
 }

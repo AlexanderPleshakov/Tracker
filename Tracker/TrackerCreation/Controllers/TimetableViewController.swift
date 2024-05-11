@@ -56,7 +56,6 @@ final class TimetableViewController: UIViewController {
         NotificationCenter.default.post(name: TimetableViewController.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
         
         delegate?.selectedDays = getArraySelectedDays()
-        delegate?.changeSubtitle()
     }
     
     // MARK: Methods

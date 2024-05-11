@@ -9,6 +9,4 @@ import Foundation
 
 protocol TimetableDelegate: NSObject {
     var selectedDays: [Day] { get set }
-    
-    func changeSubtitle()
 }
