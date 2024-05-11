@@ -77,11 +77,7 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
             
             let cellText = indexPath.row == 0 ? "Категория" : "Расписание"
             
-            cell.backgroundColor = Resources.Colors.cellBackground
-            cell.accessoryType = .disclosureIndicator
-            
             cell.textLabel?.text = cellText
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
             cell.detailTextLabel?.text = ""
             
             return cell

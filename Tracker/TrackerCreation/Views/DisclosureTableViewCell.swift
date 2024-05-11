@@ -13,11 +13,16 @@ final class DisclosureTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
+        backgroundColor = Resources.Colors.cellBackground
+        accessoryType = .disclosureIndicator
+        textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        detailTextLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        detailTextLabel?.textColor = Resources.Colors.searchTextGray
+        
         NotificationCenter.default.addObserver(forName: TimetableViewController.buttonTappedNotification, object: nil, queue: .main) { [weak self] notification in
             if let days = notification.userInfo?["days"] as? [Day] {
                 self?.changeSubtitle(days: days)
             }
-            print("Notification")
         }
     }
     
