@@ -53,6 +53,8 @@ final class TimetableViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        NotificationCenter.default.post(name: TimetableViewController.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
+        
         delegate?.selectedDays = getArraySelectedDays()
         delegate?.changeSubtitle()
     }
@@ -116,7 +118,6 @@ final class TimetableViewController: UIViewController {
     }
     
     @objc private func buttonDoneTapped() {
-        NotificationCenter.default.post(name: TimetableViewController.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
         self.dismiss(animated: true)
     }
 }
