@@ -11,7 +11,6 @@ final class TimetableViewController: UIViewController {
     // MARK: Properties
     
     weak var delegate: TimetableDelegate?
-    static let buttonTappedNotification = NSNotification.Name("buttonTappedNotification")
     
     private let allDays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
     private let days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
@@ -53,7 +52,7 @@ final class TimetableViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        NotificationCenter.default.post(name: TimetableViewController.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
+        NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
         
         delegate?.selectedDays = getArraySelectedDays()
     }

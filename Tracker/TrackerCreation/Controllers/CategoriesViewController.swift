@@ -64,6 +64,8 @@ final class CategoriesViewController: UIViewController {
         super.viewWillDisappear(true)
         
         delegate?.selectedCategory = selectedCategory
+        
+        NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["category": selectedCategory?.title ?? ""])
     }
     
     // MARK: Methods
