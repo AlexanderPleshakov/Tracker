@@ -30,7 +30,10 @@
 		16F6592D2BEE9C7400DA7164 /* BasicLargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592C2BEE9C7400DA7164 /* BasicLargeButton.swift */; };
 		16F659302BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */; };
 		16F659332BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */; };
-		16F659352BEF853A00DA7164 /* Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659342BEF853A00DA7164 /* Days.swift */; };
+		16F659352BEF853A00DA7164 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659342BEF853A00DA7164 /* Day.swift */; };
+		16F659372BEF88BC00DA7164 /* TimetableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659362BEF88BC00DA7164 /* TimetableDelegate.swift */; };
+		16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */; };
+		16F6593B2BEF995A00DA7164 /* DisclosureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +62,10 @@
 		16F6592C2BEE9C7400DA7164 /* BasicLargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLargeButton.swift; sourceTree = "<group>"; };
 		16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAndEventTableViewDelegate.swift; sourceTree = "<group>"; };
 		16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitOrEventViewControllerDelegate.swift; sourceTree = "<group>"; };
-		16F659342BEF853A00DA7164 /* Days.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Days.swift; sourceTree = "<group>"; };
+		16F659342BEF853A00DA7164 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		16F659362BEF88BC00DA7164 /* TimetableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDelegate.swift; sourceTree = "<group>"; };
+		16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
+		16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				16818AC52BED7D490025D5D4 /* InputFieldTableViewCell.swift */,
+				16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */,
+				16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,7 +192,7 @@
 				16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */,
 				16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */,
 				16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */,
-				16F659342BEF853A00DA7164 /* Days.swift */,
+				16F659342BEF853A00DA7164 /* Day.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 			children = (
 				16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */,
 				16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */,
+				16F659362BEF88BC00DA7164 /* TimetableDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -296,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */,
+				16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */,
 				16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */,
 				16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */,
 				16F659282BEE8B1100DA7164 /* TrackerType.swift in Sources */,
@@ -312,10 +322,12 @@
 				16F659302BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift in Sources */,
 				1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */,
 				16AFE7A12BE6559F00F4FDFF /* Resources.swift in Sources */,
+				16F659372BEF88BC00DA7164 /* TimetableDelegate.swift in Sources */,
+				16F6593B2BEF995A00DA7164 /* DisclosureTableViewCell.swift in Sources */,
 				16818AC32BED798F0025D5D4 /* NewHabitOrEventViewController.swift in Sources */,
 				16F659332BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift in Sources */,
 				16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */,
-				16F659352BEF853A00DA7164 /* Days.swift in Sources */,
+				16F659352BEF853A00DA7164 /* Day.swift in Sources */,
 				16818AC62BED7D490025D5D4 /* InputFieldTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

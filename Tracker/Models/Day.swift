@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Days {
+enum Day {
     case everyday
     case monday, tuesday, wednesday, thursday, friday, saturday, sunday
 }

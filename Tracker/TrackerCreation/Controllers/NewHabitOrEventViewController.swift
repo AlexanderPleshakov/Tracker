@@ -12,7 +12,7 @@ final class NewHabitOrEventViewController: UIViewController {
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
-    var selectedDays = [Days]()
+    var selectedDays = [Day]()
     var selectedCategory: TrackerCategory? = nil
     
     private let type: TrackerType
@@ -24,7 +24,8 @@ final class NewHabitOrEventViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self, forCellReuseIdentifier: InputFieldTableViewCell.reuseIdentifier)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(DisclosureTableViewCell.self, forCellReuseIdentifier: DisclosureTableViewCell.reuseIdentifier)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -94,12 +95,20 @@ final class NewHabitOrEventViewController: UIViewController {
 
 extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     func presentTimetable() {
-        let timetable = TimetableViewController()
+        let timetable = TimetableViewController(delegate: self, selectedDays: Set(selectedDays))
         let timetableNav = UINavigationController(rootViewController: timetable)
         present(timetableNav, animated: true)
     }
     
     func presentCategories() {
+        
+    }
+}
+
+// MARK: TimetableDelegate
+
+extension NewHabitOrEventViewController: TimetableDelegate {
+    func changeSubtitle() {
         
     }
 }
@@ -160,3 +169,4 @@ extension NewHabitOrEventViewController {
         ])
     }
 }
+

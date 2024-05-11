@@ -10,14 +10,18 @@ import UIKit
 final class TimetableViewController: UIViewController {
     // MARK: Properties
     
+    weak var delegate: TimetableDelegate?
+    static let buttonTappedNotification = NSNotification.Name("buttonTappedNotification")
+    
+    private let allDays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
     private let days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
-    private let selectedDays = [String]()
+    private var selectedDays: Set<Day> = []
     
     // MARK: Views
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(TimetableTableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -25,12 +29,32 @@ final class TimetableViewController: UIViewController {
     
     private let doneButton = BasicLargeButton(title: "Готово")
     
+    // MARK: Init
+    
+    init(delegate: TimetableDelegate? = nil, selectedDays: Set<Day>) {
+        self.delegate = delegate
+        self.selectedDays = selectedDays
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        delegate?.selectedDays = getArraySelectedDays()
+        delegate?.changeSubtitle()
     }
     
     // MARK: Methods
@@ -71,11 +95,28 @@ final class TimetableViewController: UIViewController {
         ])
     }
     
+    private func getArraySelectedDays() -> [Day] {
+        var daysArray = [Day]()
+        for day in allDays {
+            if selectedDays.contains(day) {
+                daysArray.append(day)
+            }
+        }
+        
+        return daysArray
+    }
+    
     @objc private func switchValueChanged(_ sender: UISwitch) {
-        print(sender.tag)
+        let day = allDays[sender.tag]
+        if sender.isOn {
+            selectedDays.insert(day)
+        } else {
+            selectedDays.remove(day)
+        }
     }
     
     @objc private func buttonDoneTapped() {
+        NotificationCenter.default.post(name: TimetableViewController.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
         self.dismiss(animated: true)
     }
 }
@@ -87,6 +128,9 @@ extension TimetableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+        guard let cell = cell as? TimetableTableViewCell else {
+            return UITableViewCell()
+        }
         cell.backgroundColor = Resources.Colors.cellBackground
         
         if #available(iOS 14.0, *) {
@@ -98,13 +142,9 @@ extension TimetableViewController: UITableViewDataSource {
             cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
         
-        let switchView = UISwitch(frame: .zero)
-        switchView.setOn(false, animated: true)
-        switchView.tag = indexPath.row
-        switchView.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
-        switchView.onTintColor = Resources.Colors.blue
-        
-        cell.accessoryView = switchView
+        cell.switchView.setOn(selectedDays.contains(allDays[indexPath.row]), animated: true)
+        cell.switchView.tag = indexPath.row
+        cell.switchView.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         
         return cell
     }
