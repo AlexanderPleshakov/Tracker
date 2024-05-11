@@ -84,6 +84,16 @@ final class NewCategoryViewController: UIViewController {
 
 }
 
+extension NewCategoryViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
 
 extension NewCategoryViewController {
     private func configure() {
@@ -91,6 +101,7 @@ extension NewCategoryViewController {
         
         doneButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
+        textField.delegate = self
         
         title = "Новая категория"
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
