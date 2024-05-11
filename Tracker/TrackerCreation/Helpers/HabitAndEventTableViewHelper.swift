@@ -41,9 +41,15 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if indexPath.row == 1 {
-            delegateController.presentTimetable()
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                delegateController.presentCategories()
+            case 1:
+                delegateController.presentTimetable()
+            default:
+                break
+            }
         }
     }
 }

@@ -101,7 +101,9 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func presentCategories() {
-        
+        let categoriesVC = CategoriesViewController()
+        let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
+        present(categoriesVCNav, animated: true)
     }
 }
 
