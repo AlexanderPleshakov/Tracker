@@ -44,6 +44,75 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Methods
     
+    private func categoryDidSelect() {
+        self.dismiss(animated: true)
+    }
+    
+    @objc private func buttonDoneTapped() {
+        self.dismiss(animated: true)
+    }
+}
+
+extension CategoriesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categories.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+
+        cell.backgroundColor = Resources.Colors.cellBackground
+        
+        if #available(iOS 14.0, *) {
+            var content = cell.defaultContentConfiguration()
+            content.attributedText = NSAttributedString(string: categories[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)])
+            cell.contentConfiguration = content
+        } else {
+            cell.textLabel?.text = categories[indexPath.row].title
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        }
+        
+        return cell
+    }
+}
+
+extension CategoriesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
+    }
+
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        
+        if cell.accessoryView == nil {
+            let imageView = UIImageView(image: Resources.Images.checkmark)
+            cell.accessoryView = imageView
+            categoryDidSelect()
+        } else {
+            cell.accessoryView = nil
+        }
+    }
+}
+
+extension CategoriesViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
@@ -103,58 +172,5 @@ final class CategoriesViewController: UIViewController {
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
-    }
-    
-    @objc private func buttonDoneTapped() {
-        self.dismiss(animated: true)
-    }
-}
-
-extension CategoriesViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
-
-        cell.backgroundColor = Resources.Colors.cellBackground
-        
-        if #available(iOS 14.0, *) {
-            var content = cell.defaultContentConfiguration()
-            content.attributedText = NSAttributedString(string: categories[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)])
-            cell.contentConfiguration = content
-        } else {
-            cell.textLabel?.text = categories[indexPath.row].title
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        }
-        
-        return cell
-    }
-}
-
-extension CategoriesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNonzeroMagnitude
-    }
-
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 24
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
