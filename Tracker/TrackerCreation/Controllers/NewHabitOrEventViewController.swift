@@ -10,10 +10,14 @@ import UIKit
 final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
     
+    weak var delegate: NewHabitOrEventViewControllerDelegate?
+    
+    var selectedDays = [Days]()
+    var selectedCategory: TrackerCategory? = nil
+    
     private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper!
-    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     // MARK: Views
     
