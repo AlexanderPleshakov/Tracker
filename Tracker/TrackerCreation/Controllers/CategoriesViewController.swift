@@ -12,8 +12,8 @@ final class CategoriesViewController: UIViewController {
     
     weak var delegate: CategoriesViewControllerDelegate?
     
-    var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])]
-    var selectedCategory: TrackerCategory? = nil
+    private var categories: [TrackerCategory] = TrackersViewController.categories
+    private var selectedCategory: TrackerCategory? = nil
     
     // MARK: Init
     
@@ -30,13 +30,13 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Views
     
-    let addButton: UIButton = {
+    private let addButton: UIButton = {
         let button = BasicLargeButton(title: "Добавить категорию")
         
         return button
     }()
     
-    let stubView: StubView = {
+    private let stubView: StubView = {
         let stubView = StubView(text: "Привычки и события можно\nобъединить по смыслу")
         stubView.textLabel.textAlignment = .center
         stubView.textLabel.numberOfLines = 2
@@ -44,7 +44,7 @@ final class CategoriesViewController: UIViewController {
         return stubView
     }()
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         
