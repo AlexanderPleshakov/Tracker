@@ -35,6 +35,7 @@
 		16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */; };
 		16F6593B2BEF995A00DA7164 /* DisclosureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */; };
 		16F6593D2BEFD53E00DA7164 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */; };
+		16F6593F2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593E2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
 		16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureTableViewCell.swift; sourceTree = "<group>"; };
 		16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		16F6593E2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */,
 				16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */,
 				16F659362BEF88BC00DA7164 /* TimetableDelegate.swift */,
+				16F6593E2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				16F6593D2BEFD53E00DA7164 /* CategoriesViewController.swift in Sources */,
 				16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */,
 				16818AB92BED22A90025D5D4 /* StubView.swift in Sources */,
+				16F6593F2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift in Sources */,
 				16F6592D2BEE9C7400DA7164 /* BasicLargeButton.swift in Sources */,
 				16F659302BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift in Sources */,
 				1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */,

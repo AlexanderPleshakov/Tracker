@@ -9,7 +9,24 @@ import UIKit
 
 final class CategoriesViewController: UIViewController {
     // MARK: Properties
+    
+    weak var delegate: CategoriesViewControllerDelegate?
+    
     var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])]
+    var selectedCategory: TrackerCategory? = nil
+    
+    // MARK: Init
+    
+    init(delegate: CategoriesViewControllerDelegate? = nil, selectedCategory: TrackerCategory? = nil) {
+        self.delegate = delegate
+        self.selectedCategory = selectedCategory
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: Views
     
@@ -40,12 +57,24 @@ final class CategoriesViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        
+        delegate?.selectedCategory = selectedCategory
     }
     
     // MARK: Methods
     
-    private func categoryDidSelect() {
+    private func categoryDidSelect(category: TrackerCategory) {
+        selectedCategory = category
         self.dismiss(animated: true)
+    }
+    
+    private func categoryDidDeselect() {
+        selectedCategory = nil
     }
     
     @objc private func buttonDoneTapped() {
@@ -63,13 +92,12 @@ extension CategoriesViewController: UITableViewDataSource {
 
         cell.backgroundColor = Resources.Colors.cellBackground
         
-        if #available(iOS 14.0, *) {
-            var content = cell.defaultContentConfiguration()
-            content.attributedText = NSAttributedString(string: categories[indexPath.row].title, attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)])
-            cell.contentConfiguration = content
-        } else {
-            cell.textLabel?.text = categories[indexPath.row].title
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        cell.textLabel?.text = categories[indexPath.row].title
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        
+        if selectedCategory != nil && cell.textLabel?.text == selectedCategory?.title {
+            let imageView = UIImageView(image: Resources.Images.checkmark)
+            cell.accessoryView = imageView
         }
         
         return cell
@@ -105,9 +133,10 @@ extension CategoriesViewController: UITableViewDelegate {
         if cell.accessoryView == nil {
             let imageView = UIImageView(image: Resources.Images.checkmark)
             cell.accessoryView = imageView
-            categoryDidSelect()
+            categoryDidSelect(category: categories[indexPath.row])
         } else {
             cell.accessoryView = nil
+            categoryDidDeselect()
         }
     }
 }
@@ -138,7 +167,6 @@ extension CategoriesViewController {
         }
         setupDoneButton()
         categories.isEmpty ? setupStubView() : setupTableView()
-        
     }
     
     private func setupStubView() {

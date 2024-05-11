@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController, TimetableDelegate {
+final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, CategoriesViewControllerDelegate {
     // MARK: Properties
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
@@ -101,7 +101,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func presentCategories() {
-        let categoriesVC = CategoriesViewController()
+        let categoriesVC = CategoriesViewController(delegate: self, selectedCategory: selectedCategory)
         let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
         present(categoriesVCNav, animated: true)
     }
