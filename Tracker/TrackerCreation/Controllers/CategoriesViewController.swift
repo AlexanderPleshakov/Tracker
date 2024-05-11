@@ -13,10 +13,8 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Views
     
-    let doneButton: UIButton = {
-        let button = BasicLargeButton(title: "Готово")
-        button.backgroundColor = Resources.Colors.searchTextGray
-        button.isEnabled = false
+    let addButton: UIButton = {
+        let button = BasicLargeButton(title: "Добавить категорию")
         
         return button
     }()
@@ -53,7 +51,7 @@ final class CategoriesViewController: UIViewController {
         
         tableView.backgroundColor = Resources.Colors.white
         
-        doneButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
         
         title = "Категория"
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
@@ -64,7 +62,7 @@ final class CategoriesViewController: UIViewController {
     }
     
     private func setupSubviews() {
-        [doneButton, stubView, tableView].forEach {
+        [addButton, stubView, tableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -90,18 +88,18 @@ final class CategoriesViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: doneButton.topAnchor, constant: -16),
+            tableView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -16),
         ])
     }
     
     private func setupDoneButton() {
-        view.addSubview(doneButton)
+        view.addSubview(addButton)
         
         NSLayoutConstraint.activate([
-            doneButton.heightAnchor.constraint(equalToConstant: 60),
-            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            addButton.heightAnchor.constraint(equalToConstant: 60),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
         ])
     }
     
