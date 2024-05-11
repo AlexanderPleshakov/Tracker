@@ -9,7 +9,7 @@ import UIKit
 
 final class CategoriesViewController: UIViewController {
     // MARK: Properties
-    var categories = [TrackerCategory]()
+    var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])]
     
     // MARK: Views
     
@@ -29,6 +29,7 @@ final class CategoriesViewController: UIViewController {
     
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         
         return tableView
     }()
@@ -55,7 +56,8 @@ final class CategoriesViewController: UIViewController {
         
         title = "Категория"
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
-            .font: UIFont.systemFont(ofSize: 16, weight: .medium)
+            .font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            .foregroundColor: Resources.Colors.black ?? .black
         ]
         
         setupSubviews()
@@ -65,9 +67,9 @@ final class CategoriesViewController: UIViewController {
         [addButton, stubView, tableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        setupStubView()
         setupDoneButton()
+        categories.isEmpty ? setupStubView() : setupTableView()
+        
     }
     
     private func setupStubView() {
