@@ -30,7 +30,8 @@ final class NewTrackerViewController: UIViewController {
         
         title = "Создание трекера"
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
-            .font: UIFont.systemFont(ofSize: 16, weight: .medium)
+            .font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            .foregroundColor: Resources.Colors.black ?? .black
         ]
         
         setupSubviews()
