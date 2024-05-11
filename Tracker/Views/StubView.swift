@@ -19,9 +19,9 @@ final class StubView: UIView {
         return stack
     }()
     
-    private let stubLabel: UILabel = {
+    let textLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textAlignment = .center
         label.textColor = Resources.Colors.black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ final class StubView: UIView {
     init(text: String) {
         super.init(frame: .zero)
         
-        stubLabel.text = text
+        textLabel.text = text
         configure()
     }
     
@@ -51,7 +51,7 @@ final class StubView: UIView {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         vStack.addArrangedSubview(stubImage)
-        vStack.addArrangedSubview(stubLabel)
+        vStack.addArrangedSubview(textLabel)
         
         addSubview(vStack)
         
@@ -65,8 +65,8 @@ final class StubView: UIView {
             stubImage.heightAnchor.constraint(equalToConstant: 80),
             stubImage.widthAnchor.constraint(equalToConstant: 80),
             
-            stubLabel.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
-            stubLabel.trailingAnchor.constraint(equalTo: vStack.trailingAnchor)
+            textLabel.leadingAnchor.constraint(equalTo: vStack.leadingAnchor),
+            textLabel.trailingAnchor.constraint(equalTo: vStack.trailingAnchor)
         ])
     }
 }
