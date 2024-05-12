@@ -58,6 +58,15 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
         return button
     }()
     
+    let warningLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Resources.Colors.buttonRed
+        label.text = "Ограничение 38 символов"
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     // MARK: Init
     
     init(type: TrackerType) {
@@ -118,6 +127,10 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
         let categoriesVC = CategoriesViewController(delegate: self, selectedCategory: selectedCategory)
         let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
         present(categoriesVCNav, animated: true)
+    }
+    
+    func reloadTable() {
+        tableView.reloadData()
     }
 }
 

@@ -8,12 +8,23 @@
 import UIKit
 
 final class HabitAndEventTableViewHelper: NSObject {
-    let numbersOfRows: [Int]
+    private let numbersOfRows: [Int]
+    private var warningView: UILabel?
     weak var delegateController: HabitAndEventTableViewDelegate!
     
     init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
         self.delegateController = delegate
+    }
+    
+    func addWarning() {
+        warningView = delegateController.warningLabel
+        delegateController.reloadTable()
+    }
+    
+    func removeWarning() {
+        warningView = nil
+        delegateController.reloadTable()
     }
 }
 
@@ -28,10 +39,16 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            return warningView
+        }
         return nil
     }
 
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return warningView != nil ? 38 : .leastNonzeroMagnitude
+        }
         return .leastNonzeroMagnitude
     }
 
@@ -70,6 +87,8 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
             guard let cell = cell as? InputFieldTableViewCell else {
                 return UITableViewCell()
             }
+            
+            cell.delegate = self
             
             return cell
         } else {

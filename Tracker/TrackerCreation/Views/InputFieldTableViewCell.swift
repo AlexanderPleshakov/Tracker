@@ -11,12 +11,16 @@ final class InputFieldTableViewCell: UITableViewCell {
     // MARK: Properties
     static let reuseIdentifier = "InputFieldTableViewCell"
     
+    weak var delegate: HabitAndEventTableViewHelper?
+    private var wasGreater = false
+    
     private let textField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Введите название трекера"
         textField.tintColor = Resources.Colors.blue
         textField.textColor = Resources.Colors.black
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         
         return textField
     }()
@@ -38,6 +42,7 @@ final class InputFieldTableViewCell: UITableViewCell {
         
         textField.addTarget(self, action: #selector(editingDidBegin(_:)), for: .editingDidBegin)
         textField.addTarget(self, action: #selector(editingDidEnd(_:)), for: .editingDidEnd)
+        textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         resetButton.addTarget(self, action: #selector(buttonResetTapped(_:)), for: .touchUpInside)
     }
     
@@ -66,6 +71,20 @@ final class InputFieldTableViewCell: UITableViewCell {
         ])
     }
     
+    @objc private func textChanged(_ textField: UITextField) {
+        if textField.text?.count ?? 0 > 38 {
+            wasGreater = true
+            delegate?.addWarning()
+        } else if wasGreater && textField.text?.count ?? 0 == 0 {
+            wasGreater = false
+            delegate?.removeWarning()
+        } else if wasGreater && textField.text?.count ?? 0 < 38 {
+            wasGreater = false
+        } else if wasGreater {
+            delegate?.removeWarning()
+        }
+    }
+    
     @objc private func editingDidBegin(_ textField: UITextField) {
         textField.delegate = self
         resetButton.isHidden = false
@@ -80,8 +99,11 @@ final class InputFieldTableViewCell: UITableViewCell {
     @objc private func buttonResetTapped(_ button: UIButton) {
         button.isHidden = true
         textField.text = ""
+        delegate?.removeWarning()
     }
 }
+
+// MARK: UITextFieldDelegate
 
 extension InputFieldTableViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
