@@ -12,8 +12,31 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
-    var selectedDays = [Day]()
-    var selectedCategory: TrackerCategory? = nil
+    var selectedDays = [Day]() {
+        willSet(new) {
+            tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: new)
+        }
+    }
+    var selectedCategory: TrackerCategory? = nil {
+        didSet {
+            tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: tracker.timetable)
+        }
+    }
+    
+    private var newCategory: TrackerCategory? = nil
+    
+    var tracker: Tracker = Tracker(id: 1, name: "nil", color: .red, emoji: "👻", timetable: nil) {
+        willSet(newValue) {
+            if !newValue.isEmpty(type: type) && selectedCategory != nil {
+                newCategory = TrackerCategory(title: selectedCategory!.title,
+                                              trackers: selectedCategory!.trackers + [newValue])
+                
+                unlockCreateButton()
+            } else {
+                blockCreateButton()
+            }
+        }
+    }
     
     private let type: TrackerType
     private let navTitle: String
@@ -91,13 +114,35 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
     
     // MARK: Methods
     
+    private func blockCreateButton() {
+        createButton.backgroundColor = Resources.Colors.searchTextGray
+        createButton.isEnabled = false
+    }
+    
+    private func unlockCreateButton() {
+        createButton.backgroundColor = Resources.Colors.black
+        createButton.isEnabled = true
+    }
+    
     @objc private func buttonCancelTapped() {
         dismiss(animated: true)
         delegate?.closeController()
     }
     
     @objc private func buttonCreateTapped() {
-        print("Create tap")
+        guard let newCategory = newCategory else {
+            print("Category is nil")
+            return
+        }
+        
+        let index = TrackersViewController.categories.firstIndex(of: newCategory)
+        
+        if let index = index {
+            TrackersViewController.categories[index] = newCategory
+        } else {
+            TrackersViewController.categories.append(newCategory)
+        }
+        self.dismiss(animated: true)
     }
 }
 
@@ -130,7 +175,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func reloadTable() {
-        tableView.reloadData()
+        tableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
 }
 
