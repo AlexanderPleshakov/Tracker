@@ -15,6 +15,7 @@ enum Resources {
         static let addButton = UIImage(named: "AddButton") ?? UIImage()
         static let stubTrackersImage = UIImage(named: "StubImage") ?? UIImage()
         static let checkmark = UIImage(named: "TCheckmark") ?? UIImage()
+        static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
     }
     
     enum Colors {
