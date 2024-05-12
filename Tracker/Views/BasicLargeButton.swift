@@ -14,6 +14,7 @@ final class BasicLargeButton: UIButton {
         
         backgroundColor = Resources.Colors.black
         tintColor = Resources.Colors.white
+        setTitleColor(Resources.Colors.white, for: .normal)
         layer.cornerRadius = 16
         titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         setTitle(title, for: .normal)
