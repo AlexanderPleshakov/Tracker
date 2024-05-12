@@ -1,0 +1,31 @@
+//
+//  Tracker.swift
+//  Tracker
+//
+//  Created by Александр Плешаков on 08.05.2024.
+//
+
+import UIKit
+
+struct Tracker {
+    let id: UInt
+    let name: String?
+    let color: UIColor?
+    let emoji: Character?
+    let timetable: [Day]?
+    
+    func isEmpty(type: TrackerType) -> Bool {
+        if self.name != nil && !(self.name == "") && self.color != nil &&
+            self.emoji != nil && self.timetable != nil &&
+            !(self.timetable?.isEmpty ?? true) && type == .habit {
+            
+            return false
+        } else if self.name != nil && !(self.name == "") &&
+                    self.color != nil && self.emoji != nil && type == .event {
+            
+            return false
+        }
+        
+        return true
+    }
+}

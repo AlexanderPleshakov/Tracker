@@ -7,20 +7,49 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController {
+final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, CategoriesViewControllerDelegate {
     // MARK: Properties
+    
+    weak var delegate: NewHabitOrEventViewControllerDelegate?
+    
+    private var newCategory: TrackerCategory? = nil
+    private var categoryTitle: String?
+    
+    var selectedDays = [Day]() {
+        willSet(new) {
+            tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: new)
+        }
+    }
+    var selectedCategory: TrackerCategory? = nil {
+        didSet {
+            tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: tracker.timetable)
+        }
+    }
+    
+    var tracker: Tracker = Tracker(id: 1, name: nil, color: .red, emoji: "👻", timetable: nil) {
+        willSet(newValue) {
+            if !newValue.isEmpty(type: type) && selectedCategory != nil {
+                newCategory = TrackerCategory(title: selectedCategory!.title,
+                                              trackers: selectedCategory!.trackers + [newValue])
+                
+                unlockCreateButton()
+            } else {
+                blockCreateButton()
+            }
+        }
+    }
     
     private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper!
-    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     // MARK: Views
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self, forCellReuseIdentifier: InputFieldTableViewCell.reuseIdentifier)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(DisclosureTableViewCell.self, forCellReuseIdentifier: DisclosureTableViewCell.reuseIdentifier)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -53,6 +82,15 @@ final class NewHabitOrEventViewController: UIViewController {
         return button
     }()
     
+    let warningLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Resources.Colors.buttonRed
+        label.text = "Ограничение 38 символов"
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     // MARK: Init
     
     init(type: TrackerType) {
@@ -72,9 +110,20 @@ final class NewHabitOrEventViewController: UIViewController {
         
         tableViewHelper = HabitAndEventTableViewHelper(type: type, delegate: self)
         configure()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: Methods
+    
+    private func blockCreateButton() {
+        createButton.backgroundColor = Resources.Colors.searchTextGray
+        createButton.isEnabled = false
+    }
+    
+    private func unlockCreateButton() {
+        createButton.backgroundColor = Resources.Colors.black
+        createButton.isEnabled = true
+    }
     
     @objc private func buttonCancelTapped() {
         dismiss(animated: true)
@@ -82,21 +131,61 @@ final class NewHabitOrEventViewController: UIViewController {
     }
     
     @objc private func buttonCreateTapped() {
-        print("Create tap")
+        guard let newCategory = newCategory else {
+            print("Category is nil")
+            return
+        }
+        
+        let index = TrackersViewController.categories.firstIndex(of: newCategory)
+        
+        if let index = index {
+            TrackersViewController.categories[index] = newCategory
+        } else {
+            TrackersViewController.categories.append(newCategory)
+        }
+        self.dismiss(animated: true)
+    }
+}
+
+extension NewHabitOrEventViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 }
 
 // MARK: HabitAndEventTableViewDelegate
 
 extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
+    func changeCategoryTitle(text: String?) {
+        if text?.count ?? 0 <= 38 {
+            categoryTitle = text
+            tracker = Tracker(id: tracker.id, name: categoryTitle, color: tracker.color, emoji: tracker.emoji, timetable: tracker.timetable)
+        } else {
+            blockCreateButton()
+        }
+    }
+    
     func presentTimetable() {
-        let timetable = TimetableViewController()
+        let timetable = TimetableViewController(delegate: self, selectedDays: Set(selectedDays))
         let timetableNav = UINavigationController(rootViewController: timetable)
         present(timetableNav, animated: true)
     }
     
     func presentCategories() {
-        
+        let categoriesVC = CategoriesViewController(delegate: self, selectedCategory: selectedCategory)
+        let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
+        present(categoriesVCNav, animated: true)
+    }
+    
+    func reloadTable() {
+        tableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
 }
 
@@ -113,7 +202,8 @@ extension NewHabitOrEventViewController {
         
         title = navTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
-            .font: UIFont.systemFont(ofSize: 16, weight: .medium)
+            .font: UIFont.systemFont(ofSize: 16, weight: .medium),
+            .foregroundColor: Resources.Colors.black ?? .black
         ]
         
         cancelButton.addTarget(self, action: #selector(buttonCancelTapped), for: .touchUpInside)
@@ -156,3 +246,4 @@ extension NewHabitOrEventViewController {
         ])
     }
 }
+

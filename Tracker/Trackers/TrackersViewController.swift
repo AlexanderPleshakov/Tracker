@@ -10,12 +10,17 @@ import UIKit
 final class TrackersViewController: UIViewController {
     // MARK: Properties
     
-    var categories: [TrackerCategory] = []
+    static var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])] {
+        willSet(newValue) {
+            print(newValue)
+        }
+    }
+    //var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])]
     var completedTrackers: [TrackerRecord] = []
     
     // MARK: Views
     
-    private let stubView = StubView()
+    private let stubView = StubView(text: "Что будем отслеживать?")
     
     // MARK: Init
 

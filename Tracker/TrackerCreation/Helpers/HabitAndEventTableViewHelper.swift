@@ -8,12 +8,27 @@
 import UIKit
 
 final class HabitAndEventTableViewHelper: NSObject {
-    let numbersOfRows: [Int]
+    private let numbersOfRows: [Int]
+    private var warningView: UILabel?
     weak var delegateController: HabitAndEventTableViewDelegate!
     
     init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
         self.delegateController = delegate
+    }
+    
+    func addWarning() {
+        warningView = delegateController.warningLabel
+        delegateController.reloadTable()
+    }
+    
+    func removeWarning() {
+        warningView = nil
+        delegateController.reloadTable()
+    }
+    
+    func textChanged(newText: String?) {
+        delegateController.changeCategoryTitle(text: newText)
     }
 }
 
@@ -28,10 +43,16 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            return warningView
+        }
         return nil
     }
 
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return warningView != nil ? 38 : .leastNonzeroMagnitude
+        }
         return .leastNonzeroMagnitude
     }
 
@@ -41,9 +62,15 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if indexPath.row == 1 {
-            delegateController.presentTimetable()
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                delegateController.presentCategories()
+            case 1:
+                delegateController.presentTimetable()
+            default:
+                break
+            }
         }
     }
 }
@@ -65,25 +92,22 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
                 return UITableViewCell()
             }
             
+            cell.delegate = self
+            
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: DisclosureTableViewCell.reuseIdentifier, for: indexPath)
+            
+            guard let cell = cell as? DisclosureTableViewCell else { 
+                print("def")
+                return UITableViewCell()
+                
+            }
             
             let cellText = indexPath.row == 0 ? "Категория" : "Расписание"
             
-            cell.backgroundColor = Resources.Colors.cellBackground
-            cell.accessoryType = .disclosureIndicator
-            
-            
-            if #available(iOS 14.0, *) {
-                var content = cell.defaultContentConfiguration()
-                content.attributedText = NSAttributedString(string: cellText, attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)])
-                cell.contentConfiguration = content
-            } else {
-                cell.textLabel?.text = cellText
-                cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-            }
-            
+            cell.textLabel?.text = cellText
+            cell.detailTextLabel?.text = ""
             
             return cell
         }
