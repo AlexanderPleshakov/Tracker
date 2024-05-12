@@ -26,6 +26,9 @@ final class InputFieldTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupSubviews()
+        
+        textField.addTarget(self, action: #selector(editingDidBegin(_:)), for: .editingDidBegin)
+        textField.addTarget(self, action: #selector(editingDidEnd(_:)), for: .editingDidEnd)
     }
     
     required init?(coder: NSCoder) {
@@ -45,5 +48,24 @@ final class InputFieldTableViewCell: UITableViewCell {
             textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
+    }
+    
+    @objc private func editingDidBegin(_ textField: UITextField) {
+        textField.delegate = self
+    }
+    
+    @objc private func editingDidEnd(_ textField: UITextField) {
+        
+    }
+}
+
+extension InputFieldTableViewCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.textField.endEditing(true)
     }
 }

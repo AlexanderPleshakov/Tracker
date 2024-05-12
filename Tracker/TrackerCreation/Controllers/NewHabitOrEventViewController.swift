@@ -77,6 +77,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
         
         tableViewHelper = HabitAndEventTableViewHelper(type: type, delegate: self)
         configure()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: Methods
@@ -88,6 +89,19 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
     
     @objc private func buttonCreateTapped() {
         print("Create tap")
+    }
+}
+
+extension NewHabitOrEventViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 }
 
