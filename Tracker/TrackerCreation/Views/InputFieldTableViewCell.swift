@@ -94,11 +94,13 @@ final class InputFieldTableViewCell: UITableViewCell {
         if textField.text == "" {
             resetButton.isHidden = true
         }
+        delegate?.textChanged(newText: textField.text)
     }
     
     @objc private func buttonResetTapped(_ button: UIButton) {
         button.isHidden = true
         textField.text = ""
+        delegate?.textChanged(newText: "")
         delegate?.removeWarning()
     }
 }

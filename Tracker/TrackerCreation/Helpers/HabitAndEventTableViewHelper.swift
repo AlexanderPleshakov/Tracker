@@ -26,6 +26,10 @@ final class HabitAndEventTableViewHelper: NSObject {
         warningView = nil
         delegateController.reloadTable()
     }
+    
+    func textChanged(newText: String?) {
+        delegateController.changeCategoryTitle(text: newText)
+    }
 }
 
 

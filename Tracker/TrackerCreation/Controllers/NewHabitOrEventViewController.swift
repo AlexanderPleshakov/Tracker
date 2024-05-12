@@ -12,6 +12,9 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
+    private var newCategory: TrackerCategory? = nil
+    private var categoryTitle: String?
+    
     var selectedDays = [Day]() {
         willSet(new) {
             tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: new)
@@ -23,9 +26,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
         }
     }
     
-    private var newCategory: TrackerCategory? = nil
-    
-    var tracker: Tracker = Tracker(id: 1, name: "nil", color: .red, emoji: "👻", timetable: nil) {
+    var tracker: Tracker = Tracker(id: 1, name: nil, color: .red, emoji: "👻", timetable: nil) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
                 newCategory = TrackerCategory(title: selectedCategory!.title,
@@ -162,6 +163,15 @@ extension NewHabitOrEventViewController {
 // MARK: HabitAndEventTableViewDelegate
 
 extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
+    func changeCategoryTitle(text: String?) {
+        if text?.count ?? 0 <= 38 {
+            categoryTitle = text
+            tracker = Tracker(id: tracker.id, name: categoryTitle, color: tracker.color, emoji: tracker.emoji, timetable: tracker.timetable)
+        } else {
+            blockCreateButton()
+        }
+    }
+    
     func presentTimetable() {
         let timetable = TimetableViewController(delegate: self, selectedDays: Set(selectedDays))
         let timetableNav = UINavigationController(rootViewController: timetable)

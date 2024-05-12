@@ -15,13 +15,13 @@ struct Tracker {
     let timetable: [Day]?
     
     func isEmpty(type: TrackerType) -> Bool {
-        if self.name != nil && self.color != nil &&
+        if self.name != nil && !(self.name == "") && self.color != nil &&
             self.emoji != nil && self.timetable != nil &&
             !(self.timetable?.isEmpty ?? true) && type == .habit {
             
             return false
-        } else if self.name != nil && self.color != nil &&
-                    self.emoji != nil && type == .event {
+        } else if self.name != nil && !(self.name == "") &&
+                    self.color != nil && self.emoji != nil && type == .event {
             
             return false
         }
