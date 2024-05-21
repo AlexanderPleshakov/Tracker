@@ -14,6 +14,8 @@
 		1630D3D72BE4C01300A59A82 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1630D3D62BE4C01300A59A82 /* Base */; };
 		166EAADD2BFCABC5004FD58B /* TrackersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAADC2BFCABC5004FD58B /* TrackersCollectionViewCell.swift */; };
 		166EAAE02BFCAE8A004FD58B /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAADF2BFCAE8A004FD58B /* EmojiView.swift */; };
+		166EAAE42BFD2C14004FD58B /* HelperTrackersCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAE32BFD2C14004FD58B /* HelperTrackersCollectionView.swift */; };
+		166EAAE62BFD3FA9004FD58B /* GeometricParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAE52BFD3FA8004FD58B /* GeometricParams.swift */; };
 		16818AB92BED22A90025D5D4 /* StubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AB82BED22A90025D5D4 /* StubView.swift */; };
 		16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */; };
 		16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */; };
@@ -52,6 +54,8 @@
 		1630D3D82BE4C01300A59A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		166EAADC2BFCABC5004FD58B /* TrackersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersCollectionViewCell.swift; sourceTree = "<group>"; };
 		166EAADF2BFCAE8A004FD58B /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		166EAAE32BFD2C14004FD58B /* HelperTrackersCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTrackersCollectionView.swift; sourceTree = "<group>"; };
+		166EAAE52BFD3FA8004FD58B /* GeometricParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricParams.swift; sourceTree = "<group>"; };
 		16818AB82BED22A90025D5D4 /* StubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubView.swift; sourceTree = "<group>"; };
 		16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationController.swift; sourceTree = "<group>"; };
 		16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationControllerDelegate.swift; sourceTree = "<group>"; };
@@ -126,8 +130,9 @@
 		166EAADB2BFCABA4004FD58B /* TrackersCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				166EAAE72BFD3FBF004FD58B /* Models */,
 				166EAADE2BFCAE75004FD58B /* Views */,
-				166EAADC2BFCABC5004FD58B /* TrackersCollectionViewCell.swift */,
+				166EAAE32BFD2C14004FD58B /* HelperTrackersCollectionView.swift */,
 			);
 			path = TrackersCollectionView;
 			sourceTree = "<group>";
@@ -135,9 +140,18 @@
 		166EAADE2BFCAE75004FD58B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				166EAADC2BFCABC5004FD58B /* TrackersCollectionViewCell.swift */,
 				166EAADF2BFCAE8A004FD58B /* EmojiView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		166EAAE72BFD3FBF004FD58B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				166EAAE52BFD3FA8004FD58B /* GeometricParams.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		16818ABE2BED36C10025D5D4 /* Protocols */ = {
@@ -209,8 +223,8 @@
 		16AFE7A22BE8E97400F4FDFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				166EAADB2BFCABA4004FD58B /* TrackersCollectionView */,
 				16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */,
+				166EAADB2BFCABA4004FD58B /* TrackersCollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +367,8 @@
 				16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */,
 				16F6593D2BEFD53E00DA7164 /* CategoriesViewController.swift in Sources */,
 				16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */,
+				166EAAE62BFD3FA9004FD58B /* GeometricParams.swift in Sources */,
+				166EAAE42BFD2C14004FD58B /* HelperTrackersCollectionView.swift in Sources */,
 				16818AB92BED22A90025D5D4 /* StubView.swift in Sources */,
 				166EAAE02BFCAE8A004FD58B /* EmojiView.swift in Sources */,
 				16F6593F2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift in Sources */,
