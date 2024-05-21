@@ -14,6 +14,10 @@ final class TrackersViewController: UIViewController {
         TrackerCategory(title: "Важное", trackers: [
             Tracker(id: 1, name: "name", color: .red, emoji: "r", timetable: [.friday]),
             Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday]),
+            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday])]),
+        TrackerCategory(title: "Другое", trackers: [
+            Tracker(id: 1, name: "name", color: .red, emoji: "r", timetable: [.friday]),
+            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday]),
             Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday])])
     ] {
         willSet(newValue) {
@@ -23,7 +27,7 @@ final class TrackersViewController: UIViewController {
     
     var completedTrackers: [TrackerRecord] = []
     private let collectionHelper = HelperTrackersCollectionView(categories: TrackersViewController.categories,
-                                                                with: GeometricParams(cellCount: 2, leftInset: 0, rightInset: 0, cellSpacing: 9))
+                                                                with: GeometricParams(cellCount: 2, topInset: 12, leftInset: 0, bottomInset: 32, rightInset: 0, cellSpacing: 9))
     
     // MARK: Views
     
@@ -31,7 +35,11 @@ final class TrackersViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(TrackersCollectionViewCell.self,
                             forCellWithReuseIdentifier: TrackersCollectionViewCell.identifier)
+        collection.register(SectionHeaderView.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: SectionHeaderView.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = Resources.Colors.white
         
         return collection
     }()
@@ -91,7 +99,7 @@ extension TrackersViewController {
         NSLayoutConstraint.activate([
             trackersCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             trackersCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            trackersCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            trackersCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             trackersCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }

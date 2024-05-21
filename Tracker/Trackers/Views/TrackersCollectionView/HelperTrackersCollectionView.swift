@@ -21,12 +21,14 @@ final class HelperTrackersCollectionView: NSObject  {
 
 extension HelperTrackersCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count", categories[section].trackers.count)
         return categories[section].trackers.count
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return categories.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("data source")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackersCollectionViewCell.identifier, for: indexPath)
         guard let cell = cell as? TrackersCollectionViewCell else {
             print("Cell is nil")
@@ -40,8 +42,26 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeaderView.identifier,
+            for: indexPath)
+        guard let view = view as? SectionHeaderView else {
+            print("SectionHeaderView is nil")
+            return UICollectionReusableView()
+        }
+        view.label.text = categories[indexPath.section].title
+        
+        return view
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 19)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 0, left: params.leftInset, bottom: 0, right: params.rightInset)
+        UIEdgeInsets(top: params.topInset, left: params.leftInset, bottom: params.bottomInset, right: params.rightInset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
