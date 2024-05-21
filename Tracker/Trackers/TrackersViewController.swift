@@ -10,16 +10,31 @@ import UIKit
 final class TrackersViewController: UIViewController {
     // MARK: Properties
     
-    static var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])] {
+    static var categories: [TrackerCategory] = [
+        TrackerCategory(title: "Важное", trackers: [
+            Tracker(id: 1, name: "name", color: .red, emoji: "r", timetable: [.friday]),
+            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday]),
+            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday])])
+    ] {
         willSet(newValue) {
             print(newValue)
         }
     }
-    //var categories: [TrackerCategory] = [TrackerCategory(title: "Важное", trackers: [])]
+    
     var completedTrackers: [TrackerRecord] = []
+    private let collectionHelper = HelperTrackersCollectionView(categories: TrackersViewController.categories,
+                                                                with: GeometricParams(cellCount: 2, leftInset: 0, rightInset: 0, cellSpacing: 9))
     
     // MARK: Views
     
+    private let trackersCollection: UICollectionView = {
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collection.register(TrackersCollectionViewCell.self,
+                            forCellWithReuseIdentifier: TrackersCollectionViewCell.identifier)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        
+        return collection
+    }()
     private let stubView = StubView(text: "Что будем отслеживать?")
     
     // MARK: Init
@@ -35,17 +50,50 @@ final class TrackersViewController: UIViewController {
     
 }
 
+extension TrackersViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("count")
+        return TrackersViewController.categories[section].trackers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("data source")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackersCollectionViewCell.identifier, for: indexPath)
+        guard let cell = cell as? TrackersCollectionViewCell else {
+            print("Cell is nil")
+            return UICollectionViewCell()
+        }
+        
+        return cell
+    }
+}
+
 // MARK: UI configuration
 
 extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
+        trackersCollection.dataSource = collectionHelper
+        trackersCollection.delegate = collectionHelper
+        
         setupSubviews()
     }
     
     private func setupSubviews() {
-        addStubView()
+        addTrackersCollection()
+//        addStubView()
+    }
+    
+    private func addTrackersCollection() {
+        view.addSubview(trackersCollection)
+        
+        NSLayoutConstraint.activate([
+            trackersCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            trackersCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            trackersCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            trackersCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
     
     private func addStubView() {
