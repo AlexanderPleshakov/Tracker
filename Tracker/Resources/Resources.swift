@@ -16,6 +16,7 @@ enum Resources {
         static let stubTrackersImage = UIImage(named: "StubImage") ?? UIImage()
         static let checkmark = UIImage(named: "TCheckmark") ?? UIImage()
         static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
+        static let addTrackerButton = UIImage(named: "addTracker") ?? UIImage()
     }
     
     enum Colors {
@@ -27,5 +28,6 @@ enum Resources {
         static let searchTextGray = UIColor(named: "TSearchTextGray")
         static let cellBackground = UIColor(named: "TCellBackgroundGray")
         static let buttonRed = UIColor(named: "TButtonRed")
+        static let white30 = UIColor(named: "TWhite30")
     }
 }
