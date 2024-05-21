@@ -14,7 +14,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     
     private let backView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
         view.layer.cornerRadius = 16
         
         return view
@@ -41,7 +40,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         let image = Resources.Images.addTrackerButton
         let button = UIButton.systemButton(with: Resources.Images.addTrackerButton, target: nil, action: nil)
         button.layer.cornerRadius = 17
-        button.backgroundColor = .red
         button.tintColor = Resources.Colors.white
         
         return button
@@ -57,8 +55,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
-        titleLabel.text = "Кошка заслонила камеру на созвоне"
-        daysLabel.text = "1 день"
         
         configure()
     }
@@ -68,6 +64,24 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Methods
+    
+    func setColor(color: UIColor?) {
+        backView.backgroundColor = color
+        addButton.backgroundColor = color
+    }
+    
+    func setEmoji(emoji: Character?) {
+        guard let emoji = emoji else { return }
+        emojiView.label.text = String(emoji)
+    }
+    
+    func setTitle(text: String?) {
+        titleLabel.text = text
+    }
+    
+    func setDays(text: String?) {
+        daysLabel.text = text
+    }
     
     private func configure() {
         [backView, titleLabel, daysLabel, addButton, emojiView].forEach {
@@ -93,7 +107,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             emojiView.widthAnchor.constraint(equalToConstant: 24),
             
             titleLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -12),
             titleLabel.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -12),
             titleLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 8),
             

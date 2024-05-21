@@ -12,13 +12,13 @@ final class TrackersViewController: UIViewController {
     
     static var categories: [TrackerCategory] = [
         TrackerCategory(title: "Важное", trackers: [
-            Tracker(id: 1, name: "name", color: .red, emoji: "r", timetable: [.friday]),
-            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday]),
-            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday])]),
-        TrackerCategory(title: "Другое", trackers: [
-            Tracker(id: 1, name: "name", color: .red, emoji: "r", timetable: [.friday]),
-            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday]),
-            Tracker(id: 1, name: "Кошка заслонила камеру на созвоне", color: .red, emoji: "r", timetable: [.friday])])
+            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.friday]),
+            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.friday]),
+            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.friday])]),
+        TrackerCategory(title: "Радостные мелочи", trackers: [
+            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.friday]),
+            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday]),
+            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.friday])])
     ] {
         willSet(newValue) {
             print(newValue)
@@ -40,6 +40,8 @@ final class TrackersViewController: UIViewController {
                             withReuseIdentifier: SectionHeaderView.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = Resources.Colors.white
+        collection.showsVerticalScrollIndicator = false
+        collection.showsHorizontalScrollIndicator = false
         
         return collection
     }()

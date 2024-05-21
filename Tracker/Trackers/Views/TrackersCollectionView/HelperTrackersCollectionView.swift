@@ -35,6 +35,12 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        let tracker = categories[indexPath.section].trackers[indexPath.row]
+        cell.setTitle(text: tracker.name)
+        cell.setEmoji(emoji: tracker.emoji)
+        cell.setDays(text: "5 дней")
+        cell.setColor(color: tracker.color)
+        
         return cell
     }
 }

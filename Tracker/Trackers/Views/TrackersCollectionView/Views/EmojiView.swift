@@ -8,9 +8,8 @@
 import UIKit
 
 final class EmojiView: UIView {
-    private let label: UILabel = {
+    let label: UILabel = {
         let label = UILabel()
-        label.text = "👻"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textAlignment = .center
