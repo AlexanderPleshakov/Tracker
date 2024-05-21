@@ -15,6 +15,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private let backView: UIView = {
         let view = UIView()
         view.backgroundColor = .red
+        view.layer.cornerRadius = 16
         
         return view
     }()
@@ -37,9 +38,11 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }()
     
     private let addButton: UIButton = {
+        let image = Resources.Images.addTrackerButton
         let button = UIButton.systemButton(with: Resources.Images.addTrackerButton, target: nil, action: nil)
         button.layer.cornerRadius = 17
         button.backgroundColor = .red
+        button.tintColor = Resources.Colors.white
         
         return button
     }()
@@ -54,8 +57,10 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
-        titleLabel.text = "Поливать растения"
+        titleLabel.text = "Кошка заслонила камеру на созвоне"
         daysLabel.text = "1 день"
+        
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -89,11 +94,11 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             
             titleLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 12),
             titleLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: 12),
-            titleLabel.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: 12),
+            titleLabel.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -12),
             titleLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 8),
             
             addButton.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: 8),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 12),
+            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             addButton.heightAnchor.constraint(equalToConstant: 34),
             addButton.widthAnchor.constraint(equalToConstant: 34),
             
