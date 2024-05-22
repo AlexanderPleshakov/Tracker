@@ -15,4 +15,10 @@ enum Day: String {
     case friday = "Пт"
     case saturday = "Сб"
     case sunday = "Вс"
+    
+    static func getDayFromNumber(number: Int) -> Day {
+        let days = [Day.sunday, Day.monday, Day.tuesday, Day.wednesday, Day.thursday, Day.friday, Day.saturday]
+        
+        return days[number - 1]
+    }
 }

@@ -11,15 +11,14 @@ final class TrackersViewController: UIViewController {
     // MARK: Properties
     
     static var categories: [TrackerCategory] = [
-        TrackerCategory(title: "Важное", trackers: [])
 //        TrackerCategory(title: "Важное", trackers: [
-//            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.friday]),
-//            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.friday]),
-//            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.friday])]),
+//            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.monday, .wednesday]),
+//            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.tuesday]),
+//            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.wednesday])]),
 //        TrackerCategory(title: "Радостные мелочи", trackers: [
-//            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.friday]),
-//            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday]),
-//            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.friday])])
+//            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.thursday, .tuesday]),
+//            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday, .wednesday]),
+//            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.sunday])])
     ] {
         willSet(newValue) {
             print(newValue)
@@ -59,16 +58,38 @@ final class TrackersViewController: UIViewController {
     
     // MARK: Methods
     
+    private func reloadCollection(with data: [TrackerCategory]) {
+        collectionHelper.categories = data
+        trackersCollection.reloadData()
+    }
+    
     func addTracker() {
         if stubView.isHidden == false {
             stubView.removeFromSuperview()
             addTrackersCollection()
         }
-        collectionHelper.categories = TrackersViewController.categories
-        trackersCollection.reloadData()
+        reloadCollection(with: TrackersViewController.categories)
     }
     
-    func trackersIsEmpty() -> Bool {
+    private func filterTrackers(by day: Day) {
+        var filteredCategories = [TrackerCategory]()
+        for category in TrackersViewController.categories {
+            var trackers: [Tracker] = []
+            for tracker in category.trackers {
+                if let timetable = tracker.timetable {
+                    if timetable.contains(day) {
+                        trackers.append(tracker)
+                    }
+                }
+            }
+            let newCategory = TrackerCategory(title: category.title, trackers: trackers)
+            filteredCategories.append(newCategory)
+        }
+        reloadCollection(with: filteredCategories)
+        setupSubviews()
+    }
+    
+    private func trackersIsEmpty() -> Bool {
         if TrackersViewController.categories.isEmpty {
             return true
         }
@@ -88,16 +109,12 @@ final class TrackersViewController: UIViewController {
 
 extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
-        let selectedDate = date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
-        let formattedDate = dateFormatter.string(from: selectedDate)
-        print("Выбранная дата: \(formattedDate)")
-        
         currentDate = date
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: date)
-        print(weekday)
+        let currentDay = Day.getDayFromNumber(number: weekday)
+        filterTrackers(by: currentDay)
+        print(currentDay)
     }
     
     func addButtonTapped() {
@@ -122,6 +139,9 @@ extension TrackersViewController {
     
     private func setupSubviews() {
         if trackersIsEmpty() {
+            if trackersCollection.isDescendant(of: view) {
+                trackersCollection.removeFromSuperview()
+            }
             addStubView()
         } else {
             addTrackersCollection()
