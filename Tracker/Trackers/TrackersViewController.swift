@@ -11,14 +11,15 @@ final class TrackersViewController: UIViewController {
     // MARK: Properties
     
     static var categories: [TrackerCategory] = [
-        TrackerCategory(title: "Важное", trackers: [
-            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.friday]),
-            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.friday]),
-            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.friday])]),
-        TrackerCategory(title: "Радостные мелочи", trackers: [
-            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.friday]),
-            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday]),
-            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.friday])])
+        TrackerCategory(title: "Важное", trackers: [])
+//        TrackerCategory(title: "Важное", trackers: [
+//            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.friday]),
+//            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.friday]),
+//            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.friday])]),
+//        TrackerCategory(title: "Радостные мелочи", trackers: [
+//            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.friday]),
+//            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday]),
+//            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.friday])])
     ] {
         willSet(newValue) {
             print(newValue)
@@ -58,8 +59,27 @@ final class TrackersViewController: UIViewController {
     // MARK: Methods
     
     func addTracker() {
+        if stubView.isHidden == false {
+            stubView.removeFromSuperview()
+            addTrackersCollection()
+        }
         collectionHelper.categories = TrackersViewController.categories
         trackersCollection.reloadData()
+    }
+    
+    func trackersIsEmpty() -> Bool {
+        if TrackersViewController.categories.isEmpty {
+            return true
+        }
+        
+        var trackersIsEmpty = true
+        for category in collectionHelper.categories {
+            if !category.trackers.isEmpty {
+                trackersIsEmpty = false
+            }
+        }
+        
+        return trackersIsEmpty
     }
 }
 
@@ -94,8 +114,11 @@ extension TrackersViewController {
     }
     
     private func setupSubviews() {
-        addTrackersCollection()
-//        addStubView()
+        if trackersIsEmpty() {
+            addStubView()
+        } else {
+            addTrackersCollection()
+        }
     }
     
     private func addTrackersCollection() {

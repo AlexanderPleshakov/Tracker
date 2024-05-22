@@ -57,17 +57,31 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
             print("SectionHeaderView is nil")
             return UICollectionReusableView()
         }
-        view.label.text = categories[indexPath.section].title
+        
+        if categories[indexPath.section].trackers.isEmpty {
+            return view
+        } else {
+            view.label.text = categories[indexPath.section].title
+        }
         
         return view
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 19)
+        if categories[section].trackers.isEmpty {
+            return CGSize(width: collectionView.frame.width, height: 0)
+        } else {
+            return CGSize(width: collectionView.frame.width, height: 19)
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: params.topInset, left: params.leftInset, bottom: params.bottomInset, right: params.rightInset)
+        if categories[section].trackers.isEmpty {
+            return UIEdgeInsets(top: 0, left: params.leftInset, bottom: 0, right: params.rightInset)
+        } else {
+            return UIEdgeInsets(top: params.topInset, left: params.leftInset, bottom: params.bottomInset, right: params.rightInset)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
