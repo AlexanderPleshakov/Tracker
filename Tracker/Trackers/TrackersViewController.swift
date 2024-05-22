@@ -26,6 +26,7 @@ final class TrackersViewController: UIViewController {
         }
     }
     
+    var currentDate: Date = Date()
     var completedTrackers: [TrackerRecord] = []
     private let collectionHelper = HelperTrackersCollectionView(categories: TrackersViewController.categories,
                                                                 with: GeometricParams(cellCount: 2, topInset: 12, leftInset: 0, bottomInset: 32, rightInset: 0, cellSpacing: 9))
@@ -83,21 +84,27 @@ final class TrackersViewController: UIViewController {
     }
 }
 
-extension TrackersViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count")
-        return TrackersViewController.categories[section].trackers.count
+// MARK: TrackersNavigationControllerDelegate
+
+extension TrackersViewController: TrackersNavigationControllerDelegate {
+    func dateWasChanged(date: Date) {
+        let selectedDate = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
+        let formattedDate = dateFormatter.string(from: selectedDate)
+        print("Выбранная дата: \(formattedDate)")
+        
+        currentDate = date
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: date)
+        print(weekday)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("data source")
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackersCollectionViewCell.identifier, for: indexPath)
-        guard let cell = cell as? TrackersCollectionViewCell else {
-            print("Cell is nil")
-            return UICollectionViewCell()
-        }
-        
-        return cell
+    func addButtonTapped() {
+        let viewController = NewTrackerViewController()
+        viewController.delegate = self
+        let nav = UINavigationController(rootViewController: viewController)
+        present(nav, animated: true)
     }
 }
 
@@ -141,22 +148,5 @@ extension TrackersViewController {
             stubView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             stubView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
-    }
-}
-
-extension TrackersViewController: TrackersNavigationControllerDelegate {
-    func dateWasChanged(date: Date) {
-        let selectedDate = date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yy" // Формат даты
-        let formattedDate = dateFormatter.string(from: selectedDate)
-        print("Выбранная дата: \(formattedDate)")
-    }
-    
-    func addButtonTapped() {
-        let viewController = NewTrackerViewController()
-        viewController.delegate = self
-        let nav = UINavigationController(rootViewController: viewController)
-        present(nav, animated: true)
     }
 }
