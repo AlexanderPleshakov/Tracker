@@ -49,6 +49,19 @@ enum Resources {
             static let selection16 = UIColor(rgb: 0xAD56DA)
             static let selection17 = UIColor(rgb: 0x8D72E6)
             static let selection18 = UIColor(rgb: 0x2FD058)
+            
+            static let trackersColors = [
+                Resources.Colors.Tracker.selection1, Resources.Colors.Tracker.selection2,
+                Resources.Colors.Tracker.selection3, Resources.Colors.Tracker.selection4,
+                Resources.Colors.Tracker.selection5, Resources.Colors.Tracker.selection6,
+                Resources.Colors.Tracker.selection7, Resources.Colors.Tracker.selection8,
+                Resources.Colors.Tracker.selection9, Resources.Colors.Tracker.selection10,
+                Resources.Colors.Tracker.selection11, Resources.Colors.Tracker.selection12,
+                Resources.Colors.Tracker.selection13, Resources.Colors.Tracker.selection14,
+                Resources.Colors.Tracker.selection15, Resources.Colors.Tracker.selection16,
+                Resources.Colors.Tracker.selection17, Resources.Colors.Tracker.selection18,
+            
+            ]
         }
     }
 }
