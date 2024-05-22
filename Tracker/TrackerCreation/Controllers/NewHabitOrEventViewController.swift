@@ -144,6 +144,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
             TrackersViewController.categories.append(newCategory)
         }
         self.dismiss(animated: true)
+        delegate?.addTracker()
     }
 }
 

@@ -57,7 +57,10 @@ final class TrackersViewController: UIViewController {
     
     // MARK: Methods
     
-    
+    func addTracker() {
+        collectionHelper.categories = TrackersViewController.categories
+        trackersCollection.reloadData()
+    }
 }
 
 extension TrackersViewController: UICollectionViewDataSource {
@@ -129,6 +132,7 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     
     func addButtonTapped() {
         let viewController = NewTrackerViewController()
+        viewController.delegate = self
         let nav = UINavigationController(rootViewController: viewController)
         present(nav, animated: true)
     }

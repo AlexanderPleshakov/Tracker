@@ -9,7 +9,7 @@ import UIKit
 
 final class NewTrackerViewController: UIViewController {
     // MARK: Properties
-    
+    weak var delegate: TrackersViewController?
     private let newHabitButton = BasicLargeButton(title: "Привычка")
     private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
     
@@ -77,6 +77,11 @@ final class NewTrackerViewController: UIViewController {
 
 extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
     func closeController() {
+        self.dismiss(animated: true)
+    }
+    
+    func addTracker() {
+        delegate?.addTracker()
         self.dismiss(animated: true)
     }
 }
