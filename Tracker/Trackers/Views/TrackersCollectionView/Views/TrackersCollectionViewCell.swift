@@ -9,12 +9,11 @@ import UIKit
 
 final class TrackersCollectionViewCell: UICollectionViewCell {
     static let identifier = "TrackersCollectionViewCell"
+    weak var delegate: HelperTrackersCollectionView?
     
-    var daysCount = 0 {
-        willSet {
-            setDays(text: getDayText(number: newValue))
-        }
-    }
+    private var isCompletedToday = false
+    private var trackerId: UUID?
+    private var completedDays = 0
     
     // MARK: Properties
     
@@ -61,7 +60,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
         
-        configure()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
@@ -70,17 +69,34 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     
     // MARK: Methods
     
-    func setColor(color: UIColor?) {
+    func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int) {
+        self.isCompletedToday = isCompleted
+        self.trackerId = tracker.id
+        
+        setTitle(text: tracker.name)
+        setEmoji(emoji: tracker.emoji)
+        setColor(color: tracker.color)
+        
+        if isCompletedToday {
+            self.completedDays = completedDays - 1
+            setCompletedState(with: completedDays)
+        } else {
+            self.completedDays = completedDays
+            setUncompletedState(with: completedDays)
+        }
+    }
+    
+    private func setColor(color: UIColor?) {
         backView.backgroundColor = color
         addButton.backgroundColor = color
     }
     
-    func setEmoji(emoji: Character?) {
+    private func setEmoji(emoji: Character?) {
         guard let emoji = emoji else { return }
         emojiView.label.text = String(emoji)
     }
     
-    func setTitle(text: String?) {
+    private func setTitle(text: String?) {
         titleLabel.text = text
     }
     
@@ -88,10 +104,24 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         daysLabel.text = text
     }
     
+    func setCompletedState(with count: Int) {
+        addButton.layer.opacity = 0.3
+        addButton.setImage(Resources.Images.doneTracker, for: .normal)
+        setDays(text: getDayText(number: count))
+        isCompletedToday = true
+    }
+    
+    func setUncompletedState(with count: Int) {
+        addButton.layer.opacity = 1
+        addButton.setImage(Resources.Images.completeTrackerButton, for: .normal)
+        setDays(text: getDayText(number: count))
+        isCompletedToday = false
+    }
+    
     private func getDayText(number: Int) -> String {
         let last = number % 10
         var text: String
-        switch number {
+        switch last {
         case 0, 5, 6, 7, 8, 9:
             text = "дней"
         case 1:
@@ -107,19 +137,22 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func recordTracker() {
-        if addButton.layer.opacity == 0.3 {
-            addButton.layer.opacity = 1
-            addButton.setImage(Resources.Images.completeTrackerButton, for: .normal)
-            daysCount -= 1
-        } else {
-            addButton.layer.opacity = 0.3
-            addButton.setImage(Resources.Images.doneTracker, for: .normal)
-            daysCount += 1
+        guard let trackerId = trackerId else {
+            assertionFailure("tracker id is nil")
+            return
         }
         
+        if isCompletedToday {
+            delegate?.incompleteTracker(id: trackerId)
+            setUncompletedState(with: completedDays)
+            
+        } else {
+            delegate?.completeTracker(id: trackerId)
+            setCompletedState(with: completedDays + 1)
+        }
     }
     
-    private func configure() {
+    private func configureViews() {
         [backView, titleLabel, daysLabel, addButton, emojiView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }

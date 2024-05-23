@@ -9,11 +9,39 @@ import UIKit
 
 final class HelperTrackersCollectionView: NSObject  {
     var categories: [TrackerCategory]
+    var visibleCategories: [TrackerCategory]?
+    var completedTrackers: [TrackerRecord] = []
+    var currentDate = Date()
+    
     private let params: GeometricParams
     
     init(categories: [TrackerCategory], with params: GeometricParams) {
         self.categories = categories
         self.params = params
+    }
+    
+    // MARK: Methods
+    
+    private func isTrackerCompletedToday(id: UUID) -> Bool {
+        let completedTracker = TrackerRecord(id: id, date: currentDate)
+        return completedTrackers.contains(completedTracker)
+    }
+}
+
+// MARK: TrackersCellDelegate
+
+extension HelperTrackersCollectionView {
+    func completeTracker(id: UUID) {
+        let completedTracker = TrackerRecord(id: id, date: currentDate)
+        completedTrackers.append(completedTracker)
+    }
+    
+    func incompleteTracker(id: UUID) {
+        
+        completedTrackers.removeAll { trackerRecord in
+            let isSameDate = Calendar.current.isDate(trackerRecord.date, inSameDayAs: currentDate)
+            return trackerRecord.id == id && isSameDate
+        }
     }
 }
 
@@ -36,10 +64,14 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
         }
         
         let tracker = categories[indexPath.section].trackers[indexPath.row]
-        cell.setTitle(text: tracker.name)
-        cell.setEmoji(emoji: tracker.emoji)
-        cell.daysCount = 0
-        cell.setColor(color: tracker.color)
+        
+        let isCompleted = isTrackerCompletedToday(id: tracker.id)
+        let completedDays = completedTrackers.filter {
+            $0.id == tracker.id
+        }.count
+        
+        cell.delegate = self
+        cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays)
         
         return cell
     }

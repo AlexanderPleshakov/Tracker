@@ -28,7 +28,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
         }
     }
     
-    var tracker: Tracker = Tracker(id: 1, name: nil, color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: nil) {
+    var tracker: Tracker = Tracker(id: UUID(), name: nil, color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: nil) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
                 newCategory = TrackerCategory(title: selectedCategory!.title,

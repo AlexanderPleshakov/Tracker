@@ -12,25 +12,24 @@ final class TrackersViewController: UIViewController {
     
     static var categories: [TrackerCategory] = [
         TrackerCategory(title: "Важное", trackers: [
-            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.monday, .wednesday]),
-            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.tuesday]),
-            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.wednesday])]),
+            Tracker(id: UUID(), name: "Поливать растения", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "❤️", timetable: [.monday, .wednesday]),
+            Tracker(id: UUID(), name: "Кошка заслонила камеру на созвоне", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: [.tuesday]),
+            Tracker(id: UUID(), name: "Бабушка прислала открытку в вотсапе", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "☺️", timetable: [.wednesday])]),
         TrackerCategory(title: "Радостные мелочи", trackers: [
-            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.thursday, .tuesday]),
-            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday, .wednesday]),
-            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.sunday])])
-    ] {
-        willSet(newValue) {
-            print(newValue)
-        }
-    }
+            Tracker(id: UUID(), name: "Свидания в апреле", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "😂", timetable: [.thursday, .tuesday]),
+            Tracker(id: UUID(), name: "Хорошее настроение", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "💕", timetable: [.friday, .wednesday]),
+            Tracker(id: UUID(), name: "Легкая тревожность", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "🙃", timetable: [.sunday])])
+    ]
     
-    var currentDate: Date = Date()
     var completedTrackers: [TrackerRecord] = []
-    private let collectionHelper = HelperTrackersCollectionView(categories: TrackersViewController.categories,
-                                                                with: GeometricParams(cellCount: 2, topInset: 12, leftInset: 0, bottomInset: 32, rightInset: 0, cellSpacing: 9))
+    var currentDate = Date()
     
     // MARK: Views
+    
+    private let collectionHelper = HelperTrackersCollectionView(categories: TrackersViewController.categories,
+                                                                with: GeometricParams(cellCount: 2, topInset: 12,
+                                                                                      leftInset: 0, bottomInset: 32,
+                                                                                      rightInset: 0, cellSpacing: 9))
     
     private let trackersCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -46,7 +45,15 @@ final class TrackersViewController: UIViewController {
         
         return collection
     }()
+    
     private let stubView = StubView(text: "Что будем отслеживать?")
+    
+    private let emptyView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
     
     // MARK: Init
 
@@ -54,6 +61,12 @@ final class TrackersViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        
+        collectionHelper.completedTrackers = completedTrackers
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: Date())
+        let currentWeekday = Day.getDayFromNumber(number: weekday)
+        filterTrackers(by: currentWeekday)
     }
     
     // MARK: Methods
@@ -85,6 +98,7 @@ final class TrackersViewController: UIViewController {
             let newCategory = TrackerCategory(title: category.title, trackers: trackers)
             filteredCategories.append(newCategory)
         }
+        
         reloadCollection(with: filteredCategories)
         setupSubviews()
     }
@@ -110,11 +124,11 @@ final class TrackersViewController: UIViewController {
 extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         currentDate = date
+        collectionHelper.currentDate = date
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: date)
-        let currentDay = Day.getDayFromNumber(number: weekday)
-        filterTrackers(by: currentDay)
-        print(currentDay)
+        let currentWeekday = Day.getDayFromNumber(number: weekday)
+        filterTrackers(by: currentWeekday)
     }
     
     func addButtonTapped() {
@@ -124,6 +138,8 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
         present(nav, animated: true)
     }
 }
+
+// MARK: UISearchResultsUpdating
 
 extension TrackersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -171,6 +187,7 @@ extension TrackersViewController {
     }
     
     private func addTrackersCollection() {
+        view.addSubview(emptyView)
         view.addSubview(trackersCollection)
         
         NSLayoutConstraint.activate([
@@ -178,6 +195,11 @@ extension TrackersViewController {
             trackersCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             trackersCollection.topAnchor.constraint(equalTo: view.topAnchor),
             trackersCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyView.heightAnchor.constraint(equalToConstant: 0),
         ])
     }
     
