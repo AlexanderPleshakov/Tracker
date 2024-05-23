@@ -9,7 +9,9 @@ import UIKit
 
 final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, CategoriesViewControllerDelegate {
     // MARK: Properties
-    
+    private let type: TrackerType
+    private let navTitle: String
+    private var tableViewHelper: HabitAndEventTableViewHelper!
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private var newCategory: TrackerCategory? = nil
@@ -26,7 +28,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
         }
     }
     
-    var tracker: Tracker = Tracker(id: 1, name: nil, color: .red, emoji: "👻", timetable: nil) {
+    var tracker: Tracker = Tracker(id: UUID(), name: nil, color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: nil) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
                 newCategory = TrackerCategory(title: selectedCategory!.title,
@@ -39,9 +41,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
         }
     }
     
-    private let type: TrackerType
-    private let navTitle: String
-    private var tableViewHelper: HabitAndEventTableViewHelper!
+    
     
     // MARK: Views
     
@@ -144,6 +144,7 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
             TrackersViewController.categories.append(newCategory)
         }
         self.dismiss(animated: true)
+        delegate?.addTracker()
     }
 }
 
