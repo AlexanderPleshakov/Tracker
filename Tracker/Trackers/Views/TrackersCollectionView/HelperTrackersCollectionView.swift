@@ -71,7 +71,7 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
         }.count
         
         cell.delegate = self
-        cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays)
+        cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate)
         
         return cell
     }

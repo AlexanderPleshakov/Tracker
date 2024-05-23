@@ -14,6 +14,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private var isCompletedToday = false
     private var trackerId: UUID?
     private var completedDays = 0
+    private var date: Date?
     
     // MARK: Properties
     
@@ -69,9 +70,10 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     
     // MARK: Methods
     
-    func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int) {
+    func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int, date: Date) {
         self.isCompletedToday = isCompleted
         self.trackerId = tracker.id
+        self.date = date
         
         setTitle(text: tracker.name)
         setEmoji(emoji: tracker.emoji)
@@ -137,18 +139,18 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func recordTracker() {
-        guard let trackerId = trackerId else {
+        guard let trackerId = trackerId, let date = date else {
             assertionFailure("tracker id is nil")
             return
         }
-        
-        if isCompletedToday {
-            delegate?.incompleteTracker(id: trackerId)
-            setUncompletedState(with: completedDays)
-            
-        } else {
-            delegate?.completeTracker(id: trackerId)
-            setCompletedState(with: completedDays + 1)
+        if Date() > date {
+            if isCompletedToday {
+                delegate?.incompleteTracker(id: trackerId)
+                setUncompletedState(with: completedDays)
+            } else {
+                delegate?.completeTracker(id: trackerId)
+                setCompletedState(with: completedDays + 1)
+            }
         }
     }
     
