@@ -29,6 +29,13 @@ final class TrackersNavigationController: UINavigationController {
     // MARK: Methods
     
     func navBarConfig() {
+        delegateController.navigationController?.navigationBar.shadowImage = UIImage()
+        delegateController.navigationController?.navigationBar.backgroundColor = Resources.Colors.white
+        delegateController.navigationController?.navigationBar.isTranslucent = false
+        
+        delegateController.navigationItem.hidesSearchBarWhenScrolling = false
+        delegateController.navigationItem.largeTitleDisplayMode = .always
+        
         setTitle()
         setAddButton()
         setDatePicker()
@@ -36,7 +43,7 @@ final class TrackersNavigationController: UINavigationController {
     }
     
     private func setTitle() {
-        delegateController.navigationItem.titleView?.tintColor = Resources.Colors.black
+        delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.black ?? .black]
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
         
         delegateController.navigationItem.title = "Трекеры"

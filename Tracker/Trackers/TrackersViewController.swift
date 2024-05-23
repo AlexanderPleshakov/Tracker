@@ -176,7 +176,7 @@ extension TrackersViewController {
         NSLayoutConstraint.activate([
             trackersCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             trackersCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            trackersCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            trackersCollection.topAnchor.constraint(equalTo: view.topAnchor),
             trackersCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
