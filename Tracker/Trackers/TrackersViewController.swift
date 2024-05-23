@@ -132,11 +132,9 @@ extension TrackersViewController: UISearchResultsUpdating {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             for category in TrackersViewController.categories {
                 var filteredTrackers: [Tracker] = []
-                for tracker in category.trackers {
-                    filteredTrackers = category.trackers.filter { item in
-                        guard let name = item.name else { return false }
-                        return name.lowercased().contains(searchText.lowercased())
-                    }
+                filteredTrackers = category.trackers.filter { item in
+                    guard let name = item.name else { return false }
+                    return name.lowercased().contains(searchText.lowercased())
                 }
                 let newCategory = TrackerCategory(title: category.title, trackers: filteredTrackers)
                 filteredCategories.append(newCategory)
