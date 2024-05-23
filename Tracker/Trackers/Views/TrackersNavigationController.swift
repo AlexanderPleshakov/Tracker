@@ -72,6 +72,8 @@ final class TrackersNavigationController: UINavigationController {
         search.searchBar.placeholder = "Поиск"
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         search.searchResultsUpdater = delegateController
+        search.hidesNavigationBarDuringPresentation = false
+        
         delegateController.navigationItem.searchController = search
     }
     
