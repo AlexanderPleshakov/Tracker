@@ -20,6 +20,7 @@ final class TrackersViewController: UIViewController {
             Tracker(id: UUID(), name: "Хорошее настроение", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "💕", timetable: [.friday, .wednesday]),
             Tracker(id: UUID(), name: "Легкая тревожность", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "🙃", timetable: [.sunday])])
     ]
+    var visibleCategories: [TrackerCategory] = []
     
     var completedTrackers: [TrackerRecord] = []
     var currentDate = Date()
@@ -48,13 +49,6 @@ final class TrackersViewController: UIViewController {
     
     private let stubView = StubView(text: "Что будем отслеживать?")
     
-    private let emptyView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    
     // MARK: Init
 
     override func viewDidLoad() {
@@ -63,13 +57,19 @@ final class TrackersViewController: UIViewController {
         configure()
         
         collectionHelper.completedTrackers = completedTrackers
-        let calendar = Calendar.current
-        let weekday = calendar.component(.weekday, from: Date())
-        let currentWeekday = Day.getDayFromNumber(number: weekday)
+        let currentWeekday = getCurrentWeekday()
         filterTrackers(by: currentWeekday)
     }
     
     // MARK: Methods
+    
+    private func getCurrentWeekday() -> Day {
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: currentDate)
+        let currentWeekday = Day.getDayFromNumber(number: weekday)
+        
+        return currentWeekday
+    }
     
     private func reloadCollection(with data: [TrackerCategory]) {
         collectionHelper.categories = data
@@ -84,7 +84,7 @@ final class TrackersViewController: UIViewController {
         reloadCollection(with: TrackersViewController.categories)
     }
     
-    private func filterTrackers(by day: Day) {
+    private func getFilteredTrackers(by day: Day) -> [TrackerCategory] {
         var filteredCategories = [TrackerCategory]()
         for category in TrackersViewController.categories {
             var trackers: [Tracker] = []
@@ -99,7 +99,23 @@ final class TrackersViewController: UIViewController {
             filteredCategories.append(newCategory)
         }
         
-        reloadCollection(with: filteredCategories)
+        return filteredCategories
+    }
+    
+    private func filterTrackers(by day: Day) {
+        var filtered = getFilteredTrackers(by: day)
+        
+        if let searchText = navigationItem.searchController?.searchBar.text, !searchText.isEmpty {
+            filtered = filtered.map { category in
+                let filteredTrackers = category.trackers.filter { item in
+                    guard let name = item.name else { return false }
+                    return name.lowercased().contains(searchText.lowercased())
+                }
+                return TrackerCategory(title: category.title, trackers: filteredTrackers)
+            }
+        }
+        
+        reloadCollection(with: filtered)
         setupSubviews()
     }
     
@@ -125,9 +141,8 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         currentDate = date
         collectionHelper.currentDate = date
-        let calendar = Calendar.current
-        let weekday = calendar.component(.weekday, from: date)
-        let currentWeekday = Day.getDayFromNumber(number: weekday)
+        
+        let currentWeekday = getCurrentWeekday()
         filterTrackers(by: currentWeekday)
     }
     
@@ -143,21 +158,19 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
 
 extension TrackersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        var filteredCategories = [TrackerCategory]()
+        let currentWeekday = getCurrentWeekday()
+        var filteredCategories = getFilteredTrackers(by: currentWeekday)
         
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            for category in TrackersViewController.categories {
-                var filteredTrackers: [Tracker] = []
-                filteredTrackers = category.trackers.filter { item in
+            filteredCategories = filteredCategories.map { category in
+                let filteredTrackers = category.trackers.filter { item in
                     guard let name = item.name else { return false }
                     return name.lowercased().contains(searchText.lowercased())
                 }
-                let newCategory = TrackerCategory(title: category.title, trackers: filteredTrackers)
-                filteredCategories.append(newCategory)
+                return TrackerCategory(title: category.title, trackers: filteredTrackers)
             }
-        } else {
-            filteredCategories = TrackersViewController.categories
         }
+        
         reloadCollection(with: filteredCategories)
         setupSubviews()
     }
@@ -187,7 +200,6 @@ extension TrackersViewController {
     }
     
     private func addTrackersCollection() {
-        view.addSubview(emptyView)
         view.addSubview(trackersCollection)
         
         NSLayoutConstraint.activate([
@@ -195,11 +207,6 @@ extension TrackersViewController {
             trackersCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             trackersCollection.topAnchor.constraint(equalTo: view.topAnchor),
             trackersCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            emptyView.topAnchor.constraint(equalTo: view.topAnchor),
-            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            emptyView.heightAnchor.constraint(equalToConstant: 0),
         ])
     }
     
