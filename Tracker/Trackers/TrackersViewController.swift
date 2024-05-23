@@ -76,14 +76,6 @@ final class TrackersViewController: UIViewController {
         trackersCollection.reloadData()
     }
     
-    func addTracker() {
-        if stubView.isHidden == false {
-            stubView.removeFromSuperview()
-            addTrackersCollection()
-        }
-        reloadCollection(with: TrackersViewController.categories)
-    }
-    
     private func getFilteredTrackers(by day: Day) -> [TrackerCategory] {
         var filteredCategories = [TrackerCategory]()
         for category in TrackersViewController.categories {
@@ -151,6 +143,20 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
         viewController.delegate = self
         let nav = UINavigationController(rootViewController: viewController)
         present(nav, animated: true)
+    }
+}
+
+// MARK: NewTrackerViewControllerDelegate
+
+extension TrackersViewController: NewTrackerViewControllerDelegate {
+    func addTracker() {
+        if stubView.isHidden == false {
+            stubView.removeFromSuperview()
+            addTrackersCollection()
+        }
+        
+        let weekday = getCurrentWeekday()
+        filterTrackers(by: weekday)
     }
 }
 

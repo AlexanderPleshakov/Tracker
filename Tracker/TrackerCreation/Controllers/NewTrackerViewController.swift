@@ -9,7 +9,7 @@ import UIKit
 
 final class NewTrackerViewController: UIViewController {
     // MARK: Properties
-    weak var delegate: TrackersViewController?
+    weak var delegate: NewTrackerViewControllerDelegate?
     private let newHabitButton = BasicLargeButton(title: "Привычка")
     private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
     
