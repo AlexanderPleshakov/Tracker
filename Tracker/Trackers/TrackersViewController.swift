@@ -11,14 +11,14 @@ final class TrackersViewController: UIViewController {
     // MARK: Properties
     
     static var categories: [TrackerCategory] = [
-//        TrackerCategory(title: "Важное", trackers: [
-//            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.monday, .wednesday]),
-//            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.tuesday]),
-//            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.wednesday])]),
-//        TrackerCategory(title: "Радостные мелочи", trackers: [
-//            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.thursday, .tuesday]),
-//            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday, .wednesday]),
-//            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.sunday])])
+        TrackerCategory(title: "Важное", trackers: [
+            Tracker(id: 1, name: "Поливать растения", color: .red, emoji: "❤️", timetable: [.monday, .wednesday]),
+            Tracker(id: 2, name: "Кошка заслонила камеру на созвоне", color: .blue, emoji: "👻", timetable: [.tuesday]),
+            Tracker(id: 3, name: "Бабушка прислала открытку в вотсапе", color: .cyan, emoji: "☺️", timetable: [.wednesday])]),
+        TrackerCategory(title: "Радостные мелочи", trackers: [
+            Tracker(id: 4, name: "Свидания в апреле", color: .systemPink, emoji: "😂", timetable: [.thursday, .tuesday]),
+            Tracker(id: 5, name: "Хорошее настроение", color: .orange, emoji: "💕", timetable: [.friday, .wednesday]),
+            Tracker(id: 6, name: "Легкая тревожность", color: .purple, emoji: "🙃", timetable: [.sunday])])
     ] {
         willSet(newValue) {
             print(newValue)
@@ -122,6 +122,30 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
         viewController.delegate = self
         let nav = UINavigationController(rootViewController: viewController)
         present(nav, animated: true)
+    }
+}
+
+extension TrackersViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        var filteredCategories = [TrackerCategory]()
+        
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            for category in TrackersViewController.categories {
+                var filteredTrackers: [Tracker] = []
+                for tracker in category.trackers {
+                    filteredTrackers = category.trackers.filter { item in
+                        guard let name = item.name else { return false }
+                        return name.lowercased().contains(searchText.lowercased())
+                    }
+                }
+                let newCategory = TrackerCategory(title: category.title, trackers: filteredTrackers)
+                filteredCategories.append(newCategory)
+            }
+        } else {
+            filteredCategories = TrackersViewController.categories
+        }
+        reloadCollection(with: filteredCategories)
+        setupSubviews()
     }
 }
 

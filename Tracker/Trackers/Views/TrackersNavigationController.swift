@@ -71,6 +71,7 @@ final class TrackersNavigationController: UINavigationController {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.placeholder = "Поиск"
         search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        search.searchResultsUpdater = delegateController
         delegateController.navigationItem.searchController = search
     }
     
