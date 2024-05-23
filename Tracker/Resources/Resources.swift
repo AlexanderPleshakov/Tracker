@@ -16,7 +16,8 @@ enum Resources {
         static let stubTrackersImage = UIImage(named: "StubImage") ?? UIImage()
         static let checkmark = UIImage(named: "TCheckmark") ?? UIImage()
         static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
-        static let addTrackerButton = UIImage(named: "AddTracker") ?? UIImage()
+        static let completeTrackerButton = UIImage(named: "AddTracker") ?? UIImage()
+        static let doneTracker = UIImage(named: "DoneTracker") ?? UIImage()
     }
     
     enum Colors {

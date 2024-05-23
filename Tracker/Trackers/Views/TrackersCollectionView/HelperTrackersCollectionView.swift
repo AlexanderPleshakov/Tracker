@@ -38,7 +38,7 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
         let tracker = categories[indexPath.section].trackers[indexPath.row]
         cell.setTitle(text: tracker.name)
         cell.setEmoji(emoji: tracker.emoji)
-        cell.setDays(text: "5 дней")
+        cell.daysCount = 0
         cell.setColor(color: tracker.color)
         
         return cell

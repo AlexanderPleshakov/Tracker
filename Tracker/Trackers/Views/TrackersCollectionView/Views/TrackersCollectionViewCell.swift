@@ -10,6 +10,12 @@ import UIKit
 final class TrackersCollectionViewCell: UICollectionViewCell {
     static let identifier = "TrackersCollectionViewCell"
     
+    var daysCount = 0 {
+        willSet {
+            setDays(text: getDayText(number: newValue))
+        }
+    }
+    
     // MARK: Properties
     
     private let backView: UIView = {
@@ -37,8 +43,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }()
     
     private let addButton: UIButton = {
-        let image = Resources.Images.addTrackerButton
-        let button = UIButton.systemButton(with: Resources.Images.addTrackerButton, target: nil, action: nil)
+        let button = UIButton.systemButton(with: Resources.Images.completeTrackerButton, target: nil, action: nil)
         button.layer.cornerRadius = 17
         button.tintColor = Resources.Colors.white
         
@@ -79,14 +84,47 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         titleLabel.text = text
     }
     
-    func setDays(text: String?) {
+    private func setDays(text: String?) {
         daysLabel.text = text
+    }
+    
+    private func getDayText(number: Int) -> String {
+        let last = number % 10
+        var text: String
+        switch number {
+        case 0, 5, 6, 7, 8, 9:
+            text = "дней"
+        case 1:
+            text = "день"
+        case 2, 3, 4:
+            text = "дня"
+        default:
+            text = "день"
+        }
+        text = "\(number) " + text
+        
+        return text
+    }
+    
+    @objc private func recordTracker() {
+        if addButton.layer.opacity == 0.3 {
+            addButton.layer.opacity = 1
+            addButton.setImage(Resources.Images.completeTrackerButton, for: .normal)
+            daysCount -= 1
+        } else {
+            addButton.layer.opacity = 0.3
+            addButton.setImage(Resources.Images.doneTracker, for: .normal)
+            daysCount += 1
+        }
+        
     }
     
     private func configure() {
         [backView, titleLabel, daysLabel, addButton, emojiView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        
+        addButton.addTarget(self, action: #selector(recordTracker), for: .touchUpInside)
         
         backView.addSubview(titleLabel)
         backView.addSubview(emojiView)
