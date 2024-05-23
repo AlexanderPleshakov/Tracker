@@ -30,14 +30,13 @@ final class HelperTrackersCollectionView: NSObject  {
 
 // MARK: TrackersCellDelegate
 
-extension HelperTrackersCollectionView {
+extension HelperTrackersCollectionView: TrackersCellDelegate {
     func completeTracker(id: UUID) {
         let completedTracker = TrackerRecord(id: id, date: currentDate)
         completedTrackers.append(completedTracker)
     }
     
     func incompleteTracker(id: UUID) {
-        
         completedTrackers.removeAll { trackerRecord in
             let isSameDate = Calendar.current.isDate(trackerRecord.date, inSameDayAs: currentDate)
             return trackerRecord.id == id && isSameDate

@@ -9,7 +9,7 @@ import UIKit
 
 final class TrackersCollectionViewCell: UICollectionViewCell {
     static let identifier = "TrackersCollectionViewCell"
-    weak var delegate: HelperTrackersCollectionView?
+    weak var delegate: TrackersCellDelegate?
     
     private var isCompletedToday = false
     private var trackerId: UUID?

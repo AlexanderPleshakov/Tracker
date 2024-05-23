@@ -19,6 +19,7 @@
 		166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAE82BFD5373004FD58B /* SectionHeaderView.swift */; };
 		166EAAEC2BFEA121004FD58B /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAEB2BFEA121004FD58B /* UIColor + hex.swift */; };
 		166EAAEE2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAED2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift */; };
+		166EAAF02BFFC304004FD58B /* TrackersCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAEF2BFFC304004FD58B /* TrackersCellDelegate.swift */; };
 		16818AB92BED22A90025D5D4 /* StubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AB82BED22A90025D5D4 /* StubView.swift */; };
 		16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */; };
 		16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */; };
@@ -62,6 +63,7 @@
 		166EAAE82BFD5373004FD58B /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		166EAAEB2BFEA121004FD58B /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		166EAAED2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		166EAAEF2BFFC304004FD58B /* TrackersCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersCellDelegate.swift; sourceTree = "<group>"; };
 		16818AB82BED22A90025D5D4 /* StubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubView.swift; sourceTree = "<group>"; };
 		16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationController.swift; sourceTree = "<group>"; };
 		16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationControllerDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */,
+				166EAAEF2BFFC304004FD58B /* TrackersCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */,
 				16F659352BEF853A00DA7164 /* Day.swift in Sources */,
 				16818AC62BED7D490025D5D4 /* InputFieldTableViewCell.swift in Sources */,
+				166EAAF02BFFC304004FD58B /* TrackersCellDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
