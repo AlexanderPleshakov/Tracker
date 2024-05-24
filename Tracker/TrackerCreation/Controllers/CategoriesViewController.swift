@@ -163,7 +163,7 @@ extension CategoriesViewController {
         
         addButton.addTarget(self, action: #selector(buttonAddTapped), for: .touchUpInside)
         
-        title = "Категория"
+        title = Resources.Titles.categoriesTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

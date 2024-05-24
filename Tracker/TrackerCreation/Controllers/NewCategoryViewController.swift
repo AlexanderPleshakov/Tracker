@@ -84,7 +84,7 @@ extension NewCategoryViewController {
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         textField.delegate = self
         
-        title = "Новая категория"
+        title = Resources.Titles.newCategoryTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

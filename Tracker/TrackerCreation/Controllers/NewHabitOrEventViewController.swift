@@ -115,7 +115,7 @@ final class NewHabitOrEventViewController: UIViewController,
     
     init(type: TrackerType) {
         self.type = type
-        self.navTitle = (type == .habit) ? "Новая привычка" : "Новое нерегулярное событие"
+        self.navTitle = (type == .habit) ? Resources.Titles.habitTitle : Resources.Titles.eventTitle
         super.init(nibName: nil, bundle: nil)
     }
     

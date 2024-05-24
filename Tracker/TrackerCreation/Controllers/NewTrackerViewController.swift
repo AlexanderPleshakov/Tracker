@@ -28,7 +28,7 @@ final class NewTrackerViewController: UIViewController {
         newHabitButton.addTarget(self, action: #selector(newHabitButtonTapped), for: .touchUpInside)
         newEventButton.addTarget(self, action: #selector(newEventButtonTapped), for: .touchUpInside)
         
-        title = "Создание трекера"
+        title = Resources.Titles.newTrackerTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

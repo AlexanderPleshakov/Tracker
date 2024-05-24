@@ -12,8 +12,8 @@ final class TimetableViewController: UIViewController {
     
     weak var delegate: TimetableDelegate?
     
-    private let allDays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
-    private let days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    private let allDays: [Day] = Resources.Mocks.weekdays
+    private let days = Resources.Mocks.weekdaysStrings
     private var selectedDays: Set<Day> = []
     
     // MARK: Views
@@ -69,7 +69,7 @@ final class TimetableViewController: UIViewController {
         
         doneButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
         
-        title = "Расписание"
+        title = Resources.Titles.timetableTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

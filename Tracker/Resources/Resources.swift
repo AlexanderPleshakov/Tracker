@@ -9,6 +9,23 @@ import UIKit
 
 enum Resources {
     
+    enum Mocks {
+        static let weekdays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
+        static let weekdaysStrings: [String] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    }
+    
+    enum Titles {
+        static let trackersTitle = "Трекеры"
+        static let statisticTitle = "Статистика"
+        static let newTrackerTitle = "Создание трекера"
+        static let habitTitle = "Новая привычка"
+        static let eventTitle = "Новое нерегулярное событие"
+        static let timetableTitle = "Расписание"
+        static let categoriesTitle = "Категория"
+        static let newCategoryTitle = "Новая категория"
+        
+    }
+    
     enum Images {
         static let tracksTab = UIImage(named: "TabTracks") ?? UIImage()
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
