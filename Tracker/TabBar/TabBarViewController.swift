@@ -23,25 +23,23 @@ final class TabBarViewController: UITabBarController {
     }
     
     private func addTabs() {
-        let tracks = createTab(title: "Трекеры",
-                               image: Resources.Images.tracksTab,
-                               for: TrackersViewController())
-        let statistic = createTab(title: "Статистика",
-                               image: Resources.Images.statisticTab,
-                               for: StatisticViewController())
-        self.viewControllers  = [tracks, statistic]
-    }
-    
-    private func createTab(title: String, image: UIImage, for viewController: UIViewController) -> UINavigationController {
-        let nav = (viewController as? TrackersNavigationControllerDelegate) != nil ? TrackersNavigationController(rootViewController: viewController as! TrackersNavigationControllerDelegate) : UINavigationController(rootViewController: viewController)
-        
-        viewController.tabBarItem = UITabBarItem(
-            title: title,
-            image: image,
+        let trackers = TrackersViewController()
+        let trackersNav = TrackersNavigationController(rootViewController: trackers)
+        trackersNav.tabBarItem = UITabBarItem(
+            title: "Трекеры",
+            image: Resources.Images.tracksTab,
             selectedImage: nil
         )
         
-        return nav
+        let statistic = StatisticViewController()
+        let statisticNav = UINavigationController(rootViewController: statistic)
+        statisticNav.tabBarItem = UITabBarItem(
+            title: "Статистика",
+            image: Resources.Images.statisticTab,
+            selectedImage: nil
+        )
+        
+        self.viewControllers  = [trackersNav, statisticNav]
     }
 }
 
