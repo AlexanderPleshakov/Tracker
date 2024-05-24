@@ -146,8 +146,7 @@ extension TrackersViewController: NewTrackerViewControllerDelegate {
             addTrackersCollection()
         }
         
-        let weekday = getCurrentWeekday()
-        filterTrackers(by: weekday)
+        reloadCollection(with: TrackersViewController.categories)
     }
 }
 
