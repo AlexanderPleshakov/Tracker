@@ -77,6 +77,8 @@ final class TrackersViewController: UIViewController {
                     if timetable.contains(day) {
                         trackers.append(tracker)
                     }
+                } else {
+                    trackers.append(tracker)
                 }
             }
             let newCategory = TrackerCategory(title: category.title, trackers: trackers)
@@ -146,8 +148,8 @@ extension TrackersViewController: NewTrackerViewControllerDelegate {
             stubView.removeFromSuperview()
             addTrackersCollection()
         }
-        
-        reloadCollection(with: TrackersViewController.categories)
+        let weekday = getCurrentWeekday()
+        filterTrackers(by: weekday)
     }
 }
 
