@@ -10,7 +10,7 @@ import UIKit
 final class SectionHeaderView: UICollectionReusableView {
     static let identifier = "SectionHeaderView"
     
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 19, weight: .bold)
         label.textColor = Resources.Colors.black
@@ -34,5 +34,9 @@ final class SectionHeaderView: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func changeTitle(title: String) {
+        label.text = title
     }
 }

@@ -11,10 +11,9 @@ final class TrackersViewController: UIViewController {
     // MARK: Properties
     
     static var categories: [TrackerCategory] = []
-    var visibleCategories: [TrackerCategory] = []
     
-    var completedTrackers: [TrackerRecord] = []
-    var currentDate = Date()
+    private var completedTrackers: [TrackerRecord] = []
+    private var currentDate = Date()
     
     // MARK: Views
     

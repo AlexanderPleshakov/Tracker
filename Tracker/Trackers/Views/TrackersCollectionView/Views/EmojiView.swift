@@ -8,7 +8,7 @@
 import UIKit
 
 final class EmojiView: UIView {
-    let label: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -27,6 +27,10 @@ final class EmojiView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func changeEmoji(emoji: String) {
+        label.text = emoji
     }
     
     private func configure() {

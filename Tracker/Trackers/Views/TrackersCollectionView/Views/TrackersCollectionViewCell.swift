@@ -95,7 +95,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     
     private func setEmoji(emoji: Character?) {
         guard let emoji = emoji else { return }
-        emojiView.label.text = String(emoji)
+        emojiView.changeEmoji(emoji: String(emoji))
     }
     
     private func setTitle(text: String?) {
@@ -106,14 +106,14 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         daysLabel.text = text
     }
     
-    func setCompletedState(with count: Int) {
+    private func setCompletedState(with count: Int) {
         addButton.layer.opacity = 0.3
         addButton.setImage(Resources.Images.doneTracker, for: .normal)
         setDays(text: getDayText(number: count))
         isCompletedToday = true
     }
     
-    func setUncompletedState(with count: Int) {
+    private func setUncompletedState(with count: Int) {
         addButton.layer.opacity = 1
         addButton.setImage(Resources.Images.completeTrackerButton, for: .normal)
         setDays(text: getDayText(number: count))

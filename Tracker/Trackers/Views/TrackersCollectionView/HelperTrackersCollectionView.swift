@@ -92,7 +92,8 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         if categories[indexPath.section].trackers.isEmpty {
             return view
         } else {
-            view.label.text = categories[indexPath.section].title
+            let categoryName = categories[indexPath.section].title
+            view.changeTitle(title: categoryName)
         }
         
         return view
