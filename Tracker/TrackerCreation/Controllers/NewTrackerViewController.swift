@@ -38,8 +38,9 @@ final class NewTrackerViewController: UIViewController {
     }
     
     private func setupSubviews() {
-        newEventButton.translatesAutoresizingMaskIntoConstraints = false
-        newHabitButton.translatesAutoresizingMaskIntoConstraints = false
+        [newEventButton, newHabitButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         view.addSubview(newHabitButton)
         view.addSubview(newEventButton)

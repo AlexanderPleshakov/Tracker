@@ -7,11 +7,13 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, CategoriesViewControllerDelegate {
+final class NewHabitOrEventViewController: UIViewController,
+                                           TimetableDelegate,
+                                           CategoriesViewControllerDelegate {
     // MARK: Properties
     private let type: TrackerType
     private let navTitle: String
-    private var tableViewHelper: HabitAndEventTableViewHelper!
+    private var tableViewHelper: HabitAndEventTableViewHelper?
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private var newCategory: TrackerCategory? = nil
@@ -19,16 +21,32 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
     
     var selectedDays = [Day]() {
         willSet(new) {
-            tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: new)
+            tracker = Tracker(
+                id: tracker.id,
+                name: tracker.name,
+                color: tracker.color,
+                emoji: tracker.emoji,
+                timetable: new)
         }
     }
     var selectedCategory: TrackerCategory? = nil {
         didSet {
-            tracker = Tracker(id: tracker.id, name: tracker.name, color: tracker.color, emoji: tracker.emoji, timetable: tracker.timetable)
+            tracker = Tracker(
+                id: tracker.id,
+                name: tracker.name,
+                color: tracker.color,
+                emoji: tracker.emoji,
+                timetable: tracker.timetable)
         }
     }
     
-    var tracker: Tracker = Tracker(id: UUID(), name: nil, color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: nil) {
+    var tracker: Tracker = Tracker(
+        id: UUID(),
+        name: nil,
+        color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)],
+        emoji: "👻",
+        timetable: nil
+    ) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
                 newCategory = TrackerCategory(title: selectedCategory!.title,
@@ -47,8 +65,10 @@ final class NewHabitOrEventViewController: UIViewController, TimetableDelegate, 
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
-        tableView.register(InputFieldTableViewCell.self, forCellReuseIdentifier: InputFieldTableViewCell.reuseIdentifier)
-        tableView.register(DisclosureTableViewCell.self, forCellReuseIdentifier: DisclosureTableViewCell.reuseIdentifier)
+        tableView.register(InputFieldTableViewCell.self,
+                           forCellReuseIdentifier: InputFieldTableViewCell.reuseIdentifier)
+        tableView.register(DisclosureTableViewCell.self,
+                           forCellReuseIdentifier: DisclosureTableViewCell.reuseIdentifier)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -167,7 +187,12 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     func changeCategoryTitle(text: String?) {
         if text?.count ?? 0 <= 38 {
             categoryTitle = text
-            tracker = Tracker(id: tracker.id, name: categoryTitle, color: tracker.color, emoji: tracker.emoji, timetable: tracker.timetable)
+            tracker = Tracker(
+                id: tracker.id,
+                name: categoryTitle,
+                color: tracker.color,
+                emoji: tracker.emoji,
+                timetable: tracker.timetable)
         } else {
             blockCreateButton()
         }

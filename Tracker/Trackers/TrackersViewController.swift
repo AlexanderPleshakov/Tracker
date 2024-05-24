@@ -18,10 +18,12 @@ final class TrackersViewController: UIViewController {
     
     // MARK: Views
     
-    private let collectionHelper = HelperTrackersCollectionView(categories: TrackersViewController.categories,
-                                                                with: GeometricParams(cellCount: 2, topInset: 12,
-                                                                                      leftInset: 0, bottomInset: 32,
-                                                                                      rightInset: 0, cellSpacing: 9))
+    private let collectionHelper = HelperTrackersCollectionView(
+        categories: TrackersViewController.categories,
+        with: GeometricParams(cellCount: 2, topInset: 12,
+                              leftInset: 0, bottomInset: 32,
+                              rightInset: 0, cellSpacing: 9)
+    )
     
     private let trackersCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
