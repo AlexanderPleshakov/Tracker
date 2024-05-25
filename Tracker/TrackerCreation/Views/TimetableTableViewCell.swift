@@ -20,6 +20,7 @@ final class TimetableTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         accessoryView = switchView
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
