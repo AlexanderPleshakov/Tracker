@@ -69,6 +69,10 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
             $0.id == tracker.id
         }.count
         
+        if tracker.timetable == nil {
+            
+        }
+        
         cell.delegate = self
         cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate)
         

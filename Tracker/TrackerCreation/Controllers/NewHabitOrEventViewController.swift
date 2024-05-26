@@ -26,7 +26,8 @@ final class NewHabitOrEventViewController: UIViewController,
                 name: tracker.name,
                 color: tracker.color,
                 emoji: tracker.emoji,
-                timetable: new)
+                timetable: new,
+                creationDate: TrackersViewController.currentDate)
         }
     }
     var selectedCategory: TrackerCategory? = nil {
@@ -36,7 +37,8 @@ final class NewHabitOrEventViewController: UIViewController,
                 name: tracker.name,
                 color: tracker.color,
                 emoji: tracker.emoji,
-                timetable: tracker.timetable)
+                timetable: tracker.timetable,
+                creationDate: TrackersViewController.currentDate)
         }
     }
     
@@ -45,7 +47,8 @@ final class NewHabitOrEventViewController: UIViewController,
         name: nil,
         color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)],
         emoji: "👻",
-        timetable: nil
+        timetable: nil,
+        creationDate: TrackersViewController.currentDate
     ) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
@@ -192,7 +195,8 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
                 name: categoryTitle,
                 color: tracker.color,
                 emoji: tracker.emoji,
-                timetable: tracker.timetable)
+                timetable: tracker.timetable,
+                creationDate: TrackersViewController.currentDate)
         } else {
             blockCreateButton()
         }

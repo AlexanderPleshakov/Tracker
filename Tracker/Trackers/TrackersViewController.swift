@@ -10,10 +10,10 @@ import UIKit
 final class TrackersViewController: UIViewController {
     // MARK: Properties
     
-    static var categories: [TrackerCategory] = []
+    static var categories: [TrackerCategory] = Resources.Mocks.trackers
+    static var currentDate = Date()
     
     private var completedTrackers: [TrackerRecord] = []
-    private var currentDate = Date()
     
     // MARK: Views
     
@@ -57,7 +57,7 @@ final class TrackersViewController: UIViewController {
     
     private func getCurrentWeekday() -> Day {
         let calendar = Calendar.current
-        let weekday = calendar.component(.weekday, from: currentDate)
+        let weekday = calendar.component(.weekday, from: TrackersViewController.currentDate)
         let currentWeekday = Day.getDayFromNumber(number: weekday)
         
         return currentWeekday
@@ -71,16 +71,18 @@ final class TrackersViewController: UIViewController {
     private func getFilteredTrackers(by day: Day) -> [TrackerCategory] {
         var filteredCategories = [TrackerCategory]()
         for category in TrackersViewController.categories {
-            var trackers: [Tracker] = []
-            for tracker in category.trackers {
-                if let timetable = tracker.timetable {
-                    if timetable.contains(day) {
-                        trackers.append(tracker)
-                    }
+            let trackers: [Tracker] = category.trackers.filter {
+                if let timetable = $0.timetable {
+                    return timetable.contains(day)
                 } else {
-                    trackers.append(tracker)
+                    guard let creationDate = $0.creationDate else {
+                        assertionFailure("creation date is nil")
+                        return false
+                    }
+                    return Calendar.current.isDate(creationDate, inSameDayAs: TrackersViewController.currentDate)
                 }
             }
+
             let newCategory = TrackerCategory(title: category.title, trackers: trackers)
             filteredCategories.append(newCategory)
         }
@@ -125,7 +127,7 @@ final class TrackersViewController: UIViewController {
 
 extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
-        currentDate = date
+        TrackersViewController.currentDate = date
         collectionHelper.currentDate = date
         
         let currentWeekday = getCurrentWeekday()

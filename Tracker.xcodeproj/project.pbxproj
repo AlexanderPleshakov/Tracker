@@ -141,9 +141,9 @@
 		166EAADB2BFCABA4004FD58B /* TrackersCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				166EAAE32BFD2C14004FD58B /* HelperTrackersCollectionView.swift */,
 				166EAAE72BFD3FBF004FD58B /* Models */,
 				166EAADE2BFCAE75004FD58B /* Views */,
-				166EAAE32BFD2C14004FD58B /* HelperTrackersCollectionView.swift */,
 			);
 			path = TrackersCollectionView;
 			sourceTree = "<group>";

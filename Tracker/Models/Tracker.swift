@@ -13,6 +13,7 @@ struct Tracker {
     let color: UIColor?
     let emoji: Character?
     let timetable: [Day]?
+    let creationDate: Date?
     
     func isEmpty(type: TrackerType) -> Bool {
         if self.name != nil && !(self.name == "") && self.color != nil &&
