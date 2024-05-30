@@ -65,6 +65,11 @@ final class NewHabitOrEventViewController: UIViewController,
     
     
     // MARK: Views
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        
+        return scroll
+    }()
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -112,6 +117,15 @@ final class NewHabitOrEventViewController: UIViewController,
         label.textAlignment = .center
         
         return label
+    }()
+    
+    private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
+        let params = GeometricParams(cellCount: 6, topInset: 0,
+                                     leftInset: 18, bottomInset: 0,
+                                     rightInset: 18, cellSpacing: 5)
+        let collection = EmojiAndColorsCollectionView(params: params)
+        
+        return collection
     }()
     
     // MARK: Init
@@ -243,6 +257,7 @@ extension NewHabitOrEventViewController {
     }
     
     private func setupSubviews() {
+        
         setupButtons()
         setupTableView()
     }
