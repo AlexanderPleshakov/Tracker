@@ -19,12 +19,12 @@ final class HabitAndEventTableViewHelper: NSObject {
     
     func addWarning() {
         warningView = delegateController.warningLabel
-        delegateController.reloadTable()
+        delegateController.reloadTable(isAdding: true)
     }
     
     func removeWarning() {
         warningView = nil
-        delegateController.reloadTable()
+        delegateController.reloadTable(isAdding: false)
     }
     
     func textChanged(newText: String?) {

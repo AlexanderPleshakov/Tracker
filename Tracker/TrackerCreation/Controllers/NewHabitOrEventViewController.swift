@@ -20,6 +20,8 @@ final class NewHabitOrEventViewController: UIViewController,
     private var newCategory: TrackerCategory? = nil
     private var categoryTitle: String?
     
+    var tableHeightAnchor: NSLayoutConstraint!
+    
     var selectedDays = [Day]() {
         willSet(new) {
             tracker = Tracker(
@@ -234,7 +236,8 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
         present(categoriesVCNav, animated: true)
     }
     
-    func reloadTable() {
+    func reloadTable(isAdding: Bool) {
+        tableHeightAnchor.constant = isAdding ? getTableHeight() + 38.0 : getTableHeight()
         tableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
 }
@@ -250,6 +253,12 @@ extension NewHabitOrEventViewController {
         let collectionSize = CGFloat(num)
         
         return collectionSize
+    }
+    
+    private func getTableHeight() -> CGFloat {
+        let height = 48 + (type == .habit ? 75 * 3 : 75 * 2)
+        
+        return CGFloat(height)
     }
     
     private func configure() {
@@ -282,7 +291,6 @@ extension NewHabitOrEventViewController {
     }
     
     private func setupScrollView() {
-        
         view.addSubview(scrollView)
         scrollView.addSubview(scrollContainer)
     
@@ -291,6 +299,8 @@ extension NewHabitOrEventViewController {
         scrollContainer.addSubview(cancelButton)
         scrollContainer.addSubview(createButton)
         
+        tableHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: getTableHeight())
+        tableHeightAnchor.isActive = true
         
         NSLayoutConstraint.activate([
             // Scroll View
@@ -309,7 +319,6 @@ extension NewHabitOrEventViewController {
             tableView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
             tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
-            tableView.heightAnchor.constraint(equalToConstant: 75 * 3 + 48 + 8),
             
             // Collection View
             emojiAndColorsCollectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 32),
