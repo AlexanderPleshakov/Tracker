@@ -34,6 +34,30 @@ final class NewHabitOrEventViewController: UIViewController,
         }
     }
     
+    var selectedColor: UIColor? = nil {
+        willSet(newValue) {
+            tracker = Tracker(
+                id: tracker.id,
+                name: tracker.name,
+                color: newValue,
+                emoji: tracker.emoji,
+                timetable: tracker.timetable,
+                creationDate: TrackersViewController.currentDate)
+        }
+    }
+    
+    var selectedEmoji: Character? = nil {
+        willSet(newValue) {
+            tracker = Tracker(
+                id: tracker.id,
+                name: tracker.name,
+                color: tracker.color,
+                emoji: newValue,
+                timetable: tracker.timetable,
+                creationDate: TrackersViewController.currentDate)
+        }
+    }
+    
     var selectedCategory: TrackerCategory? = nil {
         didSet {
             tracker = Tracker(
@@ -248,6 +272,7 @@ extension NewHabitOrEventViewController {
         
         tableView.dataSource = tableViewHelper
         tableView.delegate = tableViewHelper
+        emojiAndColorsCollectionView.delegateController = self
         
         tableView.backgroundColor = Resources.Colors.white
         
