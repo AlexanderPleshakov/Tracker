@@ -12,7 +12,13 @@ final class EmojiAndColorsCollectionView: UICollectionView {
     
     let params: GeometricParams
     private let colors = Resources.Colors.Tracker.trackersColors
+    private let borderColors = Resources.Colors.Tracker.borderColors
     private let emojies = Resources.Mocks.emojies
+    
+    private var emojiIsSelected = false
+    private var colorIsSelected = false
+    private var lastSelectedEmojiCell: EmojiOrColorCollectionViewCell? = nil
+    private var lastSelectedColorCell: EmojiOrColorCollectionViewCell? = nil
     
     // MARK: Init
     
@@ -36,6 +42,7 @@ final class EmojiAndColorsCollectionView: UICollectionView {
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
         isScrollEnabled = false
+        allowsMultipleSelection = false
         
         register(EmojiOrColorCollectionViewCell.self,
                  forCellWithReuseIdentifier: EmojiOrColorCollectionViewCell.reuseIdentifier)
@@ -118,6 +125,33 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
         let availableWidth = collectionView.frame.width - params.paddingWidth
         let cellWidth =  availableWidth / CGFloat(params.cellCount)
         return CGSize(width: cellWidth, height: cellWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        guard let cell = cell as? EmojiOrColorCollectionViewCell else {
+            print("EmojiOrColorCollectionViewCell is nil")
+            return
+        }
+        
+        if indexPath.section == 0 {
+            if emojiIsSelected {
+                lastSelectedEmojiCell?.backgroundColor = .clear
+            }
+            
+            lastSelectedEmojiCell = cell
+            emojiIsSelected = true
+            cell.backgroundColor = Resources.Colors.colorsCollectionBackground
+        } else {
+            if colorIsSelected {
+                lastSelectedColorCell?.layer.borderWidth = 0
+            }
+            
+            lastSelectedColorCell = cell
+            colorIsSelected = true
+            cell.layer.borderColor = borderColors[indexPath.row].cgColor
+            cell.layer.borderWidth = 3
+        }
     }
 }
 

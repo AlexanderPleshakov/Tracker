@@ -43,12 +43,14 @@ final class EmojiOrColorCollectionViewCell: UICollectionViewCell {
         let viewFrame = CGRect(x: 0, y: 0, width: frame.width - 12, height: frame.height - 12)
         colorView.frame = viewFrame
         colorView.backgroundColor = color
+        layer.cornerRadius = 12
         
         addColorView()
     }
     
     func configure(with emoji: Character) {
         emojiLabel.text = String(emoji)
+        layer.cornerRadius = frame.width / 3.25
         
         addEmojiLabel()
     }

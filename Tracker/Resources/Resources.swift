@@ -60,6 +60,7 @@ enum Resources {
         static let cellBackground = UIColor(named: "TCellBackgroundGray")
         static let buttonRed = UIColor(named: "TButtonRed")
         static let white30 = UIColor(named: "TWhite30")
+        static let colorsCollectionBackground = UIColor(rgb: 0xE6E8EB)
         
         enum Tracker {
             static let selection1 = UIColor(rgb: 0xFD4C49)
@@ -92,6 +93,37 @@ enum Resources {
                 Resources.Colors.Tracker.selection15, Resources.Colors.Tracker.selection16,
                 Resources.Colors.Tracker.selection17, Resources.Colors.Tracker.selection18,
             
+            ]
+            
+            static let borderSelection1 = UIColor(rgb: 0xFD4C49, a: 0.3)
+            static let borderSelection2 = UIColor(rgb: 0xFF881E, a: 0.3)
+            static let borderSelection3 = UIColor(rgb: 0x007BFA, a: 0.3)
+            static let borderSelection4 = UIColor(rgb: 0x6E44FE, a: 0.3)
+            static let borderSelection5 = UIColor(rgb: 0x33CF69, a: 0.3)
+            static let borderSelection6 = UIColor(rgb: 0xE66DD4, a: 0.3)
+            static let borderSelection7 = UIColor(rgb: 0xF9D4D4, a: 0.3)
+            static let borderSelection8 = UIColor(rgb: 0x34A7FE, a: 0.3)
+            static let borderSelection9 = UIColor(rgb: 0x46E69D, a: 0.3)
+            static let borderSelection10 = UIColor(rgb: 0x35347C, a: 0.3)
+            static let borderSelection11 = UIColor(rgb: 0xFF674D, a: 0.3)
+            static let borderSelection12 = UIColor(rgb: 0xFF99CC, a: 0.3)
+            static let borderSelection13 = UIColor(rgb: 0xF6C48B, a: 0.3)
+            static let borderSelection14 = UIColor(rgb: 0x7994F5, a: 0.3)
+            static let borderSelection15 = UIColor(rgb: 0x832CF1, a: 0.3)
+            static let borderSelection16 = UIColor(rgb: 0xAD56DA, a: 0.3)
+            static let borderSelection17 = UIColor(rgb: 0x8D72E6, a: 0.3)
+            static let borderSelection18 = UIColor(rgb: 0x2FD058, a: 0.3)
+            
+            static let borderColors = [
+                Resources.Colors.Tracker.borderSelection1, Resources.Colors.Tracker.borderSelection2,
+                Resources.Colors.Tracker.borderSelection3, Resources.Colors.Tracker.borderSelection4,
+                Resources.Colors.Tracker.borderSelection5, Resources.Colors.Tracker.borderSelection6,
+                Resources.Colors.Tracker.borderSelection7, Resources.Colors.Tracker.borderSelection8,
+                Resources.Colors.Tracker.borderSelection9, Resources.Colors.Tracker.borderSelection10,
+                Resources.Colors.Tracker.borderSelection11, Resources.Colors.Tracker.borderSelection12,
+                Resources.Colors.Tracker.borderSelection13, Resources.Colors.Tracker.borderSelection14,
+                Resources.Colors.Tracker.borderSelection15, Resources.Colors.Tracker.borderSelection16,
+                Resources.Colors.Tracker.borderSelection17, Resources.Colors.Tracker.borderSelection18,
             ]
         }
     }
