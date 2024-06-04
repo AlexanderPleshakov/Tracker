@@ -12,7 +12,4 @@ protocol HabitAndEventTableViewDelegate: NSObject {
     func presentCategories()
     func reloadTable(isAdding: Bool)
     func changeCategoryTitle(text: String?)
-    
-    var warningLabel: UILabel { get }
-    
 }

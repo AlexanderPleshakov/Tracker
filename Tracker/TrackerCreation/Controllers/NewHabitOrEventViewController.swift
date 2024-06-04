@@ -20,7 +20,7 @@ final class NewHabitOrEventViewController: UIViewController,
     private var newCategory: TrackerCategory? = nil
     private var categoryTitle: String?
     
-    var tableHeightAnchor: NSLayoutConstraint!
+    private var tableHeightAnchor: NSLayoutConstraint!
     
     var selectedDays = [Day]() {
         willSet(new) {
@@ -33,6 +33,7 @@ final class NewHabitOrEventViewController: UIViewController,
                 creationDate: TrackersViewController.currentDate)
         }
     }
+    
     var selectedCategory: TrackerCategory? = nil {
         didSet {
             tracker = Tracker(
@@ -45,11 +46,11 @@ final class NewHabitOrEventViewController: UIViewController,
         }
     }
     
-    var tracker: Tracker = Tracker(
+    private var tracker: Tracker = Tracker(
         id: UUID(),
         name: nil,
-        color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)],
-        emoji: "👻",
+        color: nil,
+        emoji: nil,
         timetable: nil,
         creationDate: TrackersViewController.currentDate
     ) {
@@ -67,18 +68,8 @@ final class NewHabitOrEventViewController: UIViewController,
     
     // MARK: Views
     
-    private let scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        
-        return scroll
-    }()
-    
-    private let scrollContainer: UIView = {
-        let view = UIView()
-        
-        return view
-    }()
-    
+    private let scrollView: UIScrollView = UIScrollView()
+    private let scrollContainer: UIView = UIView()
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self,
@@ -89,6 +80,15 @@ final class NewHabitOrEventViewController: UIViewController,
         
         
         return tableView
+    }()
+    
+    private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
+        let params = GeometricParams(cellCount: 6, topInset: 24,
+                                     leftInset: 18, bottomInset: 40,
+                                     rightInset: 18, cellSpacing: 5)
+        let collection = EmojiAndColorsCollectionView(params: params)
+        
+        return collection
     }()
     
     private let cancelButton: UIButton = {
@@ -114,24 +114,6 @@ final class NewHabitOrEventViewController: UIViewController,
         button.isEnabled = false
         
         return button
-    }()
-    
-    private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
-        let params = GeometricParams(cellCount: 6, topInset: 24,
-                                     leftInset: 18, bottomInset: 40,
-                                     rightInset: 18, cellSpacing: 5)
-        let collection = EmojiAndColorsCollectionView(params: params)
-        
-        return collection
-    }()
-    
-    let warningLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.buttonRed
-        label.text = "Ограничение 38 символов"
-        label.textAlignment = .center
-        
-        return label
     }()
     
     // MARK: Init
@@ -194,14 +176,14 @@ final class NewHabitOrEventViewController: UIViewController,
 // MARK: Keyboard
 
 extension NewHabitOrEventViewController {
-    func hideKeyboardWhenTappedAround() {
+    private func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
     
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 }
