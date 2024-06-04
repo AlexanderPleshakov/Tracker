@@ -12,6 +12,9 @@ enum Resources {
     enum Mocks {
         static let weekdays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
         static let weekdaysStrings: [String] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+        static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
+                                           "😇", "😡", "🥶", "🤔", "🙌", "🍔",
+                                           "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
         static let trackers = [
             TrackerCategory(title: "Важное", trackers: [
                 Tracker(id: UUID(), name: "Поливать растения", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "❤️", timetable: [.monday, .wednesday], creationDate: Date()),

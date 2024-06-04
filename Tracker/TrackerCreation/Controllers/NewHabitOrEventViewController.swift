@@ -67,14 +67,13 @@ final class NewHabitOrEventViewController: UIViewController,
     
     private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
-        scroll.backgroundColor = .brown
         
         return scroll
     }()
     
     private let scrollContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        
         return view
     }()
     
@@ -116,8 +115,8 @@ final class NewHabitOrEventViewController: UIViewController,
     }()
     
     private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
-        let params = GeometricParams(cellCount: 6, topInset: 0,
-                                     leftInset: 18, bottomInset: 0,
+        let params = GeometricParams(cellCount: 6, topInset: 24,
+                                     leftInset: 18, bottomInset: 40,
                                      rightInset: 18, cellSpacing: 5)
         let collection = EmojiAndColorsCollectionView(params: params)
         
@@ -243,6 +242,16 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
 // MARK: UI configure
 
 extension NewHabitOrEventViewController {
+    private func getCollectionHeight() -> CGFloat {
+        let availableWidth = view.frame.width - emojiAndColorsCollectionView.params.paddingWidth
+        let cellHeight =  availableWidth / CGFloat(emojiAndColorsCollectionView.params.cellCount)
+        
+        let num = 38 + 48 + 80 + cellHeight * 6
+        let collectionSize = CGFloat(num)
+        
+        return collectionSize
+    }
+    
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
@@ -264,7 +273,8 @@ extension NewHabitOrEventViewController {
     }
     
     private func setupSubviews() {
-        [tableView, cancelButton, createButton, emojiAndColorsCollectionView, scrollView, scrollContainer].forEach {
+        [tableView, cancelButton, createButton,
+         emojiAndColorsCollectionView, scrollView, scrollContainer].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -277,6 +287,7 @@ extension NewHabitOrEventViewController {
         scrollView.addSubview(scrollContainer)
     
         scrollContainer.addSubview(tableView)
+        scrollContainer.addSubview(emojiAndColorsCollectionView)
         scrollContainer.addSubview(cancelButton)
         scrollContainer.addSubview(createButton)
         
@@ -300,15 +311,21 @@ extension NewHabitOrEventViewController {
             tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
             tableView.heightAnchor.constraint(equalToConstant: 75 * 3 + 48 + 8),
             
+            // Collection View
+            emojiAndColorsCollectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 32),
+            emojiAndColorsCollectionView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+            emojiAndColorsCollectionView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            emojiAndColorsCollectionView.heightAnchor.constraint(equalToConstant: getCollectionHeight()),
+            
             // Cancel Button
-            cancelButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 24),
+            cancelButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
             cancelButton.heightAnchor.constraint(equalToConstant: 60),
             cancelButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
             cancelButton.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 20),
             cancelButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
             
             // Create Button
-            createButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 24),
+            createButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
             createButton.heightAnchor.constraint(equalToConstant: 60),
             createButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
             createButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),

@@ -10,9 +10,9 @@ import UIKit
 final class EmojiAndColorsCollectionView: UICollectionView {
     // MARK: Properties
     
-    private let params: GeometricParams
+    let params: GeometricParams
     private let colors = Resources.Colors.Tracker.trackersColors
-    private let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱", "😇", "😡", "🥶", "🤔"]
+    private let emojies = Resources.Mocks.emojies
     
     // MARK: Init
     
@@ -31,7 +31,7 @@ final class EmojiAndColorsCollectionView: UICollectionView {
     // MARK: Methods
     
     private func configure() {
-        backgroundColor = Resources.Colors.lightGray
+        backgroundColor = Resources.Colors.white
         
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -39,6 +39,9 @@ final class EmojiAndColorsCollectionView: UICollectionView {
         
         register(EmojiOrColorCollectionViewCell.self,
                  forCellWithReuseIdentifier: EmojiOrColorCollectionViewCell.reuseIdentifier)
+        register(SectionHeaderView.self,
+                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                 withReuseIdentifier: SectionHeaderView.identifier)
         
         dataSource = self
         delegate = self
@@ -53,7 +56,7 @@ extension EmojiAndColorsCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let isEmojies = numberOfSections == 0
+        let isEmojies = section == 0
         return isEmojies ? emojies.count : colors.count
     }
     
@@ -80,6 +83,33 @@ extension EmojiAndColorsCollectionView: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeaderView.identifier,
+            for: indexPath)
+        guard let view = view as? SectionHeaderView else {
+            print("SectionHeaderView is nil")
+            return UICollectionReusableView()
+        }
+        
+        let headerText = (indexPath.section == 0) ? "Emoji" : "Цвет"
+        view.configure(text: headerText, leadingAnchor: 28)
+        
+        return view
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: frame.width, height: 19)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: params.topInset, left: params.leftInset, bottom: params.bottomInset, right: params.rightInset)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         params.cellSpacing
     }

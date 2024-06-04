@@ -97,7 +97,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
             return view
         } else {
             let categoryName = categories[indexPath.section].title
-            view.changeTitle(title: categoryName)
+            view.configure(text: categoryName, leadingAnchor: 12)
         }
         
         return view
