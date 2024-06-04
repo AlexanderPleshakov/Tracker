@@ -12,19 +12,28 @@ final class HabitAndEventTableViewHelper: NSObject {
     private var warningView: UILabel?
     weak var delegateController: HabitAndEventTableViewDelegate!
     
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Resources.Colors.buttonRed
+        label.text = "Ограничение 38 символов"
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
         self.delegateController = delegate
     }
     
     func addWarning() {
-        warningView = delegateController.warningLabel
-        delegateController.reloadTable()
+        warningView = warningLabel
+        delegateController.reloadTable(isAdding: true)
     }
     
     func removeWarning() {
         warningView = nil
-        delegateController.reloadTable()
+        delegateController.reloadTable(isAdding: false)
     }
     
     func textChanged(newText: String?) {

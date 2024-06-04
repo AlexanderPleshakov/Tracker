@@ -11,6 +11,7 @@ final class NewHabitOrEventViewController: UIViewController,
                                            TimetableDelegate,
                                            CategoriesViewControllerDelegate {
     // MARK: Properties
+    
     private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper?
@@ -18,6 +19,8 @@ final class NewHabitOrEventViewController: UIViewController,
     
     private var newCategory: TrackerCategory? = nil
     private var categoryTitle: String?
+    
+    private var tableHeightAnchor: NSLayoutConstraint!
     
     var selectedDays = [Day]() {
         willSet(new) {
@@ -30,6 +33,7 @@ final class NewHabitOrEventViewController: UIViewController,
                 creationDate: TrackersViewController.currentDate)
         }
     }
+    
     var selectedCategory: TrackerCategory? = nil {
         didSet {
             tracker = Tracker(
@@ -42,11 +46,11 @@ final class NewHabitOrEventViewController: UIViewController,
         }
     }
     
-    var tracker: Tracker = Tracker(
+    private var tracker: Tracker = Tracker(
         id: UUID(),
         name: nil,
-        color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)],
-        emoji: "👻",
+        color: nil,
+        emoji: nil,
         timetable: nil,
         creationDate: TrackersViewController.currentDate
     ) {
@@ -62,20 +66,29 @@ final class NewHabitOrEventViewController: UIViewController,
         }
     }
     
-    
-    
     // MARK: Views
     
+    private let scrollView: UIScrollView = UIScrollView()
+    private let scrollContainer: UIView = UIView()
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self,
                            forCellReuseIdentifier: InputFieldTableViewCell.reuseIdentifier)
         tableView.register(DisclosureTableViewCell.self,
                            forCellReuseIdentifier: DisclosureTableViewCell.reuseIdentifier)
+        tableView.isScrollEnabled = false
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
+    }()
+    
+    private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
+        let params = GeometricParams(cellCount: 6, topInset: 24,
+                                     leftInset: 18, bottomInset: 40,
+                                     rightInset: 18, cellSpacing: 5)
+        let collection = EmojiAndColorsCollectionView(params: params)
+        
+        return collection
     }()
     
     private let cancelButton: UIButton = {
@@ -87,7 +100,6 @@ final class NewHabitOrEventViewController: UIViewController,
         button.layer.borderColor = Resources.Colors.buttonRed?.cgColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.setTitle("Отменить", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
@@ -99,19 +111,9 @@ final class NewHabitOrEventViewController: UIViewController,
         button.layer.cornerRadius = 16
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.setTitle("Создать", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         
         return button
-    }()
-    
-    let warningLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Resources.Colors.buttonRed
-        label.text = "Ограничение 38 символов"
-        label.textAlignment = .center
-        
-        return label
     }()
     
     // MARK: Init
@@ -171,15 +173,17 @@ final class NewHabitOrEventViewController: UIViewController,
     }
 }
 
+// MARK: Keyboard
+
 extension NewHabitOrEventViewController {
-    func hideKeyboardWhenTappedAround() {
+    private func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
     
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 }
@@ -214,7 +218,8 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
         present(categoriesVCNav, animated: true)
     }
     
-    func reloadTable() {
+    func reloadTable(isAdding: Bool) {
+        tableHeightAnchor.constant = isAdding ? getTableHeight() + 38.0 : getTableHeight()
         tableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
 }
@@ -222,6 +227,22 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
 // MARK: UI configure
 
 extension NewHabitOrEventViewController {
+    private func getCollectionHeight() -> CGFloat {
+        let availableWidth = view.frame.width - emojiAndColorsCollectionView.params.paddingWidth
+        let cellHeight =  availableWidth / CGFloat(emojiAndColorsCollectionView.params.cellCount)
+        
+        let num = 38 + 48 + 80 + cellHeight * 6
+        let collectionSize = CGFloat(num)
+        
+        return collectionSize
+    }
+    
+    private func getTableHeight() -> CGFloat {
+        let height = 48 + (type == .habit ? 75 * 3 : 75 * 2)
+        
+        return CGFloat(height)
+    }
+    
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         
@@ -243,36 +264,63 @@ extension NewHabitOrEventViewController {
     }
     
     private func setupSubviews() {
-        setupButtons()
-        setupTableView()
+        [tableView, cancelButton, createButton,
+         emojiAndColorsCollectionView, scrollView, scrollContainer].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        setupScrollView()
     }
     
-    private func setupTableView() {
-        view.addSubview(tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: cancelButton.topAnchor)
-        ])
-    }
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollContainer)
     
-    private func setupButtons() {
-        view.addSubview(cancelButton)
-        view.addSubview(createButton)
+        scrollContainer.addSubview(tableView)
+        scrollContainer.addSubview(emojiAndColorsCollectionView)
+        scrollContainer.addSubview(cancelButton)
+        scrollContainer.addSubview(createButton)
+        
+        tableHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: getTableHeight())
+        tableHeightAnchor.isActive = true
         
         NSLayoutConstraint.activate([
+            // Scroll View
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
+            // Scroll Container
+            scrollContainer.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            scrollContainer.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            scrollContainer.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
+            
+            // Table View
+            tableView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            
+            // Collection View
+            emojiAndColorsCollectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 32),
+            emojiAndColorsCollectionView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+            emojiAndColorsCollectionView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            emojiAndColorsCollectionView.heightAnchor.constraint(equalToConstant: getCollectionHeight()),
+            
+            // Cancel Button
+            cancelButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
             cancelButton.heightAnchor.constraint(equalToConstant: 60),
             cancelButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
-            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            cancelButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            cancelButton.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 20),
+            cancelButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
             
+            // Create Button
+            createButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
             createButton.heightAnchor.constraint(equalToConstant: 60),
             createButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
-            createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            createButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            createButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),
+            createButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
         ])
     }
 }
