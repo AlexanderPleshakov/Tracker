@@ -9,7 +9,7 @@ import UIKit
 
 final class EmojiAndColorsCollectionView: UICollectionView {
     // MARK: Properties
-    weak var delegateController: NewHabitOrEventViewController?
+    weak var delegateController: EmojiAndColorsCollectionViewDelegate?
     let params: GeometricParams
     
     private let colors = Resources.Colors.Tracker.trackersColors

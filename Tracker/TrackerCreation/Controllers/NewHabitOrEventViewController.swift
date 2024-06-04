@@ -9,7 +9,8 @@ import UIKit
 
 final class NewHabitOrEventViewController: UIViewController,
                                            TimetableDelegate,
-                                           CategoriesViewControllerDelegate {
+                                           CategoriesViewControllerDelegate,
+                                           EmojiAndColorsCollectionViewDelegate {
     // MARK: Properties
     
     private let type: TrackerType

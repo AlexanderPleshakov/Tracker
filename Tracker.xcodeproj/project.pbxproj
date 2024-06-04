@@ -24,6 +24,7 @@
 		167C97D12C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D02C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift */; };
 		167C97D42C08D16C005266D6 /* CollectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D32C08D16C005266D6 /* CollectionType.swift */; };
 		167C97D62C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D52C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift */; };
+		167C97D92C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D82C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift */; };
 		16818AB92BED22A90025D5D4 /* StubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AB82BED22A90025D5D4 /* StubView.swift */; };
 		16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */; };
 		16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */; };
@@ -72,6 +73,7 @@
 		167C97D02C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiAndColorsCollectionView.swift; sourceTree = "<group>"; };
 		167C97D32C08D16C005266D6 /* CollectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionType.swift; sourceTree = "<group>"; };
 		167C97D52C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiOrColorCollectionViewCell.swift; sourceTree = "<group>"; };
+		167C97D82C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiAndColorsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		16818AB82BED22A90025D5D4 /* StubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubView.swift; sourceTree = "<group>"; };
 		16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationController.swift; sourceTree = "<group>"; };
 		16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationControllerDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		167C97D72C0FDAB8005266D6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				167C97D82C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		16818ABE2BED36C10025D5D4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +225,7 @@
 		16818AC42BED7D270025D5D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				167C97D72C0FDAB8005266D6 /* Protocols */,
 				167C97CF2C08CE80005266D6 /* Cells */,
 				162050B82C009A0C00468BED /* TextFieldWithPadding.swift */,
 				167C97D02C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift */,
@@ -416,6 +427,7 @@
 				167C97D12C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift in Sources */,
 				162050B92C009A0C00468BED /* TextFieldWithPadding.swift in Sources */,
 				16818AB92BED22A90025D5D4 /* StubView.swift in Sources */,
+				167C97D92C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift in Sources */,
 				166EAAE02BFCAE8A004FD58B /* EmojiView.swift in Sources */,
 				16F6593F2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift in Sources */,
 				16F6592D2BEE9C7400DA7164 /* BasicLargeButton.swift in Sources */,
