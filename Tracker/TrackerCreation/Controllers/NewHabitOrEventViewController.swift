@@ -47,7 +47,7 @@ final class NewHabitOrEventViewController: UIViewController,
         }
     }
     
-    var selectedEmoji: Character? = nil {
+    var selectedEmoji: String? = nil {
         willSet(newValue) {
             tracker = Tracker(
                 id: tracker.id,

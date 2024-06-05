@@ -93,9 +93,9 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         addButton.backgroundColor = color
     }
     
-    private func setEmoji(emoji: Character?) {
+    private func setEmoji(emoji: String?) {
         guard let emoji = emoji else { return }
-        emojiView.changeEmoji(emoji: String(emoji))
+        emojiView.changeEmoji(emoji: emoji)
     }
     
     private func setTitle(text: String?) {

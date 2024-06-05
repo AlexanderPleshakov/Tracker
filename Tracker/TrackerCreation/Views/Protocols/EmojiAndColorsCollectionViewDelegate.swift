@@ -9,5 +9,5 @@ import UIKit
 
 protocol EmojiAndColorsCollectionViewDelegate: NSObject {
     var selectedColor: UIColor? { get set }
-    var selectedEmoji: Character? { get set }
+    var selectedEmoji: String? { get set }
 }

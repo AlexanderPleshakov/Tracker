@@ -3,21 +3,21 @@
     <entity name="TrackerCategoryCoreData" representedClassName="TrackerCategoryCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="title" attributeType="String"/>
         <attribute name="trackers" attributeType="Transformable"/>
-        <relationship name="trackersRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="categoryRelationship" inverseEntity="TrackerCoreData"/>
+        <relationship name="trackersRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="relationshipCategory" inverseEntity="TrackerCoreData"/>
     </entity>
-    <entity name="TrackerCoreData" representedClassName="TrackerCoreData" syncable="YES">
-        <attribute name="color" attributeType="Transformable" valueTransformerName=""/>
-        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="TrackerCoreData" representedClassName="TrackerCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="color" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="emoji" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="timetable" attributeType="Transformable" valueTransformerName="DaysValueTransformer"/>
-        <relationship name="categoryRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCategoryCoreData" inverseName="trackersRelationship" inverseEntity="TrackerCategoryCoreData"/>
-        <relationship name="trackerRecordRelationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerRecordCoreData" inverseName="recorderTracker" inverseEntity="TrackerRecordCoreData"/>
+        <relationship name="relationshipCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrackerCategoryCoreData" inverseName="trackersRelationship" inverseEntity="TrackerCategoryCoreData"/>
+        <relationship name="relationshipTrackerRecord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrackerRecordCoreData" inverseName="recorderTracker" inverseEntity="TrackerRecordCoreData"/>
     </entity>
     <entity name="TrackerRecordCoreData" representedClassName="TrackerRecordCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="recorderTracker" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="trackerRecordRelationship" inverseEntity="TrackerCoreData"/>
+        <relationship name="recorderTracker" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="relationshipTrackerRecord" inverseEntity="TrackerCoreData"/>
     </entity>
 </model>

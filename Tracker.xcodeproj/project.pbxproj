@@ -122,6 +122,7 @@
 		1630D3BE2BE4C00F00A59A82 = {
 			isa = PBXGroup;
 			children = (
+				167C98002C10A91F005266D6 /* Trackers.xcdatamodeld */,
 				1630D3C92BE4C00F00A59A82 /* Tracker */,
 				1630D3C82BE4C00F00A59A82 /* Products */,
 			);
@@ -138,7 +139,6 @@
 		1630D3C92BE4C00F00A59A82 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				167C98002C10A91F005266D6 /* Trackers.xcdatamodeld */,
 				1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */,
 				1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */,
 				16F6592E2BEE9DC700DA7164 /* Views */,
