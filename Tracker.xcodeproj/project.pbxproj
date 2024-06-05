@@ -119,6 +119,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		160989612C10F252007D80AB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */,
+				1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		160989622C10F270007D80AB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				167C98002C10A91F005266D6 /* Trackers.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		1630D3BE2BE4C00F00A59A82 = {
 			isa = PBXGroup;
 			children = (
@@ -138,9 +155,7 @@
 		1630D3C92BE4C00F00A59A82 /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				167C98002C10A91F005266D6 /* Trackers.xcdatamodeld */,
-				1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */,
-				1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */,
+				160989612C10F252007D80AB /* App */,
 				16F6592E2BEE9DC700DA7164 /* Views */,
 				16AFE7CB2BEBF05600F4FDFF /* Models */,
 				16AFE79E2BE6551B00F4FDFF /* Trackers */,
@@ -149,6 +164,7 @@
 				16AFE79B2BE6517C00F4FDFF /* TabBar */,
 				166EAAEA2BFEA0B0004FD58B /* Helpers */,
 				16AFE7982BE64E5900F4FDFF /* Resources */,
+				160989622C10F270007D80AB /* CoreData */,
 			);
 			path = Tracker;
 			sourceTree = "<group>";
