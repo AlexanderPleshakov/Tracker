@@ -10,9 +10,6 @@ import UIKit
 protocol HabitAndEventTableViewDelegate: NSObject {
     func presentTimetable()
     func presentCategories()
-    func reloadTable()
+    func reloadTable(isAdding: Bool)
     func changeCategoryTitle(text: String?)
-    
-    var warningLabel: UILabel { get }
-    
 }
