@@ -75,9 +75,13 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         self.trackerId = tracker.id
         self.date = date
         
+        if let trackerColor = tracker.color {
+            let color = UIColor(rgb: trackerColor)
+            setColor(color: color)
+        }
+        
         setTitle(text: tracker.name)
         setEmoji(emoji: tracker.emoji)
-        setColor(color: tracker.color)
         
         if isCompletedToday {
             self.completedDays = completedDays - 1

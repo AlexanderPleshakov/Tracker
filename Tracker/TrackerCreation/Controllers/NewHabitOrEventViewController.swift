@@ -35,7 +35,7 @@ final class NewHabitOrEventViewController: UIViewController,
         }
     }
     
-    var selectedColor: UIColor? = nil {
+    var selectedColor: Int? = nil {
         willSet(newValue) {
             tracker = Tracker(
                 id: tracker.id,
