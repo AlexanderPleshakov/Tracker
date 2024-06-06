@@ -22,8 +22,7 @@ final class TrackerStore {
     }
     
     convenience init() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
+        let context = DataManager.shared.persistentContainer.viewContext
         self.init(context: context)
     }
     
