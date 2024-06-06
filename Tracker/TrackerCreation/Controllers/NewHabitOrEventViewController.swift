@@ -181,18 +181,30 @@ final class NewHabitOrEventViewController: UIViewController,
     }
     
     @objc private func buttonCreateTapped() {
+        #warning("Подрубить бд")
         guard let newCategory = newCategory else {
             print("Category is nil")
             return
         }
         
-        let index = TrackersViewController.categories.firstIndex(of: newCategory)
+//        let index = TrackersViewController.categories.firstIndex(of: newCategory)
+//        
+//        if let index = index {
+//            TrackersViewController.categories[index] = newCategory
+//        } else {
+//            TrackersViewController.categories.append(newCategory)
+//        }
         
-        if let index = index {
-            TrackersViewController.categories[index] = newCategory
+        let trackerCategoryStore = TrackerCategoryStore()
+        
+        if trackerCategoryStore.categoryIsExist(with: newCategory.title) {
+            trackerCategoryStore.update(newCategory)
         } else {
-            TrackersViewController.categories.append(newCategory)
+            trackerCategoryStore.add(newCategory)
         }
+        
+        print(trackerCategoryStore.fetchAll())
+        
         self.dismiss(animated: true)
         delegate?.addTracker()
     }

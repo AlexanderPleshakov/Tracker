@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class CategoriesViewController: UIViewController, NewCategoryViewControllerDelegate {
+final class CategoriesViewController: UIViewController {
     // MARK: Properties
     
-    weak var delegate: CategoriesViewControllerDelegate?
+    private weak var delegate: CategoriesViewControllerDelegate?
+    private var categoryStoreManager: NewCategoryStoreManager?
     
-    var categories: [TrackerCategory] = TrackersViewController.categories
     private var selectedCategory: TrackerCategory? = nil
     
     // MARK: Init
@@ -55,7 +55,12 @@ final class CategoriesViewController: UIViewController, NewCategoryViewControlle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        categoryStoreManager = NewCategoryStoreManager(
+            delegate: self,
+            trackerCategoryStore: TrackerCategoryStore()
+        )
+        
         configure()
         tableView.reloadData()
     }
@@ -69,12 +74,6 @@ final class CategoriesViewController: UIViewController, NewCategoryViewControlle
     }
     
     // MARK: Methods
-    
-    func removeStubAndShowCategories() {
-        stubView.removeFromSuperview()
-        setupTableView()
-        tableView.reloadData()
-    }
     
     private func categoryDidSelect(category: TrackerCategory) {
         selectedCategory = category
@@ -93,9 +92,31 @@ final class CategoriesViewController: UIViewController, NewCategoryViewControlle
     }
 }
 
+// MARK: NewCategoryViewControllerDelegate
+
+extension CategoriesViewController: NewCategoryViewControllerDelegate {
+    func add(category: TrackerCategory) {
+        categoryStoreManager?.add(category: category)
+    }
+}
+
+// MARK: NewCategoryViewControllerDelegate
+
+extension CategoriesViewController: NewCategoryStoreManagerDelegate {
+    func removeStubAndShowCategories(indexPath: IndexPath) {
+        stubView.removeFromSuperview()
+        setupTableView()
+        tableView.performBatchUpdates {
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+}
+
+// MARK: UITableViewDataSource
+
 extension CategoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return categoryStoreManager?.numberOfRowsInSection(section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,7 +124,12 @@ extension CategoriesViewController: UITableViewDataSource {
 
         cell.backgroundColor = Resources.Colors.cellBackground
         
-        cell.textLabel?.text = categories[indexPath.row].title
+        guard let category = categoryStoreManager?.object(at: indexPath) else {
+            print("Не удалось создать категорию при создании ячейки")
+            return UITableViewCell()
+        }
+        
+        cell.textLabel?.text = category.title
         cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         
         if selectedCategory != nil && cell.textLabel?.text == selectedCategory?.title {
@@ -114,6 +140,8 @@ extension CategoriesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: UITableViewDelegate
 
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -144,13 +172,21 @@ extension CategoriesViewController: UITableViewDelegate {
         if cell.accessoryView == nil {
             let imageView = UIImageView(image: Resources.Images.checkmark)
             cell.accessoryView = imageView
-            categoryDidSelect(category: categories[indexPath.row])
+            
+            guard let category = categoryStoreManager?.object(at: indexPath) else {
+                print("Не удалось создать категорию при создании ячейки")
+                return
+            }
+            
+            categoryDidSelect(category: category)
         } else {
             cell.accessoryView = nil
             categoryDidDeselect()
         }
     }
 }
+
+// MARK: UI
 
 extension CategoriesViewController {
     private func configure() {
@@ -177,7 +213,12 @@ extension CategoriesViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         setupDoneButton()
-        TrackersViewController.categories.isEmpty ? setupStubView() : setupTableView()
+        guard let categoriesIsEmpty = categoryStoreManager?.fetchAll().isEmpty else {
+            setupStubView()
+            return
+        }
+        
+        categoriesIsEmpty ? setupStubView() : setupTableView()
     }
     
     private func setupStubView() {

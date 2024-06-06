@@ -11,14 +11,12 @@ import CoreData
 final class TrackerStore {
     // MARK: Properties
     
-    private var trackerCoreData: TrackerCoreData
     private var context: NSManagedObjectContext
     
     // MARK: Init
     
     init(context: NSManagedObjectContext) {
         self.context = context
-        self.trackerCoreData = TrackerCoreData(context: context)
     }
     
     convenience init() {
@@ -29,6 +27,8 @@ final class TrackerStore {
     // MARK: Methods
     
     func addTracker(_ tracker: Tracker) {
+        let trackerCoreData = TrackerCoreData(context: context)
+        
         let id = tracker.id
         let timetable = tracker.timetable
         guard let name = tracker.name,
@@ -49,6 +49,8 @@ final class TrackerStore {
         trackerCoreData.emoji = emoji
         trackerCoreData.creationDate = creationDate
         trackerCoreData.timetable = timetableString
+        
+        DataManager.shared.saveContext()
     }
     
     func fetchTrackers() -> [Tracker] {
@@ -72,7 +74,6 @@ final class TrackerStore {
                     timetable: timetable,
                     creationDate: $0.creationDate)
         }
-        
         
         return trackers ?? []
     }

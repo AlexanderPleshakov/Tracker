@@ -54,12 +54,14 @@ final class TrackerCategoryStore {
         let coreDataCategories = try? context.fetch(request)
         
         let categories = coreDataCategories?.map {
-            guard let title = $0.title else {
+            guard let title = $0.title,
+                  let trackers = $0.trackers as? [Tracker]
+            else {
                 fatalError("Title of category is nil")
             }
             
             return TrackerCategory(title: title,
-                                   trackers: $0.trackers as! [Tracker])
+                                   trackers: trackers)
         }
         
         return categories ?? []
