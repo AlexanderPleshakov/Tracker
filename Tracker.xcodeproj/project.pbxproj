@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160989642C10F36D007D80AB /* TrackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160989632C10F36D007D80AB /* TrackerStore.swift */; };
 		162050B92C009A0C00468BED /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162050B82C009A0C00468BED /* TextFieldWithPadding.swift */; };
 		1630D3CB2BE4C00F00A59A82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */; };
 		1630D3CD2BE4C00F00A59A82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630D3CC2BE4C00F00A59A82 /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		160989632C10F36D007D80AB /* TrackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerStore.swift; sourceTree = "<group>"; };
 		162050B82C009A0C00468BED /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
 		1630D3C72BE4C00F00A59A82 /* Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1630D3CA2BE4C00F00A59A82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,7 +133,10 @@
 		160989622C10F270007D80AB /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				167C98032C10AAAB005266D6 /* DaysValueTransformer.swift */,
+				167C98052C10ADA3005266D6 /* TrackersValueTransformer.swift */,
 				167C98002C10A91F005266D6 /* Trackers.xcdatamodeld */,
+				160989632C10F36D007D80AB /* TrackerStore.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -310,8 +315,6 @@
 				16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */,
 				16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */,
 				16F659342BEF853A00DA7164 /* Day.swift */,
-				167C98032C10AAAB005266D6 /* DaysValueTransformer.swift */,
-				167C98052C10ADA3005266D6 /* TrackersValueTransformer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			files = (
 				16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */,
 				16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */,
+				160989642C10F36D007D80AB /* TrackerStore.swift in Sources */,
 				16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */,
 				167C97D62C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift in Sources */,
 				16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */,

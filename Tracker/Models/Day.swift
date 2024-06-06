@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Day: String, Codable {
+enum Day: String, Codable  {
     case monday = "Пн"
     case tuesday = "Вт"
     case wednesday = "Ср"
@@ -18,6 +18,10 @@ enum Day: String, Codable {
     
     static func getDayFromNumber(number: Int) -> Day {
         let days = [Day.sunday, Day.monday, Day.tuesday, Day.wednesday, Day.thursday, Day.friday, Day.saturday]
+        
+        guard number >= 7 else {
+            return .sunday
+        }
         
         return days[number - 1]
     }
