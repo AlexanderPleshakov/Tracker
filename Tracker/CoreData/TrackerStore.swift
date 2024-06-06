@@ -31,7 +31,7 @@ final class TrackerStore {
     
     func addTracker(_ tracker: Tracker) {
         let id = tracker.id
-        var timetable = tracker.timetable
+        let timetable = tracker.timetable
         guard let name = tracker.name,
               let color = tracker.color,
               let emoji = tracker.emoji,
@@ -50,5 +50,31 @@ final class TrackerStore {
         trackerCoreData.emoji = emoji
         trackerCoreData.creationDate = creationDate
         trackerCoreData.timetable = timetableString
+    }
+    
+    func fetchTrackers() -> [Tracker] {
+        let request = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
+        let coreDataTrackers = try? context.fetch(request)
+        
+        let trackers = coreDataTrackers?.map {
+            guard let id = $0.id else { fatalError("Id of the tracker is nil") }
+            
+            let timetable = $0.timetable?.map {
+                guard let day = Day(rawValue: $0) else {
+                    fatalError("RawValue of Day incorrect")
+                }
+                return day
+            }
+            
+            return Tracker(id: id,
+                    name: $0.name,
+                    color: Int($0.color),
+                    emoji: $0.emoji,
+                    timetable: timetable,
+                    creationDate: $0.creationDate)
+        }
+        
+        
+        return trackers ?? []
     }
 }
