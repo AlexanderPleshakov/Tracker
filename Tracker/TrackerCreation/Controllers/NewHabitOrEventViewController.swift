@@ -185,16 +185,9 @@ final class NewHabitOrEventViewController: UIViewController,
             print("Category is nil")
             return
         }
-        
-        let index = TrackersViewController.categories.firstIndex(of: newCategory)
-        
-        if let index = index {
-            TrackersViewController.categories[index] = newCategory
-        } else {
-            TrackersViewController.categories.append(newCategory)
-        }
+
         self.dismiss(animated: true)
-        delegate?.addTracker()
+        delegate?.addTracker(tracker: tracker, category: newCategory)
     }
 }
 
