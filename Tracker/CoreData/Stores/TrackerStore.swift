@@ -43,7 +43,7 @@ final class TrackerStore {
         
         trackerCoreData.id = tracker.id
         trackerCoreData.name = tracker.name
-        trackerCoreData.color = Int32(0x2FD058)
+        trackerCoreData.color = Int32(tracker.color ?? 0x000000)
         trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
         trackerCoreData.timetable = schedule
         trackerCoreData.creationDate = tracker.creationDate

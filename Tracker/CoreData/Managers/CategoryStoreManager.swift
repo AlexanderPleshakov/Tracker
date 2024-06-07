@@ -92,24 +92,25 @@ extension CategoryStoreManager: NSFetchedResultsControllerDelegate {
         }
         
         let trackers = trackersCoreData.map {
-            guard let id = $0.id,
-                  let name = $0.name,
-                  let emoji = $0.emoji?.first,
-                  let creationDate = $0.creationDate
-            else {
-                fatalError("Some property is nil in Tracker")
-            }
-            
-            let schedule = $0.timetable?.map {
-                Day(rawValue: $0) ?? .monday
-            }
-            
-            return Tracker(id: id,
-                           name: name,
-                           color: UIColor(rgb: Int($0.color)),
-                           emoji: emoji,
-                           timetable: schedule,
-                           creationDate: creationDate)
+            Tracker(coreDataTracker: $0)
+//            guard let id = $0.id,
+//                  let name = $0.name,
+//                  let emoji = $0.emoji?.first,
+//                  let creationDate = $0.creationDate
+//            else {
+//                fatalError("Some property is nil in Tracker")
+//            }
+//            
+//            let schedule = $0.timetable?.map {
+//                Day(rawValue: $0) ?? .monday
+//            }
+//            
+//            return Tracker(id: id,
+//                           name: name,
+//                           color: Int($0.color),
+//                           emoji: emoji,
+//                           timetable: schedule,
+//                           creationDate: creationDate)
         }
         
         return TrackerCategory(title: title, trackers: trackers)

@@ -13,7 +13,6 @@ final class EmojiAndColorsCollectionView: UICollectionView {
     let params: GeometricParams
     
     private let colors = Resources.Colors.Tracker.trackersColors
-    private let borderColors = Resources.Colors.Tracker.borderColors
     private let emojies = Resources.Mocks.emojies
     
     private var emojiIsSelected = false
@@ -151,7 +150,7 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             
             lastSelectedColorCell = cell
             colorIsSelected = true
-            cell.layer.borderColor = borderColors[indexPath.row].cgColor
+            cell.layer.borderColor = UIColor(rgb: colors[indexPath.row], a: 0.3).cgColor
             cell.layer.borderWidth = 3
             delegateController?.selectedColor = colors[indexPath.row]
         }

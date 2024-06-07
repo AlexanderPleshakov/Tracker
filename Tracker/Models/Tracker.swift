@@ -10,7 +10,7 @@ import UIKit
 struct Tracker {
     let id: UUID
     let name: String?
-    let color: UIColor?
+    let color: Int?
     let emoji: Character?
     let timetable: [Day]?
     let creationDate: Date?
@@ -30,7 +30,7 @@ struct Tracker {
         return true
     }
     
-    init(id: UUID, name: String?, color: UIColor?, emoji: Character?, timetable: [Day]?, creationDate: Date?) {
+    init(id: UUID, name: String?, color: Int?, emoji: Character?, timetable: [Day]?, creationDate: Date?) {
         self.id = id
         self.name = name
         self.color = color
@@ -54,7 +54,7 @@ struct Tracker {
         
         self.id = id
         self.name = name
-        self.color = UIColor(rgb: Int(coreDataTracker.color))
+        self.color = Int(coreDataTracker.color)
         self.emoji = emoji
         self.timetable = schedule
         self.creationDate = creationDate
