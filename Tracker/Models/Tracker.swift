@@ -29,4 +29,34 @@ struct Tracker {
         
         return true
     }
+    
+    init(id: UUID, name: String?, color: UIColor?, emoji: Character?, timetable: [Day]?, creationDate: Date?) {
+        self.id = id
+        self.name = name
+        self.color = color
+        self.emoji = emoji
+        self.timetable = timetable
+        self.creationDate = creationDate
+    }
+    
+    init(coreDataTracker: TrackerCoreData) {
+        guard let id = coreDataTracker.id,
+              let name = coreDataTracker.name,
+              let emoji = coreDataTracker.emoji?.first,
+              let creationDate = coreDataTracker.creationDate
+        else {
+            fatalError("Some property is nil in Tracker")
+        }
+        
+        let schedule = coreDataTracker.timetable?.map {
+            Day(rawValue: $0) ?? .monday
+        }
+        
+        self.id = id
+        self.name = name
+        self.color = UIColor(rgb: Int(coreDataTracker.color))
+        self.emoji = emoji
+        self.timetable = schedule
+        self.creationDate = creationDate
+    }
 }
