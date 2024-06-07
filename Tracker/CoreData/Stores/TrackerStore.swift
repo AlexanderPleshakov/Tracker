@@ -52,22 +52,4 @@ final class TrackerStore {
         
         save()
     }
-    
-    func fetchAll() -> [TrackerCategory] {
-        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
-        
-        guard let categoriesCoreData = try? context.fetch(request) else {
-            print("Categories core data is nil in fetchAll()")
-            return []
-        }
-        
-        let categories = categoriesCoreData.map {
-            guard let title = $0.title else {
-                fatalError("ERROR: Title of stored category is nil")
-            }
-            return TrackerCategory(title: title, trackers: [])
-        }
-        
-        return categories
-    }
 }
