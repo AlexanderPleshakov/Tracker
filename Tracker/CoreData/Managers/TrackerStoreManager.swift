@@ -14,6 +14,8 @@ final class TrackerStoreManager: NSObject {
     weak var delegate: TrackerStoreManagerDelegate?
     
     private let trackerStore: TrackerStore
+    private let categoryStore: CategoryStore
+    
     private let context = CoreDataManager.shared.persistentContainer.viewContext
     private var insertedIndex: IndexPath? = nil
     
@@ -36,8 +38,9 @@ final class TrackerStoreManager: NSObject {
     
     // MARK: Init
     
-    init(trackerStore: TrackerStore, delegate: TrackerStoreManagerDelegate) {
+    init(trackerStore: TrackerStore, categoryStore: CategoryStore, delegate: TrackerStoreManagerDelegate) {
         self.trackerStore = trackerStore
+        self.categoryStore = categoryStore
         self.delegate = delegate
     }
     
@@ -45,6 +48,10 @@ final class TrackerStoreManager: NSObject {
     
     func create(tracker: Tracker, category: TrackerCategory) {
         trackerStore.create(tracker: tracker, for: category)
+    }
+    
+    func fetchAllCategories() -> [TrackerCategory] {
+        categoryStore.fetchAll()
     }
 }
 
@@ -83,5 +90,23 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         let trackerCoreData = fetchedResultsController.object(at: indexPath)
 
         return Tracker(coreDataTracker: trackerCoreData)
+    }
+    
+    func categoryIsEmpty(in section: Int) -> Bool {
+        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
+        guard let count = trackerCoreData.category?.trackers?.count else {
+            return true
+        }
+        
+        return count == 0 ? true : false
+    }
+    
+    func categoryTitle(in section: Int) -> String {
+        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
+        guard let title = trackerCoreData.category?.title else {
+            return ""
+        }
+        
+        return title
     }
 }
