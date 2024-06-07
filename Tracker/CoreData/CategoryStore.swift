@@ -46,7 +46,30 @@ final class CategoryStore {
             guard let title = $0.title else {
                 fatalError("ERROR: Title of stored category is nil")
             }
-            return TrackerCategory(title: title, trackers: [])
+            
+            let trackersCoreData = $0.trackers?.allObjects as? [TrackerCoreData]
+            let trackers = trackersCoreData?.map {
+                guard let id = $0.id,
+                      let name = $0.name,
+                      let emoji = $0.emoji?.first,
+                      let creationDate = $0.creationDate
+                else {
+                    fatalError("Some property is nil in Tracker")
+                }
+                
+                let schedule = $0.timetable?.map {
+                    Day(rawValue: $0) ?? .monday
+                }
+                
+                return Tracker(id: id,
+                               name: name,
+                               color: UIColor(rgb: Int($0.color)),
+                               emoji: emoji,
+                               timetable: schedule,
+                               creationDate: creationDate)
+            }
+            
+            return TrackerCategory(title: title, trackers: trackers ?? [])
         }
         
         return categories

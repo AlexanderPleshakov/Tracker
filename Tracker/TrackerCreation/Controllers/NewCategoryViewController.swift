@@ -11,6 +11,7 @@ final class NewCategoryViewController: UIViewController {
     // MARK: Properties
     
     weak var delegate: NewCategoryViewControllerDelegate?
+    private let categoryStoreManager = CategoryStoreManager(categoryStore: CategoryStore())
     
     // MARK: Views
     
@@ -46,8 +47,12 @@ final class NewCategoryViewController: UIViewController {
     
     @objc private func buttonDoneTapped() {
         guard let text = textField.text else { return }
-        TrackersViewController.categories.append(TrackerCategory(title: text, trackers: []))
+        let category = TrackerCategory(title: text, trackers: [])
+        TrackersViewController.categories.append(category)
         self.dismiss(animated: true)
+        
+        categoryStoreManager.create(category: category)
+        
         delegate?.categories = TrackersViewController.categories
         delegate?.removeStubAndShowCategories()
     }
