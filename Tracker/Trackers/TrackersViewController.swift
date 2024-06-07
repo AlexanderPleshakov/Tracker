@@ -10,19 +10,16 @@ import UIKit
 final class TrackersViewController: UIViewController {
     // MARK: Properties
     
-    static var categories: [TrackerCategory] = Resources.Mocks.trackers
     static var currentDate = Date()
-    
     private var completedTrackers: [TrackerRecord] = []
+    private var categories: [TrackerCategory]?
+    private var visibleCategories: [TrackerCategory] = []
+    
+    private var trackerStoreManager: TrackerStoreManager?
     
     // MARK: Views
     
-    private let collectionHelper = HelperTrackersCollectionView(
-        categories: TrackersViewController.categories,
-        with: GeometricParams(cellCount: 2, topInset: 12,
-                              leftInset: 0, bottomInset: 32,
-                              rightInset: 0, cellSpacing: 9)
-    )
+    private var collectionHelper: HelperTrackersCollectionView?
     
     private let trackersCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -46,14 +43,38 @@ final class TrackersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        trackerStoreManager = TrackerStoreManager(
+            trackerStore: TrackerStore(),
+            categoryStore: CategoryStore(),
+            delegate: self
+        )
+        
+        categories = fetchCategories()
+        
+        guard let trackerStoreManager = trackerStoreManager else {
+            return
+        }
+        
+        collectionHelper = HelperTrackersCollectionView(
+            categories: categories ?? [],
+            trackerStoreManager: trackerStoreManager,
+            with: GeometricParams(cellCount: 2, topInset: 12,
+                                  leftInset: 0, bottomInset: 32,
+                                  rightInset: 0, cellSpacing: 9)
+        )
+        
         configure()
         
-        collectionHelper.completedTrackers = completedTrackers
-        let currentWeekday = getCurrentWeekday()
-        filterTrackers(by: currentWeekday)
+        collectionHelper?.completedTrackers = completedTrackers
+        
+        reloadCollectionWithCurrentWeekday()
     }
     
     // MARK: Methods
+    
+    private func fetchCategories() -> [TrackerCategory] {
+        trackerStoreManager?.fetchAllCategories() ?? []
+    }
     
     private func getCurrentWeekday() -> Day {
         let calendar = Calendar.current
@@ -64,13 +85,23 @@ final class TrackersViewController: UIViewController {
     }
     
     private func reloadCollection(with data: [TrackerCategory]) {
-        collectionHelper.categories = data
+        //collectionHelper?.categories = data
         trackersCollection.reloadData()
+    }
+    
+    private func reloadCollectionWithCurrentWeekday() {
+        let weekday = getCurrentWeekday()
+        let filteredTrackers = searchFilteredTrackers(by: weekday)
+        
+        visibleCategories = filteredTrackers
+        
+        reloadCollection(with: filteredTrackers)
+        setupSubviews()
     }
     
     private func getFilteredTrackers(by day: Day) -> [TrackerCategory] {
         var filteredCategories = [TrackerCategory]()
-        for category in TrackersViewController.categories {
+        for category in categories ?? [] {
             let trackers: [Tracker] = category.trackers.filter {
                 if let timetable = $0.timetable {
                     return timetable.contains(day)
@@ -90,7 +121,7 @@ final class TrackersViewController: UIViewController {
         return filteredCategories
     }
     
-    private func filterTrackers(by day: Day) {
+    private func searchFilteredTrackers(by day: Day) -> [TrackerCategory] {
         var filtered = getFilteredTrackers(by: day)
         
         if let searchText = navigationItem.searchController?.searchBar.text, !searchText.isEmpty {
@@ -103,17 +134,16 @@ final class TrackersViewController: UIViewController {
             }
         }
         
-        reloadCollection(with: filtered)
-        setupSubviews()
+        return filtered
     }
     
     private func trackersIsEmpty() -> Bool {
-        if TrackersViewController.categories.isEmpty {
+        if categories?.isEmpty ?? true {
             return true
         }
         
         var trackersIsEmpty = true
-        for category in collectionHelper.categories {
+        for category in visibleCategories {
             if !category.trackers.isEmpty {
                 trackersIsEmpty = false
             }
@@ -123,15 +153,27 @@ final class TrackersViewController: UIViewController {
     }
 }
 
+extension TrackersViewController: TrackerStoreManagerDelegate {
+    func addTracker(at indexPath: IndexPath) {
+        if stubView.isHidden == false {
+            stubView.removeFromSuperview()
+            addTrackersCollection()
+        }
+        
+        trackersCollection.performBatchUpdates {
+            trackersCollection.insertItems(at: [indexPath])
+        }
+    }
+}
+
 // MARK: TrackersNavigationControllerDelegate
 
 extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         TrackersViewController.currentDate = date
-        collectionHelper.currentDate = date
+        collectionHelper?.currentDate = date
         
-        let currentWeekday = getCurrentWeekday()
-        filterTrackers(by: currentWeekday)
+        reloadCollectionWithCurrentWeekday()
     }
     
     func addButtonTapped() {
@@ -145,13 +187,8 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
 // MARK: NewTrackerViewControllerDelegate
 
 extension TrackersViewController: NewTrackerViewControllerDelegate {
-    func addTracker() {
-        if stubView.isHidden == false {
-            stubView.removeFromSuperview()
-            addTrackersCollection()
-        }
-        let weekday = getCurrentWeekday()
-        filterTrackers(by: weekday)
+    func addTracker(tracker: Tracker, category: TrackerCategory) {
+        trackerStoreManager?.create(tracker: tracker, category: category)
     }
 }
 
