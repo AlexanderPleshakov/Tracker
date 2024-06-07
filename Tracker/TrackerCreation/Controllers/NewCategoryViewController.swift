@@ -47,10 +47,10 @@ final class NewCategoryViewController: UIViewController {
     @objc private func buttonDoneTapped() {
         guard let text = textField.text else { return }
         let category = TrackerCategory(title: text, trackers: [])
-        TrackersViewController.categories.append(category)
-        self.dismiss(animated: true)
         
         delegate?.add(category: category)
+        
+        self.dismiss(animated: true)
     }
     
     @objc private func textChanged(_ textField: UITextField) {
@@ -66,6 +66,8 @@ final class NewCategoryViewController: UIViewController {
 
 }
 
+// MARK: UITextFieldDelegate
+
 extension NewCategoryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -76,6 +78,8 @@ extension NewCategoryViewController: UITextFieldDelegate {
         self.view.endEditing(true)
     }
 }
+
+// MARK: UI
 
 extension NewCategoryViewController {
     private func configure() {

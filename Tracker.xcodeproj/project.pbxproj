@@ -129,15 +129,39 @@
 			isa = PBXGroup;
 			children = (
 				16152B4B2C13822C007E5A29 /* Data.xcdatamodeld */,
-				16152B4E2C1383B2007E5A29 /* CoreDataManager.swift */,
-				16152B502C138630007E5A29 /* CategoryStore.swift */,
-				16152B522C13880A007E5A29 /* CategoryStoreManager.swift */,
-				16152B542C138BDA007E5A29 /* TrackerStore.swift */,
-				16152B562C139914007E5A29 /* NewCategoryStoreManagerDelegate.swift */,
+				16152B592C139EEC007E5A29 /* Stores */,
+				16152B582C139ED4007E5A29 /* Managers */,
+				16152B5A2C139F10007E5A29 /* Protocols */,
 			);
 			name = CoreData;
 			path = Tracker/CoreData;
 			sourceTree = SOURCE_ROOT;
+		};
+		16152B582C139ED4007E5A29 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				16152B522C13880A007E5A29 /* CategoryStoreManager.swift */,
+				16152B4E2C1383B2007E5A29 /* CoreDataManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		16152B592C139EEC007E5A29 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				16152B542C138BDA007E5A29 /* TrackerStore.swift */,
+				16152B502C138630007E5A29 /* CategoryStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		16152B5A2C139F10007E5A29 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				16152B562C139914007E5A29 /* NewCategoryStoreManagerDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
 		};
 		1630D3BE2BE4C00F00A59A82 = {
 			isa = PBXGroup;

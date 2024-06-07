@@ -72,12 +72,6 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Methods
     
-//    func removeStubAndShowCategories() {
-//        stubView.removeFromSuperview()
-//        setupTableView()
-//        tableView.reloadData()
-//    }
-    
     private func categoryDidSelect(category: TrackerCategory) {
         selectedCategory = category
         self.dismiss(animated: true)
@@ -115,6 +109,8 @@ extension CategoriesViewController: NewCategoryStoreManagerDelegate {
     }
 }
 
+// MARK: UITableViewDataSource
+
 extension CategoriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryStoreManager?.numberOfRowsInSection(section) ?? 0
@@ -141,6 +137,8 @@ extension CategoriesViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: UITableViewDelegate
 
 extension CategoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -184,6 +182,8 @@ extension CategoriesViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK: UI
 
 extension CategoriesViewController {
     private func configure() {
