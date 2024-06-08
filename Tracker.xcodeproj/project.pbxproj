@@ -59,6 +59,7 @@
 		16F6593F2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593E2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift */; };
 		16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659402BF025F500DA7164 /* NewCategoryViewController.swift */; };
 		16F659432BF0332B00DA7164 /* NewCategoryViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659422BF0332B00DA7164 /* NewCategoryViewControllerDelegate.swift */; };
+		16FF63342C14D1650096A1A8 /* DaysStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF63332C14D1650096A1A8 /* DaysStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		16F6593E2BF01C0300DA7164 /* CategoriesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewControllerDelegate.swift; sourceTree = "<group>"; };
 		16F659402BF025F500DA7164 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		16F659422BF0332B00DA7164 /* NewCategoryViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewControllerDelegate.swift; sourceTree = "<group>"; };
+		16FF63332C14D1650096A1A8 /* DaysStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				16152B542C138BDA007E5A29 /* TrackerStore.swift */,
 				16152B502C138630007E5A29 /* CategoryStore.swift */,
+				16FF63332C14D1650096A1A8 /* DaysStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				16152B572C139914007E5A29 /* NewCategoryStoreManagerDelegate.swift in Sources */,
 				16152B4F2C1383B2007E5A29 /* CoreDataManager.swift in Sources */,
 				16F659432BF0332B00DA7164 /* NewCategoryViewControllerDelegate.swift in Sources */,
+				16FF63342C14D1650096A1A8 /* DaysStore.swift in Sources */,
 				1630D3CF2BE4C00F00A59A82 /* TrackersViewController.swift in Sources */,
 				1630D3CB2BE4C00F00A59A82 /* AppDelegate.swift in Sources */,
 				16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */,

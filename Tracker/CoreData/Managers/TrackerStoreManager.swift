@@ -15,15 +15,39 @@ final class TrackerStoreManager: NSObject {
     
     private let trackerStore: TrackerStore
     private let categoryStore: CategoryStore
+    private let daysStore: DaysStore
     
     private let context = CoreDataManager.shared.persistentContainer.viewContext
     private var insertedIndex: IndexPath? = nil
     
     private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>!
     
+    // MARK: Init
+    
+    init(trackerStore: TrackerStore, categoryStore: CategoryStore, delegate: TrackerStoreManagerDelegate) {
+        self.trackerStore = trackerStore
+        self.categoryStore = categoryStore
+        self.daysStore = DaysStore()
+        self.delegate = delegate
+    }
+    
+    // MARK: Methods
+    
+    func create(tracker: Tracker, category: TrackerCategory) {
+        trackerStore.create(tracker: tracker, for: category)
+    }
+    
+    func fetchAllCategories() -> [TrackerCategory] {
+        categoryStore.fetchAll()
+    }
+    
+    func trackersIsEmpty() -> Bool {
+        fetchedResultsController.fetchedObjects?.isEmpty ?? true
+    }
+    
     func setupFetchedResultsController(with day: Day, and text: String?) {
         fetchedResultsController = {
-            guard let day = trackerStore.fetchDay(with: day.rawValue) else {
+            guard let day = daysStore.fetchDay(with: day.rawValue) else {
                 fatalError("Неправильно передан день в setupFetchedResultsController")
             }
             
@@ -51,28 +75,6 @@ final class TrackerStoreManager: NSObject {
             return fetchedResultsController
         }()
     }
-    
-    // MARK: Init
-    
-    init(trackerStore: TrackerStore, categoryStore: CategoryStore, delegate: TrackerStoreManagerDelegate) {
-        self.trackerStore = trackerStore
-        self.categoryStore = categoryStore
-        self.delegate = delegate
-    }
-    
-    // MARK: Methods
-    
-    func create(tracker: Tracker, category: TrackerCategory) {
-        trackerStore.create(tracker: tracker, for: category)
-    }
-    
-    func fetchAllCategories() -> [TrackerCategory] {
-        categoryStore.fetchAll()
-    }
-    
-    func trackersIsEmpty() -> Bool {
-        fetchedResultsController.fetchedObjects?.isEmpty ?? true
-    }
 }
 
 // MARK: NSFetchedResultsControllerDelegate
@@ -87,10 +89,6 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         default:
             break
         }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
