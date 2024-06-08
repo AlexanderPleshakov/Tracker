@@ -22,12 +22,12 @@ final class TrackerStoreManager: NSObject {
     private lazy var fetchedResultsController: NSFetchedResultsController<TrackerCoreData> = {
         
         let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
         
         let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: context,
-            sectionNameKeyPath: #keyPath(TrackerCoreData.category),
+            sectionNameKeyPath: #keyPath(TrackerCoreData.category.title),
             cacheName: nil
         )
         
@@ -79,7 +79,8 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     var numberOfSections: Int {
-        fetchedResultsController.sections?.count ?? 0
+        print(fetchedResultsController.sections?.count ?? 0)
+        return fetchedResultsController.sections?.count ?? 0
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {

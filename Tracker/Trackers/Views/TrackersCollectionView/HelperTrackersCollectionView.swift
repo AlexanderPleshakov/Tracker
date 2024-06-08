@@ -9,15 +9,13 @@ import UIKit
 
 final class HelperTrackersCollectionView: NSObject  {
     
-   // var categories: [TrackerCategory]
     var completedTrackers: [TrackerRecord] = []
     var currentDate = Date()
     
     private let trackerStoreManager: TrackerStoreManager
     private let params: GeometricParams
     
-    init(categories: [TrackerCategory], trackerStoreManager: TrackerStoreManager, with params: GeometricParams) {
-        //self.categories = categories
+    init(trackerStoreManager: TrackerStoreManager, with params: GeometricParams) {
         self.trackerStoreManager = trackerStoreManager
         self.params = params
     }
@@ -58,14 +56,18 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackersCollectionViewCell.identifier, for: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: TrackersCollectionViewCell.identifier,
+            for: indexPath
+        )
+        
         guard let cell = cell as? TrackersCollectionViewCell else {
             print("Cell is nil")
             return UICollectionViewCell()
         }
-        
-        //let tracker = categories[indexPath.section].trackers[indexPath.row]
-        guard let tracker =  trackerStoreManager.object(at: indexPath) else {
+
+        guard let tracker = trackerStoreManager.object(at: indexPath) else {
             print("tracker is nil in CollectionViewCell")
             return UICollectionViewCell()
         }
@@ -74,10 +76,6 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
         let completedDays = completedTrackers.filter {
             $0.id == tracker.id
         }.count
-        
-        if tracker.timetable == nil {
-            
-        }
         
         cell.delegate = self
         cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate)
@@ -93,7 +91,9 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         let view = collectionView.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SectionHeaderView.identifier,
-            for: indexPath)
+            for: indexPath
+        )
+        
         guard let view = view as? SectionHeaderView else {
             print("SectionHeaderView is nil")
             return UICollectionReusableView()

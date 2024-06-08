@@ -50,6 +50,8 @@ final class TrackerStore {
         
         trackerCoreData.category = categoriesCoreData.first
         
+        print(trackerCoreData)
+        
         save()
     }
 }

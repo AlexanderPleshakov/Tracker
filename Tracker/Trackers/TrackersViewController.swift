@@ -51,12 +51,13 @@ final class TrackersViewController: UIViewController {
         
         categories = fetchCategories()
         
+        print(categories)
+        
         guard let trackerStoreManager = trackerStoreManager else {
             return
         }
         
         collectionHelper = HelperTrackersCollectionView(
-            categories: categories ?? [],
             trackerStoreManager: trackerStoreManager,
             with: GeometricParams(cellCount: 2, topInset: 12,
                                   leftInset: 0, bottomInset: 32,
@@ -84,7 +85,7 @@ final class TrackersViewController: UIViewController {
         return currentWeekday
     }
     
-    private func reloadCollection(with data: [TrackerCategory]) {
+    private func reloadCollection(/*with data: [TrackerCategory]*/) {
         //collectionHelper?.categories = data
         trackersCollection.reloadData()
     }
@@ -95,7 +96,7 @@ final class TrackersViewController: UIViewController {
         
         visibleCategories = filteredTrackers
         
-        reloadCollection(with: filteredTrackers)
+        reloadCollection()
         setupSubviews()
     }
     
@@ -153,6 +154,16 @@ final class TrackersViewController: UIViewController {
     }
 }
 
+// MARK: NewTrackerViewControllerDelegate
+
+extension TrackersViewController: NewTrackerViewControllerDelegate {
+    func addTracker(tracker: Tracker, category: TrackerCategory) {
+        trackerStoreManager?.create(tracker: tracker, category: category)
+    }
+}
+
+// MARK: TrackerStoreManagerDelegate
+
 extension TrackersViewController: TrackerStoreManagerDelegate {
     func addTracker(at indexPath: IndexPath) {
         if stubView.isHidden == false {
@@ -184,14 +195,6 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     }
 }
 
-// MARK: NewTrackerViewControllerDelegate
-
-extension TrackersViewController: NewTrackerViewControllerDelegate {
-    func addTracker(tracker: Tracker, category: TrackerCategory) {
-        trackerStoreManager?.create(tracker: tracker, category: category)
-    }
-}
-
 // MARK: UISearchResultsUpdating
 
 extension TrackersViewController: UISearchResultsUpdating {
@@ -209,8 +212,9 @@ extension TrackersViewController: UISearchResultsUpdating {
             }
         }
         
-        reloadCollection(with: filteredCategories)
+        reloadCollection()
         setupSubviews()
+        //reloadCollectionWithCurrentWeekday()
     }
 }
 

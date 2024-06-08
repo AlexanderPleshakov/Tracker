@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Tracker {
+struct Tracker: CustomStringConvertible {
     let id: UUID
     let name: String?
     let color: Int?
@@ -58,5 +58,18 @@ struct Tracker {
         self.emoji = emoji
         self.timetable = schedule
         self.creationDate = creationDate
+    }
+    
+    var description: String {
+        let string = """
+                     \n\nid: \(id),
+                     name: \(name ?? ""),
+                     color: \(String(describing: color)),
+                     emoji: \(String(describing: emoji)),
+                     timetable: \(String(describing: timetable)),
+                     date: \(String(describing: creationDate))
+                     \n
+                     """
+        return string
     }
 }
