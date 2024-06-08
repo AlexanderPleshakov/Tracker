@@ -14,6 +14,8 @@ final class CategoriesViewController: UIViewController {
     private var selectedCategory: TrackerCategory? = nil
     private var categoryStoreManager: CategoryStoreManager?
     
+    private var tableIsEmpty = true
+    
     // MARK: Init
     
     init(delegate: CategoriesViewControllerDelegate? = nil, selectedCategory: TrackerCategory? = nil) {
@@ -57,7 +59,8 @@ final class CategoriesViewController: UIViewController {
         
         categoryStoreManager = CategoryStoreManager(categoryStore: CategoryStore(),
                                                     delegate: self)
-
+        tableIsEmpty = (categoryStoreManager?.numberOfRowsInSection(0) ?? 0 == 0) ? true : false
+        
         configure()
         tableView.reloadData()
     }
@@ -100,18 +103,35 @@ extension CategoriesViewController: NewCategoryViewControllerDelegate {
 // MARK: NewCategoryStoreManagerDelegate
 
 extension CategoriesViewController: NewCategoryStoreManagerDelegate {
+    func startUpdate() {
+        tableView.beginUpdates()
+    }
     func removeStubAndShowCategories(indexPath: IndexPath) {
-        stubView.removeFromSuperview()
-        setupTableView()
-        tableView.performBatchUpdates {
-            tableView.insertRows(at: [indexPath], with: .automatic)
+        if stubView.isHidden == false {
+            stubView.removeFromSuperview()
+            setupTableView()
         }
+
+        if tableIsEmpty {
+            tableView.endUpdates()
+            tableIsEmpty = false
+            return
+        } else {
+            tableView.performBatchUpdates {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        }
+        tableView.endUpdates()
     }
 }
 
 // MARK: UITableViewDataSource
 
 extension CategoriesViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return categoryStoreManager?.numberOfSections ?? 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categoryStoreManager?.numberOfRowsInSection(section) ?? 0
     }
