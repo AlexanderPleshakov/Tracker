@@ -45,23 +45,9 @@ final class TrackerStoreManager: NSObject {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
     
-    func setupFetchedResultsController(with day: Day, and text: String?) {
+    func setupFetchedResultsController(with day: Day, and text: String?, date: Date) {
         fetchedResultsController = {
-            guard let day = daysStore.fetchDay(with: day.rawValue) else {
-                fatalError("Неправильно передан день в setupFetchedResultsController")
-            }
-            
-            let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
-            
-            let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
-            if text == nil {
-                fetchRequest.predicate = dayPredicate
-            } else {
-                let searchPredicate = NSPredicate(format: "name CONTAINS[c] %@", text ?? "")
-                let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dayPredicate, searchPredicate])
-                fetchRequest.predicate = compoundPredicate
-            }
+            let fetchRequest = createFetchRequest(with: day, and: text, date: date)
             
             let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,
@@ -74,6 +60,48 @@ final class TrackerStoreManager: NSObject {
             try? fetchedResultsController.performFetch()
             return fetchedResultsController
         }()
+    }
+    
+    private func createFetchRequest(with day: Day, and text: String?, date: Date) -> NSFetchRequest<TrackerCoreData> {
+        guard let day = daysStore.fetchDay(with: day.rawValue) else {
+            fatalError("Неправильно передан день в setupFetchedResultsController")
+        }
+        
+        let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
+        
+        let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
+        let countDaysPredicate = NSPredicate(format: "schedule.@count == 0")
+        let strippedTargetDate = stripTime(from: date) ?? Date()
+        let datePredicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@",
+                                        strippedTargetDate as CVarArg,
+                                        Calendar.current.date(
+                                            byAdding: .day,
+                                            value: 1,
+                                            to: strippedTargetDate)! as CVarArg)
+        let compoundEventPredicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [datePredicate, countDaysPredicate]
+        )
+        
+        if text == nil {
+            let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundEventPredicate, dayPredicate])
+            fetchRequest.predicate = compoundPredicate
+        } else {
+            let searchPredicate = NSPredicate(format: "name CONTAINS[c] %@", text ?? "")
+            
+            let compoundFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dayPredicate, searchPredicate])
+            let compoundSearchEventPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [compoundEventPredicate, searchPredicate])
+            
+            let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundSearchEventPredicate, compoundFilterPredicate])
+            
+            fetchRequest.predicate = compoundPredicate
+        }
+        
+        return fetchRequest
+    }
+    
+    private func stripTime(from date: Date) -> Date? {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: date))
     }
 }
 

@@ -59,7 +59,9 @@ final class TrackersViewController: UIViewController {
             delegate: self
         )
         
-        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(), and: searchText)
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(),
+                                                           and: searchText,
+                                                           date: TrackersViewController.currentDate)
         
         guard let trackerStoreManager = trackerStoreManager else {
             return
@@ -91,6 +93,7 @@ final class TrackersViewController: UIViewController {
     }
     
     private func reloadCollectionAndSetup() {
+        sectionCount = trackerStoreManager?.numberOfSections ?? sectionCount
         reloadCollection()
         setupSubviews()
     }
@@ -117,20 +120,7 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
             addTrackersCollection()
         }
         
-        if indexPath.section >= sectionCount - 1 {
-            sectionCount += 1
-            if indexPath.section == 0 {
-                trackersCollection.reloadData()
-            } else {
-                trackersCollection.performBatchUpdates {
-                    trackersCollection.insertSections(IndexSet(integer: indexPath.section))
-                }
-            }
-        } else {
-            trackersCollection.performBatchUpdates {
-                trackersCollection.insertItems(at: [indexPath])
-            }
-        }
+        trackersCollection.reloadData()
     }
 }
 
@@ -140,7 +130,9 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         TrackersViewController.currentDate = date
         collectionHelper?.currentDate = date
-        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(), and: searchText)
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(),
+                                                           and: searchText,
+                                                           date: TrackersViewController.currentDate)
         
         reloadCollectionAndSetup()
     }
@@ -164,7 +156,9 @@ extension TrackersViewController: UISearchResultsUpdating {
             self.searchText = nil
         }
         
-        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(), and: searchText)
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(),
+                                                           and: searchText,
+                                                           date: TrackersViewController.currentDate)
         reloadCollectionAndSetup()
     }
 }
