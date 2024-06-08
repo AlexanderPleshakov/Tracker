@@ -14,6 +14,8 @@ final class TrackerStore {
     
     init(context: NSManagedObjectContext) {
         self.context = context
+        
+        createDaysIfNeeded()
     }
     
     convenience init() {
@@ -40,18 +42,50 @@ final class TrackerStore {
             $0.rawValue
         }
         
+        let daysRequest = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
+        
+        guard var days = try? context.fetch(daysRequest) else {
+            return
+        }
+        
+        days = days.filter { day in
+            schedule?.contains(where: { str in
+                day.day == str
+            }) ?? false
+        }
         
         trackerCoreData.id = tracker.id
         trackerCoreData.name = tracker.name
         trackerCoreData.color = Int32(tracker.color ?? 0x000000)
         trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
-        trackerCoreData.timetable = schedule
         trackerCoreData.creationDate = tracker.creationDate
         
         trackerCoreData.category = categoriesCoreData.first
-        
-        print(trackerCoreData)
+        trackerCoreData.schedule = NSSet(array: days)
         
         save()
+    }
+    
+    private func createDays() {
+        let days = Resources.Mocks.weekdays
+        days.forEach { day in
+            let dayCoreData = DayCoreData(context: context)
+            dayCoreData.day = day.rawValue
+            
+            save()
+        }
+    }
+    
+    private func createDaysIfNeeded() {
+        let daysRequest = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
+        
+        guard let days = try? context.fetch(daysRequest) else {
+            createDays()
+            return
+        }
+        
+        if days.isEmpty {
+            createDays()
+        }
     }
 }

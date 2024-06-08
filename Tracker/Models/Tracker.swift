@@ -48,8 +48,10 @@ struct Tracker: CustomStringConvertible {
             fatalError("Some property is nil in Tracker")
         }
         
-        let schedule = coreDataTracker.timetable?.map {
-            Day(rawValue: $0) ?? .monday
+        let tt = coreDataTracker.schedule?.allObjects as? [DayCoreData]
+
+        let schedule = tt?.map {
+            Day(rawValue: $0.day ?? "") ?? .monday
         }
         
         self.id = id

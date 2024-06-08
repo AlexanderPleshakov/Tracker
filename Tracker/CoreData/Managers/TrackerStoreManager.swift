@@ -19,22 +19,28 @@ final class TrackerStoreManager: NSObject {
     private let context = CoreDataManager.shared.persistentContainer.viewContext
     private var insertedIndex: IndexPath? = nil
     
-    private lazy var fetchedResultsController: NSFetchedResultsController<TrackerCoreData> = {
-        
-        let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
-        
-        let fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: context,
-            sectionNameKeyPath: #keyPath(TrackerCoreData.category.title),
-            cacheName: nil
-        )
-        
-        fetchedResultsController.delegate = self
-        try? fetchedResultsController.performFetch()
-        return fetchedResultsController
-    }()
+    private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>!
+    
+    func setupFetchedResultsController(with day: Day) {
+        fetchedResultsController = {
+            
+            let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
+            
+            //fetchRequest.predicate = NSPredicate(format: "ANY schedule == %@", day.rawValue)
+            
+            let fetchedResultsController = NSFetchedResultsController(
+                fetchRequest: fetchRequest,
+                managedObjectContext: context,
+                sectionNameKeyPath: #keyPath(TrackerCoreData.category.title),
+                cacheName: nil
+            )
+            
+            fetchedResultsController.delegate = self
+            try? fetchedResultsController.performFetch()
+            return fetchedResultsController
+        }()
+    }
     
     // MARK: Init
     
@@ -52,6 +58,10 @@ final class TrackerStoreManager: NSObject {
     
     func fetchAllCategories() -> [TrackerCategory] {
         categoryStore.fetchAll()
+    }
+    
+    func trackersIsEmpty() -> Bool {
+        fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
 }
 
@@ -83,7 +93,6 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     var numberOfSections: Int {
-        print(fetchedResultsController.sections?.count ?? 0)
         return fetchedResultsController.sections?.count ?? 0
     }
     

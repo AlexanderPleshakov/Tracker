@@ -50,6 +50,8 @@ final class TrackersViewController: UIViewController {
             delegate: self
         )
         
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday())
+        
         categories = fetchCategories()
         
         print(categories ?? [])
@@ -93,10 +95,10 @@ final class TrackersViewController: UIViewController {
     }
     
     private func reloadCollectionWithCurrentWeekday() {
-        let weekday = getCurrentWeekday()
-        let filteredTrackers = searchFilteredTrackers(by: weekday)
+        //let weekday = getCurrentWeekday()
+        //let filteredTrackers = searchFilteredTrackers(by: weekday)
         
-        visibleCategories = filteredTrackers
+        //visibleCategories = filteredTrackers
         
         reloadCollection()
         setupSubviews()
@@ -141,18 +143,7 @@ final class TrackersViewController: UIViewController {
     }
     
     private func trackersIsEmpty() -> Bool {
-        if categories?.isEmpty ?? true {
-            return true
-        }
-        
-        var trackersIsEmpty = true
-        for category in visibleCategories {
-            if !category.trackers.isEmpty {
-                trackersIsEmpty = false
-            }
-        }
-        
-        return trackersIsEmpty
+        trackerStoreManager?.trackersIsEmpty() ?? true
     }
 }
 
@@ -175,8 +166,12 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
         
         if indexPath.section >= sectionCount - 1 {
             sectionCount += 1
-            trackersCollection.performBatchUpdates {
-                trackersCollection.insertSections(IndexSet(integer: indexPath.section))
+            if indexPath.section == 0 {
+                trackersCollection.reloadData()
+            } else {
+                trackersCollection.performBatchUpdates {
+                    trackersCollection.insertSections(IndexSet(integer: indexPath.section))
+                }
             }
         } else {
             trackersCollection.performBatchUpdates {
@@ -192,6 +187,7 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         TrackersViewController.currentDate = date
         collectionHelper?.currentDate = date
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday())
         
         reloadCollectionWithCurrentWeekday()
     }
