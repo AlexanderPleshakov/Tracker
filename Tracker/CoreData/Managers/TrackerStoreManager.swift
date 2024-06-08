@@ -21,7 +21,7 @@ final class TrackerStoreManager: NSObject {
     
     private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>!
     
-    func setupFetchedResultsController(with day: Day) {
+    func setupFetchedResultsController(with day: Day, and text: String?) {
         fetchedResultsController = {
             guard let day = trackerStore.fetchDay(with: day.rawValue) else {
                 fatalError("Неправильно передан день в setupFetchedResultsController")
@@ -29,7 +29,15 @@ final class TrackerStoreManager: NSObject {
             
             let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
-            fetchRequest.predicate = NSPredicate(format: "ANY schedule == %@", day)
+            
+            let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
+            if text == nil {
+                fetchRequest.predicate = dayPredicate
+            } else {
+                let searchPredicate = NSPredicate(format: "name CONTAINS[c] %@", text ?? "")
+                let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dayPredicate, searchPredicate])
+                fetchRequest.predicate = compoundPredicate
+            }
             
             let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,

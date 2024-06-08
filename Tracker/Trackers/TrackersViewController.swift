@@ -13,10 +13,10 @@ final class TrackersViewController: UIViewController {
     static var currentDate = Date()
     private var completedTrackers: [TrackerRecord] = []
     private var categories: [TrackerCategory]?
-    private var visibleCategories: [TrackerCategory] = []
     
     private var trackerStoreManager: TrackerStoreManager?
     private var sectionCount = 0
+    private var searchText: String? = nil
     
     // MARK: Views
     
@@ -50,7 +50,7 @@ final class TrackersViewController: UIViewController {
             delegate: self
         )
         
-        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday())
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(), and: searchText)
         
         categories = fetchCategories()
         
@@ -72,7 +72,7 @@ final class TrackersViewController: UIViewController {
         
         collectionHelper?.completedTrackers = completedTrackers
         
-        reloadCollectionWithCurrentWeekday()
+        reloadCollectionAndSetup()
     }
     
     // MARK: Methods
@@ -94,12 +94,7 @@ final class TrackersViewController: UIViewController {
         trackersCollection.reloadData()
     }
     
-    private func reloadCollectionWithCurrentWeekday() {
-        //let weekday = getCurrentWeekday()
-        //let filteredTrackers = searchFilteredTrackers(by: weekday)
-        
-        //visibleCategories = filteredTrackers
-        
+    private func reloadCollectionAndSetup() {
         reloadCollection()
         setupSubviews()
     }
@@ -187,9 +182,9 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         TrackersViewController.currentDate = date
         collectionHelper?.currentDate = date
-        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday())
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(), and: searchText)
         
-        reloadCollectionWithCurrentWeekday()
+        reloadCollectionAndSetup()
     }
     
     func addButtonTapped() {
@@ -204,22 +199,15 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
 
 extension TrackersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let currentWeekday = getCurrentWeekday()
-        var filteredCategories = getFilteredTrackers(by: currentWeekday)
         
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            filteredCategories = filteredCategories.map { category in
-                let filteredTrackers = category.trackers.filter { item in
-                    guard let name = item.name else { return false }
-                    return name.lowercased().contains(searchText.lowercased())
-                }
-                return TrackerCategory(title: category.title, trackers: filteredTrackers)
-            }
+            self.searchText = searchText
+        } else {
+            self.searchText = nil
         }
         
-        reloadCollection()
-        setupSubviews()
-        //reloadCollectionWithCurrentWeekday()
+        trackerStoreManager?.setupFetchedResultsController(with: getCurrentWeekday(), and: searchText)
+        reloadCollectionAndSetup()
     }
 }
 
