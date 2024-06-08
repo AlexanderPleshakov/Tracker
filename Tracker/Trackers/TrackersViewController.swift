@@ -174,6 +174,7 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
         }
         
         if indexPath.section >= sectionCount - 1 {
+            sectionCount += 1
             trackersCollection.performBatchUpdates {
                 trackersCollection.insertSections(IndexSet(integer: indexPath.section))
             }
