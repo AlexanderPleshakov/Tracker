@@ -23,11 +23,13 @@ final class TrackerStoreManager: NSObject {
     
     func setupFetchedResultsController(with day: Day) {
         fetchedResultsController = {
+            guard let day = trackerStore.fetchDay(with: day.rawValue) else {
+                fatalError("Неправильно передан день в setupFetchedResultsController")
+            }
             
             let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
-            
-            //fetchRequest.predicate = NSPredicate(format: "ANY schedule == %@", day.rawValue)
+            fetchRequest.predicate = NSPredicate(format: "ANY schedule == %@", day)
             
             let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,

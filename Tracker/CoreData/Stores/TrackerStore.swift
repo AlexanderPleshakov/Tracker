@@ -88,4 +88,15 @@ final class TrackerStore {
             createDays()
         }
     }
+    
+    func fetchDay(with rawValue: String) -> DayCoreData? {
+        let request = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(DayCoreData.day), rawValue)
+        
+        guard let days = try? context.fetch(request) else {
+            return nil
+        }
+        
+        return days.first
+    }
 }
