@@ -69,6 +69,10 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         }
     }
     
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+    }
+    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         guard let insertedIndex = insertedIndex else {
             print("insertedIndex is nil")

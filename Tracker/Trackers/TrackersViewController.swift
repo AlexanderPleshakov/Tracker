@@ -16,6 +16,7 @@ final class TrackersViewController: UIViewController {
     private var visibleCategories: [TrackerCategory] = []
     
     private var trackerStoreManager: TrackerStoreManager?
+    private var sectionCount = 0
     
     // MARK: Views
     
@@ -51,11 +52,12 @@ final class TrackersViewController: UIViewController {
         
         categories = fetchCategories()
         
-        print(categories)
+        print(categories ?? [])
         
         guard let trackerStoreManager = trackerStoreManager else {
             return
         }
+        sectionCount = trackerStoreManager.numberOfSections
         
         collectionHelper = HelperTrackersCollectionView(
             trackerStoreManager: trackerStoreManager,
@@ -171,8 +173,14 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
             addTrackersCollection()
         }
         
-        trackersCollection.performBatchUpdates {
-            trackersCollection.insertItems(at: [indexPath])
+        if indexPath.section >= sectionCount - 1 {
+            trackersCollection.performBatchUpdates {
+                trackersCollection.insertSections(IndexSet(integer: indexPath.section))
+            }
+        } else {
+            trackersCollection.performBatchUpdates {
+                trackersCollection.insertItems(at: [indexPath])
+            }
         }
     }
 }
