@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CategoriesViewControllerDelegate: NSObject {
-    var selectedCategory: TrackerCategory? { get set }
+    func changeSelectedCategory(new category: TrackerCategory?)
 }

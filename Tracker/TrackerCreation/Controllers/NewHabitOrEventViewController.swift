@@ -7,71 +7,22 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController,
-                                           TimetableDelegate,
-                                           CategoriesViewControllerDelegate,
-                                           EmojiAndColorsCollectionViewDelegate {
+final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
+    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper?
-    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private var newCategory: TrackerCategory? = nil
     private var categoryTitle: String?
     
     private var tableHeightAnchor: NSLayoutConstraint!
     
-    var selectedDays = [Day]() {
-        willSet(new) {
-            tableViewHelper?.changeDays(days: new)
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: tracker.color,
-                emoji: tracker.emoji,
-                timetable: new,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
-    
-    var selectedColor: Int? = nil {
-        willSet(newValue) {
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: newValue,
-                emoji: tracker.emoji,
-                timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
-    
-    var selectedEmoji: Character? = nil {
-        willSet(newValue) {
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: tracker.color,
-                emoji: newValue,
-                timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
-    
-    var selectedCategory: TrackerCategory? = nil {
-        didSet {
-            tableViewHelper?.changeCategory(category: selectedCategory?.title)
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: tracker.color,
-                emoji: tracker.emoji,
-                timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
+    private var selectedDays: [Day] = []
+    private var selectedCategory: TrackerCategory?
+    private var creationDate: Date
     
     private var tracker: Tracker = Tracker(
         id: UUID(),
@@ -79,7 +30,7 @@ final class NewHabitOrEventViewController: UIViewController,
         color: nil,
         emoji: nil,
         timetable: nil,
-        creationDate: TrackersViewController.currentDate
+        creationDate: nil
     ) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
@@ -97,6 +48,7 @@ final class NewHabitOrEventViewController: UIViewController,
     
     private let scrollView: UIScrollView = UIScrollView()
     private let scrollContainer: UIView = UIView()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self,
@@ -145,8 +97,9 @@ final class NewHabitOrEventViewController: UIViewController,
     
     // MARK: Init
     
-    init(type: TrackerType) {
+    init(type: TrackerType, currentDate: Date) {
         self.type = type
+        self.creationDate = currentDate
         self.navTitle = (type == .habit) ? Resources.Titles.habitTitle : Resources.Titles.eventTitle
         super.init(nibName: nil, bundle: nil)
     }
@@ -208,6 +161,62 @@ extension NewHabitOrEventViewController {
     }
 }
 
+// MARK: TimetableDelegate
+
+extension NewHabitOrEventViewController: TimetableDelegate {
+    func changeSelectedDays(new days: [Day]) {
+        selectedDays = days
+        tableViewHelper?.changeDays(days: days)
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: tracker.color,
+            emoji: tracker.emoji,
+            timetable: days,
+            creationDate: creationDate)
+    }
+}
+
+// MARK: CategoriesViewControllerDelegate
+
+extension NewHabitOrEventViewController: CategoriesViewControllerDelegate {
+    func changeSelectedCategory(new category: TrackerCategory?) {
+        selectedCategory = category
+        tableViewHelper?.changeCategory(category: selectedCategory?.title)
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: tracker.color,
+            emoji: tracker.emoji,
+            timetable: tracker.timetable,
+            creationDate: creationDate)
+    }
+}
+
+// MARK: TimetableDelegate
+
+extension NewHabitOrEventViewController: EmojiAndColorsCollectionViewDelegate {
+    func changeSelectedColor(new color: Int?) {
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: color,
+            emoji: tracker.emoji,
+            timetable: tracker.timetable,
+            creationDate: creationDate)
+    }
+    
+    func changeSelectedEmoji(new emoji: Character?) {
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: tracker.color,
+            emoji: emoji,
+            timetable: tracker.timetable,
+            creationDate: creationDate)
+    }
+}
+
 // MARK: HabitAndEventTableViewDelegate
 
 extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
@@ -220,7 +229,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
                 color: tracker.color,
                 emoji: tracker.emoji,
                 timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
+                creationDate: creationDate)
         } else {
             blockCreateButton()
         }

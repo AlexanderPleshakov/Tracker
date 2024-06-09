@@ -9,8 +9,12 @@ import UIKit
 import CoreData
 
 final class TrackerRecordStore {
+    // MARK: Properties
+    
     private let context: NSManagedObjectContext
     private let dataManager = CoreDataManager.shared
+    
+    // MARK: Init
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -20,6 +24,8 @@ final class TrackerRecordStore {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         self.init(context: context)
     }
+    
+    // MARK: Methods
     
     func fetchAll() -> [TrackerRecord] {
         let request = NSFetchRequest<TrackerRecordCoreData>(entityName: "TrackerRecordCoreData")

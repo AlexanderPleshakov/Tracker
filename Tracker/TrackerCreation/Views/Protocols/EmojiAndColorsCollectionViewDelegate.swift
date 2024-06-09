@@ -8,6 +8,6 @@
 import UIKit
 
 protocol EmojiAndColorsCollectionViewDelegate: NSObject {
-    var selectedColor: Int? { get set }
-    var selectedEmoji: Character? { get set }
+    func changeSelectedColor(new color: Int?)
+    func changeSelectedEmoji(new emoji: Character?)
 }

@@ -142,7 +142,8 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             lastSelectedEmojiCell = cell
             emojiIsSelected = true
             cell.backgroundColor = Resources.Colors.colorsCollectionBackground
-            delegateController?.selectedEmoji = emojies[indexPath.row]
+            
+            delegateController?.changeSelectedEmoji(new: emojies[indexPath.row])
         } else {
             if colorIsSelected {
                 lastSelectedColorCell?.layer.borderWidth = 0
@@ -152,7 +153,8 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             colorIsSelected = true
             cell.layer.borderColor = UIColor(rgb: colors[indexPath.row], a: 0.3).cgColor
             cell.layer.borderWidth = 3
-            delegateController?.selectedColor = colors[indexPath.row]
+            
+            delegateController?.changeSelectedColor(new: colors[indexPath.row])
         }
     }
 }

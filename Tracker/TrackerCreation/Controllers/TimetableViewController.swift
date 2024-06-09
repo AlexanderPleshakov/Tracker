@@ -54,7 +54,7 @@ final class TimetableViewController: UIViewController {
         
         NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
         
-        delegate?.selectedDays = getArraySelectedDays()
+        delegate?.changeSelectedDays(new: getArraySelectedDays())
     }
     
     // MARK: Methods
@@ -121,6 +121,8 @@ final class TimetableViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDataSource
+
 extension TimetableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return days.count
@@ -149,6 +151,8 @@ extension TimetableViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: UITableViewDelegate
 
 extension TimetableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

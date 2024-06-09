@@ -9,11 +9,15 @@ import UIKit
 
 final class HelperTrackersCollectionView: NSObject  {
     
-    var currentDate = Date()
+    // MARK: Properties
+    
+    private var currentDate = Date()
     
     private let trackerStoreManager: TrackerStoreManager
     private let trackerRecordStore = TrackerRecordStore()
     private let params: GeometricParams
+    
+    // MARK: Init
     
     init(trackerStoreManager: TrackerStoreManager, with params: GeometricParams) {
         self.trackerStoreManager = trackerStoreManager
@@ -21,6 +25,10 @@ final class HelperTrackersCollectionView: NSObject  {
     }
     
     // MARK: Methods
+    
+    func changeCurrentDate(date: Date) {
+        currentDate = date
+    }
     
     private func isTrackerCompletedToday(id: UUID) -> Bool {
         let completedTracker = trackerRecordStore.fetch(by: id, and: currentDate)
