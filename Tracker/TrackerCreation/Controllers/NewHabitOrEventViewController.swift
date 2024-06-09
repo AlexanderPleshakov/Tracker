@@ -25,6 +25,7 @@ final class NewHabitOrEventViewController: UIViewController,
     
     var selectedDays = [Day]() {
         willSet(new) {
+            tableViewHelper?.changeDays(days: new)
             tracker = Tracker(
                 id: tracker.id,
                 name: tracker.name,
@@ -61,6 +62,7 @@ final class NewHabitOrEventViewController: UIViewController,
     
     var selectedCategory: TrackerCategory? = nil {
         didSet {
+            tableViewHelper?.changeCategory(category: selectedCategory?.title)
             tracker = Tracker(
                 id: tracker.id,
                 name: tracker.name,
