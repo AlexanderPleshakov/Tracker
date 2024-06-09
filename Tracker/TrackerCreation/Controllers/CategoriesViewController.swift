@@ -68,7 +68,7 @@ final class CategoriesViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        delegate?.selectedCategory = selectedCategory
+        delegate?.changeSelectedCategory(new: selectedCategory)
         
         NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["category": selectedCategory?.title ?? ""])
     }

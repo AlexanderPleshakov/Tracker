@@ -54,7 +54,7 @@ final class TimetableViewController: UIViewController {
         
         NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
         
-        delegate?.selectedDays = getArraySelectedDays()
+        delegate?.changeSelectedDays(new: getArraySelectedDays())
     }
     
     // MARK: Methods

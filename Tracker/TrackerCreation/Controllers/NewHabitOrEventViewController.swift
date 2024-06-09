@@ -7,71 +7,21 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController,
-                                           TimetableDelegate,
-                                           CategoriesViewControllerDelegate,
-                                           EmojiAndColorsCollectionViewDelegate {
+final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
+    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper?
-    weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private var newCategory: TrackerCategory? = nil
     private var categoryTitle: String?
     
     private var tableHeightAnchor: NSLayoutConstraint!
     
-    var selectedDays = [Day]() {
-        willSet(new) {
-            tableViewHelper?.changeDays(days: new)
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: tracker.color,
-                emoji: tracker.emoji,
-                timetable: new,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
-    
-    var selectedColor: Int? = nil {
-        willSet(newValue) {
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: newValue,
-                emoji: tracker.emoji,
-                timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
-    
-    var selectedEmoji: Character? = nil {
-        willSet(newValue) {
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: tracker.color,
-                emoji: newValue,
-                timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
-    
-    var selectedCategory: TrackerCategory? = nil {
-        didSet {
-            tableViewHelper?.changeCategory(category: selectedCategory?.title)
-            tracker = Tracker(
-                id: tracker.id,
-                name: tracker.name,
-                color: tracker.color,
-                emoji: tracker.emoji,
-                timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
-        }
-    }
+    private var selectedDays: [Day] = []
+    private var selectedCategory: TrackerCategory?
     
     private var tracker: Tracker = Tracker(
         id: UUID(),
@@ -205,6 +155,62 @@ extension NewHabitOrEventViewController {
     
     @objc private func hideKeyboard() {
         view.endEditing(true)
+    }
+}
+
+// MARK: TimetableDelegate
+
+extension NewHabitOrEventViewController: TimetableDelegate {
+    func changeSelectedDays(new days: [Day]) {
+        selectedDays = days
+        tableViewHelper?.changeDays(days: days)
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: tracker.color,
+            emoji: tracker.emoji,
+            timetable: days,
+            creationDate: TrackersViewController.currentDate)
+    }
+}
+
+// MARK: CategoriesViewControllerDelegate
+
+extension NewHabitOrEventViewController: CategoriesViewControllerDelegate {
+    func changeSelectedCategory(new category: TrackerCategory?) {
+        selectedCategory = category
+        tableViewHelper?.changeCategory(category: selectedCategory?.title)
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: tracker.color,
+            emoji: tracker.emoji,
+            timetable: tracker.timetable,
+            creationDate: TrackersViewController.currentDate)
+    }
+}
+
+// MARK: TimetableDelegate
+
+extension NewHabitOrEventViewController: EmojiAndColorsCollectionViewDelegate {
+    func changeSelectedColor(new color: Int?) {
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: color,
+            emoji: tracker.emoji,
+            timetable: tracker.timetable,
+            creationDate: TrackersViewController.currentDate)
+    }
+    
+    func changeSelectedEmoji(new emoji: Character?) {
+        tracker = Tracker(
+            id: tracker.id,
+            name: tracker.name,
+            color: tracker.color,
+            emoji: emoji,
+            timetable: tracker.timetable,
+            creationDate: TrackersViewController.currentDate)
     }
 }
 
