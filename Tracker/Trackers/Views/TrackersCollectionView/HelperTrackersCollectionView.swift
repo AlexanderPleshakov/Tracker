@@ -9,10 +9,11 @@ import UIKit
 
 final class HelperTrackersCollectionView: NSObject  {
     
-    var completedTrackers: [TrackerRecord] = []
+    //var completedTrackers: [TrackerRecord] = []
     var currentDate = Date()
     
     private let trackerStoreManager: TrackerStoreManager
+    private let trackerRecordStore = TrackerRecordStore()
     private let params: GeometricParams
     
     init(trackerStoreManager: TrackerStoreManager, with params: GeometricParams) {
@@ -23,24 +24,21 @@ final class HelperTrackersCollectionView: NSObject  {
     // MARK: Methods
     
     private func isTrackerCompletedToday(id: UUID) -> Bool {
-        let completedTracker = TrackerRecord(id: id, date: currentDate)
-        return completedTrackers.contains(completedTracker)
+        let completedTracker = trackerRecordStore.fetch(by: id, and: currentDate)
+        return completedTracker != nil ? true : false
     }
 }
 
 // MARK: TrackersCellDelegate
 
 extension HelperTrackersCollectionView: TrackersCellDelegate {
-    func completeTracker(id: UUID) {
-        let completedTracker = TrackerRecord(id: id, date: currentDate)
-        completedTrackers.append(completedTracker)
+    func completeTracker(id: UUID, count: Int) {
+        let completedTracker = TrackerRecord(id: id, date: currentDate, count: count)
+        trackerRecordStore.add(trackerRecord: completedTracker)
     }
     
     func incompleteTracker(id: UUID) {
-        completedTrackers.removeAll { trackerRecord in
-            let isSameDate = Calendar.current.isDate(trackerRecord.date, inSameDayAs: currentDate)
-            return trackerRecord.id == id && isSameDate
-        }
+        trackerRecordStore.delete(id: id, date: currentDate)
     }
 }
 
@@ -73,9 +71,7 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
         }
         
         let isCompleted = isTrackerCompletedToday(id: tracker.id)
-        let completedDays = completedTrackers.filter {
-            $0.id == tracker.id
-        }.count
+        let completedDays = trackerRecordStore.fetchCount(by: tracker.id)
         
         cell.delegate = self
         cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate)

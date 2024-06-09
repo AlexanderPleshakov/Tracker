@@ -14,7 +14,6 @@ final class TrackersViewController: UIViewController {
     private var completedTrackers: [TrackerRecord] = []
     
     private var trackerStoreManager: TrackerStoreManager?
-    private var sectionCount = 0
     private var searchText: String? = nil
     
     // MARK: Views
@@ -44,7 +43,7 @@ final class TrackersViewController: UIViewController {
         super.viewDidLoad()
         
         setupCollection()
-        collectionHelper?.completedTrackers = completedTrackers
+        //collectionHelper?.completedTrackers = completedTrackers
         
         configure()
         reloadCollectionAndSetup()
@@ -66,7 +65,6 @@ final class TrackersViewController: UIViewController {
         guard let trackerStoreManager = trackerStoreManager else {
             return
         }
-        sectionCount = trackerStoreManager.numberOfSections
         
         collectionHelper = HelperTrackersCollectionView(
             trackerStoreManager: trackerStoreManager,
@@ -93,7 +91,6 @@ final class TrackersViewController: UIViewController {
     }
     
     private func reloadCollectionAndSetup() {
-        sectionCount = trackerStoreManager?.numberOfSections ?? sectionCount
         reloadCollection()
         setupSubviews()
     }

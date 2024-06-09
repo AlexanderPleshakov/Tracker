@@ -15,6 +15,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private var trackerId: UUID?
     private var completedDays = 0
     private var date: Date?
+    private let trackerRecordStore = TrackerRecordStore()
     
     // MARK: Properties
     
@@ -148,7 +149,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
                 delegate?.incompleteTracker(id: trackerId)
                 setUncompletedState(with: completedDays)
             } else {
-                delegate?.completeTracker(id: trackerId)
+                delegate?.completeTracker(id: trackerId, count: completedDays + 1)
                 setCompletedState(with: completedDays + 1)
             }
         }
