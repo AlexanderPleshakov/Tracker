@@ -62,7 +62,6 @@ final class TrackerRecordStore {
         
         trackerRecordCoreData.trackerID = trackerRecord.id
         trackerRecordCoreData.date = trackerRecord.date
-        trackerRecordCoreData.count = Int32(trackerRecord.count)
         
         save()
     }

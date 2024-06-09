@@ -11,8 +11,6 @@ final class TrackersViewController: UIViewController {
     // MARK: Properties
     
     static var currentDate = Date()
-    private var completedTrackers: [TrackerRecord] = []
-    
     private var trackerStoreManager: TrackerStoreManager?
     private var searchText: String? = nil
     
@@ -43,7 +41,6 @@ final class TrackersViewController: UIViewController {
         super.viewDidLoad()
         
         setupCollection()
-        //collectionHelper?.completedTrackers = completedTrackers
         
         configure()
         reloadCollectionAndSetup()

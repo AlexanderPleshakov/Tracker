@@ -9,7 +9,6 @@ import UIKit
 
 final class HelperTrackersCollectionView: NSObject  {
     
-    //var completedTrackers: [TrackerRecord] = []
     var currentDate = Date()
     
     private let trackerStoreManager: TrackerStoreManager
@@ -32,8 +31,8 @@ final class HelperTrackersCollectionView: NSObject  {
 // MARK: TrackersCellDelegate
 
 extension HelperTrackersCollectionView: TrackersCellDelegate {
-    func completeTracker(id: UUID, count: Int) {
-        let completedTracker = TrackerRecord(id: id, date: currentDate, count: count)
+    func completeTracker(id: UUID) {
+        let completedTracker = TrackerRecord(id: id, date: currentDate)
         trackerRecordStore.add(trackerRecord: completedTracker)
     }
     
