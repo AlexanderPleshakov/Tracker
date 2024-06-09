@@ -30,8 +30,8 @@
 		166EAAEC2BFEA121004FD58B /* UIColor + hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAEB2BFEA121004FD58B /* UIColor + hex.swift */; };
 		166EAAEE2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAED2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift */; };
 		166EAAF02BFFC304004FD58B /* TrackersCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166EAAEF2BFFC304004FD58B /* TrackersCellDelegate.swift */; };
+		1672483D2C15C7A30006726B /* UITabBar + TopBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672483C2C15C7A30006726B /* UITabBar + TopBorder.swift */; };
 		167C97D12C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D02C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift */; };
-		167C97D42C08D16C005266D6 /* CollectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D32C08D16C005266D6 /* CollectionType.swift */; };
 		167C97D62C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D52C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift */; };
 		167C97D92C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C97D82C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift */; };
 		16818AB92BED22A90025D5D4 /* StubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AB82BED22A90025D5D4 /* StubView.swift */; };
@@ -89,8 +89,8 @@
 		166EAAEB2BFEA121004FD58B /* UIColor + hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + hex.swift"; sourceTree = "<group>"; };
 		166EAAED2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		166EAAEF2BFFC304004FD58B /* TrackersCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersCellDelegate.swift; sourceTree = "<group>"; };
+		1672483C2C15C7A30006726B /* UITabBar + TopBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar + TopBorder.swift"; sourceTree = "<group>"; };
 		167C97D02C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiAndColorsCollectionView.swift; sourceTree = "<group>"; };
-		167C97D32C08D16C005266D6 /* CollectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionType.swift; sourceTree = "<group>"; };
 		167C97D52C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiOrColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		167C97D82C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiAndColorsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		16818AB82BED22A90025D5D4 /* StubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubView.swift; sourceTree = "<group>"; };
@@ -232,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				166EAAEB2BFEA121004FD58B /* UIColor + hex.swift */,
+				1672483C2C15C7A30006726B /* UITabBar + TopBorder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -251,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				16F659272BEE8B1100DA7164 /* TrackerType.swift */,
-				167C97D32C08D16C005266D6 /* CollectionType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,7 +474,6 @@
 				16152B5E2C13BBCC007E5A29 /* TrackerStoreManagerDelegate.swift in Sources */,
 				16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */,
 				166EAAEC2BFEA121004FD58B /* UIColor + hex.swift in Sources */,
-				167C97D42C08D16C005266D6 /* CollectionType.swift in Sources */,
 				16F659282BEE8B1100DA7164 /* TrackerType.swift in Sources */,
 				16818AC12BED6CA10025D5D4 /* NewTrackerViewController.swift in Sources */,
 				16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */,
@@ -494,6 +493,7 @@
 				166EAAE62BFD3FA9004FD58B /* GeometricParams.swift in Sources */,
 				166EAAEE2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift in Sources */,
 				166EAAE42BFD2C14004FD58B /* HelperTrackersCollectionView.swift in Sources */,
+				1672483D2C15C7A30006726B /* UITabBar + TopBorder.swift in Sources */,
 				167C97D12C08CF9E005266D6 /* EmojiAndColorsCollectionView.swift in Sources */,
 				162050B92C009A0C00468BED /* TextFieldWithPadding.swift in Sources */,
 				16818AB92BED22A90025D5D4 /* StubView.swift in Sources */,

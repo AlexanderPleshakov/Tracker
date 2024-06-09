@@ -47,6 +47,7 @@ final class NewHabitOrEventViewController: UIViewController {
     
     private let scrollView: UIScrollView = UIScrollView()
     private let scrollContainer: UIView = UIView()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self,

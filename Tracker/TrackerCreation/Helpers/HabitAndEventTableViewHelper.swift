@@ -68,6 +68,7 @@ final class HabitAndEventTableViewHelper: NSObject {
     }
 }
 
+// MARK: UITableViewDelegate
 
 extension HabitAndEventTableViewHelper: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,6 +111,8 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
         }
     }
 }
+
+// MARK: UITableViewDataSource
 
 extension HabitAndEventTableViewHelper: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

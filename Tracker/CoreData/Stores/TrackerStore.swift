@@ -9,8 +9,12 @@ import UIKit
 import CoreData
 
 final class TrackerStore {
+    // MARK: Properties
+    
     private let context: NSManagedObjectContext
     private let dataManager = CoreDataManager.shared
+    
+    // MARK: Init
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -20,6 +24,8 @@ final class TrackerStore {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         self.init(context: context)
     }
+    
+    // MARK: Methods
     
     private func save() {
         dataManager.saveContext()

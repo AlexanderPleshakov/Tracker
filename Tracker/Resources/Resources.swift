@@ -15,16 +15,6 @@ enum Resources {
         static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
                                         "😇", "😡", "🥶", "🤔", "🙌", "🍔",
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
-        static let trackers = [
-            TrackerCategory(title: "Важное", trackers: [
-                Tracker(id: UUID(), name: "Поливать растения", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "❤️", timetable: [.monday, .wednesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Кошка заслонила камеру на созвоне", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: [.tuesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Бабушка прислала открытку в вотсапе", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "☺️", timetable: [.wednesday], creationDate: Date())]),
-            TrackerCategory(title: "Радостные мелочи", trackers: [
-                Tracker(id: UUID(), name: "Свидания в апреле", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "😂", timetable: [.thursday, .tuesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Хорошее настроение", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "💕", timetable: [.friday, .wednesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Легкая тревожность", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "🙃", timetable: [.sunday], creationDate: Date())])
-        ]
     }
     
     enum Titles {
