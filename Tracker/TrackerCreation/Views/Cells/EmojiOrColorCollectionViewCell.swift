@@ -39,10 +39,10 @@ final class EmojiOrColorCollectionViewCell: UICollectionViewCell {
     
     // MARK: Methods
     
-    func configure(with color: UIColor) {
+    func configure(with color: Int) {
         let viewFrame = CGRect(x: 0, y: 0, width: frame.width - 12, height: frame.height - 12)
         colorView.frame = viewFrame
-        colorView.backgroundColor = color
+        colorView.backgroundColor = UIColor(rgb: color)
         layer.cornerRadius = 12
         
         addColorView()

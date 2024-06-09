@@ -8,23 +8,23 @@
 import UIKit
 
 final class HelperTrackersCollectionView: NSObject  {
-    var categories: [TrackerCategory]
-    var visibleCategories: [TrackerCategory]?
-    var completedTrackers: [TrackerRecord] = []
+    
     var currentDate = Date()
     
+    private let trackerStoreManager: TrackerStoreManager
+    private let trackerRecordStore = TrackerRecordStore()
     private let params: GeometricParams
     
-    init(categories: [TrackerCategory], with params: GeometricParams) {
-        self.categories = categories
+    init(trackerStoreManager: TrackerStoreManager, with params: GeometricParams) {
+        self.trackerStoreManager = trackerStoreManager
         self.params = params
     }
     
     // MARK: Methods
     
     private func isTrackerCompletedToday(id: UUID) -> Bool {
-        let completedTracker = TrackerRecord(id: id, date: currentDate)
-        return completedTrackers.contains(completedTracker)
+        let completedTracker = trackerRecordStore.fetch(by: id, and: currentDate)
+        return completedTracker != nil ? true : false
     }
 }
 
@@ -33,14 +33,11 @@ final class HelperTrackersCollectionView: NSObject  {
 extension HelperTrackersCollectionView: TrackersCellDelegate {
     func completeTracker(id: UUID) {
         let completedTracker = TrackerRecord(id: id, date: currentDate)
-        completedTrackers.append(completedTracker)
+        trackerRecordStore.add(trackerRecord: completedTracker)
     }
     
     func incompleteTracker(id: UUID) {
-        completedTrackers.removeAll { trackerRecord in
-            let isSameDate = Calendar.current.isDate(trackerRecord.date, inSameDayAs: currentDate)
-            return trackerRecord.id == id && isSameDate
-        }
+        trackerRecordStore.delete(id: id, date: currentDate)
     }
 }
 
@@ -48,30 +45,32 @@ extension HelperTrackersCollectionView: TrackersCellDelegate {
 
 extension HelperTrackersCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories[section].trackers.count
+        return trackerStoreManager.numberOfRowsInSection(section)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return categories.count
+        return trackerStoreManager.numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackersCollectionViewCell.identifier, for: indexPath)
+        
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: TrackersCollectionViewCell.identifier,
+            for: indexPath
+        )
+        
         guard let cell = cell as? TrackersCollectionViewCell else {
             print("Cell is nil")
             return UICollectionViewCell()
         }
-        
-        let tracker = categories[indexPath.section].trackers[indexPath.row]
+
+        guard let tracker = trackerStoreManager.object(at: indexPath) else {
+            print("tracker is nil in CollectionViewCell")
+            return UICollectionViewCell()
+        }
         
         let isCompleted = isTrackerCompletedToday(id: tracker.id)
-        let completedDays = completedTrackers.filter {
-            $0.id == tracker.id
-        }.count
-        
-        if tracker.timetable == nil {
-            
-        }
+        let completedDays = trackerRecordStore.fetchCount(by: tracker.id)
         
         cell.delegate = self
         cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate)
@@ -87,16 +86,18 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         let view = collectionView.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SectionHeaderView.identifier,
-            for: indexPath)
+            for: indexPath
+        )
+        
         guard let view = view as? SectionHeaderView else {
             print("SectionHeaderView is nil")
             return UICollectionReusableView()
         }
         
-        if categories[indexPath.section].trackers.isEmpty {
+        if trackerStoreManager.categoryIsEmpty(in: indexPath.section) {
             return view
         } else {
-            let categoryName = categories[indexPath.section].title
+            let categoryName = trackerStoreManager.categoryTitle(in: indexPath.section)
             view.configure(text: categoryName, leadingAnchor: 12)
         }
         
@@ -104,7 +105,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if categories[section].trackers.isEmpty {
+        if trackerStoreManager.categoryIsEmpty(in: section) {
             return CGSize(width: collectionView.frame.width, height: 0)
         } else {
             return CGSize(width: collectionView.frame.width, height: 19)
@@ -113,7 +114,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if categories[section].trackers.isEmpty {
+        if trackerStoreManager.categoryIsEmpty(in: section) {
             return UIEdgeInsets(top: 0, left: params.leftInset, bottom: 0, right: params.rightInset)
         } else {
             return UIEdgeInsets(top: params.topInset, left: params.leftInset, bottom: params.bottomInset, right: params.rightInset)

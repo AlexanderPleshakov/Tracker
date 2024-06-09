@@ -8,6 +8,6 @@
 import Foundation
 
 protocol TrackersCellDelegate: NSObject {
-    func completeTracker(id: UUID)
+    func completeTracker(id: UUID) 
     func incompleteTracker(id: UUID)
 }
