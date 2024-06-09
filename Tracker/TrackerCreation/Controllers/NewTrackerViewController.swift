@@ -13,8 +13,20 @@ final class NewTrackerViewController: UIViewController {
     weak var delegate: NewTrackerViewControllerDelegate?
     private let newHabitButton = BasicLargeButton(title: "Привычка")
     private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
+    private let currentDate: Date
     
     // MARK: Init
+    
+    init(currentDate: Date) {
+        self.currentDate = currentDate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +37,14 @@ final class NewTrackerViewController: UIViewController {
     // MARK: Actions
     
     @objc private func newHabitButtonTapped() {
-        let habitViewController = NewHabitOrEventViewController(type: .habit)
+        let habitViewController = NewHabitOrEventViewController(type: .habit, currentDate: currentDate)
         habitViewController.delegate = self
         let habitNav = UINavigationController(rootViewController: habitViewController)
         present(habitNav, animated: true)
     }
     
     @objc private func newEventButtonTapped() {
-        let eventViewController = NewHabitOrEventViewController(type: .event)
+        let eventViewController = NewHabitOrEventViewController(type: .event, currentDate: currentDate)
         eventViewController.delegate = self
         let eventNav = UINavigationController(rootViewController: eventViewController)
         present(eventNav, animated: true)

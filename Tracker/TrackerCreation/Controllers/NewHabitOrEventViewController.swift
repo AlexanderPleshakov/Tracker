@@ -22,6 +22,7 @@ final class NewHabitOrEventViewController: UIViewController {
     
     private var selectedDays: [Day] = []
     private var selectedCategory: TrackerCategory?
+    private var creationDate: Date
     
     private var tracker: Tracker = Tracker(
         id: UUID(),
@@ -29,7 +30,7 @@ final class NewHabitOrEventViewController: UIViewController {
         color: nil,
         emoji: nil,
         timetable: nil,
-        creationDate: TrackersViewController.currentDate
+        creationDate: nil
     ) {
         willSet(newValue) {
             if !newValue.isEmpty(type: type) && selectedCategory != nil {
@@ -96,8 +97,9 @@ final class NewHabitOrEventViewController: UIViewController {
     
     // MARK: Init
     
-    init(type: TrackerType) {
+    init(type: TrackerType, currentDate: Date) {
         self.type = type
+        self.creationDate = currentDate
         self.navTitle = (type == .habit) ? Resources.Titles.habitTitle : Resources.Titles.eventTitle
         super.init(nibName: nil, bundle: nil)
     }
@@ -171,7 +173,7 @@ extension NewHabitOrEventViewController: TimetableDelegate {
             color: tracker.color,
             emoji: tracker.emoji,
             timetable: days,
-            creationDate: TrackersViewController.currentDate)
+            creationDate: creationDate)
     }
 }
 
@@ -187,7 +189,7 @@ extension NewHabitOrEventViewController: CategoriesViewControllerDelegate {
             color: tracker.color,
             emoji: tracker.emoji,
             timetable: tracker.timetable,
-            creationDate: TrackersViewController.currentDate)
+            creationDate: creationDate)
     }
 }
 
@@ -201,7 +203,7 @@ extension NewHabitOrEventViewController: EmojiAndColorsCollectionViewDelegate {
             color: color,
             emoji: tracker.emoji,
             timetable: tracker.timetable,
-            creationDate: TrackersViewController.currentDate)
+            creationDate: creationDate)
     }
     
     func changeSelectedEmoji(new emoji: Character?) {
@@ -211,7 +213,7 @@ extension NewHabitOrEventViewController: EmojiAndColorsCollectionViewDelegate {
             color: tracker.color,
             emoji: emoji,
             timetable: tracker.timetable,
-            creationDate: TrackersViewController.currentDate)
+            creationDate: creationDate)
     }
 }
 
@@ -227,7 +229,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
                 color: tracker.color,
                 emoji: tracker.emoji,
                 timetable: tracker.timetable,
-                creationDate: TrackersViewController.currentDate)
+                creationDate: creationDate)
         } else {
             blockCreateButton()
         }
