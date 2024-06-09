@@ -28,7 +28,6 @@ final class CoreDataManager {
         if context.hasChanges {
             do {
                 try context.save()
-                print("Context saved")
             } catch {
                 context.rollback()
                 let nserror = error as NSError
