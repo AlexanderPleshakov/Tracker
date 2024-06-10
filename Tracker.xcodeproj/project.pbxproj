@@ -45,8 +45,6 @@
 		16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */; };
 		16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */; };
 		16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */; };
-		16B8901E2C172D5200EBE12E /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16B8901C2C172D5200EBE12E /* DataModel.xcdatamodeld */; };
-		16B890212C172E5500EBE12E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16B8901F2C172E5400EBE12E /* Model.xcdatamodeld */; };
 		16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */; };
 		16F659282BEE8B1100DA7164 /* TrackerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659272BEE8B1100DA7164 /* TrackerType.swift */; };
 		16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */; };
@@ -105,8 +103,6 @@
 		16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
 		16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
-		16B8901D2C172D5200EBE12E /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		16B890202C172E5400EBE12E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAndEventTableViewHelper.swift; sourceTree = "<group>"; };
 		16F659272BEE8B1100DA7164 /* TrackerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerType.swift; sourceTree = "<group>"; };
 		16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
@@ -138,11 +134,9 @@
 		16152B4A2C138212007E5A29 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				16B8901C2C172D5200EBE12E /* DataModel.xcdatamodeld */,
 				16152B592C139EEC007E5A29 /* Stores */,
 				16152B582C139ED4007E5A29 /* Managers */,
 				16152B5A2C139F10007E5A29 /* Protocols */,
-				16B8901F2C172E5400EBE12E /* Model.xcdatamodeld */,
 			);
 			name = CoreData;
 			path = Tracker/CoreData;
@@ -512,14 +506,12 @@
 				16F659372BEF88BC00DA7164 /* TimetableDelegate.swift in Sources */,
 				16F6593B2BEF995A00DA7164 /* DisclosureTableViewCell.swift in Sources */,
 				16152B532C13880A007E5A29 /* CategoryStoreManager.swift in Sources */,
-				16B890212C172E5500EBE12E /* Model.xcdatamodeld in Sources */,
 				166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */,
 				16818AC32BED798F0025D5D4 /* NewHabitOrEventViewController.swift in Sources */,
 				16F659332BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift in Sources */,
 				16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */,
 				16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */,
 				16F659352BEF853A00DA7164 /* Day.swift in Sources */,
-				16B8901E2C172D5200EBE12E /* DataModel.xcdatamodeld in Sources */,
 				16818AC62BED7D490025D5D4 /* InputFieldTableViewCell.swift in Sources */,
 				166EAAF02BFFC304004FD58B /* TrackersCellDelegate.swift in Sources */,
 			);
@@ -744,31 +736,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		16B8901C2C172D5200EBE12E /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				16B8901D2C172D5200EBE12E /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 16B8901D2C172D5200EBE12E /* DataModel.xcdatamodel */;
-			name = DataModel.xcdatamodeld;
-			path = /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		16B8901F2C172E5400EBE12E /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				16B890202C172E5400EBE12E /* Model.xcdatamodel */,
-			);
-			currentVersion = 16B890202C172E5400EBE12E /* Model.xcdatamodel */;
-			name = Model.xcdatamodeld;
-			path = /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 1630D3BF2BE4C00F00A59A82 /* Project object */;
 }
