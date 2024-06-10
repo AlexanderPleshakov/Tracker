@@ -13,14 +13,16 @@ final class CoreDataManager {
     private init() {}
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Data")
-        container.loadPersistentStores { description, error in
+
+        let persistentContainer = NSPersistentContainer(name: "DataModel")
+        
+        persistentContainer.loadPersistentStores { description, error in
             print(description.url?.absoluteString ?? "")
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
-        return container
+        return persistentContainer
     }()
     
     func saveContext() {
