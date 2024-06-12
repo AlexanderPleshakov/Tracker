@@ -30,7 +30,13 @@ final class CategoryStoreManager: NSObject {
         )
         
         fetchedResultsController.delegate = self
-        try? fetchedResultsController.performFetch()
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("Cannot do performFetch for fetchedResultsController")
+        }
+       
         return fetchedResultsController
     }()
     

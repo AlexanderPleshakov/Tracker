@@ -49,6 +49,7 @@ final class TrackerStore {
         let daysRequest = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
         
         guard var days = try? context.fetch(daysRequest) else {
+            print("Days is empty in DB")
             return
         }
         
