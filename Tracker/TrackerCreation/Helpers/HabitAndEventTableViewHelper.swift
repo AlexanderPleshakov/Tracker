@@ -12,26 +12,63 @@ final class HabitAndEventTableViewHelper: NSObject {
     private var warningView: UILabel?
     weak var delegateController: HabitAndEventTableViewDelegate!
     
+    private var category: String? = nil
+    private var days: String? = nil
+    
+    private let warningLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = Resources.Colors.buttonRed
+        label.text = "Ограничение 38 символов"
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
         self.delegateController = delegate
     }
     
     func addWarning() {
-        warningView = delegateController.warningLabel
-        delegateController.reloadTable()
+        warningView = warningLabel
+        delegateController.reloadTable(isAdding: true)
     }
     
     func removeWarning() {
         warningView = nil
-        delegateController.reloadTable()
+        delegateController.reloadTable(isAdding: false)
     }
     
     func textChanged(newText: String?) {
         delegateController.changeCategoryTitle(text: newText)
     }
+    
+    func changeCategory(category: String?) {
+        self.category = category
+    }
+    
+    func changeDays(days: [Day]) {
+        if days.isEmpty {
+            self.days = nil
+        }
+        self.days = getDaysString(days: days)
+    }
+    
+    func getDaysString(days: [Day]) -> String {
+        var text: String
+        if days.count == 7 {
+            text = "Каждый день"
+            return text
+        }
+        
+        let values = days.map { $0.rawValue }
+        
+        text = values.joined(separator: ", ")
+        return text
+    }
 }
 
+// MARK: UITableViewDelegate
 
 extension HabitAndEventTableViewHelper: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -75,6 +112,8 @@ extension HabitAndEventTableViewHelper: UITableViewDelegate {
     }
 }
 
+// MARK: UITableViewDataSource
+
 extension HabitAndEventTableViewHelper: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? numbersOfRows[0] : numbersOfRows[1]
@@ -103,11 +142,19 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
                 return UITableViewCell()
                 
             }
+            let cellText: String
+            let detailText: String
             
-            let cellText = indexPath.row == 0 ? "Категория" : "Расписание"
+            if indexPath.row == 0 {
+                cellText = "Категория"
+                detailText = category ?? ""
+            } else {
+                cellText = "Расписание"
+                detailText = days ?? ""
+            }
             
             cell.textLabel?.text = cellText
-            cell.detailTextLabel?.text = ""
+            cell.detailTextLabel?.text = detailText
             
             return cell
         }

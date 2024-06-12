@@ -8,5 +8,5 @@
 import Foundation
 
 protocol TimetableDelegate: NSObject {
-    var selectedDays: [Day] { get set }
+    func changeSelectedDays(new days: [Day])
 }

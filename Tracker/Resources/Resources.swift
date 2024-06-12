@@ -12,16 +12,9 @@ enum Resources {
     enum Mocks {
         static let weekdays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
         static let weekdaysStrings: [String] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
-        static let trackers = [
-            TrackerCategory(title: "Важное", trackers: [
-                Tracker(id: UUID(), name: "Поливать растения", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "❤️", timetable: [.monday, .wednesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Кошка заслонила камеру на созвоне", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "👻", timetable: [.tuesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Бабушка прислала открытку в вотсапе", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "☺️", timetable: [.wednesday], creationDate: Date())]),
-            TrackerCategory(title: "Радостные мелочи", trackers: [
-                Tracker(id: UUID(), name: "Свидания в апреле", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "😂", timetable: [.thursday, .tuesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Хорошее настроение", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "💕", timetable: [.friday, .wednesday], creationDate: Date()),
-                Tracker(id: UUID(), name: "Легкая тревожность", color: Resources.Colors.Tracker.trackersColors[Int.random(in: 0..<18)], emoji: "🙃", timetable: [.sunday], creationDate: Date())])
-        ]
+        static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
+                                        "😇", "😡", "🥶", "🤔", "🙌", "🍔",
+                                        "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
     }
     
     enum Titles {
@@ -57,26 +50,28 @@ enum Resources {
         static let cellBackground = UIColor(named: "TCellBackgroundGray")
         static let buttonRed = UIColor(named: "TButtonRed")
         static let white30 = UIColor(named: "TWhite30")
+        static let colorsCollectionBackground = UIColor(rgb: 0xE6E8EB)
         
         enum Tracker {
-            static let selection1 = UIColor(rgb: 0xFD4C49)
-            static let selection2 = UIColor(rgb: 0xFF881E)
-            static let selection3 = UIColor(rgb: 0x007BFA)
-            static let selection4 = UIColor(rgb: 0x6E44FE)
-            static let selection5 = UIColor(rgb: 0x33CF69)
-            static let selection6 = UIColor(rgb: 0xE66DD4)
-            static let selection7 = UIColor(rgb: 0xF9D4D4)
-            static let selection8 = UIColor(rgb: 0x34A7FE)
-            static let selection9 = UIColor(rgb: 0x46E69D)
-            static let selection10 = UIColor(rgb: 0x35347C)
-            static let selection11 = UIColor(rgb: 0xFF674D)
-            static let selection12 = UIColor(rgb: 0xFF99CC)
-            static let selection13 = UIColor(rgb: 0xF6C48B)
-            static let selection14 = UIColor(rgb: 0x7994F5)
-            static let selection15 = UIColor(rgb: 0x832CF1)
-            static let selection16 = UIColor(rgb: 0xAD56DA)
-            static let selection17 = UIColor(rgb: 0x8D72E6)
-            static let selection18 = UIColor(rgb: 0x2FD058)
+            
+            static let selection1 = 0xFD4C49
+            static let selection2 = 0xFF881E
+            static let selection3 = 0x007BFA
+            static let selection4 = 0x6E44FE
+            static let selection5 = 0x33CF69
+            static let selection6 = 0xE66DD4
+            static let selection7 = 0xF9D4D4
+            static let selection8 = 0x34A7FE
+            static let selection9 = 0x46E69D
+            static let selection10 = 0x35347C
+            static let selection11 = 0xFF674D
+            static let selection12 = 0xFF99CC
+            static let selection13 = 0xF6C48B
+            static let selection14 = 0x7994F5
+            static let selection15 = 0x832CF1
+            static let selection16 = 0xAD56DA
+            static let selection17 = 0x8D72E6
+            static let selection18 = 0x2FD058
             
             static let trackersColors = [
                 Resources.Colors.Tracker.selection1, Resources.Colors.Tracker.selection2,
@@ -88,7 +83,6 @@ enum Resources {
                 Resources.Colors.Tracker.selection13, Resources.Colors.Tracker.selection14,
                 Resources.Colors.Tracker.selection15, Resources.Colors.Tracker.selection16,
                 Resources.Colors.Tracker.selection17, Resources.Colors.Tracker.selection18,
-            
             ]
         }
     }

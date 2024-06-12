@@ -9,11 +9,24 @@ import UIKit
 
 final class NewTrackerViewController: UIViewController {
     // MARK: Properties
+    
     weak var delegate: NewTrackerViewControllerDelegate?
     private let newHabitButton = BasicLargeButton(title: "Привычка")
     private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
+    private let currentDate: Date
     
     // MARK: Init
+    
+    init(currentDate: Date) {
+        self.currentDate = currentDate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +34,39 @@ final class NewTrackerViewController: UIViewController {
         configure()
     }
     
-    // MARK: Methods
+    // MARK: Actions
     
+    @objc private func newHabitButtonTapped() {
+        let habitViewController = NewHabitOrEventViewController(type: .habit, currentDate: currentDate)
+        habitViewController.delegate = self
+        let habitNav = UINavigationController(rootViewController: habitViewController)
+        present(habitNav, animated: true)
+    }
+    
+    @objc private func newEventButtonTapped() {
+        let eventViewController = NewHabitOrEventViewController(type: .event, currentDate: currentDate)
+        eventViewController.delegate = self
+        let eventNav = UINavigationController(rootViewController: eventViewController)
+        present(eventNav, animated: true)
+    }
+}
+
+// MARK: NewHabitOrEventViewControllerDelegate
+
+extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
+    func closeController() {
+        self.dismiss(animated: true)
+    }
+    
+    func addTracker(tracker: Tracker, category: TrackerCategory) {
+        delegate?.addTracker(tracker: tracker, category: category)
+        self.dismiss(animated: true)
+    }
+}
+
+// MARK: UI
+
+extension NewTrackerViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.white
         newHabitButton.addTarget(self, action: #selector(newHabitButtonTapped), for: .touchUpInside)
@@ -57,32 +101,5 @@ final class NewTrackerViewController: UIViewController {
             newEventButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             newEventButton.heightAnchor.constraint(equalToConstant: 60)
         ])
-    }
-    
-    // MARK: Actions
-    
-    @objc private func newHabitButtonTapped() {
-        let habitViewController = NewHabitOrEventViewController(type: .habit)
-        habitViewController.delegate = self
-        let habitNav = UINavigationController(rootViewController: habitViewController)
-        present(habitNav, animated: true)
-    }
-    
-    @objc private func newEventButtonTapped() {
-        let eventViewController = NewHabitOrEventViewController(type: .event)
-        eventViewController.delegate = self
-        let eventNav = UINavigationController(rootViewController: eventViewController)
-        present(eventNav, animated: true)
-    }
-}
-
-extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
-    func closeController() {
-        self.dismiss(animated: true)
-    }
-    
-    func addTracker() {
-        delegate?.addTracker()
-        self.dismiss(animated: true)
     }
 }

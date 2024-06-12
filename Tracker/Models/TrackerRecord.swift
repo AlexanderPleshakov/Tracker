@@ -18,4 +18,20 @@ struct TrackerRecord: Equatable {
         }
         return false
     }
+    
+    init(id: UUID, date: Date) {
+        self.id = id
+        self.date = date
+    }
+    
+    init(_ trackerRecordCoreData: TrackerRecordCoreData) {
+        guard let id = trackerRecordCoreData.trackerID,
+              let date = trackerRecordCoreData.date
+        else {
+            fatalError("Tracker record data is nil")
+        }
+        
+        self.id = id
+        self.date = date
+    }
 }
