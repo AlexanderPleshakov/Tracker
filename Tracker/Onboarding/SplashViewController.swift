@@ -46,7 +46,8 @@ final class SplashViewController: UIViewController {
             return
         }
         
-        guard let _ = UserDefaults.standard.object(forKey: "OnboardingWasShown") as? Bool else {
+        guard let _ = UserDefaults.standard.object(forKey: Resources.Keys.onboardingWasShown) as? Bool
+        else {
             let onboarding = OnboardingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
             sceneDelegate.changeRootViewController(onboarding, animated: false)
             return

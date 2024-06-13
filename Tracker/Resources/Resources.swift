@@ -9,6 +9,10 @@ import UIKit
 
 enum Resources {
     
+    enum Keys {
+        static let onboardingWasShown = "OnboardingWasShown"
+    }
+    
     enum Mocks {
         static let weekdays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
         static let weekdaysStrings: [String] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]

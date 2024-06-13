@@ -52,7 +52,7 @@ final class PageOfOnboardingViewController: UIViewController {
     // MARK: Methods
     
     @objc private func buttonTapped() {
-        UserDefaults.standard.set(true, forKey: "OnboardingWasShown")
+        UserDefaults.standard.set(true, forKey: Resources.Keys.onboardingWasShown)
         
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
             return
