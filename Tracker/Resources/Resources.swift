@@ -38,6 +38,8 @@ enum Resources {
         static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
         static let completeTrackerButton = UIImage(named: "AddTracker") ?? UIImage()
         static let doneTracker = UIImage(named: "DoneTracker") ?? UIImage()
+        static let onboardingBlue = UIImage(named: "BlueImage") ?? UIImage()
+        static let onboardingRed = UIImage(named: "RedImage") ?? UIImage()
     }
     
     enum Colors {
