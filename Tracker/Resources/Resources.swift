@@ -29,6 +29,11 @@ enum Resources {
         
     }
     
+    enum Onboarding {
+        static let firstText = "Отслеживайте только то, что хотите"
+        static let secondText = "Даже если это не литры воды и йога"
+    }
+    
     enum Images {
         static let tracksTab = UIImage(named: "TabTracks") ?? UIImage()
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
@@ -44,6 +49,7 @@ enum Resources {
     
     enum Colors {
         static let black = UIColor(named: "TBlack")
+        static let black30 = UIColor(named: "TBlack")?.withAlphaComponent(0.3)
         static let white = UIColor(named: "TWhite")
         static let blue = UIColor(named: "TBlue")
         static let lightGray = UIColor(named: "TLightGray")

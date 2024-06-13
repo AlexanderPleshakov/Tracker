@@ -8,13 +8,26 @@
 import UIKit
 
 final class OnboardingPageViewController: UIPageViewController {
+    
+    lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = pages.count
+        pageControl.currentPage = 0
+        
+        pageControl.currentPageIndicatorTintColor = Resources.Colors.black
+        pageControl.pageIndicatorTintColor = Resources.Colors.black30
+        
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        return pageControl
+    }()
+    
     lazy var pages: [UIViewController] = {
         let firstPage = PageOfOnboardingViewController(
-            text: "Отслеживайте только то, что хотите",
+            text: Resources.Onboarding.firstText,
             image: Resources.Images.onboardingBlue
         )
         let secondPage = PageOfOnboardingViewController(
-            text: "Даже если это не литры воды и йога",
+            text: Resources.Onboarding.secondText,
             image: Resources.Images.onboardingRed
         )
         
@@ -27,10 +40,22 @@ final class OnboardingPageViewController: UIPageViewController {
         view.backgroundColor = Resources.Colors.black
         
         dataSource = self
+        delegate = self
         
         if let first = pages.first {
             setViewControllers([first], direction: .forward, animated: true)
         }
+        
+        addPageControl()
+    }
+    
+    private func addPageControl() {
+        view.addSubview(pageControl)
+        
+        NSLayoutConstraint.activate([
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -134),
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
 }
 
@@ -63,5 +88,17 @@ extension OnboardingPageViewController: UIPageViewControllerDataSource {
         }
         
         return pages[nextIndex]
+    }
+}
+
+// MARK: Extension
+
+extension OnboardingPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        if let currentViewController = pageViewController.viewControllers?.first,
+           let currentIndex = pages.firstIndex(of: currentViewController) {
+            pageControl.currentPage = currentIndex
+        }
     }
 }
