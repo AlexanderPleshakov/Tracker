@@ -20,6 +20,8 @@ final class PageOfOnboardingViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         label.textColor = Resources.Colors.black
+        label.numberOfLines = 2
+        label.textAlignment = .center
         
         return label
     }()
@@ -43,11 +45,15 @@ final class PageOfOnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configure()
     }
     
     // MARK: Methods
     
     private func configure() {
+        view.backgroundColor = Resources.Colors.black
+        
         [imageView, label, button].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview($0)
