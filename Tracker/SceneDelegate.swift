@@ -15,8 +15,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = TabBarViewController()
+        window?.rootViewController = SplashViewController()
         window?.makeKeyAndVisible()
+    }
+    
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard let window = self.window else {
+            return
+        }
+        
+        window.rootViewController = vc
+        
+        if animated {
+            UIView.transition(with: window,
+                              duration: 0.3,
+                              options: [.transitionCrossDissolve],
+                              animations: nil,
+                              completion: nil)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}
