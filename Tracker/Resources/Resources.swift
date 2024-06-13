@@ -45,6 +45,7 @@ enum Resources {
         static let doneTracker = UIImage(named: "DoneTracker") ?? UIImage()
         static let onboardingBlue = UIImage(named: "BlueImage") ?? UIImage()
         static let onboardingRed = UIImage(named: "RedImage") ?? UIImage()
+        static let logo = UIImage(named: "Logo") ?? UIImage()
     }
     
     enum Colors {

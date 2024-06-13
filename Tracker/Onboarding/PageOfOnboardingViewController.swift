@@ -51,8 +51,20 @@ final class PageOfOnboardingViewController: UIViewController {
     
     // MARK: Methods
     
+    @objc private func buttonTapped() {
+        UserDefaults.standard.set(true, forKey: "OnboardingWasShown")
+        
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
+            return
+        }
+        
+        let tabBar = TabBarViewController()
+        sceneDelegate.changeRootViewController(tabBar)
+    }
+    
     private func configure() {
         view.backgroundColor = Resources.Colors.black
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         [imageView, label, button].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +90,5 @@ final class PageOfOnboardingViewController: UIViewController {
             button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
         ])
-        
     }
-    
 }

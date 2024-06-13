@@ -91,7 +91,7 @@ extension OnboardingPageViewController: UIPageViewControllerDataSource {
     }
 }
 
-// MARK: Extension
+// MARK: UIPageViewControllerDelegate
 
 extension OnboardingPageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
