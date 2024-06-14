@@ -12,7 +12,7 @@ final class TimetableViewModel {
     let days = Resources.Mocks.weekdaysStrings
     private(set) var selectedDays: Set<Day> = [] {
         didSet {
-            selectedDaysBinding?(selectedDays)
+            selectedDaysBinding?(selectedDaysString)
         }
     }
     var selectedDaysArray: [Day] {
@@ -21,7 +21,13 @@ final class TimetableViewModel {
         }
     }
     
-    var selectedDaysBinding: Binding<Set<Day>>?
+    var selectedDaysString: String {
+        get {
+            getDaysString(days: selectedDaysArray)
+        }
+    }
+    
+    var selectedDaysBinding: Binding<String>?
     
     func add(_ day: Day) {
         selectedDays.insert(day)
@@ -40,5 +46,18 @@ final class TimetableViewModel {
         }
         
         return daysArray
+    }
+    
+    private func getDaysString(days: [Day]) -> String {
+        var text: String
+        if days.count == 7 {
+            text = "Каждый день"
+            return text
+        }
+        
+        let values = days.map { $0.rawValue }
+        
+        text = values.joined(separator: ", ")
+        return text
     }
 }

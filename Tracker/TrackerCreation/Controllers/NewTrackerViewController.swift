@@ -59,11 +59,6 @@ extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
     func closeController() {
         self.dismiss(animated: true)
     }
-    
-    func addTracker(tracker: Tracker, category: TrackerCategory) {
-        delegate?.addTracker(tracker: tracker, category: category)
-        self.dismiss(animated: true)
-    }
 }
 
 // MARK: UI

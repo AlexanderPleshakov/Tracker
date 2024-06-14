@@ -8,6 +8,8 @@
 import Foundation
 
 final class NewTrackerViewModel {
+    // MARK: Properties
+    
     private let manager: TrackerStoreManager?
     
     let creationDate: Date
@@ -48,6 +50,8 @@ final class NewTrackerViewModel {
         }
     }
     
+    // MARK: Init
+    
     init(trackerStore: TrackerStore, categoryStore: CategoryStore, type: TrackerType, date: Date) {
         self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
         self.type = type
@@ -60,6 +64,15 @@ final class NewTrackerViewModel {
                   type: type,
                   date: date
         )
+    }
+    
+    // MARK: Methods
+    
+    func addTracker() {
+        guard let category = newCategory else {
+            return
+        }
+        manager?.create(tracker: tracker, category: category)
     }
     
     func changeCategoryTitle(text: String?) {

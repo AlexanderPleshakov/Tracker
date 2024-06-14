@@ -37,14 +37,7 @@ final class NewHabitOrEventViewController: UIViewController {
         return tableView
     }()
     
-    private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
-        let params = GeometricParams(cellCount: 6, topInset: 24,
-                                     leftInset: 18, bottomInset: 40,
-                                     rightInset: 18, cellSpacing: 5)
-        let collection = EmojiAndColorsCollectionView(params: params)
-        
-        return collection
-    }()
+    private var emojiAndColorsCollectionView: EmojiAndColorsCollectionView!
     
     private let cancelButton: UIButton = {
         let button = UIButton()
@@ -88,6 +81,11 @@ final class NewHabitOrEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let params = GeometricParams(cellCount: 6, topInset: 24,
+                                     leftInset: 18, bottomInset: 40,
+                                     rightInset: 18, cellSpacing: 5)
+        emojiAndColorsCollectionView = EmojiAndColorsCollectionView(params: params, viewModel: viewModel)
+        
         setupBindings()
         tableViewHelper = HabitAndEventTableViewHelper(type: viewModel.type, delegate: self)
         configure()
@@ -99,14 +97,12 @@ final class NewHabitOrEventViewController: UIViewController {
     private func setupBindings() {
         categoriesViewModel.selectedCategoryBinding = { [weak self] category in
             self?.viewModel.changeSelectedCategory(new: category)
-            
-            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["category": category?.title ?? ""])
+            self?.tableViewHelper?.changeCategoryDetail(text: category?.title ?? "")
         }
         
         timetableViewModel.selectedDaysBinding = { [weak self] days in
             guard let self = self else { return }
-            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": self.timetableViewModel.selectedDaysArray])
-            
+            self.tableViewHelper?.changeDaysDetail(days: days)
             self.viewModel.changeSelectedDays(new: self.timetableViewModel.selectedDaysArray)
         }
         
@@ -117,7 +113,7 @@ final class NewHabitOrEventViewController: UIViewController {
         
         viewModel.trackerBinding = { [weak self] tracker in
             guard let self = self else { return }
-            tableViewHelper?.changeDays(days: tracker.timetable ?? [])
+            tableViewHelper?.changeDays(days: timetableViewModel.selectedDaysString)
             tableViewHelper?.changeCategory(category: viewModel.selectedCategory?.title)
         }
     }
@@ -138,12 +134,9 @@ final class NewHabitOrEventViewController: UIViewController {
     }
     
     @objc private func buttonCreateTapped() {
-        guard let category = viewModel.newCategory else {
-            return
-        }
-
         self.dismiss(animated: true)
-        delegate?.addTracker(tracker: viewModel.tracker, category: category)
+        viewModel.addTracker()
+        delegate?.closeController()
     }
 }
 
@@ -160,32 +153,6 @@ extension NewHabitOrEventViewController {
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }
-}
-
-// MARK: TimetableDelegate
-
-extension NewHabitOrEventViewController {
-    
-}
-
-// MARK: CategoriesViewControllerDelegate
-
-extension NewHabitOrEventViewController {
-    
-}
-
-// MARK: TimetableDelegate
-
-extension NewHabitOrEventViewController: EmojiAndColorsCollectionViewDelegate {
-    func changeSelectedColor(new color: Int?) {
-        viewModel.changeSelectedColor(new: color)
-    }
-    
-    func changeSelectedEmoji(new emoji: Character?) {
-        viewModel.changeSelectedEmoji(new: emoji)
-    }
-    
-    
 }
 
 // MARK: HabitAndEventTableViewDelegate
@@ -211,6 +178,10 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
         tableHeightAnchor.constant = isAdding ? getTableHeight() + 38.0 : getTableHeight()
         tableView.reloadSections(IndexSet(integer: 1), with: .none)
     }
+    
+    func getCell(at indexPath: IndexPath) -> UITableViewCell? {
+        tableView.cellForRow(at: indexPath)
+    }
 }
 
 // MARK: UI configure
@@ -219,15 +190,19 @@ extension NewHabitOrEventViewController {
     private func getCollectionHeight() -> CGFloat {
         let availableWidth = view.frame.width - emojiAndColorsCollectionView.params.paddingWidth
         let cellHeight =  availableWidth / CGFloat(emojiAndColorsCollectionView.params.cellCount)
+        let paddings = CGFloat(38 + 48 + 80)
         
-        let num = 38 + 48 + 80 + cellHeight * 6
+        let num = paddings + cellHeight * 6
         let collectionSize = CGFloat(num)
         
         return collectionSize
     }
     
     private func getTableHeight() -> CGFloat {
-        let height = 48 + (viewModel.type == .habit ? 75 * 3 : 75 * 2)
+        let headersHeight = 48
+        let cellHeight = 75
+        let cellCount = (viewModel.type == .habit ? 3 : 2)
+        let height = headersHeight + cellHeight * cellCount
         
         return CGFloat(height)
     }
@@ -237,7 +212,6 @@ extension NewHabitOrEventViewController {
         
         tableView.dataSource = tableViewHelper
         tableView.delegate = tableViewHelper
-        emojiAndColorsCollectionView.delegateController = self
         
         tableView.backgroundColor = Resources.Colors.white
         
