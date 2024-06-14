@@ -17,12 +17,23 @@ final class CategoryStoreManager: NSObject {
     private let context = CoreDataManager.shared.persistentContainer.viewContext
     private var insertedIndex: IndexPath? = nil
     
-    private lazy var fetchedResultsController: NSFetchedResultsController<CategoryCoreData> = {
+    private var fetchedResultsController: NSFetchedResultsController<CategoryCoreData>!
+    
+    // MARK: Init
+    
+    init(categoryStore: CategoryStore) {
+        self.categoryStore = categoryStore
+        super.init()
         
+        createFetchedController()
+    }
+    
+    // MARK: Methods
+    private func createFetchedController() {
         let fetchRequest = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        let fetchedResultsController = NSFetchedResultsController(
+        fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: context,
             sectionNameKeyPath: nil,
@@ -36,18 +47,7 @@ final class CategoryStoreManager: NSObject {
         } catch {
             print("Cannot do performFetch for fetchedResultsController")
         }
-       
-        return fetchedResultsController
-    }()
-    
-    // MARK: Init
-    
-    init(categoryStore: CategoryStore, delegate: NewCategoryStoreManagerDelegate) {
-        self.categoryStore = categoryStore
-        self.delegate = delegate
     }
-    
-    // MARK: Methods
     
     func create(category: TrackerCategory) {
         categoryStore.create(category: category)
@@ -72,16 +72,16 @@ extension CategoryStoreManager: NSFetchedResultsControllerDelegate {
         }
     }
     
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
-        delegate?.startUpdate()
-    }
-    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         guard let insertedIndex = insertedIndex else {
             print("insertedIndex is nil")
             return
         }
-        delegate?.removeStubAndShowCategories(indexPath: insertedIndex)
+        
+        if let category = object(at: insertedIndex) {
+            delegate?.insert(category, at: insertedIndex)
+        }
+        
         self.insertedIndex = nil
     }
     
