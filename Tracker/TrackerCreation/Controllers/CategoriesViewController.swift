@@ -96,6 +96,8 @@ extension CategoriesViewController: UITableViewDataSource {
         if selectedCategory != nil && cell.textLabel?.text == selectedCategory?.title {
             let imageView = UIImageView(image: Resources.Images.checkmark)
             cell.accessoryView = imageView
+        } else {
+            cell.accessoryView = nil
         }
         
         return cell
