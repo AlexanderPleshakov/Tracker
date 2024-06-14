@@ -11,6 +11,8 @@ final class NewTrackerViewModel {
     // MARK: Properties
     
     private let manager: TrackerStoreManager?
+    let timetableViewModel = TimetableViewModel()
+    let categoriesViewModel = CategoriesViewModel()
     
     let creationDate: Date
     let type: TrackerType

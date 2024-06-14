@@ -9,8 +9,7 @@ import UIKit
 
 final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
-    private let timetableViewModel = TimetableViewModel()
-    private let categoriesViewModel = CategoriesViewModel()
+
     private let viewModel: NewTrackerViewModel
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
@@ -95,15 +94,15 @@ final class NewHabitOrEventViewController: UIViewController {
     // MARK: Methods
     
     private func setupBindings() {
-        categoriesViewModel.selectedCategoryBinding = { [weak self] category in
+        viewModel.categoriesViewModel.selectedCategoryBinding = { [weak self] category in
             self?.viewModel.changeSelectedCategory(new: category)
             self?.tableViewHelper?.changeCategoryDetail(text: category?.title ?? "")
         }
         
-        timetableViewModel.selectedDaysBinding = { [weak self] days in
+        viewModel.timetableViewModel.selectedDaysBinding = { [weak self] days in
             guard let self = self else { return }
             self.tableViewHelper?.changeDaysDetail(days: days)
-            self.viewModel.changeSelectedDays(new: self.timetableViewModel.selectedDaysArray)
+            self.viewModel.changeSelectedDays(new: viewModel.timetableViewModel.selectedDaysArray)
         }
         
         viewModel.needUnlockBinding = { [weak self] isNeed in
@@ -113,7 +112,7 @@ final class NewHabitOrEventViewController: UIViewController {
         
         viewModel.trackerBinding = { [weak self] tracker in
             guard let self = self else { return }
-            tableViewHelper?.changeDays(days: timetableViewModel.selectedDaysString)
+            tableViewHelper?.changeDays(days: viewModel.timetableViewModel.selectedDaysString)
             tableViewHelper?.changeCategory(category: viewModel.selectedCategory?.title)
         }
     }
@@ -163,13 +162,13 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func presentTimetable() {
-        let timetable = TimetableViewController(viewModel: timetableViewModel)
+        let timetable = TimetableViewController(viewModel: viewModel.timetableViewModel)
         let timetableNav = UINavigationController(rootViewController: timetable)
         present(timetableNav, animated: true)
     }
     
     func presentCategories() {
-        let categoriesVC = CategoriesViewController(viewModel: categoriesViewModel)
+        let categoriesVC = CategoriesViewController(viewModel: viewModel.categoriesViewModel)
         let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
         present(categoriesVCNav, animated: true)
     }
