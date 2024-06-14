@@ -1,0 +1,48 @@
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/NewTrackerViewControllerDelegate.swift":
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.o"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.dia"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.swiftconstvalues"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.d"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.swiftdeps"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/EmojiAndColorsCollectionView.swift":
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiAndColorsCollectionView.d"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiAndColorsCollectionView.o"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiAndColorsCollectionView.swiftdeps"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiAndColorsCollectionView.swiftconstvalues"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiAndColorsCollectionView.dia"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/GeometricParams.swift":
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.dia"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.d"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.o"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.swiftconstvalues"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.swiftdeps"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Statistic/StatisticViewController.swift":
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.swiftdeps"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.o"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.d"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.swiftconstvalues"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.dia"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/HelperTrackersCollectionView.swift":
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionView.swiftconstvalues"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionView.d"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionView.swiftdeps"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionView.dia"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionView.o"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/TextFieldWithPadding.swift":
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding.swiftconstvalues"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding.o"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding.d"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding.dia"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding.swiftdeps"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Helpers/UITabBar + TopBorder.swift":
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder.d"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder.o"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder.swiftdeps"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder.dia"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder.swiftconstvalues"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Views/StubView.swift":
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StubView.d"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StubView.swiftdeps"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StubView.o"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StubView.swiftconstvalues"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StubView.dia"
