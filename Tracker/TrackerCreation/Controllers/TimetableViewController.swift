@@ -9,8 +9,7 @@ import UIKit
 
 final class TimetableViewController: UIViewController {
     // MARK: Properties
-    
-    weak var delegate: TimetableDelegate?
+
     private var viewModel: TimetableViewModel
     
     // MARK: Views
@@ -27,8 +26,7 @@ final class TimetableViewController: UIViewController {
     
     // MARK: Init
     
-    init(delegate: TimetableDelegate? = nil, viewModel: TimetableViewModel) {
-        self.delegate = delegate
+    init(viewModel: TimetableViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -44,13 +42,6 @@ final class TimetableViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-        
-        viewModel.selectedDaysBinding = { [weak self] days in
-            guard let self = self else { return }
-            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": self.viewModel.selectedDaysArray])
-            
-            self.delegate?.changeSelectedDays(new: self.viewModel.selectedDaysArray)
-        }
     }
 
     // MARK: Methods

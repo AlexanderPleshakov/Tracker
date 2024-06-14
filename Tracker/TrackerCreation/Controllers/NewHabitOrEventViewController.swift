@@ -10,6 +10,8 @@ import UIKit
 final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
     private let timetableViewModel = TimetableViewModel()
+    private let categoriesViewModel = CategoriesViewModel()
+    private let newTrackerViewModel = NewTrackerViewModel()
     
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
@@ -115,12 +117,28 @@ final class NewHabitOrEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBindings()
         tableViewHelper = HabitAndEventTableViewHelper(type: type, delegate: self)
         configure()
         hideKeyboardWhenTappedAround()
     }
     
     // MARK: Methods
+    
+    private func setupBindings() {
+        categoriesViewModel.selectedCategoryBinding = { [weak self] category in
+            self?.changeSelectedCategory(new: category)
+            
+            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["category": category?.title ?? ""])
+        }
+        
+        timetableViewModel.selectedDaysBinding = { [weak self] days in
+            guard let self = self else { return }
+            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": self.timetableViewModel.selectedDaysArray])
+            
+            self.changeSelectedDays(new: self.timetableViewModel.selectedDaysArray)
+        }
+    }
     
     private func blockCreateButton() {
         createButton.backgroundColor = Resources.Colors.searchTextGray
@@ -165,7 +183,7 @@ extension NewHabitOrEventViewController {
 
 // MARK: TimetableDelegate
 
-extension NewHabitOrEventViewController: TimetableDelegate {
+extension NewHabitOrEventViewController {
     func changeSelectedDays(new days: [Day]) {
         selectedDays = days
         tableViewHelper?.changeDays(days: days)
@@ -181,7 +199,7 @@ extension NewHabitOrEventViewController: TimetableDelegate {
 
 // MARK: CategoriesViewControllerDelegate
 
-extension NewHabitOrEventViewController: CategoriesViewControllerDelegate {
+extension NewHabitOrEventViewController {
     func changeSelectedCategory(new category: TrackerCategory?) {
         selectedCategory = category
         tableViewHelper?.changeCategory(category: selectedCategory?.title)
@@ -238,13 +256,13 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func presentTimetable() {
-        let timetable = TimetableViewController(delegate: self, viewModel: timetableViewModel)
+        let timetable = TimetableViewController(viewModel: timetableViewModel)
         let timetableNav = UINavigationController(rootViewController: timetable)
         present(timetableNav, animated: true)
     }
     
     func presentCategories() {
-        let categoriesVC = CategoriesViewController(delegate: self, selectedCategory: selectedCategory)
+        let categoriesVC = CategoriesViewController(viewModel: categoriesViewModel)
         let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
         present(categoriesVCNav, animated: true)
     }

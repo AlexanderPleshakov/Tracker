@@ -10,14 +10,12 @@ import UIKit
 final class CategoriesViewController: UIViewController {
     // MARK: Properties
     
-    weak var delegate: CategoriesViewControllerDelegate?
     private var viewModel: CategoriesViewModel
     
     // MARK: Init
     
-    init(delegate: CategoriesViewControllerDelegate? = nil, selectedCategory: TrackerCategory? = nil) {
-        self.delegate = delegate
-        self.viewModel = CategoriesViewModel()
+    init(viewModel: CategoriesViewModel) {
+        self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,12 +47,6 @@ final class CategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.selectedCategoryBinding = { [weak self] category in
-            self?.delegate?.changeSelectedCategory(new: category)
-            
-            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["category": category?.title ?? ""])
-        }
         
         viewModel.categoriesBinding = { [weak self] _ in
             guard let self = self else { return }
