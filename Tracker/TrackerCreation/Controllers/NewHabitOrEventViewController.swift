@@ -9,6 +9,8 @@ import UIKit
 
 final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
+    private let timetableViewModel = TimetableViewModel()
+    
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
     private let type: TrackerType
@@ -236,7 +238,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     }
     
     func presentTimetable() {
-        let timetable = TimetableViewController(delegate: self, selectedDays: Set(selectedDays))
+        let timetable = TimetableViewController(delegate: self, viewModel: timetableViewModel)
         let timetableNav = UINavigationController(rootViewController: timetable)
         present(timetableNav, animated: true)
     }

@@ -11,10 +11,7 @@ final class TimetableViewController: UIViewController {
     // MARK: Properties
     
     weak var delegate: TimetableDelegate?
-    
-    private let allDays: [Day] = Resources.Mocks.weekdays
-    private let days = Resources.Mocks.weekdaysStrings
-    private var selectedDays: Set<Day> = []
+    private var viewModel: TimetableViewModel
     
     // MARK: Views
     
@@ -30,9 +27,9 @@ final class TimetableViewController: UIViewController {
     
     // MARK: Init
     
-    init(delegate: TimetableDelegate? = nil, selectedDays: Set<Day>) {
+    init(delegate: TimetableDelegate? = nil, viewModel: TimetableViewModel) {
         self.delegate = delegate
-        self.selectedDays = selectedDays
+        self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,16 +44,15 @@ final class TimetableViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": getArraySelectedDays()])
-        
-        delegate?.changeSelectedDays(new: getArraySelectedDays())
+        viewModel.selectedDaysBinding = { [weak self] days in
+            guard let self = self else { return }
+            NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["days": self.viewModel.selectedDaysArray])
+            
+            self.delegate?.changeSelectedDays(new: self.viewModel.selectedDaysArray)
+        }
     }
-    
+
     // MARK: Methods
     
     private func configure() {
@@ -96,23 +92,12 @@ final class TimetableViewController: UIViewController {
         ])
     }
     
-    private func getArraySelectedDays() -> [Day] {
-        var daysArray = [Day]()
-        for day in allDays {
-            if selectedDays.contains(day) {
-                daysArray.append(day)
-            }
-        }
-        
-        return daysArray
-    }
-    
     @objc private func switchValueChanged(_ sender: UISwitch) {
-        let day = allDays[sender.tag]
+        let day = viewModel.allDays[sender.tag]
         if sender.isOn {
-            selectedDays.insert(day)
+            viewModel.add(day)
         } else {
-            selectedDays.remove(day)
+            viewModel.remove(day)
         }
     }
     
@@ -125,7 +110,7 @@ final class TimetableViewController: UIViewController {
 
 extension TimetableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return days.count
+        return viewModel.days.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,14 +122,14 @@ extension TimetableViewController: UITableViewDataSource {
         
         if #available(iOS 14.0, *) {
             var content = cell.defaultContentConfiguration()
-            content.attributedText = NSAttributedString(string: days[indexPath.row], attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)])
+            content.attributedText = NSAttributedString(string: viewModel.days[indexPath.row], attributes: [.font: UIFont.systemFont(ofSize: 17, weight: .regular)])
             cell.contentConfiguration = content
         } else {
-            cell.textLabel?.text = days[indexPath.row]
+            cell.textLabel?.text = viewModel.days[indexPath.row]
             cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         }
         
-        cell.switchView.setOn(selectedDays.contains(allDays[indexPath.row]), animated: true)
+        cell.switchView.setOn(viewModel.selectedDays.contains(viewModel.allDays[indexPath.row]), animated: true)
         cell.switchView.tag = indexPath.row
         cell.switchView.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
         
