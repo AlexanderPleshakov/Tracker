@@ -28,11 +28,7 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Views
     
-    private let addButton: UIButton = {
-        let button = BasicLargeButton(title: "Добавить категорию")
-        
-        return button
-    }()
+    private let addButton: UIButton = BasicLargeButton(title: "Добавить категорию")
     
     private let stubView: StubView = {
         let stubView = StubView(text: "Привычки и события можно\nобъединить по смыслу")
@@ -74,22 +70,12 @@ final class CategoriesViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     // MARK: Methods
     
     @objc private func buttonAddTapped() {
-        let newCategoryViewController = NewCategoryViewController()
-        newCategoryViewController.delegate = self
+        let newCategoryViewController = NewCategoryViewController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: newCategoryViewController)
         present(nav, animated: true)
-    }
-}
-
-// MARK: NewCategoryViewControllerDelegate
-
-extension CategoriesViewController: NewCategoryViewControllerDelegate {
-    func add(category: TrackerCategory) {
-        viewModel.addCategory(category: category)
     }
 }
 
