@@ -57,9 +57,9 @@ final class TrackersViewController: UIViewController {
     private func setupCollection() {
         trackerStoreManager = TrackerStoreManager(
             trackerStore: TrackerStore(),
-            categoryStore: CategoryStore(),
-            delegate: self
+            categoryStore: CategoryStore()
         )
+        trackerStoreManager?.delegate = self
         
         trackerStoreManager?.setupFetchedResultsController(
             with: getCurrentWeekday(),

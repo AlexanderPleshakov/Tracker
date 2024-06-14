@@ -37,14 +37,16 @@ final class NewTrackerViewController: UIViewController {
     // MARK: Actions
     
     @objc private func newHabitButtonTapped() {
-        let habitViewController = NewHabitOrEventViewController(type: .habit, currentDate: currentDate)
+        let viewModel = NewTrackerViewModel(type: .habit, date: currentDate)
+        let habitViewController = NewHabitOrEventViewController(viewModel: viewModel)
         habitViewController.delegate = self
         let habitNav = UINavigationController(rootViewController: habitViewController)
         present(habitNav, animated: true)
     }
     
     @objc private func newEventButtonTapped() {
-        let eventViewController = NewHabitOrEventViewController(type: .event, currentDate: currentDate)
+        let viewModel = NewTrackerViewModel(type: .event, date: currentDate)
+        let eventViewController = NewHabitOrEventViewController(viewModel: viewModel)
         eventViewController.delegate = self
         let eventNav = UINavigationController(rootViewController: eventViewController)
         present(eventNav, animated: true)
@@ -55,11 +57,6 @@ final class NewTrackerViewController: UIViewController {
 
 extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
     func closeController() {
-        self.dismiss(animated: true)
-    }
-    
-    func addTracker(tracker: Tracker, category: TrackerCategory) {
-        delegate?.addTracker(tracker: tracker, category: category)
         self.dismiss(animated: true)
     }
 }

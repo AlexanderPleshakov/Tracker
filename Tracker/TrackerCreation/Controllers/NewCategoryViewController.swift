@@ -10,7 +10,7 @@ import UIKit
 final class NewCategoryViewController: UIViewController {
     // MARK: Properties
     
-    weak var delegate: NewCategoryViewControllerDelegate?
+    private let viewModel: CategoriesViewModel
     
     // MARK: Views
     
@@ -34,6 +34,18 @@ final class NewCategoryViewController: UIViewController {
         return textField
     }()
     
+    // MARK: Init
+    
+    init(viewModel: CategoriesViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
@@ -48,7 +60,7 @@ final class NewCategoryViewController: UIViewController {
         guard let text = textField.text else { return }
         let category = TrackerCategory(title: text, trackers: [])
         
-        delegate?.add(category: category)
+        viewModel.addCategory(category: category)
         
         self.dismiss(animated: true)
     }

@@ -1,0 +1,48 @@
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/CategoriesViewController.swift":
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.dia"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.o"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.swiftconstvalues"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.d"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.swiftdeps"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Onboarding/OnboardingPageViewController.swift":
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/OnboardingPageViewController.o"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/OnboardingPageViewController.dia"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/OnboardingPageViewController.d"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/OnboardingPageViewController.swiftdeps"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/OnboardingPageViewController.swiftconstvalues"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Managers/TrackerStoreManager.swift":
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManager.dia"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManager.o"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManager.swiftconstvalues"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManager.swiftdeps"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManager.d"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersNavigationController.swift":
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersNavigationController.o"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersNavigationController.d"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersNavigationController.swiftdeps"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersNavigationController.swiftconstvalues"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersNavigationController.dia"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/AppDelegate.swift":
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AppDelegate.swiftdeps"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AppDelegate.o"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AppDelegate.d"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AppDelegate.swiftconstvalues"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AppDelegate.dia"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Tracker.swift":
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Tracker.swiftdeps"
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Tracker.o"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Tracker.d"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Tracker.dia"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Tracker.swiftconstvalues"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Stores/TrackerStore.swift":
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStore.o"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStore.dia"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStore.swiftconstvalues"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStore.swiftdeps"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStore.d"
+"/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/TrackerRecord.swift":
+  object: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerRecord.o"
+  diagnostics: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerRecord.dia"
+  const-values: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerRecord.swiftconstvalues"
+  swift-dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerRecord.swiftdeps"
+  dependencies: "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerRecord.d"

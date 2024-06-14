@@ -10,17 +10,12 @@ import UIKit
 final class CategoriesViewController: UIViewController {
     // MARK: Properties
     
-    weak var delegate: CategoriesViewControllerDelegate?
-    private var selectedCategory: TrackerCategory? = nil
-    private var categoryStoreManager: CategoryStoreManager?
-    
-    private var tableIsEmpty = true
+    private var viewModel: CategoriesViewModel
     
     // MARK: Init
     
-    init(delegate: CategoriesViewControllerDelegate? = nil, selectedCategory: TrackerCategory? = nil) {
-        self.delegate = delegate
-        self.selectedCategory = selectedCategory
+    init(viewModel: CategoriesViewModel) {
+        self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,11 +26,7 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Views
     
-    private let addButton: UIButton = {
-        let button = BasicLargeButton(title: "Добавить категорию")
-        
-        return button
-    }()
+    private let addButton: UIButton = BasicLargeButton(title: "Добавить категорию")
     
     private let stubView: StubView = {
         let stubView = StubView(text: "Привычки и события можно\nобъединить по смыслу")
@@ -57,71 +48,26 @@ final class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categoryStoreManager = CategoryStoreManager(categoryStore: CategoryStore(),
-                                                    delegate: self)
-        tableIsEmpty = (categoryStoreManager?.numberOfRowsInSection(0) ?? 0 == 0) ? true : false
+        viewModel.categoriesBinding = { [weak self] _ in
+            guard let self = self else { return }
+            if self.stubView.isHidden == false {
+                self.stubView.removeFromSuperview()
+                self.setupTableView()
+            }
+
+            self.tableView.reloadData()
+        }
         
         configure()
         tableView.reloadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        
-        delegate?.changeSelectedCategory(new: selectedCategory)
-        
-        NotificationCenter.default.post(name: DisclosureTableViewCell.buttonTappedNotification, object: self, userInfo: ["category": selectedCategory?.title ?? ""])
-    }
-    
     // MARK: Methods
     
-    private func categoryDidSelect(category: TrackerCategory) {
-        selectedCategory = category
-        self.dismiss(animated: true)
-    }
-    
-    private func categoryDidDeselect() {
-        selectedCategory = nil
-    }
-    
     @objc private func buttonAddTapped() {
-        let newCategoryViewController = NewCategoryViewController()
-        newCategoryViewController.delegate = self
+        let newCategoryViewController = NewCategoryViewController(viewModel: viewModel)
         let nav = UINavigationController(rootViewController: newCategoryViewController)
         present(nav, animated: true)
-    }
-}
-
-// MARK: NewCategoryViewControllerDelegate
-
-extension CategoriesViewController: NewCategoryViewControllerDelegate {
-    func add(category: TrackerCategory) {
-        categoryStoreManager?.create(category: category)
-    }
-}
-
-// MARK: NewCategoryStoreManagerDelegate
-
-extension CategoriesViewController: NewCategoryStoreManagerDelegate {
-    func startUpdate() {
-        tableView.beginUpdates()
-    }
-    func removeStubAndShowCategories(indexPath: IndexPath) {
-        if stubView.isHidden == false {
-            stubView.removeFromSuperview()
-            setupTableView()
-        }
-
-        if tableIsEmpty {
-            tableView.endUpdates()
-            tableIsEmpty = false
-            return
-        } else {
-            tableView.performBatchUpdates {
-                tableView.insertRows(at: [indexPath], with: .automatic)
-            }
-        }
-        tableView.endUpdates()
     }
 }
 
@@ -129,29 +75,29 @@ extension CategoriesViewController: NewCategoryStoreManagerDelegate {
 
 extension CategoriesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return categoryStoreManager?.numberOfSections ?? 1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryStoreManager?.numberOfRowsInSection(section) ?? 0
+        return viewModel.categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
 
         cell.backgroundColor = Resources.Colors.cellBackground
-        
-        guard let category = categoryStoreManager?.object(at: indexPath) else {
-            print("Category is nil in creation cell")
-            return UITableViewCell()
-        }
+        let category = viewModel.categories[indexPath.row]
         
         cell.textLabel?.text = category.title
         cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         
+        let selectedCategory = viewModel.selectedCategory
+        
         if selectedCategory != nil && cell.textLabel?.text == selectedCategory?.title {
             let imageView = UIImageView(image: Resources.Images.checkmark)
             cell.accessoryView = imageView
+        } else {
+            cell.accessoryView = nil
         }
         
         return cell
@@ -190,15 +136,13 @@ extension CategoriesViewController: UITableViewDelegate {
             let imageView = UIImageView(image: Resources.Images.checkmark)
             cell.accessoryView = imageView
             
-            guard let category = categoryStoreManager?.object(at: indexPath) else {
-                print("Category is nil in did select cell")
-                return
-            }
+            let category = viewModel.categories[indexPath.row]
             
-            categoryDidSelect(category: category)
+            viewModel.didSelect(category)
+            self.dismiss(animated: true)
         } else {
             cell.accessoryView = nil
-            categoryDidDeselect()
+            viewModel.didDeselect()
         }
     }
 }
@@ -230,7 +174,7 @@ extension CategoriesViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         setupDoneButton()
-        let categories = categoryStoreManager?.fetchAll() ?? []
+        let categories = viewModel.categories
         categories.isEmpty ? setupStubView() : setupTableView()
     }
     

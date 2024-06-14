@@ -47,24 +47,26 @@ final class HabitAndEventTableViewHelper: NSObject {
         self.category = category
     }
     
-    func changeDays(days: [Day]) {
-        if days.isEmpty {
-            self.days = nil
-        }
-        self.days = getDaysString(days: days)
+    func changeDays(days: String?) {
+        self.days = days
     }
     
-    func getDaysString(days: [Day]) -> String {
-        var text: String
-        if days.count == 7 {
-            text = "Каждый день"
-            return text
+    func changeCategoryDetail(text: String) {
+        let indexPath = IndexPath(row: 0, section: 1)
+        guard let cell = delegateController.getCell(at: indexPath) as? DisclosureTableViewCell else {
+            print("cell is nil")
+            return
         }
-        
-        let values = days.map { $0.rawValue }
-        
-        text = values.joined(separator: ", ")
-        return text
+        cell.changeCategorySubtitle(subtitle: text)
+    }
+    
+    func changeDaysDetail(days: String) {
+        let indexPath = IndexPath(row: 1, section: 1)
+        guard let cell = delegateController.getCell(at: indexPath) as? DisclosureTableViewCell else {
+            print("cell is nil")
+            return
+        }
+        cell.changeTimetableSubtitle(days: days)
     }
 }
 

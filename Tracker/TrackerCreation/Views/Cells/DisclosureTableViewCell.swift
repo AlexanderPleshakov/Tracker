@@ -20,40 +20,19 @@ final class DisclosureTableViewCell: UITableViewCell {
         textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         detailTextLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         detailTextLabel?.textColor = Resources.Colors.searchTextGray
-        
-        NotificationCenter.default.addObserver(forName: DisclosureTableViewCell.buttonTappedNotification, object: nil, queue: .main) { [weak self] notification in
-            if let days = notification.userInfo?["days"] as? [Day] {
-                self?.changeTimetableSubtitle(days: days)
-            }
-            
-            if let categoryTitle = notification.userInfo?["category"] as? String {
-                self?.changeCategorySubtitle(subtitle: categoryTitle)
-            }
-        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func changeTimetableSubtitle(days: [Day]) {
+    func changeTimetableSubtitle(days: String?) {
         if textLabel?.text == "Расписание" {
-            if days.count == 7 {
-                detailTextLabel?.text = "Каждый день"
-                return
-            }
-            var values = [String]()
-            
-            for day in days {
-                values.append(day.rawValue)
-            }
-            let text = values.joined(separator: ", ")
-            
-            detailTextLabel?.text = text
+            detailTextLabel?.text = days
         }
     }
     
-    private func changeCategorySubtitle(subtitle: String) {
+    func changeCategorySubtitle(subtitle: String) {
         if textLabel?.text == "Категория" {
             detailTextLabel?.text = subtitle
         }

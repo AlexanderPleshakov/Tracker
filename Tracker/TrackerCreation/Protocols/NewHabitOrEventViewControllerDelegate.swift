@@ -9,5 +9,4 @@ import Foundation
 
 protocol NewHabitOrEventViewControllerDelegate: NSObject {
     func closeController()
-    func addTracker(tracker: Tracker, category: TrackerCategory)
 }

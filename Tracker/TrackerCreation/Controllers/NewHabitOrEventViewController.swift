@@ -9,40 +9,15 @@ import UIKit
 
 final class NewHabitOrEventViewController: UIViewController {
     // MARK: Properties
+
+    private let viewModel: NewTrackerViewModel
+    
     weak var delegate: NewHabitOrEventViewControllerDelegate?
     
-    private let type: TrackerType
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper?
     
-    private var newCategory: TrackerCategory? = nil
-    private var categoryTitle: String?
-    
     private var tableHeightAnchor: NSLayoutConstraint!
-    
-    private var selectedDays: [Day] = []
-    private var selectedCategory: TrackerCategory?
-    private var creationDate: Date
-    
-    private var tracker: Tracker = Tracker(
-        id: UUID(),
-        name: nil,
-        color: nil,
-        emoji: nil,
-        timetable: nil,
-        creationDate: nil
-    ) {
-        willSet(newValue) {
-            if !newValue.isEmpty(type: type) && selectedCategory != nil {
-                newCategory = TrackerCategory(title: selectedCategory!.title,
-                                              trackers: selectedCategory!.trackers + [newValue])
-                
-                unlockCreateButton()
-            } else {
-                blockCreateButton()
-            }
-        }
-    }
     
     // MARK: Views
     
@@ -61,14 +36,7 @@ final class NewHabitOrEventViewController: UIViewController {
         return tableView
     }()
     
-    private let emojiAndColorsCollectionView: EmojiAndColorsCollectionView = {
-        let params = GeometricParams(cellCount: 6, topInset: 24,
-                                     leftInset: 18, bottomInset: 40,
-                                     rightInset: 18, cellSpacing: 5)
-        let collection = EmojiAndColorsCollectionView(params: params)
-        
-        return collection
-    }()
+    private var emojiAndColorsCollectionView: EmojiAndColorsCollectionView!
     
     private let cancelButton: UIButton = {
         let button = UIButton()
@@ -97,10 +65,9 @@ final class NewHabitOrEventViewController: UIViewController {
     
     // MARK: Init
     
-    init(type: TrackerType, currentDate: Date) {
-        self.type = type
-        self.creationDate = currentDate
-        self.navTitle = (type == .habit) ? Resources.Titles.habitTitle : Resources.Titles.eventTitle
+    init(viewModel: NewTrackerViewModel) {
+        self.viewModel = viewModel
+        self.navTitle = (viewModel.type == .habit) ? Resources.Titles.habitTitle : Resources.Titles.eventTitle
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -113,12 +80,42 @@ final class NewHabitOrEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableViewHelper = HabitAndEventTableViewHelper(type: type, delegate: self)
+        let params = GeometricParams(cellCount: 6, topInset: 24,
+                                     leftInset: 18, bottomInset: 40,
+                                     rightInset: 18, cellSpacing: 5)
+        emojiAndColorsCollectionView = EmojiAndColorsCollectionView(params: params, viewModel: viewModel)
+        
+        setupBindings()
+        tableViewHelper = HabitAndEventTableViewHelper(type: viewModel.type, delegate: self)
         configure()
         hideKeyboardWhenTappedAround()
     }
     
     // MARK: Methods
+    
+    private func setupBindings() {
+        viewModel.categoriesViewModel.selectedCategoryBinding = { [weak self] category in
+            self?.viewModel.changeSelectedCategory(new: category)
+            self?.tableViewHelper?.changeCategoryDetail(text: category?.title ?? "")
+        }
+        
+        viewModel.timetableViewModel.selectedDaysBinding = { [weak self] days in
+            guard let self = self else { return }
+            self.tableViewHelper?.changeDaysDetail(days: days)
+            self.viewModel.changeSelectedDays(new: viewModel.timetableViewModel.selectedDaysArray)
+        }
+        
+        viewModel.needUnlockBinding = { [weak self] isNeed in
+            guard let self = self else { return }
+            isNeed ? unlockCreateButton() : blockCreateButton()
+        }
+        
+        viewModel.trackerBinding = { [weak self] tracker in
+            guard let self = self else { return }
+            tableViewHelper?.changeDays(days: viewModel.timetableViewModel.selectedDaysString)
+            tableViewHelper?.changeCategory(category: viewModel.selectedCategory?.title)
+        }
+    }
     
     private func blockCreateButton() {
         createButton.backgroundColor = Resources.Colors.searchTextGray
@@ -136,13 +133,9 @@ final class NewHabitOrEventViewController: UIViewController {
     }
     
     @objc private func buttonCreateTapped() {
-        guard let newCategory = newCategory else {
-            print("Category is nil")
-            return
-        }
-
         self.dismiss(animated: true)
-        delegate?.addTracker(tracker: tracker, category: newCategory)
+        viewModel.addTracker()
+        delegate?.closeController()
     }
 }
 
@@ -161,88 +154,21 @@ extension NewHabitOrEventViewController {
     }
 }
 
-// MARK: TimetableDelegate
-
-extension NewHabitOrEventViewController: TimetableDelegate {
-    func changeSelectedDays(new days: [Day]) {
-        selectedDays = days
-        tableViewHelper?.changeDays(days: days)
-        tracker = Tracker(
-            id: tracker.id,
-            name: tracker.name,
-            color: tracker.color,
-            emoji: tracker.emoji,
-            timetable: days,
-            creationDate: creationDate)
-    }
-}
-
-// MARK: CategoriesViewControllerDelegate
-
-extension NewHabitOrEventViewController: CategoriesViewControllerDelegate {
-    func changeSelectedCategory(new category: TrackerCategory?) {
-        selectedCategory = category
-        tableViewHelper?.changeCategory(category: selectedCategory?.title)
-        tracker = Tracker(
-            id: tracker.id,
-            name: tracker.name,
-            color: tracker.color,
-            emoji: tracker.emoji,
-            timetable: tracker.timetable,
-            creationDate: creationDate)
-    }
-}
-
-// MARK: TimetableDelegate
-
-extension NewHabitOrEventViewController: EmojiAndColorsCollectionViewDelegate {
-    func changeSelectedColor(new color: Int?) {
-        tracker = Tracker(
-            id: tracker.id,
-            name: tracker.name,
-            color: color,
-            emoji: tracker.emoji,
-            timetable: tracker.timetable,
-            creationDate: creationDate)
-    }
-    
-    func changeSelectedEmoji(new emoji: Character?) {
-        tracker = Tracker(
-            id: tracker.id,
-            name: tracker.name,
-            color: tracker.color,
-            emoji: emoji,
-            timetable: tracker.timetable,
-            creationDate: creationDate)
-    }
-}
-
 // MARK: HabitAndEventTableViewDelegate
 
 extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     func changeCategoryTitle(text: String?) {
-        if text?.count ?? 0 <= 38 {
-            categoryTitle = text
-            tracker = Tracker(
-                id: tracker.id,
-                name: categoryTitle,
-                color: tracker.color,
-                emoji: tracker.emoji,
-                timetable: tracker.timetable,
-                creationDate: creationDate)
-        } else {
-            blockCreateButton()
-        }
+        viewModel.changeCategoryTitle(text: text)
     }
     
     func presentTimetable() {
-        let timetable = TimetableViewController(delegate: self, selectedDays: Set(selectedDays))
+        let timetable = TimetableViewController(viewModel: viewModel.timetableViewModel)
         let timetableNav = UINavigationController(rootViewController: timetable)
         present(timetableNav, animated: true)
     }
     
     func presentCategories() {
-        let categoriesVC = CategoriesViewController(delegate: self, selectedCategory: selectedCategory)
+        let categoriesVC = CategoriesViewController(viewModel: viewModel.categoriesViewModel)
         let categoriesVCNav = UINavigationController(rootViewController: categoriesVC)
         present(categoriesVCNav, animated: true)
     }
@@ -250,6 +176,10 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
     func reloadTable(isAdding: Bool) {
         tableHeightAnchor.constant = isAdding ? getTableHeight() + 38.0 : getTableHeight()
         tableView.reloadSections(IndexSet(integer: 1), with: .none)
+    }
+    
+    func getCell(at indexPath: IndexPath) -> UITableViewCell? {
+        tableView.cellForRow(at: indexPath)
     }
 }
 
@@ -259,15 +189,19 @@ extension NewHabitOrEventViewController {
     private func getCollectionHeight() -> CGFloat {
         let availableWidth = view.frame.width - emojiAndColorsCollectionView.params.paddingWidth
         let cellHeight =  availableWidth / CGFloat(emojiAndColorsCollectionView.params.cellCount)
+        let paddings = CGFloat(38 + 48 + 80)
         
-        let num = 38 + 48 + 80 + cellHeight * 6
+        let num = paddings + cellHeight * 6
         let collectionSize = CGFloat(num)
         
         return collectionSize
     }
     
     private func getTableHeight() -> CGFloat {
-        let height = 48 + (type == .habit ? 75 * 3 : 75 * 2)
+        let headersHeight = 48
+        let cellHeight = 75
+        let cellCount = (viewModel.type == .habit ? 3 : 2)
+        let height = headersHeight + cellHeight * cellCount
         
         return CGFloat(height)
     }
@@ -277,7 +211,6 @@ extension NewHabitOrEventViewController {
         
         tableView.dataSource = tableViewHelper
         tableView.delegate = tableViewHelper
-        emojiAndColorsCollectionView.delegateController = self
         
         tableView.backgroundColor = Resources.Colors.white
         
