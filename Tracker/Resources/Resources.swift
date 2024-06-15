@@ -9,6 +9,10 @@ import UIKit
 
 enum Resources {
     
+    enum Keys {
+        static let onboardingWasShown = "OnboardingWasShown"
+    }
+    
     enum Mocks {
         static let weekdays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
         static let weekdaysStrings: [String] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
@@ -29,6 +33,11 @@ enum Resources {
         
     }
     
+    enum Onboarding {
+        static let firstText = "Отслеживайте только то, что хотите"
+        static let secondText = "Даже если это не литры воды и йога"
+    }
+    
     enum Images {
         static let tracksTab = UIImage(named: "TabTracks") ?? UIImage()
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
@@ -38,10 +47,14 @@ enum Resources {
         static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
         static let completeTrackerButton = UIImage(named: "AddTracker") ?? UIImage()
         static let doneTracker = UIImage(named: "DoneTracker") ?? UIImage()
+        static let onboardingBlue = UIImage(named: "BlueImage") ?? UIImage()
+        static let onboardingRed = UIImage(named: "RedImage") ?? UIImage()
+        static let logo = UIImage(named: "Logo") ?? UIImage()
     }
     
     enum Colors {
         static let black = UIColor(named: "TBlack")
+        static let black30 = UIColor(named: "TBlack")?.withAlphaComponent(0.3)
         static let white = UIColor(named: "TWhite")
         static let blue = UIColor(named: "TBlue")
         static let lightGray = UIColor(named: "TLightGray")

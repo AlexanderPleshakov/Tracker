@@ -9,8 +9,8 @@ import UIKit
 
 final class EmojiAndColorsCollectionView: UICollectionView {
     // MARK: Properties
-    weak var delegateController: EmojiAndColorsCollectionViewDelegate?
     let params: GeometricParams
+    private let viewModel: NewTrackerViewModel
     
     private let colors = Resources.Colors.Tracker.trackersColors
     private let emojies = Resources.Mocks.emojies
@@ -22,8 +22,9 @@ final class EmojiAndColorsCollectionView: UICollectionView {
     
     // MARK: Init
     
-    init(params: GeometricParams) {
+    init(params: GeometricParams, viewModel: NewTrackerViewModel) {
         self.params = params
+        self.viewModel = viewModel
         
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
@@ -143,7 +144,7 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             emojiIsSelected = true
             cell.backgroundColor = Resources.Colors.colorsCollectionBackground
             
-            delegateController?.changeSelectedEmoji(new: emojies[indexPath.row])
+            viewModel.changeSelectedEmoji(new: emojies[indexPath.row])
         } else {
             if colorIsSelected {
                 lastSelectedColorCell?.layer.borderWidth = 0
@@ -154,7 +155,7 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             cell.layer.borderColor = UIColor(rgb: colors[indexPath.row], a: 0.3).cgColor
             cell.layer.borderWidth = 3
             
-            delegateController?.changeSelectedColor(new: colors[indexPath.row])
+            viewModel.changeSelectedColor(new: colors[indexPath.row])
         }
     }
 }

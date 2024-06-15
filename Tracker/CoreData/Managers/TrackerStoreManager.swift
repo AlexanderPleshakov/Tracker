@@ -24,11 +24,10 @@ final class TrackerStoreManager: NSObject {
     
     // MARK: Init
     
-    init(trackerStore: TrackerStore, categoryStore: CategoryStore, delegate: TrackerStoreManagerDelegate) {
+    init(trackerStore: TrackerStore, categoryStore: CategoryStore) {
         self.trackerStore = trackerStore
         self.categoryStore = categoryStore
         self.daysStore = DaysStore()
-        self.delegate = delegate
     }
     
     // MARK: Methods
