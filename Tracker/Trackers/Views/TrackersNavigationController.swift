@@ -46,7 +46,7 @@ final class TrackersNavigationController: UINavigationController {
         delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.black ?? .black]
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
         
-        delegateController.navigationItem.title = "Трекеры"
+        delegateController.navigationItem.title = NSLocalizedString("trackers", comment: "Trackers title")
     }
     
     private func setAddButton() {
@@ -76,8 +76,8 @@ final class TrackersNavigationController: UINavigationController {
     
     private func setSearchBar() {
         let search = UISearchController(searchResultsController: nil)
-        search.searchBar.placeholder = "Поиск"
-        search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        search.searchBar.placeholder = NSLocalizedString("search", comment: "Search bar placeholder")
+        search.searchBar.setValue(NSLocalizedString("cancel", comment: "Cancel search button"), forKey: "cancelButtonText")
         search.searchResultsUpdater = delegateController
         search.hidesNavigationBarDuringPresentation = false
         

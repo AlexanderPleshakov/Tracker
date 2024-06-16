@@ -39,7 +39,7 @@ final class TrackersViewController: UIViewController {
         return collection
     }()
     
-    private let stubView = StubView(text: "Что будем отслеживать?")
+    private let stubView = StubView(text: NSLocalizedString("stub.trackers", comment: "Stub for empty trackers"))
     
     // MARK: Life Cycle
 
