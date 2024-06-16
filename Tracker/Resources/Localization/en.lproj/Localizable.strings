@@ -1,0 +1,81 @@
+/* 
+  Localizable.strings
+  Tracker
+
+  Created by Александр Плешаков on 17.06.2024.
+  
+*/
+
+// Onboarding
+onboarding.button = "Вот это технологии!"
+onboarding.first = "Отслеживайте только то, что хотите"
+onboarding.second = "Даже если это не литры воды и йога"
+
+// Main screens
+trackers = "Трекеры"
+statistic = "Статистика"
+search = "Поиск"
+
+// Stubs
+stub.search = "Ничего не найдено"
+stub.trackers = "Что будем отслеживать?"
+stub.categories = "Привычки и события можно объединить по смыслу"
+stub.statistic = "Анализировать пока нечего"
+
+// Buttons
+cancel = "Отменить"
+create = "Создать"
+done = "Готово"
+addCategory = "Добавить категорию"
+
+// Type selection screen
+newTracker.title = "Создание трекера"
+habit = "Привычка"
+event = "Нерегулярное событие"
+
+// New habit or event
+creation.title.habit = "Новая привычка"
+creation.title.event = "Новое нерегулярное событие"
+
+characterLimit = "Ограничение 38 символов"
+
+input.name.tracker = "Введите название трекера"
+category = "Категория"
+schedule = "Расписание"
+emoji = "Emoji"
+color = "Цвет"
+
+// Categories
+categories.title = "Категория"
+
+// New category
+newCategory.title = "Новая категория"
+input.name.category = "Введите название категории"
+
+// Schedule
+schedule.title = "Расписание"
+monday = "Понедельник"
+tuesday = "Вторник"
+wednesday = "Среда"
+thursday = "Четверг"
+friday = "Пятница"
+saturday = "Суббота"
+sunday = "Воскресенье"
+
+// Short Schedule
+mon = "Пн"
+tue = "Вт"
+wed = "Ср"
+thu = "Чт"
+fri = "Пт"
+sat = "Сб"
+sun = "Вс"
+
+
+
+
+
+
+
+
+
