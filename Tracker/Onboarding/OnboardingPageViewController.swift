@@ -21,13 +21,14 @@ final class OnboardingPageViewController: UIPageViewController {
         return pageControl
     }()
     
+    
     lazy var pages: [UIViewController] = {
         let firstPage = PageOfOnboardingViewController(
-            text: Resources.Onboarding.firstText,
+            text: NSLocalizedString("onboarding.first", comment: "Text for first page of the onboarding"),
             image: Resources.Images.onboardingBlue
         )
         let secondPage = PageOfOnboardingViewController(
-            text: Resources.Onboarding.secondText,
+            text: NSLocalizedString("onboarding.second", comment: "Text for second page of the onboarding"),
             image: Resources.Images.onboardingRed
         )
         

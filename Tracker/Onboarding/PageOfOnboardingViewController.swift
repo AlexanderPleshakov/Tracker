@@ -26,7 +26,7 @@ final class PageOfOnboardingViewController: UIViewController {
         return label
     }()
     
-    private let button = BasicLargeButton(title: "Вот это технологии!")
+    private let button = BasicLargeButton(title: NSLocalizedString("onboarding.button", comment: "Close onboarding button"))
     
     // MARK: Init
     
