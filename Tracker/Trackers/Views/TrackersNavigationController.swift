@@ -60,12 +60,12 @@ final class TrackersNavigationController: UINavigationController {
     private func setDatePicker() {
         let datePicker = UIDatePicker()
         
-        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.locale = Locale.current
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        datePicker.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        datePicker.widthAnchor.constraint(equalToConstant: 110).isActive = true
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
