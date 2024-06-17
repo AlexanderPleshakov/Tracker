@@ -109,33 +109,17 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private func setCompletedState(with count: Int) {
         addButton.layer.opacity = 0.3
         addButton.setImage(Resources.Images.doneTracker, for: .normal)
-        setDays(text: getDayText(number: count))
+        setDays(text: String.localizedStringWithFormat(NSLocalizedString("daysCount", comment: ""), count))
         isCompletedToday = true
     }
     
     private func setUncompletedState(with count: Int) {
         addButton.layer.opacity = 1
         addButton.setImage(Resources.Images.completeTrackerButton, for: .normal)
-        setDays(text: getDayText(number: count))
+        setDays(
+            text: String.localizedStringWithFormat(NSLocalizedString("daysCount", comment: ""), count)
+        )
         isCompletedToday = false
-    }
-    
-    private func getDayText(number: Int) -> String {
-        let last = number % 10
-        var text: String
-        switch last {
-        case 0, 5, 6, 7, 8, 9:
-            text = "дней"
-        case 1:
-            text = "день"
-        case 2, 3, 4:
-            text = "дня"
-        default:
-            text = "день"
-        }
-        text = "\(number) " + text
-        
-        return text
     }
     
     @objc private func recordTracker() {
