@@ -10,11 +10,11 @@ import UIKit
 final class CategoriesViewController: UIViewController {
     // MARK: Properties
     
-    private var viewModel: CategoriesViewModel
+    private var viewModel: CategoriesViewModelProtocol
     
     // MARK: Init
     
-    init(viewModel: CategoriesViewModel) {
+    init(viewModel: CategoriesViewModelProtocol) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)

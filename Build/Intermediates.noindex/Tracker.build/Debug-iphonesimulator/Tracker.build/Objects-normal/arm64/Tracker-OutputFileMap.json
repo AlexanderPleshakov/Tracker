@@ -465,6 +465,16 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModel.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModel~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/CategoriesViewModelProtocol.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/NewTrackerViewModel.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewModel.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewModel.d",

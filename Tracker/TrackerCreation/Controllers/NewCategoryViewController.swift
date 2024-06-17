@@ -10,7 +10,7 @@ import UIKit
 final class NewCategoryViewController: UIViewController {
     // MARK: Properties
     
-    private let viewModel: CategoriesViewModel
+    private let viewModel: CategoriesViewModelProtocol
     
     // MARK: Views
     
@@ -36,7 +36,7 @@ final class NewCategoryViewController: UIViewController {
     
     // MARK: Init
     
-    init(viewModel: CategoriesViewModel) {
+    init(viewModel: CategoriesViewModelProtocol) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
