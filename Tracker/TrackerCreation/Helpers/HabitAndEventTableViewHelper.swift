@@ -18,7 +18,7 @@ final class HabitAndEventTableViewHelper: NSObject {
     private let warningLabel: UILabel = {
         let label = UILabel()
         label.textColor = Resources.Colors.buttonRed
-        label.text = "Ограничение 38 символов"
+        label.text = NSLocalizedString("characterLimit", comment: "Character input limit")
         label.textAlignment = .center
         
         return label
@@ -148,10 +148,10 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
             let detailText: String
             
             if indexPath.row == 0 {
-                cellText = "Категория"
+                cellText = NSLocalizedString("category", comment: "Category cell")
                 detailText = category ?? ""
             } else {
-                cellText = "Расписание"
+                cellText = NSLocalizedString("schedule", comment: "Category cell")
                 detailText = days ?? ""
             }
             

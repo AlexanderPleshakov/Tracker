@@ -22,7 +22,7 @@ final class TimetableViewController: UIViewController {
         return tableView
     }()
     
-    private let doneButton = BasicLargeButton(title: "Готово")
+    private let doneButton = BasicLargeButton(title: NSLocalizedString("done", comment: ""))
     
     // MARK: Init
     
@@ -56,7 +56,7 @@ final class TimetableViewController: UIViewController {
         
         doneButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
         
-        title = Resources.Titles.timetableTitle
+        title = NSLocalizedString("schedule.title", comment: "")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

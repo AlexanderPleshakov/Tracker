@@ -15,7 +15,15 @@ enum Resources {
     
     enum Mocks {
         static let weekdays: [Day] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
-        static let weekdaysStrings: [String] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+        static let weekdaysStrings: [String] = [
+            NSLocalizedString("monday", comment: ""),
+            NSLocalizedString("tuesday", comment: ""),
+            NSLocalizedString("wednesday", comment: ""),
+            NSLocalizedString("thursday", comment: ""),
+            NSLocalizedString("friday", comment: ""),
+            NSLocalizedString("saturday", comment: ""),
+            NSLocalizedString("sunday", comment: ""),
+        ]
         static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
                                         "😇", "😡", "🥶", "🤔", "🙌", "🍔",
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]

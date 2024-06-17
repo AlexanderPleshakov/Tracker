@@ -101,7 +101,10 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             return UICollectionReusableView()
         }
         
-        let headerText = (indexPath.section == 0) ? "Emoji" : "Цвет"
+        let headerText = (indexPath.section == 0) ?
+        NSLocalizedString("emoji", comment: "") :
+        NSLocalizedString("color", comment: "")
+        
         view.configure(text: headerText, leadingAnchor: 28)
         
         return view

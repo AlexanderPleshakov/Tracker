@@ -26,10 +26,10 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Views
     
-    private let addButton: UIButton = BasicLargeButton(title: "Добавить категорию")
+    private let addButton: UIButton = BasicLargeButton(title: NSLocalizedString("addCategory", comment: "Categories title"))
     
     private let stubView: StubView = {
-        let stubView = StubView(text: "Привычки и события можно\nобъединить по смыслу")
+        let stubView = StubView(text: NSLocalizedString("stub.categories", comment: "Stub"))
         stubView.textLabel.textAlignment = .center
         stubView.textLabel.numberOfLines = 2
         
@@ -160,7 +160,7 @@ extension CategoriesViewController {
         
         addButton.addTarget(self, action: #selector(buttonAddTapped), for: .touchUpInside)
         
-        title = Resources.Titles.categoriesTitle
+        title = NSLocalizedString("categories.title", comment: "Categories title")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

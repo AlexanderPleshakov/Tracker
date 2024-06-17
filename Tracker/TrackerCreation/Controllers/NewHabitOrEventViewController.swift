@@ -46,7 +46,7 @@ final class NewHabitOrEventViewController: UIViewController {
         button.layer.borderWidth = 1
         button.layer.borderColor = Resources.Colors.buttonRed?.cgColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.setTitle("Отменить", for: .normal)
+        button.setTitle(NSLocalizedString("cancel", comment: "Cancel button"), for: .normal)
         
         return button
     }()
@@ -57,7 +57,7 @@ final class NewHabitOrEventViewController: UIViewController {
         button.tintColor = Resources.Colors.white
         button.layer.cornerRadius = 16
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.setTitle("Создать", for: .normal)
+        button.setTitle(NSLocalizedString("create", comment: "Create button"), for: .normal)
         button.isEnabled = false
         
         return button
@@ -67,7 +67,10 @@ final class NewHabitOrEventViewController: UIViewController {
     
     init(viewModel: NewTrackerViewModel) {
         self.viewModel = viewModel
-        self.navTitle = (viewModel.type == .habit) ? Resources.Titles.habitTitle : Resources.Titles.eventTitle
+        self.navTitle = (viewModel.type == .habit) ?
+        NSLocalizedString("creation.title.habit", comment: "") :
+        NSLocalizedString("creation.title.event", comment: "")
+        
         super.init(nibName: nil, bundle: nil)
     }
     

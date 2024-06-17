@@ -11,8 +11,8 @@ final class NewTrackerViewController: UIViewController {
     // MARK: Properties
     
     weak var delegate: NewTrackerViewControllerDelegate?
-    private let newHabitButton = BasicLargeButton(title: "Привычка")
-    private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
+    private let newHabitButton = BasicLargeButton(title: NSLocalizedString("habit", comment: "Create habit button"))
+    private let newEventButton = BasicLargeButton(title: NSLocalizedString("event", comment: "Create event button"))
     private let currentDate: Date
     
     // MARK: Init
@@ -69,7 +69,7 @@ extension NewTrackerViewController {
         newHabitButton.addTarget(self, action: #selector(newHabitButtonTapped), for: .touchUpInside)
         newEventButton.addTarget(self, action: #selector(newEventButtonTapped), for: .touchUpInside)
         
-        title = Resources.Titles.newTrackerTitle
+        title = NSLocalizedString("newTracker.title ", comment: "New tracker title")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

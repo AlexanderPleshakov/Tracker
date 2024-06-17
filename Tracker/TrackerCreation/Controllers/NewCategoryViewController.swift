@@ -15,7 +15,7 @@ final class NewCategoryViewController: UIViewController {
     // MARK: Views
     
     private let doneButton: UIButton = {
-        let button = BasicLargeButton(title: "Готово")
+        let button = BasicLargeButton(title: NSLocalizedString("done", comment: "done button"))
         button.backgroundColor = Resources.Colors.searchTextGray
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -24,7 +24,7 @@ final class NewCategoryViewController: UIViewController {
     
     private let textField: UITextField = {
         let textField = TextFieldWithPadding()
-        textField.placeholder = "Введите название категории"
+        textField.placeholder = NSLocalizedString("input.name.category", comment: "")
         textField.backgroundColor = Resources.Colors.cellBackground
         textField.tintColor = Resources.Colors.searchTextGray
         textField.textColor = Resources.Colors.black
@@ -101,7 +101,7 @@ extension NewCategoryViewController {
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         textField.delegate = self
         
-        title = Resources.Titles.newCategoryTitle
+        title = NSLocalizedString("newCategory.title", comment: "")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

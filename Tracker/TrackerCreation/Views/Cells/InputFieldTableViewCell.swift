@@ -16,7 +16,7 @@ final class InputFieldTableViewCell: UITableViewCell {
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Введите название трекера"
+        textField.placeholder = NSLocalizedString("input.name.tracker", comment: "Tracker name placeholder")
         textField.tintColor = Resources.Colors.blue
         textField.textColor = Resources.Colors.black
         textField.translatesAutoresizingMaskIntoConstraints = false
