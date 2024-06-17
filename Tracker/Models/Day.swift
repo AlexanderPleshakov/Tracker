@@ -17,7 +17,7 @@ enum Day: Int {
     case sunday = 7
     
     static func getDayFromNumber(number: Int) -> Day {
-        let days = Resources.Mocks.weekdays
+        let days = [Day.sunday, Day.monday, Day.tuesday, Day.wednesday, Day.thursday, Day.friday, Day.saturday]
         
         return days[number - 1]
     }
