@@ -69,7 +69,7 @@ extension NewTrackerViewController {
         newHabitButton.addTarget(self, action: #selector(newHabitButtonTapped), for: .touchUpInside)
         newEventButton.addTarget(self, action: #selector(newEventButtonTapped), for: .touchUpInside)
         
-        title = NSLocalizedString("newTracker.title ", comment: "New tracker title")
+        title = NSLocalizedString("newTracker.title", comment: "New tracker title")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
             .foregroundColor: Resources.Colors.black ?? .black

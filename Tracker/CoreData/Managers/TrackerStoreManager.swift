@@ -68,7 +68,7 @@ final class TrackerStoreManager: NSObject {
     }
     
     private func createFetchRequest(with day: Day, and text: String?, date: Date) -> NSFetchRequest<TrackerCoreData> {
-        guard let day = daysStore.fetchDay(with: day.rawValue) else {
+        guard let day = daysStore.fetchDay(with: Day.shortName(by: day.rawValue)) else {
             fatalError("Неправильно передан день в setupFetchedResultsController")
         }
         

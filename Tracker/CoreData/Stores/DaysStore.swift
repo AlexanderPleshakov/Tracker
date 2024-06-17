@@ -37,7 +37,7 @@ final class DaysStore {
         let days = Resources.Mocks.weekdays
         days.forEach { day in
             let dayCoreData = DayCoreData(context: context)
-            dayCoreData.day = day.rawValue
+            dayCoreData.day = Day.shortName(by: day.rawValue)
             
             save()
         }

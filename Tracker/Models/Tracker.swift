@@ -51,7 +51,7 @@ struct Tracker: CustomStringConvertible {
         let days = coreDataTracker.schedule?.allObjects as? [DayCoreData]
 
         let schedule = days?.map {
-            Day(rawValue: $0.day ?? "") ?? .monday
+            Day(shortName: $0.day ?? "") ?? .monday
         }
         
         self.id = id

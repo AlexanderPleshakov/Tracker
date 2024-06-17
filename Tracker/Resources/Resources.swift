@@ -24,6 +24,15 @@ enum Resources {
             NSLocalizedString("saturday", comment: ""),
             NSLocalizedString("sunday", comment: ""),
         ]
+        static let shortDays: [String] = [
+            NSLocalizedString("mon", comment: ""),
+            NSLocalizedString("tue", comment: ""),
+            NSLocalizedString("wed", comment: ""),
+            NSLocalizedString("thu", comment: ""),
+            NSLocalizedString("fri", comment: ""),
+            NSLocalizedString("sat", comment: ""),
+            NSLocalizedString("sun", comment: ""),
+        ]
         static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
                                         "😇", "😡", "🥶", "🤔", "🙌", "🍔",
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]

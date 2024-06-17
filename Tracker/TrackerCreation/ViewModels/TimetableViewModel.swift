@@ -55,7 +55,7 @@ final class TimetableViewModel {
             return text
         }
         
-        let values = days.map { $0.rawValue }
+        let values = days.map { Day.shortName(by: $0.rawValue) }
         
         text = values.joined(separator: ", ")
         return text

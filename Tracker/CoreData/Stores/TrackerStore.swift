@@ -43,7 +43,7 @@ final class TrackerStore {
         }
         
         let schedule = tracker.timetable?.map {
-            $0.rawValue
+            Day.shortName(by: $0.rawValue)
         }
         
         let daysRequest = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
