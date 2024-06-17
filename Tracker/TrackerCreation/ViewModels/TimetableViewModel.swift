@@ -51,7 +51,7 @@ final class TimetableViewModel {
     private func getDaysString(days: [Day]) -> String {
         var text: String
         if days.count == 7 {
-            text = "Каждый день"
+            text = NSLocalizedString("everyDay", comment: "")
             return text
         }
         

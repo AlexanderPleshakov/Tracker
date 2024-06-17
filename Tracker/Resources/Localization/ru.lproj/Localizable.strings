@@ -62,6 +62,7 @@ thursday = "Четверг";
 friday = "Пятница";
 saturday = "Суббота";
 sunday = "Воскресенье";
+everyDay = "Every day";
 
 // Short Schedule
 mon = "Пн";

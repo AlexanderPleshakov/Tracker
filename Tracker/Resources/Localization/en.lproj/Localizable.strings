@@ -7,70 +7,71 @@
 */
 
 // Onboarding
-onboarding.button = "Вот это технологии!";
-onboarding.first = "Отслеживайте только то, что хотите";
-onboarding.second = "Даже если это не литры воды и йога";
+onboarding.button = "These are the technologies!";
+onboarding.first = "Track only what you want";
+onboarding.second = "Even if it's not liters of water and yoga";
 
 // Main screens
-trackers = "Трекеры";
-statistic = "Статистика";
-search = "Поиск";
+trackers = "Trackers";
+statistic = "Statistic";
+search = "Search";
 
 // Stubs
-stub.search = "Ничего не найдено";
-stub.trackers = "Что будем отслеживать?";
-stub.categories = "Привычки и события можно объединить по смыслу";
-stub.statistic = "Анализировать пока нечего";
+stub.search = "Nothing was found";
+stub.trackers = "What are we going to track?";
+stub.categories = "Habits and events can be combined in meaning";
+stub.statistic = "There is nothing to analyze yet";
 
 // Buttons
-cancel = "Отменить";
-create = "Создать";
-done = "Готово";
-addCategory = "Добавить категорию";
+cancel = "Cancel";
+create = "Create";
+done = "Done";
+addCategory = "Add category";
 
 // Type selection screen
-newTracker.title = "Создание трекера";
-habit = "Привычка";
-event = "Нерегулярное событие";
+newTracker.title = "Create tracker";
+habit = "Habit";
+event = "Irregular event";
 
 // New habit or event
-creation.title.habit = "Новая привычка";
-creation.title.event = "Новое нерегулярное событие";
+creation.title.habit = "New habit";
+creation.title.event = "New irregular event";
 
-characterLimit = "Ограничение 38 символов";
+characterLimit = "The limit is 38 characters";
 
-input.name.tracker = "Введите название трекера";
-category = "Категория";
-schedule = "Расписание";
+input.name.tracker = "Enter the name of the tracker";
+category = "Category";
+schedule = "Schedule";
 emoji = "Emoji";
-color = "Цвет";
+color = "Color";
 
 // Categories
 
-categories.title = "Категория";
+categories.title = "Category";
 
 // New category
-newCategory.title = "Новая категория";
-input.name.category = "Введите название категории";
+newCategory.title = "New category";
+input.name.category = "Enter the name of the category";
 
 // Schedule
-schedule.title = "Расписание";
-monday = "Понедельник";
-tuesday = "Вторник";
-wednesday = "Среда";
-thursday = "Четверг";
-friday = "Пятница";
-saturday = "Суббота";
-sunday = "Воскресенье";
+schedule.title = "Schedule";
+monday = "Monday";
+tuesday = "Tuesday";
+wednesday = "Wednesday";
+thursday = "Thursday";
+friday = "Friday";
+saturday = "Saturday";
+sunday = "Sunday";
+everyDay = "Every day";
 
 // Short Schedule
-mon = "Пн";
-tue = "Вт";
-wed = "Ср";
-thu = "Чт";
-fri = "Пт";
-sat = "Сб";
-sun = "Вс";
+mon = "Mon";
+tue = "Tue";
+wed = "Wed";
+thu = "Thu";
+fri = "Fri";
+sat = "Sat";
+sun = "Sun";
 
 
 
