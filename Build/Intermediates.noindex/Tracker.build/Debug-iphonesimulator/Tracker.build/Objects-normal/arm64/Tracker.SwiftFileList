@@ -50,6 +50,7 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/NewCategoryViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Day.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/Cells/InputFieldTableViewCell.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/CategoriesViewModelProtocol.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Protocols/TrackersCellDelegate.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/CategoriesViewModel.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Onboarding/SplashViewController.swift

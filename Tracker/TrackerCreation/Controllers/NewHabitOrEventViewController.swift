@@ -40,11 +40,11 @@ final class NewHabitOrEventViewController: UIViewController {
     
     private let cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(Resources.Colors.buttonRed, for: .normal)
-        button.tintColor = Resources.Colors.buttonRed
+        button.setTitleColor(Resources.Colors.red, for: .normal)
+        button.tintColor = Resources.Colors.red
         button.layer.cornerRadius = 16
         button.layer.borderWidth = 1
-        button.layer.borderColor = Resources.Colors.buttonRed?.cgColor
+        button.layer.borderColor = Resources.Colors.red.cgColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.setTitle(NSLocalizedString("cancel", comment: "Cancel button"), for: .normal)
         
@@ -53,8 +53,8 @@ final class NewHabitOrEventViewController: UIViewController {
     
     private let createButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = Resources.Colors.searchTextGray
-        button.tintColor = Resources.Colors.white
+        button.backgroundColor = Resources.Colors.secondaryGray
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 16
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         button.setTitle(NSLocalizedString("create", comment: "Create button"), for: .normal)
@@ -121,13 +121,15 @@ final class NewHabitOrEventViewController: UIViewController {
     }
     
     private func blockCreateButton() {
-        createButton.backgroundColor = Resources.Colors.searchTextGray
+        createButton.backgroundColor = Resources.Colors.secondaryGray
         createButton.isEnabled = false
+        createButton.setTitleColor(.white, for: .normal)
     }
     
     private func unlockCreateButton() {
-        createButton.backgroundColor = Resources.Colors.black
+        createButton.backgroundColor = Resources.Colors.foreground
         createButton.isEnabled = true
+        createButton.setTitleColor(Resources.Colors.background, for: .normal)
     }
     
     @objc private func buttonCancelTapped() {
@@ -210,17 +212,17 @@ extension NewHabitOrEventViewController {
     }
     
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         
         tableView.dataSource = tableViewHelper
         tableView.delegate = tableViewHelper
         
-        tableView.backgroundColor = Resources.Colors.white
+        tableView.backgroundColor = Resources.Colors.background
         
         title = navTitle
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
-            .foregroundColor: Resources.Colors.black ?? .black
+            .foregroundColor: Resources.Colors.foreground
         ]
         
         cancelButton.addTarget(self, action: #selector(buttonCancelTapped), for: .touchUpInside)

@@ -9,32 +9,8 @@
 /// The resource bundle ID.
 static NSString * const ACBundleID AC_SWIFT_PRIVATE = @"ru.AlexanderPleshakov.Tracker";
 
-/// The "TBlack" asset catalog color resource.
-static NSString * const ACColorNameTBlack AC_SWIFT_PRIVATE = @"TBlack";
-
 /// The "TBlue" asset catalog color resource.
 static NSString * const ACColorNameTBlue AC_SWIFT_PRIVATE = @"TBlue";
-
-/// The "TButtonRed" asset catalog color resource.
-static NSString * const ACColorNameTButtonRed AC_SWIFT_PRIVATE = @"TButtonRed";
-
-/// The "TCellBackgroundGray" asset catalog color resource.
-static NSString * const ACColorNameTCellBackgroundGray AC_SWIFT_PRIVATE = @"TCellBackgroundGray";
-
-/// The "TLightGray" asset catalog color resource.
-static NSString * const ACColorNameTLightGray AC_SWIFT_PRIVATE = @"TLightGray";
-
-/// The "TSearchBackgroundGray" asset catalog color resource.
-static NSString * const ACColorNameTSearchBackgroundGray AC_SWIFT_PRIVATE = @"TSearchBackgroundGray";
-
-/// The "TSearchTextGray" asset catalog color resource.
-static NSString * const ACColorNameTSearchTextGray AC_SWIFT_PRIVATE = @"TSearchTextGray";
-
-/// The "TWhite" asset catalog color resource.
-static NSString * const ACColorNameTWhite AC_SWIFT_PRIVATE = @"TWhite";
-
-/// The "TWhite30" asset catalog color resource.
-static NSString * const ACColorNameTWhite30 AC_SWIFT_PRIVATE = @"TWhite30";
 
 /// The "AddButton" asset catalog image resource.
 static NSString * const ACImageNameAddButton AC_SWIFT_PRIVATE = @"AddButton";

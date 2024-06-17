@@ -17,7 +17,7 @@ final class HabitAndEventTableViewHelper: NSObject {
     
     private let warningLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Resources.Colors.buttonRed
+        label.textColor = Resources.Colors.red
         label.text = NSLocalizedString("characterLimit", comment: "Character input limit")
         label.textAlignment = .center
         

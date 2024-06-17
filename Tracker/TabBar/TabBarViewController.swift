@@ -20,9 +20,9 @@ final class TabBarViewController: UITabBarController {
     // MARK: Methods
     
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         tabBar.isTranslucent = false
-        tabBar.addTopBorder(color: Resources.Colors.searchTextGray, thickness: 0.5)
+        tabBar.addTopBorder(color: UIColor.black.withAlphaComponent(0.3), thickness: 0.5)
         
         addTabs()
     }

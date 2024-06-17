@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CategoriesViewModel: NewCategoryStoreManagerDelegate {
+final class CategoriesViewModel: NewCategoryStoreManagerDelegate, CategoriesViewModelProtocol {
     
     private let manager: CategoryStoreManager
     private(set) var selectedCategory: TrackerCategory? = nil {

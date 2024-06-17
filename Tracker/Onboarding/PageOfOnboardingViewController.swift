@@ -19,7 +19,7 @@ final class PageOfOnboardingViewController: UIViewController {
     private let label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
-        label.textColor = Resources.Colors.black
+        label.textColor = Resources.Colors.foreground
         label.numberOfLines = 2
         label.textAlignment = .center
         
@@ -63,7 +63,7 @@ final class PageOfOnboardingViewController: UIViewController {
     }
     
     private func configure() {
-        view.backgroundColor = Resources.Colors.black
+        view.backgroundColor = Resources.Colors.foreground
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         [imageView, label, button].forEach {

@@ -30,7 +30,7 @@ final class TrackersNavigationController: UINavigationController {
     
     func navBarConfig() {
         delegateController.navigationController?.navigationBar.shadowImage = UIImage()
-        delegateController.navigationController?.navigationBar.backgroundColor = Resources.Colors.white
+        delegateController.navigationController?.navigationBar.backgroundColor = Resources.Colors.background
         delegateController.navigationController?.navigationBar.isTranslucent = false
         
         delegateController.navigationItem.hidesSearchBarWhenScrolling = false
@@ -43,7 +43,7 @@ final class TrackersNavigationController: UINavigationController {
     }
     
     private func setTitle() {
-        delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.black ?? .black]
+        delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.foreground]
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
         
         delegateController.navigationItem.title = NSLocalizedString("trackers", comment: "Trackers title")
@@ -54,7 +54,7 @@ final class TrackersNavigationController: UINavigationController {
                                                                               style: .plain,
                                                                               target: self,
                                                                               action: #selector(addButtonTapped))
-        delegateController.navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.black
+        delegateController.navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.foreground
     }
     
     private func setDatePicker() {
@@ -71,6 +71,12 @@ final class TrackersNavigationController: UINavigationController {
         
         datePicker.tintColor = Resources.Colors.blue
         
+        datePicker.backgroundColor = Resources.Colors.datePicker
+        datePicker.layer.cornerRadius = 8
+        datePicker.layer.masksToBounds = true
+        
+        datePicker.overrideUserInterfaceStyle = .light
+        
         delegateController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
     }
     
@@ -80,6 +86,11 @@ final class TrackersNavigationController: UINavigationController {
         search.searchBar.setValue(NSLocalizedString("cancel", comment: "Cancel search button"), forKey: "cancelButtonText")
         search.searchResultsUpdater = delegateController
         search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.searchTextField.backgroundColor = Resources.Colors.searchBackgroundGray
+        search.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(
+            string: NSLocalizedString("search", comment: "Search bar placeholder"),
+            attributes: [NSAttributedString.Key.foregroundColor:Resources.Colors.searchText])
+        search.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.searchText
         
         delegateController.navigationItem.searchController = search
     }

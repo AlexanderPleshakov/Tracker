@@ -29,7 +29,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = Resources.Colors.white
+        label.textColor = Resources.Colors.alwaysWhite
         
         return label
     }()
@@ -37,7 +37,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private let daysLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = Resources.Colors.black
+        label.textColor = Resources.Colors.foreground
         
         return label
     }()
@@ -45,7 +45,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private let addButton: UIButton = {
         let button = UIButton.systemButton(with: Resources.Images.completeTrackerButton, target: nil, action: nil)
         button.layer.cornerRadius = 17
-        button.tintColor = Resources.Colors.white
+        button.tintColor = Resources.Colors.background
         
         return button
     }()
