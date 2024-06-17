@@ -17,6 +17,7 @@ final class NewCategoryViewController: UIViewController {
     private let doneButton: UIButton = {
         let button = BasicLargeButton(title: NSLocalizedString("done", comment: "done button"))
         button.backgroundColor = Resources.Colors.secondaryGray
+        button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -68,9 +69,11 @@ final class NewCategoryViewController: UIViewController {
     @objc private func textChanged(_ textField: UITextField) {
         guard let text = textField.text else { return }
         if text == "" {
+            doneButton.setTitleColor(.white, for: .normal)
             doneButton.isEnabled = false
             doneButton.backgroundColor = Resources.Colors.secondaryGray
         } else {
+            doneButton.setTitleColor(Resources.Colors.background, for: .normal)
             doneButton.isEnabled = true
             doneButton.backgroundColor = Resources.Colors.foreground
         }

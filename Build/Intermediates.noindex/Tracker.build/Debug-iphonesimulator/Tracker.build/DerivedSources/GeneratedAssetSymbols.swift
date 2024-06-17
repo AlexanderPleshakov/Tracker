@@ -24,32 +24,8 @@ private let resourceBundle = Foundation.Bundle(for: ResourceBundleClass.self)
 @available(iOS 11.0, macOS 10.13, tvOS 11.0, *)
 extension ColorResource {
 
-    /// The "TBlack" asset catalog color resource.
-    static let tBlack = ColorResource(name: "TBlack", bundle: resourceBundle)
-
     /// The "TBlue" asset catalog color resource.
     static let tBlue = ColorResource(name: "TBlue", bundle: resourceBundle)
-
-    /// The "TButtonRed" asset catalog color resource.
-    static let tButtonRed = ColorResource(name: "TButtonRed", bundle: resourceBundle)
-
-    /// The "TCellBackgroundGray" asset catalog color resource.
-    static let tCellBackgroundGray = ColorResource(name: "TCellBackgroundGray", bundle: resourceBundle)
-
-    /// The "TLightGray" asset catalog color resource.
-    static let tLightGray = ColorResource(name: "TLightGray", bundle: resourceBundle)
-
-    /// The "TSearchBackgroundGray" asset catalog color resource.
-    static let tSearchBackgroundGray = ColorResource(name: "TSearchBackgroundGray", bundle: resourceBundle)
-
-    /// The "TSearchTextGray" asset catalog color resource.
-    static let tSearchTextGray = ColorResource(name: "TSearchTextGray", bundle: resourceBundle)
-
-    /// The "TWhite" asset catalog color resource.
-    static let tWhite = ColorResource(name: "TWhite", bundle: resourceBundle)
-
-    /// The "TWhite30" asset catalog color resource.
-    static let tWhite30 = ColorResource(name: "TWhite30", bundle: resourceBundle)
 
 }
 
@@ -100,82 +76,10 @@ extension ImageResource {
 @available(macCatalyst, unavailable)
 extension AppKit.NSColor {
 
-    /// The "TBlack" asset catalog color.
-    static var tBlack: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tBlack)
-#else
-        .init()
-#endif
-    }
-
     /// The "TBlue" asset catalog color.
     static var tBlue: AppKit.NSColor {
 #if !targetEnvironment(macCatalyst)
         .init(resource: .tBlue)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TButtonRed" asset catalog color.
-    static var tButtonRed: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tButtonRed)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TCellBackgroundGray" asset catalog color.
-    static var tCellBackgroundGray: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tCellBackgroundGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TLightGray" asset catalog color.
-    static var tLightGray: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tLightGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TSearchBackgroundGray" asset catalog color.
-    static var tSearchBackgroundGray: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tSearchBackgroundGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TSearchTextGray" asset catalog color.
-    static var tSearchTextGray: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tSearchTextGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TWhite" asset catalog color.
-    static var tWhite: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tWhite)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TWhite30" asset catalog color.
-    static var tWhite30: AppKit.NSColor {
-#if !targetEnvironment(macCatalyst)
-        .init(resource: .tWhite30)
 #else
         .init()
 #endif
@@ -189,82 +93,10 @@ extension AppKit.NSColor {
 @available(watchOS, unavailable)
 extension UIKit.UIColor {
 
-    /// The "TBlack" asset catalog color.
-    static var tBlack: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tBlack)
-#else
-        .init()
-#endif
-    }
-
     /// The "TBlue" asset catalog color.
     static var tBlue: UIKit.UIColor {
 #if !os(watchOS)
         .init(resource: .tBlue)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TButtonRed" asset catalog color.
-    static var tButtonRed: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tButtonRed)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TCellBackgroundGray" asset catalog color.
-    static var tCellBackgroundGray: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tCellBackgroundGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TLightGray" asset catalog color.
-    static var tLightGray: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tLightGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TSearchBackgroundGray" asset catalog color.
-    static var tSearchBackgroundGray: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tSearchBackgroundGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TSearchTextGray" asset catalog color.
-    static var tSearchTextGray: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tSearchTextGray)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TWhite" asset catalog color.
-    static var tWhite: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tWhite)
-#else
-        .init()
-#endif
-    }
-
-    /// The "TWhite30" asset catalog color.
-    static var tWhite30: UIKit.UIColor {
-#if !os(watchOS)
-        .init(resource: .tWhite30)
 #else
         .init()
 #endif
@@ -277,64 +109,16 @@ extension UIKit.UIColor {
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension SwiftUI.Color {
 
-    /// The "TBlack" asset catalog color.
-    static var tBlack: SwiftUI.Color { .init(.tBlack) }
-
     /// The "TBlue" asset catalog color.
     static var tBlue: SwiftUI.Color { .init(.tBlue) }
-
-    /// The "TButtonRed" asset catalog color.
-    static var tButtonRed: SwiftUI.Color { .init(.tButtonRed) }
-
-    /// The "TCellBackgroundGray" asset catalog color.
-    static var tCellBackgroundGray: SwiftUI.Color { .init(.tCellBackgroundGray) }
-
-    /// The "TLightGray" asset catalog color.
-    static var tLightGray: SwiftUI.Color { .init(.tLightGray) }
-
-    /// The "TSearchBackgroundGray" asset catalog color.
-    static var tSearchBackgroundGray: SwiftUI.Color { .init(.tSearchBackgroundGray) }
-
-    /// The "TSearchTextGray" asset catalog color.
-    static var tSearchTextGray: SwiftUI.Color { .init(.tSearchTextGray) }
-
-    /// The "TWhite" asset catalog color.
-    static var tWhite: SwiftUI.Color { .init(.tWhite) }
-
-    /// The "TWhite30" asset catalog color.
-    static var tWhite30: SwiftUI.Color { .init(.tWhite30) }
 
 }
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension SwiftUI.ShapeStyle where Self == SwiftUI.Color {
 
-    /// The "TBlack" asset catalog color.
-    static var tBlack: SwiftUI.Color { .init(.tBlack) }
-
     /// The "TBlue" asset catalog color.
     static var tBlue: SwiftUI.Color { .init(.tBlue) }
-
-    /// The "TButtonRed" asset catalog color.
-    static var tButtonRed: SwiftUI.Color { .init(.tButtonRed) }
-
-    /// The "TCellBackgroundGray" asset catalog color.
-    static var tCellBackgroundGray: SwiftUI.Color { .init(.tCellBackgroundGray) }
-
-    /// The "TLightGray" asset catalog color.
-    static var tLightGray: SwiftUI.Color { .init(.tLightGray) }
-
-    /// The "TSearchBackgroundGray" asset catalog color.
-    static var tSearchBackgroundGray: SwiftUI.Color { .init(.tSearchBackgroundGray) }
-
-    /// The "TSearchTextGray" asset catalog color.
-    static var tSearchTextGray: SwiftUI.Color { .init(.tSearchTextGray) }
-
-    /// The "TWhite" asset catalog color.
-    static var tWhite: SwiftUI.Color { .init(.tWhite) }
-
-    /// The "TWhite30" asset catalog color.
-    static var tWhite30: SwiftUI.Color { .init(.tWhite30) }
 
 }
 #endif
