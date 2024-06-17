@@ -18,7 +18,7 @@ final class InputFieldTableViewCell: UITableViewCell {
         let textField = UITextField()
         textField.placeholder = NSLocalizedString("input.name.tracker", comment: "Tracker name placeholder")
         textField.tintColor = Resources.Colors.blue
-        textField.textColor = Resources.Colors.black
+        textField.textColor = Resources.Colors.foreground
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         
@@ -27,7 +27,7 @@ final class InputFieldTableViewCell: UITableViewCell {
     
     private let resetButton: UIButton = {
         let button = UIButton.systemButton(with: Resources.Images.resetTextField, target: nil, action: nil)
-        button.tintColor = Resources.Colors.searchTextGray
+        button.tintColor = Resources.Colors.secondaryGray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         

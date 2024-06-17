@@ -14,7 +14,7 @@ final class OnboardingPageViewController: UIPageViewController {
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = 0
         
-        pageControl.currentPageIndicatorTintColor = Resources.Colors.black
+        pageControl.currentPageIndicatorTintColor = Resources.Colors.foreground
         pageControl.pageIndicatorTintColor = Resources.Colors.black30
         
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ final class OnboardingPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Resources.Colors.black
+        view.backgroundColor = Resources.Colors.foreground
         
         dataSource = self
         delegate = self

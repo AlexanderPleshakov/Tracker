@@ -38,7 +38,7 @@ final class EmojiAndColorsCollectionView: UICollectionView {
     // MARK: Methods
     
     private func configure() {
-        backgroundColor = Resources.Colors.white
+        backgroundColor = Resources.Colors.background
         
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -145,7 +145,7 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             
             lastSelectedEmojiCell = cell
             emojiIsSelected = true
-            cell.backgroundColor = Resources.Colors.colorsCollectionBackground
+            cell.backgroundColor = Resources.Colors.emojiCollectionBackground
             
             viewModel.changeSelectedEmoji(new: emojies[indexPath.row])
         } else {

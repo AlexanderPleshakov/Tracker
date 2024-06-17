@@ -23,7 +23,7 @@ final class StubView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.textAlignment = .center
-        label.textColor = Resources.Colors.black
+        label.textColor = Resources.Colors.foreground
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label

@@ -16,7 +16,7 @@ final class NewCategoryViewController: UIViewController {
     
     private let doneButton: UIButton = {
         let button = BasicLargeButton(title: NSLocalizedString("done", comment: "done button"))
-        button.backgroundColor = Resources.Colors.searchTextGray
+        button.backgroundColor = Resources.Colors.secondaryGray
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -26,8 +26,8 @@ final class NewCategoryViewController: UIViewController {
         let textField = TextFieldWithPadding()
         textField.placeholder = NSLocalizedString("input.name.category", comment: "")
         textField.backgroundColor = Resources.Colors.cellBackground
-        textField.tintColor = Resources.Colors.searchTextGray
-        textField.textColor = Resources.Colors.black
+        textField.tintColor = Resources.Colors.secondaryGray
+        textField.textColor = Resources.Colors.foreground
         textField.layer.cornerRadius = 16
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -69,10 +69,10 @@ final class NewCategoryViewController: UIViewController {
         guard let text = textField.text else { return }
         if text == "" {
             doneButton.isEnabled = false
-            doneButton.backgroundColor = Resources.Colors.searchTextGray
+            doneButton.backgroundColor = Resources.Colors.secondaryGray
         } else {
             doneButton.isEnabled = true
-            doneButton.backgroundColor = Resources.Colors.black
+            doneButton.backgroundColor = Resources.Colors.foreground
         }
     }
 
@@ -95,7 +95,7 @@ extension NewCategoryViewController: UITextFieldDelegate {
 
 extension NewCategoryViewController {
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         
         doneButton.addTarget(self, action: #selector(buttonDoneTapped), for: .touchUpInside)
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
@@ -104,7 +104,7 @@ extension NewCategoryViewController {
         title = NSLocalizedString("newCategory.title", comment: "")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
-            .foregroundColor: Resources.Colors.black ?? .black
+            .foregroundColor: Resources.Colors.foreground
         ]
         
         setupSubviews()

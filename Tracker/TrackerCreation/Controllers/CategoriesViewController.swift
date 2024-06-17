@@ -151,19 +151,19 @@ extension CategoriesViewController: UITableViewDelegate {
 
 extension CategoriesViewController {
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.backgroundColor = Resources.Colors.white
+        tableView.backgroundColor = Resources.Colors.background
         
         addButton.addTarget(self, action: #selector(buttonAddTapped), for: .touchUpInside)
         
         title = NSLocalizedString("categories.title", comment: "Categories title")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
-            .foregroundColor: Resources.Colors.black ?? .black
+            .foregroundColor: Resources.Colors.foreground
         ]
         
         setupSubviews()

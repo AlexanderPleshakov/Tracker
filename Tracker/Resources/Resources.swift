@@ -38,23 +38,6 @@ enum Resources {
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
     }
     
-    enum Titles {
-        static let trackersTitle = "Трекеры"
-        static let statisticTitle = "Статистика"
-        static let newTrackerTitle = "Создание трекера"
-        static let habitTitle = "Новая привычка"
-        static let eventTitle = "Новое нерегулярное событие"
-        static let timetableTitle = "Расписание"
-        static let categoriesTitle = "Категория"
-        static let newCategoryTitle = "Новая категория"
-        
-    }
-    
-    enum Onboarding {
-        static let firstText = "Отслеживайте только то, что хотите"
-        static let secondText = "Даже если это не литры воды и йога"
-    }
-    
     enum Images {
         static let tracksTab = UIImage(named: "TabTracks") ?? UIImage()
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
@@ -70,17 +53,29 @@ enum Resources {
     }
     
     enum Colors {
-        static let black = UIColor(named: "TBlack")
-        static let black30 = UIColor(named: "TBlack")?.withAlphaComponent(0.3)
-        static let white = UIColor(named: "TWhite")
-        static let blue = UIColor(named: "TBlue")
-        static let lightGray = UIColor(named: "TLightGray")
-        static let searchBackgroundGray = UIColor(named: "TSearchBackgroundGray")
-        static let searchTextGray = UIColor(named: "TSearchTextGray")
-        static let cellBackground = UIColor(named: "TCellBackgroundGray")
-        static let buttonRed = UIColor(named: "TButtonRed")
-        static let white30 = UIColor(named: "TWhite30")
-        static let colorsCollectionBackground = UIColor(rgb: 0xE6E8EB)
+        
+        static let alwaysWhite = UIColor(rgb: 0xFFFFFF)
+        static let alwaysBlack = UIColor(rgb: 0x1A1B22)
+        static let black30 = UIColor(rgb: 0x1A1B22, a: 0.3)
+        static let secondaryGray = UIColor(rgb: 0xAEAFB4)
+        static let blue = UIColor(rgb: 0x3772E7)
+        static let red = UIColor(rgb: 0xF56B6C)
+        static let emojiCollectionBackground = UIColor(rgb: 0xE6E8EB)
+        static let whiteAlpha = UIColor(rgb: 0xFFFFFF, a: 0.3)
+        
+        static let background = UIColor.color(light: UIColor(rgb: 0xFFFFFF),
+                                              dark: UIColor(rgb: 0x1A1B22))
+        
+        static let foreground = UIColor.color(light: UIColor(rgb: 0x1A1B22),
+                                             dark: UIColor(rgb: 0xFFFFFF))
+        
+        static let cellBackground = UIColor.color(light: UIColor(rgb: 0xE6E8EB, a: 0.30),
+                                                  dark: UIColor(rgb: 0x414141, a: 0.85))
+        static let searchBackgroundGray = UIColor.color(light: UIColor(rgb: 0x767680, a: 0.12),
+                                                        dark: UIColor(rgb: 0x767680, a: 0.24))
+        static let searchText = UIColor.color(light: UIColor(rgb: 0xAEAFB4),
+                                                  dark: UIColor(rgb: 0xEBEBF5))
+        static let datePicker = UIColor(rgb: 0xF0F0F0)
         
         enum Tracker {
             

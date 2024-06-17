@@ -32,7 +32,7 @@ final class TrackersViewController: UIViewController {
         )
         
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = Resources.Colors.white
+        collection.backgroundColor = Resources.Colors.background
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
         
@@ -173,7 +173,7 @@ extension TrackersViewController: UISearchResultsUpdating {
 
 extension TrackersViewController {
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         
         trackersCollection.dataSource = collectionHelper
         trackersCollection.delegate = collectionHelper

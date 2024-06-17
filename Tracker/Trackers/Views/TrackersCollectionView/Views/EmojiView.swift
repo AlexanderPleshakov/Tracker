@@ -21,7 +21,7 @@ final class EmojiView: UIView {
         super.init(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         
         layer.cornerRadius = 12
-        backgroundColor = Resources.Colors.white30
+        backgroundColor = Resources.Colors.whiteAlpha
         configure()
     }
     
