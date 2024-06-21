@@ -31,6 +31,15 @@ final class TrackerStore {
         dataManager.saveContext()
     }
     
+    func fetchTracker(by id: UUID) -> Tracker? {
+        guard let trackerCoreData = fetchTrackerCoreData(by: id) else {
+            return nil
+        }
+        let tracker = Tracker(coreDataTracker: trackerCoreData)
+        
+        return tracker
+    }
+    
     func create(tracker: Tracker, for category: TrackerCategory) {
         let trackerCoreData = TrackerCoreData(context: context)
         
@@ -59,7 +68,7 @@ final class TrackerStore {
             }) ?? false
         }
         
-        trackerCoreData.id = tracker.id
+        trackerCoreData.trackerId = tracker.id
         trackerCoreData.name = tracker.name
         trackerCoreData.color = Int32(tracker.color ?? 0x000000)
         trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
@@ -69,5 +78,40 @@ final class TrackerStore {
         trackerCoreData.schedule = NSSet(array: days)
         
         save()
+    }
+    
+    func update(tracker: Tracker) {
+        guard let trackerCoreData = fetchTrackerCoreData(by: tracker.id) else {
+            return
+        }
+        
+        trackerCoreData.trackerId = tracker.id
+        trackerCoreData.name = tracker.name
+        trackerCoreData.color = Int32(tracker.color ?? 0x000000)
+        trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
+        
+        save()
+    }
+    
+    func deleteTracker(by id: UUID) {
+        guard let trackerCoreData = fetchTrackerCoreData(by: id) else {
+            return
+        }
+        
+        context.delete(trackerCoreData)
+        
+        save()
+    }
+    
+    private func fetchTrackerCoreData(by id: UUID) -> TrackerCoreData? {
+        let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
+        
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(TrackerCoreData.trackerId), id as CVarArg)
+        
+        guard let trackerCoreData = try? context.fetch(fetchRequest) as [TrackerCoreData] else {
+            return nil
+        }
+        
+        return trackerCoreData.first
     }
 }

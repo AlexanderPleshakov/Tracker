@@ -40,7 +40,7 @@ struct Tracker: CustomStringConvertible {
     }
     
     init(coreDataTracker: TrackerCoreData) {
-        guard let id = coreDataTracker.id,
+        guard let id = coreDataTracker.trackerId,
               let name = coreDataTracker.name,
               let emoji = coreDataTracker.emoji?.first,
               let creationDate = coreDataTracker.creationDate

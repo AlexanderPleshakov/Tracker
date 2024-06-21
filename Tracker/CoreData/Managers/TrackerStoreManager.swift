@@ -44,6 +44,18 @@ final class TrackerStoreManager: NSObject {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
     
+    func deleteTracker(by id: UUID) {
+        trackerStore.deleteTracker(by: id)
+    }
+    
+    func fetchTracker(by id: UUID) -> Tracker? {
+        trackerStore.fetchTracker(by: id)
+    }
+    
+    func update(tracker: Tracker) {
+        trackerStore.update(tracker: tracker)
+    }
+    
     func setupFetchedResultsController(with day: Day, and text: String?, date: Date) {
         fetchedResultsController = {
             let fetchRequest = createFetchRequest(with: day, and: text, date: date)
