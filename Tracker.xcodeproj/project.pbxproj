@@ -54,7 +54,7 @@
 		16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */; };
 		16818ABD2BED339B0025D5D4 /* TrackersNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */; };
 		16818AC12BED6CA10025D5D4 /* NewTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */; };
-		16818AC32BED798F0025D5D4 /* NewHabitOrEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */; };
+		16818AC32BED798F0025D5D4 /* HabitOrEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC22BED798F0025D5D4 /* HabitOrEventViewController.swift */; };
 		16818AC62BED7D490025D5D4 /* InputFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16818AC52BED7D490025D5D4 /* InputFieldTableViewCell.swift */; };
 		16AFE79A2BE6517700F4FDFF /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */; };
 		16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */; };
@@ -138,7 +138,7 @@
 		16818ABA2BED27FC0025D5D4 /* TrackersNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationController.swift; sourceTree = "<group>"; };
 		16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackerViewController.swift; sourceTree = "<group>"; };
-		16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitOrEventViewController.swift; sourceTree = "<group>"; };
+		16818AC22BED798F0025D5D4 /* HabitOrEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitOrEventViewController.swift; sourceTree = "<group>"; };
 		16818AC52BED7D490025D5D4 /* InputFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldTableViewCell.swift; sourceTree = "<group>"; };
 		16AFE7992BE6517700F4FDFF /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
@@ -461,7 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				16818AC02BED6CA10025D5D4 /* NewTrackerViewController.swift */,
-				16818AC22BED798F0025D5D4 /* NewHabitOrEventViewController.swift */,
+				16818AC22BED798F0025D5D4 /* HabitOrEventViewController.swift */,
 				16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */,
 				16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */,
 				16F659402BF025F500DA7164 /* NewCategoryViewController.swift */,
@@ -649,7 +649,7 @@
 				16152B532C13880A007E5A29 /* CategoryStoreManager.swift in Sources */,
 				166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */,
 				167AF6AF2C1C8703007FEA49 /* TimetableViewModel.swift in Sources */,
-				16818AC32BED798F0025D5D4 /* NewHabitOrEventViewController.swift in Sources */,
+				16818AC32BED798F0025D5D4 /* HabitOrEventViewController.swift in Sources */,
 				16F659332BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift in Sources */,
 				16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */,
 				16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */,

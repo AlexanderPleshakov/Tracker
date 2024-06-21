@@ -60,14 +60,14 @@ final class TrackerTests: XCTestCase {
     
     func testNewHabitScreenLight() throws {
         let viewModel = NewTrackerViewModel(type: .habit, date: Date())
-        let vc = NewHabitOrEventViewController(viewModel: viewModel)
+        let vc = HabitOrEventViewController(viewModel: viewModel)
         
         assertSnapshots(of: vc, as: [.image(traits: .init(userInterfaceStyle: .light))])
     }
     
     func testNewEventScreenLight() throws {
         let viewModel = NewTrackerViewModel(type: .event, date: Date())
-        let vc = NewHabitOrEventViewController(viewModel: viewModel)
+        let vc = HabitOrEventViewController(viewModel: viewModel)
         
         assertSnapshots(of: vc, as: [.image(traits: .init(userInterfaceStyle: .light))])
     }
@@ -138,14 +138,14 @@ final class TrackerTests: XCTestCase {
     
     func testNewHabitScreenDark() throws {
         let viewModel = NewTrackerViewModel(type: .habit, date: Date())
-        let vc = NewHabitOrEventViewController(viewModel: viewModel)
+        let vc = HabitOrEventViewController(viewModel: viewModel)
         
         assertSnapshots(of: vc, as: [.image(traits: .init(userInterfaceStyle: .dark))])
     }
     
     func testNewEventScreenDark() throws {
         let viewModel = NewTrackerViewModel(type: .event, date: Date())
-        let vc = NewHabitOrEventViewController(viewModel: viewModel)
+        let vc = HabitOrEventViewController(viewModel: viewModel)
         
         assertSnapshots(of: vc, as: [.image(traits: .init(userInterfaceStyle: .dark))])
     }

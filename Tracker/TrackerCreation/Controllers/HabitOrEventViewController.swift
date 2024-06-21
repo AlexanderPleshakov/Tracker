@@ -1,5 +1,5 @@
 //
-//  NewHabitOrEventViewController.swift
+//  HabitOrEventViewController.swift
 //  Tracker
 //
 //  Created by Александр Плешаков on 10.05.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController {
+final class HabitOrEventViewController: UIViewController {
     // MARK: Properties
 
     private let viewModel: NewTrackerViewModel
@@ -146,7 +146,7 @@ final class NewHabitOrEventViewController: UIViewController {
 
 // MARK: Keyboard
 
-extension NewHabitOrEventViewController {
+extension HabitOrEventViewController {
     private func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
@@ -161,7 +161,7 @@ extension NewHabitOrEventViewController {
 
 // MARK: HabitAndEventTableViewDelegate
 
-extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
+extension HabitOrEventViewController: HabitAndEventTableViewDelegate {
     func changeCategoryTitle(text: String?) {
         viewModel.changeCategoryTitle(text: text)
     }
@@ -190,7 +190,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
 
 // MARK: UI configure
 
-extension NewHabitOrEventViewController {
+extension HabitOrEventViewController {
     private func getCollectionHeight() -> CGFloat {
         let availableWidth = view.frame.width - emojiAndColorsCollectionView.params.paddingWidth
         let cellHeight =  availableWidth / CGFloat(emojiAndColorsCollectionView.params.cellCount)
