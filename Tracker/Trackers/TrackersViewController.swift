@@ -35,6 +35,7 @@ final class TrackersViewController: UIViewController {
         collection.backgroundColor = Resources.Colors.background
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
+        collection.clipsToBounds = false
         
         return collection
     }()
