@@ -17,7 +17,7 @@ final class HelperTrackersCollectionView: NSObject  {
     private let trackerRecordStore = TrackerRecordStore()
     private let params: GeometricParams
     
-    weak var delegate: TrackersViewController?
+    weak var delegate: HelperTrackersCollectionViewDelegate?
     
     // MARK: Init
     
@@ -162,7 +162,8 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                 UIAction(title: NSLocalizedString("pin", comment: "pin tracker")) { /*[weak self]*/ _ in
                     
                 },
-                UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { /*[weak self]*/ _ in
+                UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { [weak self] _ in
+                    guard let self else { return }
                     
                 },
                 UIAction(title: NSLocalizedString("delete", comment: "delete tracker"),

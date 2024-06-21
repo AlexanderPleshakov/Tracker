@@ -23,6 +23,7 @@
 		1651B62F2C151F3500C2493C /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1651B62E2C151F3500C2493C /* TrackerRecordStore.swift */; };
 		16633C6F2C25FE8E0060BD19 /* TrackerColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16633C6E2C25FE8E0060BD19 /* TrackerColorCellView.swift */; };
 		16633C712C2635C80060BD19 /* DeleteActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16633C702C2635C80060BD19 /* DeleteActionSheet.swift */; };
+		16633C732C2643360060BD19 /* HelperTrackersCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16633C722C2643360060BD19 /* HelperTrackersCollectionViewDelegate.swift */; };
 		166A82A02C206C39000B981D /* TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166A829F2C206C39000B981D /* TrackerTests.swift */; };
 		166A82A82C206CE3000B981D /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 166A82A72C206CE3000B981D /* InlineSnapshotTesting */; };
 		166A82AA2C206CE3000B981D /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 166A82A92C206CE3000B981D /* SnapshotTesting */; };
@@ -105,6 +106,7 @@
 		1651B62E2C151F3500C2493C /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		16633C6E2C25FE8E0060BD19 /* TrackerColorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerColorCellView.swift; sourceTree = "<group>"; };
 		16633C702C2635C80060BD19 /* DeleteActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteActionSheet.swift; sourceTree = "<group>"; };
+		16633C722C2643360060BD19 /* HelperTrackersCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTrackersCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		166A829D2C206C39000B981D /* TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		166A829F2C206C39000B981D /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
 		166A82AD2C207454000B981D /* CategoriesViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelMock.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 			children = (
 				16818ABC2BED339A0025D5D4 /* TrackersNavigationControllerDelegate.swift */,
 				166EAAEF2BFFC304004FD58B /* TrackersCellDelegate.swift */,
+				16633C722C2643360060BD19 /* HelperTrackersCollectionViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				167AF6842C1B060E007FEA49 /* OnboardingPageViewController.swift in Sources */,
 				16818ABB2BED27FC0025D5D4 /* TrackersNavigationController.swift in Sources */,
 				16152B552C138BDA007E5A29 /* TrackerStore.swift in Sources */,
+				16633C732C2643360060BD19 /* HelperTrackersCollectionViewDelegate.swift in Sources */,
 				16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */,
 				16633C6F2C25FE8E0060BD19 /* TrackerColorCellView.swift in Sources */,
 				16152B5C2C13BBAB007E5A29 /* TrackerStoreManager.swift in Sources */,
