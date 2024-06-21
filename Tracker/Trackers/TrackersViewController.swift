@@ -78,6 +78,7 @@ final class TrackersViewController: UIViewController {
                                   leftInset: 0, bottomInset: 32,
                                   rightInset: 0, cellSpacing: 9)
         )
+        collectionHelper?.delegate = self
     }
     
     private func fetchCategories() -> [TrackerCategory] {
@@ -123,6 +124,14 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
             addTrackersCollection()
         }
         
+        trackersCollection.reloadData()
+    }
+    
+    func updateTracker(at indexPath: IndexPath) {
+        
+    }
+    
+    func deleteTracker(at indexPath: IndexPath) {
         trackersCollection.reloadData()
     }
 }

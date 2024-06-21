@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+enum TrackerCellAction {
+    case insert, delete, update
+}
+
 final class TrackerStoreManager: NSObject {
     // MARK: Properties
     
@@ -18,7 +22,8 @@ final class TrackerStoreManager: NSObject {
     private let daysStore: DaysStore
     
     private let context = CoreDataManager.shared.persistentContainer.viewContext
-    private var insertedIndex: IndexPath? = nil
+    private var index: IndexPath? = nil
+    private var actionType: TrackerCellAction? = nil
     
     private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>!
     
@@ -129,7 +134,18 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let indexPath = newIndexPath {
-                insertedIndex = indexPath
+                index = indexPath
+                actionType = .insert
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                index = indexPath
+                actionType = .delete
+            }
+        case .update:
+            if let indexPath = indexPath {
+                index = indexPath
+                actionType = .update
             }
         default:
             break
@@ -137,12 +153,22 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
-        guard let insertedIndex = insertedIndex else {
-            print("insertedIndex is nil")
+        guard let index, let actionType else {
+            print("index or actionType is nil")
             return
         }
-        delegate?.addTracker(at: insertedIndex)
-        self.insertedIndex = nil
+        
+        switch actionType {
+        case .insert:
+            delegate?.addTracker(at: index)
+        case .update:
+            delegate?.updateTracker(at: index)
+        case .delete:
+            delegate?.deleteTracker(at: index)
+        }
+        
+        self.actionType = nil
+        self.index = nil
     }
     
     var numberOfSections: Int {
