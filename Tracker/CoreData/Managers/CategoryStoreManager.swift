@@ -74,7 +74,6 @@ extension CategoryStoreManager: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         guard let insertedIndex = insertedIndex else {
-            print("insertedIndex is nil")
             return
         }
         

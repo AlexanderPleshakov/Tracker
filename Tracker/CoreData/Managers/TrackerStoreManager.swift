@@ -8,9 +8,6 @@
 import UIKit
 import CoreData
 
-enum TrackerCellAction {
-    case insert, delete, update
-}
 
 final class TrackerStoreManager: NSObject {
     // MARK: Properties
@@ -201,5 +198,13 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         }
         
         return title
+    }
+}
+
+// MARK: TrackerCellAction
+
+extension TrackerStoreManager {
+    enum TrackerCellAction {
+        case insert, delete, update
     }
 }
