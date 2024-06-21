@@ -152,31 +152,9 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         guard let cell = collectionView.cellForItem(at: indexPath) as? TrackersCollectionViewCell else {
             return UIContextMenuConfiguration()
         }
-        
-        let visibleView = TrackerColorCellView(
-            color: cell.getColor(),
-            title: cell.getTitle(),
-            emoji: cell.getEmoji(),
-            frame: cell.getTrackerViewFrame()
-        )
-        
-        return UIContextMenuConfiguration(previewProvider: {
-            
-            let previewViewController = UIViewController()
-            previewViewController.view.frame = CGRect(x: 0, y: 0,
-                                                      width: visibleView.bounds.width,
-                                                      height: visibleView.bounds.height)
-            previewViewController.view.layer.cornerRadius = 0
-            previewViewController.view.clipsToBounds = true
-            
-            visibleView.center = previewViewController.view.center
-            previewViewController.view.addSubview(visibleView)
-            
-            previewViewController.preferredContentSize = CGSize(width: visibleView.frame.width,
-                                                                height: visibleView.frame.height)
-            
-            return previewViewController
-            
+    
+        return UIContextMenuConfiguration(previewProvider: { [weak self] in
+            self?.createPreviewProvider(for: cell)
         }, actionProvider: { actions in
             return UIMenu(children: [
                 UIAction(title: "Закрепить") { /*[weak self]*/ _ in
@@ -190,5 +168,29 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                 },
             ])
         })
+    }
+    
+    private func createPreviewProvider(for cell: TrackersCollectionViewCell) -> UIViewController {
+        let visibleView = TrackerColorCellView(
+            color: cell.getColor(),
+            title: cell.getTitle(),
+            emoji: cell.getEmoji(),
+            frame: cell.getTrackerViewFrame()
+        )
+        
+        let previewViewController = UIViewController()
+        previewViewController.view.frame = CGRect(x: 0, y: 0,
+                                                  width: visibleView.bounds.width,
+                                                  height: visibleView.bounds.height)
+        previewViewController.view.layer.cornerRadius = 0
+        previewViewController.view.clipsToBounds = true
+        
+        visibleView.center = previewViewController.view.center
+        previewViewController.view.addSubview(visibleView)
+        
+        previewViewController.preferredContentSize = CGSize(width: visibleView.frame.width,
+                                                            height: visibleView.frame.height)
+        
+        return previewViewController
     }
 }
