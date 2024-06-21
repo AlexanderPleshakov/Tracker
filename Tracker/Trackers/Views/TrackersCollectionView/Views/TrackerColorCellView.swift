@@ -8,6 +8,9 @@
 import UIKit
 
 final class TrackerColorCellView: UIView {
+    private var color: UIColor?
+    private var emoji: String?
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
@@ -19,17 +22,22 @@ final class TrackerColorCellView: UIView {
     
     private let emojiView = EmojiView()
     
-    init(color: UIColor, title: String, emoji: String, frame: CGRect) {
+    init(color: UIColor?, title: String?, emoji: String?, frame: CGRect) {
+        self.color = color
+        self.emoji = emoji
+        
         super.init(frame: frame)
-        layer.cornerRadius = 16
         backgroundColor = color
         titleLabel.text = title
-        emojiView.changeEmoji(emoji: emoji)
+        emojiView.changeEmoji(emoji: emoji ?? "")
         
         configure()
     }
     
     init() {
+        self.color = nil
+        self.emoji = nil    
+        
         super.init(frame: .zero)
         layer.cornerRadius = 16
         configure()
@@ -39,7 +47,8 @@ final class TrackerColorCellView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(color: UIColor) {
+    func set(color: UIColor?) {
+        self.color = color
         backgroundColor = color
     }
     
@@ -48,7 +57,21 @@ final class TrackerColorCellView: UIView {
     }
     
     func set(emoji: String) {
+        self.emoji = emoji
         emojiView.changeEmoji(emoji: emoji)
+    }
+    
+    func getColor() -> UIColor? {
+        
+        color
+    }
+    
+    func getTitle() -> String? {
+        titleLabel.text
+    }
+    
+    func getEmoji() -> String? {
+        emoji
     }
     
     private func configure() {

@@ -18,21 +18,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
     
-    private let backView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 16
-        
-        return view
-    }()
-    
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        label.textColor = Resources.Colors.alwaysWhite
-        
-        return label
-    }()
+    private let backView = TrackerColorCellView()
     
     private let daysLabel: UILabel = {
         let label = UILabel()
@@ -50,16 +36,17 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
-    private let emojiView = EmojiView()
-    
-    
     // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.layer.cornerRadius = 16
+        layer.cornerRadius = 16
         contentView.layer.masksToBounds = true
+        contentView.clipsToBounds = true
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
         
         configureViews()
     }
@@ -69,6 +56,22 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: Methods
+    
+    func getTrackerViewFrame() -> CGRect {
+        backView.frame
+    }
+    
+    func getColor() -> UIColor? {
+        backView.getColor()
+    }
+    
+    func getTitle() -> String? {
+        backView.getTitle()
+    }
+    
+    func getEmoji() -> String? {
+        backView.getEmoji()
+    }
     
     func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int, date: Date) {
         self.isCompletedToday = isCompleted
@@ -89,17 +92,17 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     private func setColor(color: UIColor?) {
-        backView.backgroundColor = color
+        backView.set(color: color)
         addButton.backgroundColor = color
     }
     
     private func setEmoji(emoji: Character?) {
         guard let emoji = emoji else { return }
-        emojiView.changeEmoji(emoji: String(emoji))
+        backView.set(emoji: String(emoji))
     }
     
     private func setTitle(text: String?) {
-        titleLabel.text = text
+        backView.set(title: text)
     }
     
     private func setDays(text: String?) {
@@ -139,14 +142,12 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureViews() {
-        [backView, titleLabel, daysLabel, addButton, emojiView].forEach {
+        [backView, daysLabel, addButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
         addButton.addTarget(self, action: #selector(recordTracker), for: .touchUpInside)
         
-        backView.addSubview(titleLabel)
-        backView.addSubview(emojiView)
         contentView.addSubview(backView)
         contentView.addSubview(daysLabel)
         contentView.addSubview(addButton)
@@ -157,16 +158,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             backView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backView.heightAnchor.constraint(equalToConstant: 90),
-            
-            emojiView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 12),
-            emojiView.topAnchor.constraint(equalTo: backView.topAnchor, constant: 12),
-            emojiView.heightAnchor.constraint(equalToConstant: 24),
-            emojiView.widthAnchor.constraint(equalToConstant: 24),
-            
-            titleLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -12),
-            titleLabel.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -12),
-            titleLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 8),
             
             addButton.topAnchor.constraint(equalTo: backView.bottomAnchor, constant: 8),
             addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),

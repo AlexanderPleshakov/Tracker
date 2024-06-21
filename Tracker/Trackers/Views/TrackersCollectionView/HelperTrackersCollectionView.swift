@@ -142,4 +142,53 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         let cellWidth =  availableWidth / CGFloat(params.cellCount)
         return CGSize(width: cellWidth, height: 132)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        guard indexPaths.count > 0 else {
+            return nil
+        }
+        
+        let indexPath = indexPaths[0]
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TrackersCollectionViewCell else {
+            return UIContextMenuConfiguration()
+        }
+        
+        let visibleView = TrackerColorCellView(
+            color: cell.getColor(),
+            title: cell.getTitle(),
+            emoji: cell.getEmoji(),
+            frame: cell.getTrackerViewFrame()
+        )
+        
+        return UIContextMenuConfiguration(previewProvider: {
+            
+            let previewViewController = UIViewController()
+            previewViewController.view.frame = CGRect(x: 0, y: 0,
+                                                      width: visibleView.bounds.width,
+                                                      height: visibleView.bounds.height)
+            previewViewController.view.layer.cornerRadius = 0
+            previewViewController.view.clipsToBounds = true
+            
+            visibleView.center = previewViewController.view.center
+            previewViewController.view.addSubview(visibleView)
+            
+            previewViewController.preferredContentSize = CGSize(width: visibleView.frame.width,
+                                                                height: visibleView.frame.height)
+            
+            return previewViewController
+            
+        }, actionProvider: { actions in
+            return UIMenu(children: [
+                UIAction(title: "Закрепить") { /*[weak self]*/ _ in
+                    
+                },
+                UIAction(title: "Редактировать") { /*[weak self]*/ _ in
+                    
+                },
+                UIAction(title: "Удалить", attributes: .destructive) { /*[weak self]*/ _ in
+                    
+                },
+            ])
+        })
+    }
 }
