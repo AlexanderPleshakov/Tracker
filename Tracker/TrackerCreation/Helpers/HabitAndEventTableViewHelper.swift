@@ -40,7 +40,7 @@ final class HabitAndEventTableViewHelper: NSObject {
     }
     
     func textChanged(newText: String?) {
-        delegateController.changeCategoryTitle(text: newText)
+        delegateController.changeTrackerTitle(text: newText)
     }
     
     func changeCategory(category: String?) {

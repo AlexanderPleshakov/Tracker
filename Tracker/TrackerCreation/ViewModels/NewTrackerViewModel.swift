@@ -14,7 +14,7 @@ final class NewTrackerViewModel {
     let timetableViewModel = TimetableViewModel()
     let categoriesViewModel = CategoriesViewModel()
     
-    let creationDate: Date
+    let creationDate: Date?
     let type: TrackerType
     
     private(set) var selectedDays: [Day] = []
@@ -60,6 +60,34 @@ final class NewTrackerViewModel {
         self.creationDate = date
     }
     
+    init(trackerStore: TrackerStore,
+         categoryStore: CategoryStore,
+         tracker: Tracker,
+         category: TrackerCategory
+    ) {
+        self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
+        
+        self.type = tracker.timetable == nil ? .editEvent : .editHabit
+        self.creationDate = tracker.creationDate
+        changeTrackerTitle(text: tracker.name)
+        
+        if self.type == .editHabit {
+            changeSelectedDays(new: tracker.timetable ?? [])
+        }
+        
+        changeSelectedCategory(new: category)
+        changeSelectedColor(new: tracker.color)
+        changeSelectedEmoji(new: tracker.emoji)
+    }
+    
+    convenience init(tracker: Tracker, category: TrackerCategory) {
+        self.init(trackerStore: TrackerStore(),
+                  categoryStore: CategoryStore(),
+                  tracker: tracker,
+                  category: category
+        )
+    }
+    
     convenience init(type: TrackerType, date: Date) {
         self.init(trackerStore: TrackerStore(),
                   categoryStore: CategoryStore(),
@@ -77,7 +105,7 @@ final class NewTrackerViewModel {
         manager?.create(tracker: tracker, category: category)
     }
     
-    func changeCategoryTitle(text: String?) {
+    func changeTrackerTitle(text: String?) {
         if text?.count ?? 0 <= 38 {
             tracker = Tracker(
                 id: tracker.id,

@@ -162,8 +162,8 @@ extension HabitOrEventViewController {
 // MARK: HabitAndEventTableViewDelegate
 
 extension HabitOrEventViewController: HabitAndEventTableViewDelegate {
-    func changeCategoryTitle(text: String?) {
-        viewModel.changeCategoryTitle(text: text)
+    func changeTrackerTitle(text: String?) {
+        viewModel.changeTrackerTitle(text: text)
     }
     
     func presentTimetable() {
