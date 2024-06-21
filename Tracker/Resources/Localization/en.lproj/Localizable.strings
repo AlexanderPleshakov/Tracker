@@ -16,11 +16,21 @@ trackers = "Trackers";
 statistic = "Statistic";
 search = "Search";
 
+// Context menu
+pin = "Pin";
+unpin = "Unpin";
+delete = "Delete";
+edit = "Edit";
+back = "Back";
+
 // Stubs
 stub.search = "Nothing was found";
 stub.trackers = "What are we going to track?";
 stub.categories = "Habits and events can be combined in meaning";
 stub.statistic = "There is nothing to analyze yet";
+
+// Messages
+message.delete.tracker = "Are you sure you want to delete the tracker?";
 
 // Buttons
 cancel = "Cancel";

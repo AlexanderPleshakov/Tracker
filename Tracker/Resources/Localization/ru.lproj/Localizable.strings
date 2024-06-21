@@ -16,11 +16,21 @@ trackers = "Трекеры";
 statistic = "Статистика";
 search = "Поиск";
 
+// Context menu
+pin = "Закрепить";
+unpin = "Открепить";
+delete = "Удалить";
+edit = "Редактировать";
+back = "Назад";
+
 // Stubs
 stub.search = "Ничего не найдено";
 stub.trackers = "Что будем отслеживать?";
 stub.categories = "Привычки и события можно\nобъединить по смыслу";
 stub.statistic = "Анализировать пока нечего";
+
+// Messages
+message.delete.tracker = "Уверены, что хотите удалить трекер?";
 
 // Buttons
 cancel = "Отменить";
@@ -62,7 +72,7 @@ thursday = "Четверг";
 friday = "Пятница";
 saturday = "Суббота";
 sunday = "Воскресенье";
-everyDay = "Every day";
+everyDay = "Каждый день";
 
 // Short Schedule
 mon = "Пн";

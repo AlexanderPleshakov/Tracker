@@ -159,14 +159,16 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
             self?.createPreviewProvider(for: cell)
         }, actionProvider: { actions in
             return UIMenu(children: [
-                UIAction(title: "Закрепить") { /*[weak self]*/ _ in
+                UIAction(title: NSLocalizedString("pin", comment: "pin tracker")) { /*[weak self]*/ _ in
                     
                 },
-                UIAction(title: "Редактировать") { /*[weak self]*/ _ in
+                UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { /*[weak self]*/ _ in
                     
                 },
-                UIAction(title: "Удалить", attributes: .destructive) { [weak self] _ in
+                UIAction(title: NSLocalizedString("delete", comment: "delete tracker"),
+                         attributes: .destructive) { [weak self] _ in
                     guard let self else { return }
+                             
                     let actionHandler = { [weak self] in
                         guard let id = cell.trackerId, let self else { return }
                         trackerStoreManager.deleteTracker(by: id)
@@ -174,7 +176,8 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                     
                     let actionSheet = DeleteActionSheet(
                         title: nil,
-                        message: "Уверены, что хотите удалить трекер?",
+                        message: NSLocalizedString("message.delete.tracker",
+                                                   comment: "delete message confirmation"),
                         handler: actionHandler
                     )
                     
