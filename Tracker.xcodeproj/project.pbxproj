@@ -67,7 +67,7 @@
 		16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */; };
 		16F6592D2BEE9C7400DA7164 /* BasicLargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592C2BEE9C7400DA7164 /* BasicLargeButton.swift */; };
 		16F659302BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */; };
-		16F659332BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */; };
+		16F659332BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659322BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift */; };
 		16F659352BEF853A00DA7164 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659342BEF853A00DA7164 /* Day.swift */; };
 		16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */; };
 		16F6593B2BEF995A00DA7164 /* DisclosureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */; };
@@ -151,7 +151,7 @@
 		16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		16F6592C2BEE9C7400DA7164 /* BasicLargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLargeButton.swift; sourceTree = "<group>"; };
 		16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAndEventTableViewDelegate.swift; sourceTree = "<group>"; };
-		16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHabitOrEventViewControllerDelegate.swift; sourceTree = "<group>"; };
+		16F659322BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitOrEventViewControllerDelegate.swift; sourceTree = "<group>"; };
 		16F659342BEF853A00DA7164 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		16F659382BEF8E1400DA7164 /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
 		16F6593A2BEF995A00DA7164 /* DisclosureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureTableViewCell.swift; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				16F6592F2BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift */,
-				16F659322BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift */,
+				16F659322BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift */,
 				166EAAED2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift */,
 			);
 			path = Protocols;
@@ -650,7 +650,7 @@
 				166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */,
 				167AF6AF2C1C8703007FEA49 /* TimetableViewModel.swift in Sources */,
 				16818AC32BED798F0025D5D4 /* HabitOrEventViewController.swift in Sources */,
-				16F659332BEEAA7900DA7164 /* NewHabitOrEventViewControllerDelegate.swift in Sources */,
+				16F659332BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift in Sources */,
 				16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */,
 				16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */,
 				16F659352BEF853A00DA7164 /* Day.swift in Sources */,

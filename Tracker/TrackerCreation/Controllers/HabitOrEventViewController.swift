@@ -12,7 +12,7 @@ final class HabitOrEventViewController: UIViewController {
 
     private let viewModel: NewTrackerViewModel
     
-    weak var delegate: NewHabitOrEventViewControllerDelegate?
+    weak var delegate: HabitOrEventViewControllerDelegate?
     
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper?

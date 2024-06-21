@@ -55,7 +55,7 @@ final class NewTrackerViewController: UIViewController {
 
 // MARK: NewHabitOrEventViewControllerDelegate
 
-extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
+extension NewTrackerViewController: HabitOrEventViewControllerDelegate {
     func closeController() {
         self.dismiss(animated: true)
     }
