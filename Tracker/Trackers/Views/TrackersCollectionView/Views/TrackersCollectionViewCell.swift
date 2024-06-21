@@ -12,7 +12,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     weak var delegate: TrackersCellDelegate?
     
     private var isCompletedToday = false
-    private var trackerId: UUID?
+    private(set) var trackerId: UUID?
     private var completedDays = 0
     private var date: Date?
     

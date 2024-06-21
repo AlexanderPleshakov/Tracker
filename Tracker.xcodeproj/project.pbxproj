@@ -22,6 +22,7 @@
 		1630D3D72BE4C01300A59A82 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1630D3D62BE4C01300A59A82 /* Base */; };
 		1651B62F2C151F3500C2493C /* TrackerRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1651B62E2C151F3500C2493C /* TrackerRecordStore.swift */; };
 		16633C6F2C25FE8E0060BD19 /* TrackerColorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16633C6E2C25FE8E0060BD19 /* TrackerColorCellView.swift */; };
+		16633C712C2635C80060BD19 /* DeleteActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16633C702C2635C80060BD19 /* DeleteActionSheet.swift */; };
 		166A82A02C206C39000B981D /* TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166A829F2C206C39000B981D /* TrackerTests.swift */; };
 		166A82A82C206CE3000B981D /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 166A82A72C206CE3000B981D /* InlineSnapshotTesting */; };
 		166A82AA2C206CE3000B981D /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 166A82A92C206CE3000B981D /* SnapshotTesting */; };
@@ -103,6 +104,7 @@
 		1630D3D82BE4C01300A59A82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1651B62E2C151F3500C2493C /* TrackerRecordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecordStore.swift; sourceTree = "<group>"; };
 		16633C6E2C25FE8E0060BD19 /* TrackerColorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerColorCellView.swift; sourceTree = "<group>"; };
+		16633C702C2635C80060BD19 /* DeleteActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteActionSheet.swift; sourceTree = "<group>"; };
 		166A829D2C206C39000B981D /* TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		166A829F2C206C39000B981D /* TrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerTests.swift; sourceTree = "<group>"; };
 		166A82AD2C207454000B981D /* CategoriesViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModelMock.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 			children = (
 				16818AB82BED22A90025D5D4 /* StubView.swift */,
 				16F6592C2BEE9C7400DA7164 /* BasicLargeButton.swift */,
+				16633C702C2635C80060BD19 /* DeleteActionSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				16633C6F2C25FE8E0060BD19 /* TrackerColorCellView.swift in Sources */,
 				16152B5C2C13BBAB007E5A29 /* TrackerStoreManager.swift in Sources */,
 				16F6593D2BEFD53E00DA7164 /* CategoriesViewController.swift in Sources */,
+				16633C712C2635C80060BD19 /* DeleteActionSheet.swift in Sources */,
 				16AFE79D2BE654D600F4FDFF /* StatisticViewController.swift in Sources */,
 				166EAAE62BFD3FA9004FD58B /* GeometricParams.swift in Sources */,
 				166EAAEE2BFFC09A004FD58B /* NewTrackerViewControllerDelegate.swift in Sources */,

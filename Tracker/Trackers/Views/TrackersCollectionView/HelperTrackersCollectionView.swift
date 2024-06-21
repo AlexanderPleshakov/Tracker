@@ -17,6 +17,8 @@ final class HelperTrackersCollectionView: NSObject  {
     private let trackerRecordStore = TrackerRecordStore()
     private let params: GeometricParams
     
+    weak var delegate: TrackersViewController?
+    
     // MARK: Init
     
     init(trackerStoreManager: TrackerStoreManager, with params: GeometricParams) {
@@ -163,9 +165,21 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                 UIAction(title: "Редактировать") { /*[weak self]*/ _ in
                     
                 },
-                UIAction(title: "Удалить", attributes: .destructive) { /*[weak self]*/ _ in
+                UIAction(title: "Удалить", attributes: .destructive) { [weak self] _ in
+                    guard let self else { return }
+                    let actionHandler = { [weak self] in
+                        guard let id = cell.trackerId, let self else { return }
+                        trackerStoreManager.deleteTracker(by: id)
+                    }
                     
-                },
+                    let actionSheet = DeleteActionSheet(
+                        title: nil,
+                        message: "Уверены, что хотите удалить трекер?",
+                        handler: actionHandler
+                    )
+                    
+                    actionSheet.present(on: delegate)
+                }
             ])
         })
     }
