@@ -163,8 +163,13 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                     
                 },
                 UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { [weak self] _ in
-                    guard let self else { return }
+                    guard let self,
+                          let id = cell.trackerId,
+                          let tracker = trackerStoreManager.fetchTracker(by: id),
+                          let category = trackerStoreManager.fetchCategory(by: id)
+                    else { return }
                     
+                    delegate?.showEditController(for: tracker, with: category)
                 },
                 UIAction(title: NSLocalizedString("delete", comment: "delete tracker"),
                          attributes: .destructive) { [weak self] _ in

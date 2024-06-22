@@ -110,9 +110,12 @@ final class TrackersViewController: UIViewController {
 // MARK: HelperTrackersCollectionViewDelegate
 
 extension TrackersViewController: HelperTrackersCollectionViewDelegate {
-    func showEditController(for tracker: Tracker) {
-        let editViewModel = NewTrackerViewModel(type: .editEvent, date: currentDate)
-        let editController = HabitOrEventViewController(viewModel: editViewModel)
+    func showEditController(for tracker: Tracker, with category: TrackerCategory) {
+        
+        let editViewModel = NewTrackerViewModel(tracker: tracker, category: category)
+        let editViewController = HabitOrEventViewController(viewModel: editViewModel)
+        
+        present(editViewController, animated: true)
     }
 }
 

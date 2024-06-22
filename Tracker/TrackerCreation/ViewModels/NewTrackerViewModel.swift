@@ -67,7 +67,7 @@ final class NewTrackerViewModel {
     ) {
         self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
         
-        self.type = tracker.timetable == nil ? .editEvent : .editHabit
+        self.type = tracker.timetable == nil ? .event : .habit
         self.creationDate = tracker.creationDate
         changeTrackerTitle(text: tracker.name)
         
