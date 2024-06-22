@@ -40,6 +40,20 @@ final class TrackerStore {
         return tracker
     }
     
+    func fetchCategory(by trackerId: UUID) -> TrackerCategory? {
+        guard let tracker = fetchTrackerCoreData(by: trackerId),
+              let categoryCD = tracker.category,
+              let title = categoryCD.title
+        else {
+            return nil
+        }
+        
+        let trackers = categoryCD.trackers?.allObjects as? [Tracker]
+        let category = TrackerCategory(title: title, trackers: trackers ?? [])
+        
+        return category
+    }
+    
     func create(tracker: Tracker, for category: TrackerCategory) {
         let trackerCoreData = TrackerCoreData(context: context)
         
