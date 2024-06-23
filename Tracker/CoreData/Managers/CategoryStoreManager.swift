@@ -31,6 +31,11 @@ final class CategoryStoreManager: NSObject {
     // MARK: Methods
     private func createFetchedController() {
         let fetchRequest = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        
+        let pinnedCategoryName = NSLocalizedString("pinned", comment: "")
+        fetchRequest.predicate = NSPredicate(format: "%K != %@",
+                                             #keyPath(CategoryCoreData.title),
+                                             pinnedCategoryName)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
         fetchedResultsController = NSFetchedResultsController(

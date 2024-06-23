@@ -69,6 +69,10 @@ final class CategoryStore {
     
     func fetchAll() -> [TrackerCategory] {
         let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        let pinnedCategoryName = NSLocalizedString("pinned", comment: "")
+        request.predicate = NSPredicate(format: "%K != %@",
+                                             #keyPath(CategoryCoreData.title),
+                                             pinnedCategoryName)
         
         guard let categoriesCoreData = try? context.fetch(request) else {
             print("Categories core data is nil in fetchAll()")
