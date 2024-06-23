@@ -18,6 +18,12 @@ final class NewTrackerViewModel {
     let type: TrackerType
     let isEditing: Bool
     let navTitle: String
+    var days: String {
+        let trackerRecordStore = TrackerRecordStore()
+        let count = trackerRecordStore.fetchCount(by: tracker.id)
+        
+        return String.localizedStringWithFormat(NSLocalizedString("daysCount", comment: ""), count)
+    }
     
     private(set) var selectedDays: [Day] = []
     private(set) var selectedCategory: TrackerCategory?
@@ -80,6 +86,7 @@ final class NewTrackerViewModel {
     ) {
         self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
         
+        self.tracker = tracker
         self.type = tracker.timetable == nil ? .event : .habit
         self.creationDate = tracker.creationDate
         self.isEditing = true
@@ -95,14 +102,6 @@ final class NewTrackerViewModel {
         
         self.categoriesViewModel = CategoriesViewModel(selectedCategory: selectedCategory)
         self.timetableViewModel = TimetableViewModel(selectedDays: tracker.timetable ?? [])
-        
-        if self.type == .habit {
-            changeSelectedDays(new: tracker.timetable ?? [])
-        }
-        changeTrackerTitle(text: tracker.name)
-        changeSelectedCategory(new: category)
-        
-        
     }
     
     convenience init(tracker: Tracker, category: TrackerCategory) {

@@ -24,6 +24,15 @@ final class HabitOrEventViewController: UIViewController {
     private let scrollView: UIScrollView = UIScrollView()
     private let scrollContainer: UIView = UIView()
     
+    private let daysLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = Resources.Colors.foreground
+        
+        return label
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(InputFieldTableViewCell.self,
@@ -233,7 +242,7 @@ extension HabitOrEventViewController {
     
     private func setupSubviews() {
         [tableView, cancelButton, createButton,
-         emojiAndColorsCollectionView, scrollView, scrollContainer].forEach {
+         emojiAndColorsCollectionView, scrollView, scrollContainer, daysLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -265,11 +274,6 @@ extension HabitOrEventViewController {
             scrollContainer.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
             scrollContainer.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
             
-            // Table View
-            tableView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
-            
             // Collection View
             emojiAndColorsCollectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 32),
             emojiAndColorsCollectionView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
@@ -290,6 +294,27 @@ extension HabitOrEventViewController {
             createButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),
             createButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
         ])
+        
+        if viewModel.isEditing {
+            scrollContainer.addSubview(daysLabel)
+            daysLabel.text = viewModel.days
+            NSLayoutConstraint.activate([
+                daysLabel.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 16),
+                daysLabel.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -16),
+                daysLabel.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 24),
+                
+                tableView.topAnchor.constraint(equalTo: daysLabel.bottomAnchor, constant: 16),
+                tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+                tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            ])
+            
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
+                tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+                tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            ])
+        }
     }
 }
 
