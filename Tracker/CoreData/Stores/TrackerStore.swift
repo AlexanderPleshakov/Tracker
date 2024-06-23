@@ -16,6 +16,8 @@ final class TrackerStore {
     private let categoryStore: CategoryStore
     private let daysStore: DaysStore
     
+    private let pinnedCategoryTitle = NSLocalizedString("pinned", comment: "")
+    
     // MARK: Init
     
     init(context: NSManagedObjectContext) {
@@ -91,8 +93,12 @@ final class TrackerStore {
         else {
             return
         }
+        if trackerCoreData.category?.title == pinnedCategoryTitle {
+            trackerCoreData.realCategoryName = category.title
+        } else {
+            trackerCoreData.category = category
+        }
         
-        trackerCoreData.category = category
         trackerCoreData.name = tracker.name
         trackerCoreData.color = Int32(tracker.color ?? 0x000000)
         trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
@@ -116,7 +122,6 @@ final class TrackerStore {
         let tracker = fetchTrackerCoreData(by: id)
         
         tracker?.realCategoryName = tracker?.category?.title
-        let pinnedCategoryTitle = NSLocalizedString("pinned", comment: "")
         
         if let pinnedCategory = categoryStore.fetchCategoryCoreData(by: pinnedCategoryTitle) {
             tracker?.category = pinnedCategory
@@ -152,7 +157,6 @@ final class TrackerStore {
             let tracker = fetchTrackerCoreData(by: id)
         else { return nil }
         
-        let pinnedCategoryTitle = NSLocalizedString("pinned", comment: "")
         return tracker.category?.title == pinnedCategoryTitle
     }
     
