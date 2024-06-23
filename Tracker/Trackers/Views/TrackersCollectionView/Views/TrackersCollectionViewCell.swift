@@ -28,6 +28,12 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let pinImageView: UIImageView = {
+        let imageView = UIImageView()
+        
+        return imageView
+    }()
+    
     private let addButton: UIButton = {
         let button = UIButton.systemButton(with: Resources.Images.completeTrackerButton, target: nil, action: nil)
         button.layer.cornerRadius = 17
@@ -73,6 +79,14 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         backView.getEmoji()
     }
     
+    func pin() {
+        pinImageView.image = UIImage(named: "Pin")
+    }
+    
+    func unpin() {
+        pinImageView.image = nil
+    }
+    
     func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int, date: Date) {
         self.isCompletedToday = isCompleted
         self.trackerId = tracker.id
@@ -89,6 +103,8 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             self.completedDays = completedDays
             setUncompletedState(with: completedDays)
         }
+        
+        pin()
     }
     
     private func setColor(color: UIColor?) {
@@ -142,16 +158,12 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureViews() {
-        [backView, daysLabel, addButton].forEach {
+        [backView, daysLabel, addButton, pinImageView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
+            contentView.addSubview($0)
         }
         
         addButton.addTarget(self, action: #selector(recordTracker), for: .touchUpInside)
-        
-        contentView.addSubview(backView)
-        contentView.addSubview(daysLabel)
-        contentView.addSubview(addButton)
-        
         
         NSLayoutConstraint.activate([
             backView.topAnchor.constraint(equalTo: topAnchor),
@@ -167,6 +179,14 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             daysLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             daysLabel.trailingAnchor.constraint(equalTo: addButton.trailingAnchor, constant: 8),
             daysLabel.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
+            
+            pinImageView.heightAnchor.constraint(equalToConstant: 24),
+            pinImageView.widthAnchor.constraint(equalToConstant: 24),
+            pinImageView.topAnchor.constraint(equalTo: backView.topAnchor, constant: 12),
+            pinImageView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -4),
         ])
     }
+    
+    
+    
 }

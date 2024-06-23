@@ -169,7 +169,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                           let category = trackerStoreManager.fetchCategory(by: id)
                     else { return }
                     
-                    delegate?.showEditController(for: tracker, with: category)
+                    self.delegate?.showEditController(for: tracker, with: category)
                 },
                 UIAction(title: NSLocalizedString("delete", comment: "delete tracker"),
                          attributes: .destructive) { [weak self] _ in
