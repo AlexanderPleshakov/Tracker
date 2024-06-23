@@ -52,6 +52,10 @@ final class InputFieldTableViewCell: UITableViewCell {
     
     // MARK: Methods
     
+    func setText(_ text: String?) {
+        textField.text = text
+    }
+    
     private func setupSubviews() {
         backgroundColor = Resources.Colors.cellBackground
         

@@ -89,7 +89,9 @@ final class HabitOrEventViewController: UIViewController {
         emojiAndColorsCollectionView = EmojiAndColorsCollectionView(params: params, viewModel: viewModel)
         
         setupBindings()
-        tableViewHelper = HabitAndEventTableViewHelper(type: viewModel.type, delegate: self)
+        tableViewHelper = HabitAndEventTableViewHelper(type: viewModel.type,
+                                                       delegate: self,
+                                                       trackerName: viewModel.oldTitle)
         configure()
         hideKeyboardWhenTappedAround()
     }

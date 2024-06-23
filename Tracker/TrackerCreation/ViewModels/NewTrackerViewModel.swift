@@ -61,7 +61,6 @@ final class NewTrackerViewModel {
     }
     
     var oldTitle: String? = nil
-    //var oldSelectedCategory: TrackerCategory? = nil
     var oldSelectedColor: Int? = nil
     var oldSelectedEmoji: Character? = nil
     
@@ -74,7 +73,6 @@ final class NewTrackerViewModel {
         
         self.type = tracker.timetable == nil ? .event : .habit
         self.creationDate = tracker.creationDate
-        changeTrackerTitle(text: tracker.name)
         
         if self.type == .editHabit {
             changeSelectedDays(new: tracker.timetable ?? [])
@@ -85,6 +83,7 @@ final class NewTrackerViewModel {
         self.oldSelectedColor = tracker.color
         self.oldSelectedEmoji = tracker.emoji
         
+        changeTrackerTitle(text: tracker.name)
         changeSelectedCategory(new: category)
     }
     
