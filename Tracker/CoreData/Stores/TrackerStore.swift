@@ -124,9 +124,11 @@ final class TrackerStore {
         tracker?.realCategoryName = tracker?.category?.title
         
         if let pinnedCategory = categoryStore.fetchCategoryCoreData(by: pinnedCategoryTitle) {
+            pinnedCategory.isPinned = true
             tracker?.category = pinnedCategory
         } else {
             let pinnedCategory = CategoryCoreData(context: context)
+            pinnedCategory.isPinned = true
             pinnedCategory.title = pinnedCategoryTitle
             save()
             tracker?.category = pinnedCategory
@@ -209,7 +211,13 @@ final class TrackerStore {
         }
         
         let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
+        
+        let isPinnedSort = NSSortDescriptor(key: #keyPath(TrackerCoreData.category.isPinned),
+                                            ascending: false)
+        let titlesSort = NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title),
+                                          ascending: true)
+        
+        fetchRequest.sortDescriptors = [isPinnedSort, titlesSort]
         
         let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
         let countDaysPredicate = NSPredicate(format: "schedule.@count == 0")

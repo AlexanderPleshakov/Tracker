@@ -36,6 +36,7 @@ final class CategoryStore {
         
         categoryCoreData.title = category.title
         categoryCoreData.trackers = []
+        categoryCoreData.isPinned = false
         
         save()
     }
