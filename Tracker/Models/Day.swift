@@ -32,7 +32,7 @@ enum Day: Int {
     }
     
     init?(shortName: String) {
-        let rawValue = Int(Resources.Mocks.shortDays.firstIndex(of: shortName) ?? -1)
+        let rawValue = Int(Resources.Mocks.shortDays.firstIndex(of: shortName) ?? -1) + 1
         self.init(rawValue: rawValue)
     }
 }
