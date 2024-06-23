@@ -12,7 +12,7 @@ final class NewTrackerViewModel {
     
     private let manager: TrackerStoreManager?
     let timetableViewModel = TimetableViewModel()
-    let categoriesViewModel = CategoriesViewModel()
+    let categoriesViewModel: CategoriesViewModel
     
     let creationDate: Date?
     let type: TrackerType
@@ -61,6 +61,7 @@ final class NewTrackerViewModel {
         self.type = type
         self.creationDate = date
         self.isEditing = false
+        self.categoriesViewModel = CategoriesViewModel()
         self.navTitle = (type == .habit) ?
         NSLocalizedString("creation.title.habit", comment: "") :
         NSLocalizedString("creation.title.event", comment: "")
@@ -84,17 +85,20 @@ final class NewTrackerViewModel {
         NSLocalizedString("edit.title.habit", comment: "") :
         NSLocalizedString("edit.title.event", comment: "")
         
-        if self.type == .habit {
-            changeSelectedDays(new: tracker.timetable ?? [])
-        }
-        
         self.oldTitle = tracker.name
         self.selectedCategory = category
         self.oldSelectedColor = tracker.color
         self.oldSelectedEmoji = tracker.emoji
         
+        self.categoriesViewModel = CategoriesViewModel(selectedCategory: selectedCategory)
+        
+        if self.type == .habit {
+            changeSelectedDays(new: tracker.timetable ?? [])
+        }
         changeTrackerTitle(text: tracker.name)
         changeSelectedCategory(new: category)
+        
+        
     }
     
     convenience init(tracker: Tracker, category: TrackerCategory) {
