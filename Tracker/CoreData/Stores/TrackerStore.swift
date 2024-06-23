@@ -13,12 +13,15 @@ final class TrackerStore {
     
     private let context: NSManagedObjectContext
     private let dataManager = CoreDataManager.shared
-    private let categoryStore = CategoryStore()
+    private let categoryStore: CategoryStore
+    private let daysStore: DaysStore
     
     // MARK: Init
     
     init(context: NSManagedObjectContext) {
         self.context = context
+        self.categoryStore = CategoryStore(context: context)
+        self.daysStore = DaysStore(context: context)
     }
     
     convenience init() {
@@ -39,6 +42,14 @@ final class TrackerStore {
         let tracker = Tracker(coreDataTracker: trackerCoreData)
         
         return tracker
+    }
+    
+    func trackersCount(day: Day, date: Date, text: String?) -> Int {
+        let request = createTrackersFetchRequest(with: day, and: text, date: date)
+        
+        guard let trackers = try? context.fetch(request) else { return 0 }
+        
+        return trackers.count
     }
     
     func fetchCategory(by trackerId: UUID) -> TrackerCategory? {
@@ -131,5 +142,47 @@ final class TrackerStore {
         }
         
         return trackerCoreData.first
+    }
+    
+    func createTrackersFetchRequest(with day: Day, and text: String?, date: Date) -> NSFetchRequest<TrackerCoreData> {
+        guard let day = daysStore.fetchDay(with: Day.shortName(by: day.rawValue)) else {
+            fatalError("Неправильно передан день в setupFetchedResultsController")
+        }
+        
+        let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
+        
+        let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
+        let countDaysPredicate = NSPredicate(format: "schedule.@count == 0")
+        let strippedTargetDate = stripTime(from: date) ?? Date()
+        let datePredicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@",
+                                        strippedTargetDate as CVarArg,
+                                        Calendar.current.date(
+                                            byAdding: .day,
+                                            value: 1,
+                                            to: strippedTargetDate)! as CVarArg)
+        let compoundEventPredicate = NSCompoundPredicate(
+            andPredicateWithSubpredicates: [datePredicate, countDaysPredicate]
+        )
+        
+        if text == nil {
+            let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundEventPredicate, dayPredicate])
+            fetchRequest.predicate = compoundPredicate
+        } else {
+            let searchPredicate = NSPredicate(format: "name CONTAINS[c] %@", text ?? "")
+            
+            let compoundFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dayPredicate, searchPredicate])
+            let compoundSearchEventPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [compoundEventPredicate, searchPredicate])
+            
+            let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundSearchEventPredicate, compoundFilterPredicate])
+            
+            fetchRequest.predicate = compoundPredicate
+        }
+        
+        return fetchRequest
+    }
+    
+    private func stripTime(from date: Date) -> Date? {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: date))
     }
 }
