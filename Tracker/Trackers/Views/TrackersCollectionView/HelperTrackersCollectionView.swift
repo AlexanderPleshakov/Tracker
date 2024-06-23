@@ -79,11 +79,16 @@ extension HelperTrackersCollectionView: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        guard let isPinned = trackerStoreManager.isPinnedTracker(with: tracker.id) else {
+            print("Category of tracker didn't find for check pinned state")
+            return UICollectionViewCell()
+        }
+        
         let isCompleted = isTrackerCompletedToday(id: tracker.id)
         let completedDays = trackerRecordStore.fetchCount(by: tracker.id)
         
         cell.delegate = self
-        cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate)
+        cell.configure(tracker: tracker, isCompleted: isCompleted, completedDays: completedDays, date: currentDate, isPinned: isPinned)
         
         return cell
     }

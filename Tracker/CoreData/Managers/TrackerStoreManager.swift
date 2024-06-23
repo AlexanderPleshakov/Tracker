@@ -50,6 +50,10 @@ final class TrackerStoreManager: NSObject {
         trackerStore.unpinTracker(id: id)
     }
     
+    func isPinnedTracker(with id: UUID?) -> Bool? {
+        trackerStore.trackerIsPinned(id: id)
+    }
+    
     func trackersIsEmpty() -> Bool {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
@@ -121,11 +125,6 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         guard let index, let actionType else {
-            print("""
-                  index or actionType is nil,
-                  index = \(String(describing: index)),
-                  type = \(String(describing: actionType))
-                  """)
             delegate?.forceReload()
             return
         }
