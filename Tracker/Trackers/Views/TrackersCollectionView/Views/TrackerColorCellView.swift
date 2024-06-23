@@ -24,7 +24,7 @@ final class TrackerColorCellView: UIView {
     
     private let emojiView = EmojiView()
     
-    init(color: UIColor?, title: String?, emoji: String?, frame: CGRect) {
+    init(color: UIColor?, title: String?, emoji: String?, frame: CGRect, isPinned: Bool) {
         self.color = color
         self.emoji = emoji
         
@@ -32,7 +32,7 @@ final class TrackerColorCellView: UIView {
         backgroundColor = color
         titleLabel.text = title
         emojiView.changeEmoji(emoji: emoji ?? "")
-        pin()
+        isPinned ? pin() : unpin()
         
         configure()
     }

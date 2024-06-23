@@ -15,6 +15,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     private(set) var trackerId: UUID?
     private var completedDays = 0
     private var date: Date?
+    private(set) var isPinned = false
     
     // MARK: Properties
     
@@ -75,10 +76,12 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     
     func pin() {
         backView.pin()
+        isPinned = true
     }
     
     func unpin() {
         backView.unpin()
+        isPinned = false
     }
     
     func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int, date: Date) {
@@ -97,8 +100,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             self.completedDays = completedDays
             setUncompletedState(with: completedDays)
         }
-        
-        pin()
     }
     
     private func setColor(color: UIColor?) {

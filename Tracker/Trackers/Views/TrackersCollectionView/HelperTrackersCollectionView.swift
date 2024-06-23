@@ -154,13 +154,16 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         guard let cell = collectionView.cellForItem(at: indexPath) as? TrackersCollectionViewCell else {
             return UIContextMenuConfiguration()
         }
+        let pinText = cell.isPinned ?
+        NSLocalizedString("unpin", comment: "pin tracker") :
+        NSLocalizedString("pin", comment: "pin tracker")
     
         return UIContextMenuConfiguration(previewProvider: { [weak self] in
             self?.createPreviewProvider(for: cell)
         }, actionProvider: { actions in
             return UIMenu(children: [
-                UIAction(title: NSLocalizedString("pin", comment: "pin tracker")) { /*[weak self]*/ _ in
-                    
+                UIAction(title: pinText) { /*[weak self]*/ _ in
+                    cell.isPinned ? cell.unpin() : cell.pin()
                 },
                 UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { [weak self] _ in
                     guard let self,
@@ -198,7 +201,8 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
             color: cell.getColor(),
             title: cell.getTitle(),
             emoji: cell.getEmoji(),
-            frame: cell.getTrackerViewFrame()
+            frame: cell.getTrackerViewFrame(),
+            isPinned: cell.isPinned
         )
         
         let previewViewController = UIViewController()
