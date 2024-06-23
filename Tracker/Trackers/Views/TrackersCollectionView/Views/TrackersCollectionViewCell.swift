@@ -28,12 +28,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let pinImageView: UIImageView = {
-        let imageView = UIImageView()
-        
-        return imageView
-    }()
-    
     private let addButton: UIButton = {
         let button = UIButton.systemButton(with: Resources.Images.completeTrackerButton, target: nil, action: nil)
         button.layer.cornerRadius = 17
@@ -80,11 +74,11 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     func pin() {
-        pinImageView.image = UIImage(named: "Pin")
+        backView.pin()
     }
     
     func unpin() {
-        pinImageView.image = nil
+        backView.unpin()
     }
     
     func configure(tracker: Tracker, isCompleted: Bool, completedDays: Int, date: Date) {
@@ -158,7 +152,7 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureViews() {
-        [backView, daysLabel, addButton, pinImageView].forEach {
+        [backView, daysLabel, addButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview($0)
         }
@@ -179,11 +173,6 @@ final class TrackersCollectionViewCell: UICollectionViewCell {
             daysLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             daysLabel.trailingAnchor.constraint(equalTo: addButton.trailingAnchor, constant: 8),
             daysLabel.centerYAnchor.constraint(equalTo: addButton.centerYAnchor),
-            
-            pinImageView.heightAnchor.constraint(equalToConstant: 24),
-            pinImageView.widthAnchor.constraint(equalToConstant: 24),
-            pinImageView.topAnchor.constraint(equalTo: backView.topAnchor, constant: 12),
-            pinImageView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -4),
         ])
     }
     

@@ -20,6 +20,8 @@ final class TrackerColorCellView: UIView {
         return label
     }()
     
+    private let pinImageView = UIImageView()
+    
     private let emojiView = EmojiView()
     
     init(color: UIColor?, title: String?, emoji: String?, frame: CGRect) {
@@ -30,6 +32,7 @@ final class TrackerColorCellView: UIView {
         backgroundColor = color
         titleLabel.text = title
         emojiView.changeEmoji(emoji: emoji ?? "")
+        pin()
         
         configure()
     }
@@ -74,13 +77,19 @@ final class TrackerColorCellView: UIView {
         emoji
     }
     
+    func pin() {
+        pinImageView.image = UIImage(named: "Pin")
+    }
+    
+    func unpin() {
+        pinImageView.image = nil
+    }
+    
     private func configure() {
-        [titleLabel, emojiView].forEach { view in
+        [titleLabel, emojiView, pinImageView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(view)
         }
-        
-        addSubview(titleLabel)
-        addSubview(emojiView)
         
         NSLayoutConstraint.activate([
             emojiView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
@@ -92,6 +101,11 @@ final class TrackerColorCellView: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
             titleLabel.topAnchor.constraint(equalTo: emojiView.bottomAnchor, constant: 8),
+            
+            pinImageView.heightAnchor.constraint(equalToConstant: 24),
+            pinImageView.widthAnchor.constraint(equalToConstant: 24),
+            pinImageView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            pinImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
         ])
     }
 }
