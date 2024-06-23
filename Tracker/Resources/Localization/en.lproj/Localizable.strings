@@ -19,6 +19,7 @@ search = "Search";
 // Context menu
 pin = "Pin";
 unpin = "Unpin";
+pinned = "Pinned";
 delete = "Delete";
 edit = "Edit";
 back = "Back";

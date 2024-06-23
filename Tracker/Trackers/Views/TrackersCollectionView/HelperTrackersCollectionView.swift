@@ -162,8 +162,15 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
             self?.createPreviewProvider(for: cell)
         }, actionProvider: { actions in
             return UIMenu(children: [
-                UIAction(title: pinText) { /*[weak self]*/ _ in
-                    cell.isPinned ? cell.unpin() : cell.pin()
+                UIAction(title: pinText) { [weak self] _ in
+                    guard let self else { return }
+                    if cell.isPinned {
+                        cell.unpin()
+                        self.trackerStoreManager.unpinTracker(with: cell.trackerId)
+                    } else {
+                        cell.pin()
+                        self.trackerStoreManager.pinTracker(with: cell.trackerId)
+                    }
                 },
                 UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { [weak self] _ in
                     guard let self,

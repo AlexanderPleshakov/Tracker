@@ -42,6 +42,14 @@ final class TrackerStoreManager: NSObject {
         categoryStore.fetchAll()
     }
     
+    func pinTracker(with id: UUID?) {
+        trackerStore.pinTracker(id: id)
+    }
+    
+    func unpinTracker(with id: UUID?) {
+        trackerStore.unpinTracker(id: id)
+    }
+    
     func trackersIsEmpty() -> Bool {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }

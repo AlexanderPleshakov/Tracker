@@ -111,6 +111,41 @@ final class TrackerStore {
         save()
     }
     
+    func pinTracker(id: UUID?) {
+        guard let id else { return }
+        let tracker = fetchTrackerCoreData(by: id)
+        
+        tracker?.realCategoryName = tracker?.category?.title
+        let pinnedCategoryTitle = NSLocalizedString("pinned", comment: "")
+        
+        if let pinnedCategory = categoryStore.fetchCategoryCoreData(by: pinnedCategoryTitle) {
+            tracker?.category = pinnedCategory
+        } else {
+            let pinnedCategory = CategoryCoreData(context: context)
+            pinnedCategory.title = pinnedCategoryTitle
+            save()
+            tracker?.category = pinnedCategory
+        }
+        
+        save()
+    }
+    
+    func unpinTracker(id: UUID?) {
+        guard let id else { return }
+        guard let tracker = fetchTrackerCoreData(by: id) else { return }
+        
+        if let realCategory = categoryStore.fetchCategoryCoreData(by: tracker.realCategoryName ?? "") {
+            tracker.category = realCategory
+        } else {
+            let realCategory = CategoryCoreData(context: context)
+            realCategory.title = tracker.realCategoryName
+            save()
+            tracker.category = realCategory
+        }
+        
+        save()
+    }
+    
     private func convertToDaysCoreData(from daysArray: [Day]?) -> NSSet {
         let schedule = daysArray?.map {
             Day.shortName(by: $0.rawValue)
