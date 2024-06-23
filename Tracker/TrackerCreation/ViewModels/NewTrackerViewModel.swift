@@ -11,7 +11,7 @@ final class NewTrackerViewModel {
     // MARK: Properties
     
     private let manager: TrackerStoreManager?
-    let timetableViewModel = TimetableViewModel()
+    let timetableViewModel: TimetableViewModel
     let categoriesViewModel: CategoriesViewModel
     
     let creationDate: Date?
@@ -62,14 +62,16 @@ final class NewTrackerViewModel {
         self.creationDate = date
         self.isEditing = false
         self.categoriesViewModel = CategoriesViewModel()
+        self.timetableViewModel = TimetableViewModel()
         self.navTitle = (type == .habit) ?
         NSLocalizedString("creation.title.habit", comment: "") :
         NSLocalizedString("creation.title.event", comment: "")
     }
     
-    var oldTitle: String? = nil
-    var oldSelectedColor: Int? = nil
-    var oldSelectedEmoji: Character? = nil
+    private(set) var oldTitle: String? = nil
+    private(set) var oldSelectedColor: Int? = nil
+    private(set) var oldSelectedEmoji: Character? = nil
+    
     
     init(trackerStore: TrackerStore,
          categoryStore: CategoryStore,
@@ -89,8 +91,10 @@ final class NewTrackerViewModel {
         self.selectedCategory = category
         self.oldSelectedColor = tracker.color
         self.oldSelectedEmoji = tracker.emoji
+        self.selectedDays = tracker.timetable ?? []
         
         self.categoriesViewModel = CategoriesViewModel(selectedCategory: selectedCategory)
+        self.timetableViewModel = TimetableViewModel(selectedDays: tracker.timetable ?? [])
         
         if self.type == .habit {
             changeSelectedDays(new: tracker.timetable ?? [])
