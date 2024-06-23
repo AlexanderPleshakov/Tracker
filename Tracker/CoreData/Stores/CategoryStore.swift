@@ -52,6 +52,21 @@ final class CategoryStore {
         return categoriesCoreData.first
     }
     
+    func fetchCategory(by title: String) -> TrackerCategory? {
+        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(CategoryCoreData.title), title)
+        
+        guard let categoriesCoreData = try? context.fetch(request) else {
+            print("Categories core data is nil in create(tracker:)")
+            return nil
+        }
+        
+        let trackersCoreData = categoriesCoreData.first?.trackers?.allObjects as? [TrackerCoreData]
+        let trackers = trackersCoreData?.map { Tracker(coreDataTracker: $0) }
+        
+        return TrackerCategory(title: title, trackers: trackers ?? [])
+    }
+    
     func fetchAll() -> [TrackerCategory] {
         let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
         

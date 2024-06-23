@@ -160,6 +160,16 @@ final class TrackerStore {
         return tracker.category?.title == pinnedCategoryTitle
     }
     
+    func fetchRealCategory(trackerId: UUID?) -> TrackerCategory? {
+        guard
+            let trackerId,
+            let tracker = fetchTrackerCoreData(by: trackerId),
+            let realCategoryName = tracker.realCategoryName,
+            let realCategory = categoryStore.fetchCategory(by: realCategoryName)
+        else { return nil }
+        
+        return realCategory
+    }
     private func convertToDaysCoreData(from daysArray: [Day]?) -> NSSet {
         let schedule = daysArray?.map {
             Day.shortName(by: $0.rawValue)

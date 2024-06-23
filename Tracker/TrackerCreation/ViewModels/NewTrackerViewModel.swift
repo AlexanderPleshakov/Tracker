@@ -12,7 +12,7 @@ final class NewTrackerViewModel {
     
     private let manager: TrackerStoreManager?
     let timetableViewModel: TimetableViewModel
-    let categoriesViewModel: CategoriesViewModel
+    var categoriesViewModel: CategoriesViewModel
     
     let creationDate: Date?
     let type: TrackerType
@@ -96,13 +96,14 @@ final class NewTrackerViewModel {
         NSLocalizedString("edit.title.event", comment: "")
         
         self.oldTitle = tracker.name
-        self.selectedCategory = category
         self.oldSelectedColor = tracker.color
         self.oldSelectedEmoji = tracker.emoji
         self.selectedDays = tracker.timetable ?? []
-        
-        self.categoriesViewModel = CategoriesViewModel(selectedCategory: selectedCategory)
+
         self.timetableViewModel = TimetableViewModel(selectedDays: tracker.timetable ?? [])
+        self.categoriesViewModel = CategoriesViewModel()
+        
+        initCategory(category: category)
     }
     
     convenience init(tracker: Tracker, category: TrackerCategory) {
@@ -122,6 +123,16 @@ final class NewTrackerViewModel {
     }
     
     // MARK: Methods
+    
+    private func initCategory(category: TrackerCategory) {
+        if manager?.isPinnedTracker(with: tracker.id) ?? false {
+            let category = manager?.fetchRealCategory(by: tracker.id)
+            self.selectedCategory = category
+        } else {
+            self.selectedCategory = category
+        }
+        self.categoriesViewModel = CategoriesViewModel(selectedCategory: selectedCategory)
+    }
     
     func addTracker() {
         guard let category = newCategory else {

@@ -70,6 +70,10 @@ final class TrackerStoreManager: NSObject {
         trackerStore.fetchCategory(by: trackerId)
     }
     
+    func fetchRealCategory(by trackerId: UUID?) -> TrackerCategory? {
+        trackerStore.fetchRealCategory(trackerId: trackerId)
+    }
+    
     func update(tracker: Tracker, category: TrackerCategory) {
         trackerStore.update(tracker: tracker, category: category)
     }
