@@ -11,11 +11,19 @@ final class NewTrackerViewModel {
     // MARK: Properties
     
     private let manager: TrackerStoreManager?
-    let timetableViewModel = TimetableViewModel()
-    let categoriesViewModel = CategoriesViewModel()
+    let timetableViewModel: TimetableViewModel
+    var categoriesViewModel: CategoriesViewModel
     
-    let creationDate: Date
+    let creationDate: Date?
     let type: TrackerType
+    let isEditing: Bool
+    let navTitle: String
+    var days: String {
+        let trackerRecordStore = TrackerRecordStore()
+        let count = trackerRecordStore.fetchCount(by: tracker.id)
+        
+        return String.localizedStringWithFormat(NSLocalizedString("daysCount", comment: ""), count)
+    }
     
     private(set) var selectedDays: [Day] = []
     private(set) var selectedCategory: TrackerCategory?
@@ -58,6 +66,52 @@ final class NewTrackerViewModel {
         self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
         self.type = type
         self.creationDate = date
+        self.isEditing = false
+        self.categoriesViewModel = CategoriesViewModel()
+        self.timetableViewModel = TimetableViewModel()
+        self.navTitle = (type == .habit) ?
+        NSLocalizedString("creation.title.habit", comment: "") :
+        NSLocalizedString("creation.title.event", comment: "")
+    }
+    
+    private(set) var oldTitle: String? = nil
+    private(set) var oldSelectedColor: Int? = nil
+    private(set) var oldSelectedEmoji: Character? = nil
+    
+    
+    init(trackerStore: TrackerStore,
+         categoryStore: CategoryStore,
+         tracker: Tracker,
+         category: TrackerCategory
+    ) {
+        self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
+        
+        self.tracker = tracker
+        let isEvent = (tracker.timetable == nil || tracker.timetable == [])
+        self.type = isEvent ? .event : .habit
+        self.creationDate = tracker.creationDate
+        self.isEditing = true
+        self.navTitle = (type == .habit) ?
+        NSLocalizedString("edit.title.habit", comment: "") :
+        NSLocalizedString("edit.title.event", comment: "")
+        
+        self.oldTitle = tracker.name
+        self.oldSelectedColor = tracker.color
+        self.oldSelectedEmoji = tracker.emoji
+        self.selectedDays = tracker.timetable ?? []
+
+        self.timetableViewModel = TimetableViewModel(selectedDays: tracker.timetable ?? [])
+        self.categoriesViewModel = CategoriesViewModel()
+        
+        initCategory(category: category)
+    }
+    
+    convenience init(tracker: Tracker, category: TrackerCategory) {
+        self.init(trackerStore: TrackerStore(),
+                  categoryStore: CategoryStore(),
+                  tracker: tracker,
+                  category: category
+        )
     }
     
     convenience init(type: TrackerType, date: Date) {
@@ -70,6 +124,16 @@ final class NewTrackerViewModel {
     
     // MARK: Methods
     
+    private func initCategory(category: TrackerCategory) {
+        if manager?.isPinnedTracker(with: tracker.id) ?? false {
+            let category = manager?.fetchRealCategory(by: tracker.id)
+            self.selectedCategory = category
+        } else {
+            self.selectedCategory = category
+        }
+        self.categoriesViewModel = CategoriesViewModel(selectedCategory: selectedCategory)
+    }
+    
     func addTracker() {
         guard let category = newCategory else {
             return
@@ -77,7 +141,12 @@ final class NewTrackerViewModel {
         manager?.create(tracker: tracker, category: category)
     }
     
-    func changeCategoryTitle(text: String?) {
+    func updateTracker() {
+        guard let selectedCategory else { return }
+        manager?.update(tracker: tracker, category: selectedCategory)
+    }
+    
+    func changeTrackerTitle(text: String?) {
         if text?.count ?? 0 <= 38 {
             tracker = Tracker(
                 id: tracker.id,

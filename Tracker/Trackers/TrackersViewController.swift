@@ -13,6 +13,7 @@ final class TrackersViewController: UIViewController {
     private var currentDate = Date()
     private var trackerStoreManager: TrackerStoreManager?
     private var searchText: String? = nil
+    private var lastNumberOfSections = 0
     
     // MARK: Views
     
@@ -35,6 +36,7 @@ final class TrackersViewController: UIViewController {
         collection.backgroundColor = Resources.Colors.background
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
+        collection.clipsToBounds = false
         
         return collection
     }()
@@ -77,6 +79,8 @@ final class TrackersViewController: UIViewController {
                                   leftInset: 0, bottomInset: 32,
                                   rightInset: 0, cellSpacing: 9)
         )
+        collectionHelper?.delegate = self
+        lastNumberOfSections = trackerStoreManager.numberOfSections
     }
     
     private func fetchCategories() -> [TrackerCategory] {
@@ -91,17 +95,28 @@ final class TrackersViewController: UIViewController {
         return currentWeekday
     }
     
-    private func reloadCollection() {
-        trackersCollection.reloadData()
-    }
-    
     private func reloadCollectionAndSetup() {
-        reloadCollection()
+        guard let trackerStoreManager else { return }
+        trackersCollection.reloadData()
         setupSubviews()
+        lastNumberOfSections = trackerStoreManager.numberOfSections
     }
     
     private func trackersIsEmpty() -> Bool {
         trackerStoreManager?.trackersIsEmpty() ?? true
+    }
+}
+
+// MARK: HelperTrackersCollectionViewDelegate
+
+extension TrackersViewController: HelperTrackersCollectionViewDelegate {
+    func showEditController(for tracker: Tracker, with category: TrackerCategory) {
+        
+        let editViewModel = NewTrackerViewModel(tracker: tracker, category: category)
+        let editViewController = HabitOrEventViewController(viewModel: editViewModel)
+        let editNavController = UINavigationController(rootViewController: editViewController)
+        
+        present(editNavController, animated: true)
     }
 }
 
@@ -122,6 +137,34 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
             addTrackersCollection()
         }
         
+        trackersCollection.reloadData()
+    }
+    
+    func updateTracker(at indexPath: IndexPath) {
+        trackersCollection.reloadData()
+    }
+    
+    func deleteTracker(at indexPath: IndexPath) {
+        guard let trackerStoreManager else { return }
+        if trackersIsEmpty() {
+            trackersCollection.performBatchUpdates({
+                trackersCollection.deleteSections(IndexSet(integer: indexPath.section))
+            }, completion: { [weak self] _ in
+                self?.addStubAndRemoveCollection()
+            })
+        } else {
+            trackersCollection.performBatchUpdates({
+                
+                if trackerStoreManager.numberOfSections != lastNumberOfSections {
+                    trackersCollection.deleteSections(IndexSet(integer: indexPath.section))
+                } else {
+                    trackersCollection.deleteItems(at: [indexPath])
+                }
+            }, completion: nil)
+        }
+    }
+    
+    func forceReload() {
         trackersCollection.reloadData()
     }
 }
@@ -183,13 +226,17 @@ extension TrackersViewController {
     
     private func setupSubviews() {
         if trackersIsEmpty() {
-            if trackersCollection.isDescendant(of: view) {
-                trackersCollection.removeFromSuperview()
-            }
-            addStubView()
+            addStubAndRemoveCollection()
         } else {
             addTrackersCollection()
         }
+    }
+    
+    private func addStubAndRemoveCollection() {
+        if trackersCollection.isDescendant(of: view) {
+            trackersCollection.removeFromSuperview()
+        }
+        addStubView()
     }
     
     private func addTrackersCollection() {

@@ -1,5 +1,5 @@
 //
-//  NewHabitOrEventViewController.swift
+//  HabitOrEventViewController.swift
 //  Tracker
 //
 //  Created by Александр Плешаков on 10.05.2024.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class NewHabitOrEventViewController: UIViewController {
+final class HabitOrEventViewController: UIViewController {
     // MARK: Properties
 
     private let viewModel: NewTrackerViewModel
     
-    weak var delegate: NewHabitOrEventViewControllerDelegate?
+    weak var delegate: HabitOrEventViewControllerDelegate?
     
     private let navTitle: String
     private var tableViewHelper: HabitAndEventTableViewHelper?
@@ -23,6 +23,15 @@ final class NewHabitOrEventViewController: UIViewController {
     
     private let scrollView: UIScrollView = UIScrollView()
     private let scrollContainer: UIView = UIView()
+    
+    private let daysLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = Resources.Colors.foreground
+        
+        return label
+    }()
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -51,7 +60,7 @@ final class NewHabitOrEventViewController: UIViewController {
         return button
     }()
     
-    private let createButton: UIButton = {
+    private let saveOrCreateButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Resources.Colors.secondaryGray
         button.setTitleColor(.white, for: .normal)
@@ -67,9 +76,7 @@ final class NewHabitOrEventViewController: UIViewController {
     
     init(viewModel: NewTrackerViewModel) {
         self.viewModel = viewModel
-        self.navTitle = (viewModel.type == .habit) ?
-        NSLocalizedString("creation.title.habit", comment: "") :
-        NSLocalizedString("creation.title.event", comment: "")
+        self.navTitle = viewModel.navTitle
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,7 +96,9 @@ final class NewHabitOrEventViewController: UIViewController {
         emojiAndColorsCollectionView = EmojiAndColorsCollectionView(params: params, viewModel: viewModel)
         
         setupBindings()
-        tableViewHelper = HabitAndEventTableViewHelper(type: viewModel.type, delegate: self)
+        tableViewHelper = HabitAndEventTableViewHelper(type: viewModel.type,
+                                                       delegate: self,
+                                                       trackerName: viewModel.oldTitle)
         configure()
         hideKeyboardWhenTappedAround()
     }
@@ -121,15 +130,15 @@ final class NewHabitOrEventViewController: UIViewController {
     }
     
     private func blockCreateButton() {
-        createButton.backgroundColor = Resources.Colors.secondaryGray
-        createButton.isEnabled = false
-        createButton.setTitleColor(.white, for: .normal)
+        saveOrCreateButton.backgroundColor = Resources.Colors.secondaryGray
+        saveOrCreateButton.isEnabled = false
+        saveOrCreateButton.setTitleColor(.white, for: .normal)
     }
     
     private func unlockCreateButton() {
-        createButton.backgroundColor = Resources.Colors.foreground
-        createButton.isEnabled = true
-        createButton.setTitleColor(Resources.Colors.background, for: .normal)
+        saveOrCreateButton.backgroundColor = Resources.Colors.foreground
+        saveOrCreateButton.isEnabled = true
+        saveOrCreateButton.setTitleColor(Resources.Colors.background, for: .normal)
     }
     
     @objc private func buttonCancelTapped() {
@@ -142,11 +151,16 @@ final class NewHabitOrEventViewController: UIViewController {
         viewModel.addTracker()
         delegate?.closeController()
     }
+    
+    @objc private func buttonSaveTapped() {
+        self.dismiss(animated: true)
+        viewModel.updateTracker()
+    }
 }
 
 // MARK: Keyboard
 
-extension NewHabitOrEventViewController {
+extension HabitOrEventViewController {
     private func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
@@ -161,9 +175,9 @@ extension NewHabitOrEventViewController {
 
 // MARK: HabitAndEventTableViewDelegate
 
-extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
-    func changeCategoryTitle(text: String?) {
-        viewModel.changeCategoryTitle(text: text)
+extension HabitOrEventViewController: HabitAndEventTableViewDelegate {
+    func changeTrackerTitle(text: String?) {
+        viewModel.changeTrackerTitle(text: text)
     }
     
     func presentTimetable() {
@@ -190,7 +204,7 @@ extension NewHabitOrEventViewController: HabitAndEventTableViewDelegate {
 
 // MARK: UI configure
 
-extension NewHabitOrEventViewController {
+extension HabitOrEventViewController {
     private func getCollectionHeight() -> CGFloat {
         let availableWidth = view.frame.width - emojiAndColorsCollectionView.params.paddingWidth
         let cellHeight =  availableWidth / CGFloat(emojiAndColorsCollectionView.params.cellCount)
@@ -226,14 +240,20 @@ extension NewHabitOrEventViewController {
         ]
         
         cancelButton.addTarget(self, action: #selector(buttonCancelTapped), for: .touchUpInside)
-        createButton.addTarget(self, action: #selector(buttonCreateTapped), for: .touchUpInside)
+        
+        if viewModel.isEditing {
+            saveOrCreateButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
+            saveOrCreateButton.addTarget(self, action: #selector(buttonSaveTapped), for: .touchUpInside)
+        } else {
+            saveOrCreateButton.addTarget(self, action: #selector(buttonCreateTapped), for: .touchUpInside)
+        }
         
         setupSubviews()
     }
     
     private func setupSubviews() {
-        [tableView, cancelButton, createButton,
-         emojiAndColorsCollectionView, scrollView, scrollContainer].forEach {
+        [tableView, cancelButton, saveOrCreateButton,
+         emojiAndColorsCollectionView, scrollView, scrollContainer, daysLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -247,7 +267,7 @@ extension NewHabitOrEventViewController {
         scrollContainer.addSubview(tableView)
         scrollContainer.addSubview(emojiAndColorsCollectionView)
         scrollContainer.addSubview(cancelButton)
-        scrollContainer.addSubview(createButton)
+        scrollContainer.addSubview(saveOrCreateButton)
         
         tableHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: getTableHeight())
         tableHeightAnchor.isActive = true
@@ -265,11 +285,6 @@ extension NewHabitOrEventViewController {
             scrollContainer.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
             scrollContainer.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
             
-            // Table View
-            tableView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
-            
             // Collection View
             emojiAndColorsCollectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 32),
             emojiAndColorsCollectionView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
@@ -284,12 +299,33 @@ extension NewHabitOrEventViewController {
             cancelButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
             
             // Create Button
-            createButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
-            createButton.heightAnchor.constraint(equalToConstant: 60),
-            createButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
-            createButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),
-            createButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
+            saveOrCreateButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
+            saveOrCreateButton.heightAnchor.constraint(equalToConstant: 60),
+            saveOrCreateButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
+            saveOrCreateButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),
+            saveOrCreateButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
         ])
+        
+        if viewModel.isEditing {
+            scrollContainer.addSubview(daysLabel)
+            daysLabel.text = viewModel.days
+            NSLayoutConstraint.activate([
+                daysLabel.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 16),
+                daysLabel.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -16),
+                daysLabel.topAnchor.constraint(equalTo: scrollContainer.topAnchor, constant: 24),
+                
+                tableView.topAnchor.constraint(equalTo: daysLabel.bottomAnchor, constant: 16),
+                tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+                tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            ])
+            
+        } else {
+            NSLayoutConstraint.activate([
+                tableView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
+                tableView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor, constant: 0),
+                tableView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: 0),
+            ])
+        }
     }
 }
 

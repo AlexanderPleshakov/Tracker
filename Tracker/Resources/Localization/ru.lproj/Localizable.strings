@@ -16,13 +16,25 @@ trackers = "Трекеры";
 statistic = "Статистика";
 search = "Поиск";
 
+// Context menu
+pin = "Закрепить";
+unpin = "Открепить";
+pinned = "Закрепленные";
+delete = "Удалить";
+edit = "Редактировать";
+back = "Назад";
+
 // Stubs
 stub.search = "Ничего не найдено";
 stub.trackers = "Что будем отслеживать?";
 stub.categories = "Привычки и события можно\nобъединить по смыслу";
 stub.statistic = "Анализировать пока нечего";
 
+// Messages
+message.delete.tracker = "Уверены, что хотите удалить трекер?";
+
 // Buttons
+save = "Сохранить";
 cancel = "Отменить";
 create = "Создать";
 done = "Готово";
@@ -36,6 +48,9 @@ event = "Нерегулярное событие";
 // New habit or event
 creation.title.habit = "Новая привычка";
 creation.title.event = "Новое нерегулярное событие";
+
+edit.title.habit = "Редактирование привычки";
+edit.title.event = "Редактирование нерегулярного события";
 
 characterLimit = "Ограничение 38 символов";
 
@@ -62,7 +77,7 @@ thursday = "Четверг";
 friday = "Пятница";
 saturday = "Суббота";
 sunday = "Воскресенье";
-everyDay = "Every day";
+everyDay = "Каждый день";
 
 // Short Schedule
 mon = "Пн";
