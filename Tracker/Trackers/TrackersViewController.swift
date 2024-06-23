@@ -13,6 +13,7 @@ final class TrackersViewController: UIViewController {
     private var currentDate = Date()
     private var trackerStoreManager: TrackerStoreManager?
     private var searchText: String? = nil
+    private var lastNumberOfSections = 0
     
     // MARK: Views
     
@@ -79,6 +80,7 @@ final class TrackersViewController: UIViewController {
                                   rightInset: 0, cellSpacing: 9)
         )
         collectionHelper?.delegate = self
+        lastNumberOfSections = trackerStoreManager.numberOfSections
     }
     
     private func fetchCategories() -> [TrackerCategory] {
@@ -93,13 +95,11 @@ final class TrackersViewController: UIViewController {
         return currentWeekday
     }
     
-    private func reloadCollection() {
-        trackersCollection.reloadData()
-    }
-    
     private func reloadCollectionAndSetup() {
-        reloadCollection()
+        guard let trackerStoreManager else { return }
+        trackersCollection.reloadData()
         setupSubviews()
+        lastNumberOfSections = trackerStoreManager.numberOfSections
     }
     
     private func trackersIsEmpty() -> Bool {
@@ -145,7 +145,20 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
     }
     
     func deleteTracker(at indexPath: IndexPath) {
-        trackersCollection.reloadData()
+        guard let trackerStoreManager else { return }
+        if trackersIsEmpty() {
+            trackersCollection.reloadData()
+            addStubAndRemoveCollection()
+        } else {
+            trackersCollection.performBatchUpdates({
+                
+                if trackerStoreManager.numberOfSections != lastNumberOfSections {
+                    trackersCollection.deleteSections(IndexSet(integer: indexPath.section))
+                } else {
+                    trackersCollection.deleteItems(at: [indexPath])
+                }
+            }, completion: nil)
+        }
     }
     
     func forceReload() {
@@ -210,13 +223,17 @@ extension TrackersViewController {
     
     private func setupSubviews() {
         if trackersIsEmpty() {
-            if trackersCollection.isDescendant(of: view) {
-                trackersCollection.removeFromSuperview()
-            }
-            addStubView()
+            addStubAndRemoveCollection()
         } else {
             addTrackersCollection()
         }
+    }
+    
+    private func addStubAndRemoveCollection() {
+        if trackersCollection.isDescendant(of: view) {
+            trackersCollection.removeFromSuperview()
+        }
+        addStubView()
     }
     
     private func addTrackersCollection() {
