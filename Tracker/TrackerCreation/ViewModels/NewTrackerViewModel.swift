@@ -60,6 +60,11 @@ final class NewTrackerViewModel {
         self.creationDate = date
     }
     
+    var oldTitle: String? = nil
+    //var oldSelectedCategory: TrackerCategory? = nil
+    var oldSelectedColor: Int? = nil
+    var oldSelectedEmoji: Character? = nil
+    
     init(trackerStore: TrackerStore,
          categoryStore: CategoryStore,
          tracker: Tracker,
@@ -75,9 +80,12 @@ final class NewTrackerViewModel {
             changeSelectedDays(new: tracker.timetable ?? [])
         }
         
+        self.oldTitle = tracker.name
+        self.selectedCategory = category
+        self.oldSelectedColor = tracker.color
+        self.oldSelectedEmoji = tracker.emoji
+        
         changeSelectedCategory(new: category)
-        changeSelectedColor(new: tracker.color)
-        changeSelectedEmoji(new: tracker.emoji)
     }
     
     convenience init(tracker: Tracker, category: TrackerCategory) {
