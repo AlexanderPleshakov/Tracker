@@ -154,7 +154,7 @@ final class HabitOrEventViewController: UIViewController {
     
     @objc private func buttonSaveTapped() {
         self.dismiss(animated: true)
-        
+        viewModel.updateTracker()
     }
 }
 

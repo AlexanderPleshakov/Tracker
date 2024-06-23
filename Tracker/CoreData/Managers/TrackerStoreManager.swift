@@ -58,8 +58,8 @@ final class TrackerStoreManager: NSObject {
         trackerStore.fetchCategory(by: trackerId)
     }
     
-    func update(tracker: Tracker) {
-        trackerStore.update(tracker: tracker)
+    func update(tracker: Tracker, category: TrackerCategory) {
+        trackerStore.update(tracker: tracker, category: category)
     }
     
     func setupFetchedResultsController(with day: Day, and text: String?, date: Date) {
@@ -144,10 +144,10 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
                 actionType = .delete
             }
         case .update:
-            if let indexPath = indexPath {
+            if let indexPath = newIndexPath {
                 index = indexPath
-                actionType = .update
             }
+            actionType = .update
         default:
             break
         }
@@ -155,7 +155,12 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         guard let index, let actionType else {
-            print("index or actionType is nil")
+            print("""
+                  index or actionType is nil,
+                  index = \(String(describing: index)),
+                  type = \(String(describing: actionType))
+                  """)
+            delegate?.forceReload()
             return
         }
         

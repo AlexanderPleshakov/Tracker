@@ -13,6 +13,7 @@ final class TrackerStore {
     
     private let context: NSManagedObjectContext
     private let dataManager = CoreDataManager.shared
+    private let categoryStore = CategoryStore()
     
     // MARK: Init
     
@@ -57,29 +58,8 @@ final class TrackerStore {
     func create(tracker: Tracker, for category: TrackerCategory) {
         let trackerCoreData = TrackerCoreData(context: context)
         
-        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(CategoryCoreData.title), category.title)
-        
-        guard let categoriesCoreData = try? context.fetch(request) else {
-            print("Categories core data is nil in create(tracker:)")
+        guard let category = categoryStore.fetchCategoryCoreData(by: category.title) else {
             return
-        }
-        
-        let schedule = tracker.timetable?.map {
-            Day.shortName(by: $0.rawValue)
-        }
-        
-        let daysRequest = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
-        
-        guard var days = try? context.fetch(daysRequest) else {
-            print("Days is empty in DB")
-            return
-        }
-        
-        days = days.filter { day in
-            schedule?.contains(where: { str in
-                day.day == str
-            }) ?? false
         }
         
         trackerCoreData.trackerId = tracker.id
@@ -88,21 +68,24 @@ final class TrackerStore {
         trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
         trackerCoreData.creationDate = tracker.creationDate
         
-        trackerCoreData.category = categoriesCoreData.first
-        trackerCoreData.schedule = NSSet(array: days)
+        trackerCoreData.category = category
+        trackerCoreData.schedule = convertToDaysCoreData(from: tracker.timetable)
         
         save()
     }
     
-    func update(tracker: Tracker) {
-        guard let trackerCoreData = fetchTrackerCoreData(by: tracker.id) else {
+    func update(tracker: Tracker, category: TrackerCategory) {
+        guard let trackerCoreData = fetchTrackerCoreData(by: tracker.id),
+              let category = categoryStore.fetchCategoryCoreData(by: category.title)
+        else {
             return
         }
         
-        trackerCoreData.trackerId = tracker.id
+        trackerCoreData.category = category
         trackerCoreData.name = tracker.name
         trackerCoreData.color = Int32(tracker.color ?? 0x000000)
         trackerCoreData.emoji = String(tracker.emoji ?? "⚙️")
+        trackerCoreData.schedule = convertToDaysCoreData(from: tracker.timetable)
         
         save()
     }
@@ -115,6 +98,27 @@ final class TrackerStore {
         context.delete(trackerCoreData)
         
         save()
+    }
+    
+    private func convertToDaysCoreData(from daysArray: [Day]?) -> NSSet {
+        let schedule = daysArray?.map {
+            Day.shortName(by: $0.rawValue)
+        }
+        
+        let daysRequest = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
+        
+        guard var days = try? context.fetch(daysRequest) else {
+            print("Days is empty in DB")
+            return NSSet()
+        }
+        
+        days = days.filter { day in
+            schedule?.contains(where: { str in
+                day.day == str
+            }) ?? false
+        }
+        
+        return NSSet(array: days)
     }
     
     private func fetchTrackerCoreData(by id: UUID) -> TrackerCoreData? {

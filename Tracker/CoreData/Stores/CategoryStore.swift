@@ -40,6 +40,18 @@ final class CategoryStore {
         save()
     }
     
+    func fetchCategoryCoreData(by title: String) -> CategoryCoreData? {
+        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(CategoryCoreData.title), title)
+        
+        guard let categoriesCoreData = try? context.fetch(request) else {
+            print("Categories core data is nil in create(tracker:)")
+            return nil
+        }
+        
+        return categoriesCoreData.first
+    }
+    
     func fetchAll() -> [TrackerCategory] {
         let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
         

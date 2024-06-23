@@ -141,10 +141,14 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
     }
     
     func updateTracker(at indexPath: IndexPath) {
-        
+        trackersCollection.reloadData()
     }
     
     func deleteTracker(at indexPath: IndexPath) {
+        trackersCollection.reloadData()
+    }
+    
+    func forceReload() {
         trackersCollection.reloadData()
     }
 }

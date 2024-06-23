@@ -129,8 +129,9 @@ final class NewTrackerViewModel {
         manager?.create(tracker: tracker, category: category)
     }
     
-    func updateTracker(_ tracker: Tracker) {
-        manager?.update(tracker: tracker)
+    func updateTracker() {
+        guard let selectedCategory else { return }
+        manager?.update(tracker: tracker, category: selectedCategory)
     }
     
     func changeTrackerTitle(text: String?) {
