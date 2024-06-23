@@ -60,7 +60,7 @@ final class HabitOrEventViewController: UIViewController {
         return button
     }()
     
-    private let createButton: UIButton = {
+    private let saveOrCreateButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Resources.Colors.secondaryGray
         button.setTitleColor(.white, for: .normal)
@@ -130,15 +130,15 @@ final class HabitOrEventViewController: UIViewController {
     }
     
     private func blockCreateButton() {
-        createButton.backgroundColor = Resources.Colors.secondaryGray
-        createButton.isEnabled = false
-        createButton.setTitleColor(.white, for: .normal)
+        saveOrCreateButton.backgroundColor = Resources.Colors.secondaryGray
+        saveOrCreateButton.isEnabled = false
+        saveOrCreateButton.setTitleColor(.white, for: .normal)
     }
     
     private func unlockCreateButton() {
-        createButton.backgroundColor = Resources.Colors.foreground
-        createButton.isEnabled = true
-        createButton.setTitleColor(Resources.Colors.background, for: .normal)
+        saveOrCreateButton.backgroundColor = Resources.Colors.foreground
+        saveOrCreateButton.isEnabled = true
+        saveOrCreateButton.setTitleColor(Resources.Colors.background, for: .normal)
     }
     
     @objc private func buttonCancelTapped() {
@@ -150,6 +150,11 @@ final class HabitOrEventViewController: UIViewController {
         self.dismiss(animated: true)
         viewModel.addTracker()
         delegate?.closeController()
+    }
+    
+    @objc private func buttonSaveTapped() {
+        self.dismiss(animated: true)
+        
     }
 }
 
@@ -235,13 +240,19 @@ extension HabitOrEventViewController {
         ]
         
         cancelButton.addTarget(self, action: #selector(buttonCancelTapped), for: .touchUpInside)
-        createButton.addTarget(self, action: #selector(buttonCreateTapped), for: .touchUpInside)
+        
+        if viewModel.isEditing {
+            saveOrCreateButton.setTitle(NSLocalizedString("save", comment: ""), for: .normal)
+            saveOrCreateButton.addTarget(self, action: #selector(buttonSaveTapped), for: .touchUpInside)
+        } else {
+            saveOrCreateButton.addTarget(self, action: #selector(buttonCreateTapped), for: .touchUpInside)
+        }
         
         setupSubviews()
     }
     
     private func setupSubviews() {
-        [tableView, cancelButton, createButton,
+        [tableView, cancelButton, saveOrCreateButton,
          emojiAndColorsCollectionView, scrollView, scrollContainer, daysLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -256,7 +267,7 @@ extension HabitOrEventViewController {
         scrollContainer.addSubview(tableView)
         scrollContainer.addSubview(emojiAndColorsCollectionView)
         scrollContainer.addSubview(cancelButton)
-        scrollContainer.addSubview(createButton)
+        scrollContainer.addSubview(saveOrCreateButton)
         
         tableHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: getTableHeight())
         tableHeightAnchor.isActive = true
@@ -288,11 +299,11 @@ extension HabitOrEventViewController {
             cancelButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
             
             // Create Button
-            createButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
-            createButton.heightAnchor.constraint(equalToConstant: 60),
-            createButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
-            createButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),
-            createButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
+            saveOrCreateButton.topAnchor.constraint(equalTo: emojiAndColorsCollectionView.bottomAnchor, constant: 0),
+            saveOrCreateButton.heightAnchor.constraint(equalToConstant: 60),
+            saveOrCreateButton.widthAnchor.constraint(equalToConstant: (view.frame.width - 48) / 2),
+            saveOrCreateButton.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor, constant: -20),
+            saveOrCreateButton.bottomAnchor.constraint(equalTo: scrollContainer.bottomAnchor),
         ])
         
         if viewModel.isEditing {

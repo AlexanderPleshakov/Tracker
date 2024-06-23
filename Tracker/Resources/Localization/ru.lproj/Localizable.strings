@@ -33,6 +33,7 @@ stub.statistic = "Анализировать пока нечего";
 message.delete.tracker = "Уверены, что хотите удалить трекер?";
 
 // Buttons
+save = "Сохранить";
 cancel = "Отменить";
 create = "Создать";
 done = "Готово";

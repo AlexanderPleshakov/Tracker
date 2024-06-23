@@ -129,6 +129,10 @@ final class NewTrackerViewModel {
         manager?.create(tracker: tracker, category: category)
     }
     
+    func updateTracker(_ tracker: Tracker) {
+        manager?.update(tracker: tracker)
+    }
+    
     func changeTrackerTitle(text: String?) {
         if text?.count ?? 0 <= 38 {
             tracker = Tracker(

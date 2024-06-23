@@ -33,6 +33,7 @@ stub.statistic = "There is nothing to analyze yet";
 message.delete.tracker = "Are you sure you want to delete the tracker?";
 
 // Buttons
+save = "Save";
 cancel = "Cancel";
 create = "Create";
 done = "Done";
