@@ -18,6 +18,8 @@ final class CategoryStore {
     
     init(context: NSManagedObjectContext) {
         self.context = context
+        
+        updatePinnedTitleIfNeeded()
     }
     
     convenience init() {
@@ -92,5 +94,26 @@ final class CategoryStore {
         }
         
         return categories
+    }
+    
+    private func updatePinnedTitleIfNeeded() {
+        let pinnedCategoryName = NSLocalizedString("pinned", comment: "")
+        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        request.predicate = NSPredicate(format: "%K == %@",
+                                        #keyPath(CategoryCoreData.isPinned),
+                                        NSNumber(value: true))
+        
+        guard let categoriesCoreData = try? context.fetch(request),
+              let category = categoriesCoreData.first
+        else {
+            print("Categories core data is nil in fetchAll()")
+            return
+        }
+        
+        if category.title != pinnedCategoryName {
+            category.title = pinnedCategoryName
+            
+            save()
+        }
     }
 }

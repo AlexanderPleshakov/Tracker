@@ -124,7 +124,6 @@ final class TrackerStore {
         tracker?.realCategoryName = tracker?.category?.title
         
         if let pinnedCategory = categoryStore.fetchCategoryCoreData(by: pinnedCategoryTitle) {
-            pinnedCategory.isPinned = true
             tracker?.category = pinnedCategory
         } else {
             let pinnedCategory = CategoryCoreData(context: context)

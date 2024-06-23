@@ -78,9 +78,18 @@ final class TrackerStoreManager: NSObject {
         trackerStore.update(tracker: tracker, category: category)
     }
     
+    private var day: Day? = nil
+    private var text: String? = nil
+    private var date: Date? = nil
+    
+    
     func setupFetchedResultsController(with day: Day, and text: String?, date: Date) {
         fetchedResultsController = {
             let fetchRequest = trackerStore.createTrackersFetchRequest(with: day, and: text, date: date)
+            
+            self.day = day
+            self.text = text
+            self.date = date
             
             let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,
@@ -130,6 +139,9 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         guard let index, let actionType else {
             delegate?.forceReload()
+            if let day, let date {
+                setupFetchedResultsController(with: day, and: text, date: date)
+            }
             return
         }
         
