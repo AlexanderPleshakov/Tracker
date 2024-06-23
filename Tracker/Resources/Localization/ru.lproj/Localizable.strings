@@ -47,6 +47,9 @@ event = "Нерегулярное событие";
 creation.title.habit = "Новая привычка";
 creation.title.event = "Новое нерегулярное событие";
 
+edit.title.habit = "Редактирование привычки";
+edit.title.event = "Редактирование нерегулярного события";
+
 characterLimit = "Ограничение 38 символов";
 
 input.name.tracker = "Введите название трекера";

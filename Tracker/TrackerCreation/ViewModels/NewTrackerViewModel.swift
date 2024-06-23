@@ -16,6 +16,8 @@ final class NewTrackerViewModel {
     
     let creationDate: Date?
     let type: TrackerType
+    let isEditing: Bool
+    let navTitle: String
     
     private(set) var selectedDays: [Day] = []
     private(set) var selectedCategory: TrackerCategory?
@@ -58,6 +60,10 @@ final class NewTrackerViewModel {
         self.manager = TrackerStoreManager(trackerStore: trackerStore, categoryStore: categoryStore)
         self.type = type
         self.creationDate = date
+        self.isEditing = false
+        self.navTitle = (type == .habit) ?
+        NSLocalizedString("creation.title.habit", comment: "") :
+        NSLocalizedString("creation.title.event", comment: "")
     }
     
     var oldTitle: String? = nil
@@ -73,8 +79,12 @@ final class NewTrackerViewModel {
         
         self.type = tracker.timetable == nil ? .event : .habit
         self.creationDate = tracker.creationDate
+        self.isEditing = true
+        self.navTitle = (type == .habit) ?
+        NSLocalizedString("edit.title.habit", comment: "") :
+        NSLocalizedString("edit.title.event", comment: "")
         
-        if self.type == .editHabit {
+        if self.type == .habit {
             changeSelectedDays(new: tracker.timetable ?? [])
         }
         

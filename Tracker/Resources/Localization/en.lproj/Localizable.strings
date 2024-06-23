@@ -47,6 +47,9 @@ event = "Irregular event";
 creation.title.habit = "New habit";
 creation.title.event = "New irregular event";
 
+edit.title.habit = "Edit habit";
+edit.title.event = "Edit event";
+
 characterLimit = "The limit is 38 characters";
 
 input.name.tracker = "Enter the name of the tracker";

@@ -9,5 +9,4 @@ import Foundation
 
 enum TrackerType {
     case habit, event
-    case editHabit, editEvent
 }

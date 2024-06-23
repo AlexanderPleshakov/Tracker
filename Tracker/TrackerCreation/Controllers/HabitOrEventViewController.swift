@@ -67,9 +67,7 @@ final class HabitOrEventViewController: UIViewController {
     
     init(viewModel: NewTrackerViewModel) {
         self.viewModel = viewModel
-        self.navTitle = (viewModel.type == .habit) ?
-        NSLocalizedString("creation.title.habit", comment: "") :
-        NSLocalizedString("creation.title.event", comment: "")
+        self.navTitle = viewModel.navTitle
         
         super.init(nibName: nil, bundle: nil)
     }

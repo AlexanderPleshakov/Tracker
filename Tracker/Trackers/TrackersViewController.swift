@@ -114,8 +114,9 @@ extension TrackersViewController: HelperTrackersCollectionViewDelegate {
         
         let editViewModel = NewTrackerViewModel(tracker: tracker, category: category)
         let editViewController = HabitOrEventViewController(viewModel: editViewModel)
+        let editNavController = UINavigationController(rootViewController: editViewController)
         
-        present(editViewController, animated: true)
+        present(editNavController, animated: true)
     }
 }
 
