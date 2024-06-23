@@ -147,8 +147,11 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
     func deleteTracker(at indexPath: IndexPath) {
         guard let trackerStoreManager else { return }
         if trackersIsEmpty() {
-            trackersCollection.reloadData()
-            addStubAndRemoveCollection()
+            trackersCollection.performBatchUpdates({
+                trackersCollection.deleteSections(IndexSet(integer: indexPath.section))
+            }, completion: { [weak self] _ in
+                self?.addStubAndRemoveCollection()
+            })
         } else {
             trackersCollection.performBatchUpdates({
                 
