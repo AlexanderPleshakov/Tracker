@@ -21,7 +21,8 @@ final class FiltersViewController: UIViewController {
     
     private var selectedFilter: Filters = .all {
         didSet {
-            UserDefaults.standard.setValue(selectedFilter.rawValue, forKey: "SelectedFilter")
+            UserDefaults.standard.setValue(selectedFilter.rawValue,
+                                           forKey: Resources.Keys.selectedFilter)
         }
     }
     
@@ -44,7 +45,8 @@ final class FiltersViewController: UIViewController {
     // MARK: Methods
     
     private func getCheckedIndex() -> IndexPath {
-        guard let filterNum = UserDefaults.standard.object(forKey: "SelectedFilter") as? Int else {
+        let filter = UserDefaults.standard.object(forKey: Resources.Keys.selectedFilter)
+        guard let filterNum = filter as? Int else {
             return IndexPath(row: 0, section: 0)
         }
         return IndexPath(row: filterNum, section: 0)

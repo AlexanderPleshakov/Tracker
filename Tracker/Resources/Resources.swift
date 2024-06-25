@@ -11,6 +11,7 @@ enum Resources {
     
     enum Keys {
         static let onboardingWasShown = "OnboardingWasShown"
+        static let selectedFilter = "SelectedFilter"
     }
     
     enum Mocks {
