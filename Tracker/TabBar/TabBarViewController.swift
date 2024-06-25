@@ -29,7 +29,6 @@ final class TabBarViewController: UITabBarController {
     
     private func addTabs() {
         let trackers = TrackersViewController()
-        trackers.additionalBottomSafeAreaInset = tabBar.frame.height
         let trackersNav = TrackersNavigationController(rootViewController: trackers)
         trackersNav.tabBarItem = UITabBarItem(
             title: NSLocalizedString("trackers", comment: "Trackers tab"),

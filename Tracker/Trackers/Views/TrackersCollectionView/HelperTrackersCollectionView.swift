@@ -208,6 +208,18 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         })
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let scrollViewHeight = scrollView.frame.size.height
+        let addButtonHeight: CGFloat = 34
+        if offsetY > contentHeight - scrollViewHeight - addButtonHeight {
+            delegate?.hideFiltersButton()
+        } else {
+            delegate?.showFiltersButton()
+        }
+    }
+    
     private func createPreviewProvider(for cell: TrackersCollectionViewCell) -> UIViewController {
         let visibleView = TrackerColorCellView(
             color: cell.getColor(),

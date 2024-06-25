@@ -15,11 +15,11 @@ final class TrackersViewController: UIViewController {
     private var searchText: String? = nil
     private var lastNumberOfSections = 0
     
-    var additionalBottomSafeAreaInset = CGFloat(0)
-    
     // MARK: Views
     
     private var collectionHelper: HelperTrackersCollectionView?
+    
+    private let emptyView = UIView()
     
     private let trackersCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -67,13 +67,6 @@ final class TrackersViewController: UIViewController {
         
         configure()
         reloadCollectionAndSetup()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        var newSafeArea = UIEdgeInsets()
-        newSafeArea.bottom += additionalBottomSafeAreaInset
-        additionalSafeAreaInsets = newSafeArea
     }
     
     // MARK: Methods
@@ -247,10 +240,12 @@ extension TrackersViewController: UISearchResultsUpdating {
 extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.background
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
         
         trackersCollection.dataSource = collectionHelper
         trackersCollection.delegate = collectionHelper
         
+        addEmptyView()
         setupSubviews()
         setFiltersButton()
     }
@@ -261,6 +256,17 @@ extension TrackersViewController {
         } else {
             addTrackersCollection()
         }
+    }
+    
+    private func addEmptyView() {
+        view.addSubview(emptyView)
+        
+        NSLayoutConstraint.activate([
+            emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            emptyView.heightAnchor.constraint(equalToConstant: 0),
+        ])
     }
     
     private func addStubAndRemoveCollection() {
@@ -290,7 +296,7 @@ extension TrackersViewController {
             filtersButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             filtersButton.heightAnchor.constraint(equalToConstant: 50),
             filtersButton.widthAnchor.constraint(equalToConstant: 114),
-            filtersButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16)
+            filtersButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
     }
     

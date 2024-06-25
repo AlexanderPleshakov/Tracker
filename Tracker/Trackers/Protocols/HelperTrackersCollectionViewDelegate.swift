@@ -9,4 +9,6 @@ import UIKit
 
 protocol HelperTrackersCollectionViewDelegate: AnyObject, UIViewController {
     func showEditController(for tracker: Tracker, with category: TrackerCategory)
+    func hideFiltersButton()
+    func showFiltersButton()
 }
