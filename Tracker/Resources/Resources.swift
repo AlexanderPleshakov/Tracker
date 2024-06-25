@@ -36,6 +36,7 @@ enum Resources {
         static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
                                         "😇", "😡", "🥶", "🤔", "🙌", "🍔",
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
+        static let filters: [String] = ["All trackers", "Today trackers", "Completed", "Uncompleted"]
     }
     
     enum Images {

@@ -120,6 +120,12 @@ final class TrackersViewController: UIViewController {
     private func trackersIsEmpty() -> Bool {
         trackerStoreManager?.trackersIsEmpty() ?? true
     }
+    
+    @objc func buttonFiltersTapped() {
+        let filtersVC = FiltersViewController()
+        let filtersNC = UINavigationController(rootViewController: filtersVC)
+        present(filtersNC, animated: true)
+    }
 }
 
 // MARK: HelperTrackersCollectionViewDelegate
@@ -251,6 +257,8 @@ extension TrackersViewController {
     private func configure() {
         view.backgroundColor = Resources.Colors.background
         emptyView.translatesAutoresizingMaskIntoConstraints = false
+        
+        filtersButton.addTarget(self, action: #selector(buttonFiltersTapped), for: .touchUpInside)
         
         trackersCollection.dataSource = collectionHelper
         trackersCollection.delegate = collectionHelper
