@@ -135,11 +135,21 @@ extension TrackersViewController: HelperTrackersCollectionViewDelegate {
     }
     
     func hideFiltersButton() {
-        filtersButton.isHidden = true
+        if filtersButton.transform == .identity {
+            UIView.animate(withDuration: 0.2) { [weak self] in
+                self?.filtersButton.transform = CGAffineTransform(translationX: 0, y: 70)
+                self?.filtersButton.alpha = 0.2
+            }
+        }
     }
     
     func showFiltersButton() {
-        filtersButton.isHidden = false
+        if filtersButton.transform != .identity {
+            UIView.animate(withDuration: 0.2) { [weak self] in
+                self?.filtersButton.transform = .identity
+                self?.filtersButton.alpha = 1
+            }
+        }
     }
 }
 
