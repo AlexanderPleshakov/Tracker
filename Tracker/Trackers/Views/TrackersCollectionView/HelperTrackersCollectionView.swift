@@ -212,8 +212,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let scrollViewHeight = scrollView.frame.size.height
-        let addButtonHeight: CGFloat = 34
-        if offsetY > contentHeight - scrollViewHeight - addButtonHeight {
+        if offsetY > contentHeight - scrollViewHeight - 2 {
             delegate?.hideFiltersButton()
         } else {
             delegate?.showFiltersButton()
