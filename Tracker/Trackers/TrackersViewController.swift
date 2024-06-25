@@ -15,6 +15,8 @@ final class TrackersViewController: UIViewController {
     private var searchText: String? = nil
     private var lastNumberOfSections = 0
     
+    var additionalBottomSafeAreaInset = CGFloat(0)
+    
     // MARK: Views
     
     private var collectionHelper: HelperTrackersCollectionView?
@@ -41,6 +43,19 @@ final class TrackersViewController: UIViewController {
         return collection
     }()
     
+    private let filtersButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = Resources.Colors.blue
+        button.tintColor = Resources.Colors.alwaysWhite
+        button.setTitleColor(Resources.Colors.alwaysWhite, for: .normal)
+        button.layer.cornerRadius = 16
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        button.setTitle("Filters", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     private let stubView = StubView(text: NSLocalizedString("stub.trackers", comment: "Stub for empty trackers"))
     
     // MARK: Life Cycle
@@ -52,6 +67,13 @@ final class TrackersViewController: UIViewController {
         
         configure()
         reloadCollectionAndSetup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        var newSafeArea = UIEdgeInsets()
+        newSafeArea.bottom += additionalBottomSafeAreaInset
+        additionalSafeAreaInsets = newSafeArea
     }
     
     // MARK: Methods
@@ -117,6 +139,14 @@ extension TrackersViewController: HelperTrackersCollectionViewDelegate {
         let editNavController = UINavigationController(rootViewController: editViewController)
         
         present(editNavController, animated: true)
+    }
+    
+    func hideFiltersButton() {
+        filtersButton.isHidden = true
+    }
+    
+    func showFiltersButton() {
+        filtersButton.isHidden = false
     }
 }
 
@@ -222,6 +252,7 @@ extension TrackersViewController {
         trackersCollection.delegate = collectionHelper
         
         setupSubviews()
+        setFiltersButton()
     }
     
     private func setupSubviews() {
@@ -237,6 +268,7 @@ extension TrackersViewController {
             trackersCollection.removeFromSuperview()
         }
         addStubView()
+        view.bringSubviewToFront(filtersButton)
     }
     
     private func addTrackersCollection() {
@@ -247,6 +279,18 @@ extension TrackersViewController {
             trackersCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             trackersCollection.topAnchor.constraint(equalTo: view.topAnchor),
             trackersCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        view.bringSubviewToFront(filtersButton)
+    }
+    
+    private func setFiltersButton() {
+        view.addSubview(filtersButton)
+        
+        NSLayoutConstraint.activate([
+            filtersButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            filtersButton.heightAnchor.constraint(equalToConstant: 50),
+            filtersButton.widthAnchor.constraint(equalToConstant: 114),
+            filtersButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 16)
         ])
     }
     
