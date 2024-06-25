@@ -50,7 +50,7 @@ final class TrackersViewController: UIViewController {
         button.setTitleColor(Resources.Colors.alwaysWhite, for: .normal)
         button.layer.cornerRadius = 16
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        button.setTitle("Filters", for: .normal)
+        button.setTitle(NSLocalizedString("filters", comment: ""), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button

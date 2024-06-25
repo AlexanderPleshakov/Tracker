@@ -37,7 +37,12 @@ enum Resources {
         static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
                                         "😇", "😡", "🥶", "🤔", "🙌", "🍔",
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
-        static let filters: [String] = ["All trackers", "Today trackers", "Completed", "Uncompleted"]
+        static let filters: [String] = [
+            NSLocalizedString("allTrackers", comment: ""),
+            NSLocalizedString("trackersForToday", comment: ""),
+            NSLocalizedString("completed", comment: ""),
+            NSLocalizedString("uncompleted", comment: "")
+        ]
     }
     
     enum Images {

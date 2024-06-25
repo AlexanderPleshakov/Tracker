@@ -16,6 +16,13 @@ trackers = "Trackers";
 statistic = "Statistic";
 search = "Search";
 
+// Filters
+filters = "Filters";
+allTrackers = "All trackers";
+trackersForToday = "Trackers for today";
+completed = "Completed";
+uncompleted = "Uncompleted";
+
 // Context menu
 pin = "Pin";
 unpin = "Unpin";

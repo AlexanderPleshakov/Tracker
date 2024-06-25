@@ -134,7 +134,7 @@ extension FiltersViewController {
         tableView.delegate = self
         tableView.backgroundColor = Resources.Colors.background
         
-        title = "Filters"
+        title = NSLocalizedString("filters", comment: "")
         
         setupSubviews()
     }
