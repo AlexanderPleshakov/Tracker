@@ -267,7 +267,11 @@ final class TrackerStore {
                 Calendar.current.date(byAdding: .day, value: 1, to: strippedTargetDate)! as CVarArg
             )
         case .uncompleted:
-            completionPredicate = NSPredicate(value: true)
+            completionPredicate = NSPredicate(
+                format: "SUBQUERY(completedDates, $cd, $cd.date >= %@ AND $cd.date < %@).@count == 0",
+                strippedTargetDate as CVarArg,
+                Calendar.current.date(byAdding: .day, value: 1, to: strippedTargetDate)! as CVarArg
+            )
         }
         
         return completionPredicate

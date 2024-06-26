@@ -64,7 +64,7 @@ final class TrackersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var rawValue = UserDefaults.standard.value(forKey: Resources.Keys.selectedFilter) as? Int
+        let rawValue = UserDefaults.standard.value(forKey: Resources.Keys.selectedFilter) as? Int
         filter = Filters(rawValue: rawValue ?? 0) ?? .all
         
         setupCollection()
