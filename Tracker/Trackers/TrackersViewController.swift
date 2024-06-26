@@ -244,7 +244,11 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
                 trackersCollection.deleteSections(IndexSet(integer: indexPath.section))
             }, completion: { [weak self] _ in
                 guard let self else { return }
-                self.addStubAndRemoveCollection(stubAddingMethod: self.addStubView)
+                if trackerStoreManager.trackersIsEmpty(in: getCurrentWeekday(), or: currentDate) {
+                    self.addStubAndRemoveCollection(stubAddingMethod: self.addStubView)
+                } else {
+                    self.addStubAndRemoveCollection(stubAddingMethod: self.addFiltersStubView)
+                }
             })
         } else {
             trackersCollection.performBatchUpdates({
