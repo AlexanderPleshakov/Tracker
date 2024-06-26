@@ -310,9 +310,9 @@ extension TrackersViewController {
             addStubAndRemoveCollection()
         } else  {
             addTrackersCollection()
-            showFiltersButton()
         }
         
+        showFiltersButton()
         if trackerStoreManager.trackersIsEmpty(in: getCurrentWeekday(), or: currentDate) {
             hideFiltersButton()
         }
