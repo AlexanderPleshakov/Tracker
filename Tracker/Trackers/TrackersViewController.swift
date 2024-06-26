@@ -170,13 +170,22 @@ extension TrackersViewController: HelperTrackersCollectionViewDelegate {
 extension TrackersViewController/*: Protocol*/ {
     func setFilter(filter: Filters) {
         self.filter = filter
+        
+        if filter == .today {
+            guard let nc = navigationController as? TrackersNavigationController else { return }
+            nc.setDate(date: Date())
+            currentDate = Date()
+            collectionHelper?.changeCurrentDate(date: Date())
+        }
+        
         trackerStoreManager?.setFilter(
             filter: filter,
             day: getCurrentWeekday(),
             text: searchText,
             date: currentDate
         )
-        trackersCollection.reloadData()
+        
+        reloadCollectionAndSetup()
     }
 }
 
@@ -233,6 +242,10 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
 
 extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
+        if filter == .today {
+            filter = .all
+            UserDefaults.standard.setValue(0, forKey: Resources.Keys.selectedFilter)
+        }
         currentDate = date
         collectionHelper?.changeCurrentDate(date: date)
         trackerStoreManager?.setFilter(

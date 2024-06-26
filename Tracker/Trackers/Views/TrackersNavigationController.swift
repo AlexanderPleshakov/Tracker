@@ -11,7 +11,7 @@ final class TrackersNavigationController: UINavigationController {
     // MARK: Properties
     
     weak var delegateController: TrackersNavigationControllerDelegate!
-    
+    private let datePicker = UIDatePicker()
     
     // MARK: Init
     
@@ -42,6 +42,10 @@ final class TrackersNavigationController: UINavigationController {
         setSearchBar()
     }
     
+    func setDate(date: Date) {
+        datePicker.setDate(date, animated: true)
+    }
+    
     private func setTitle() {
         delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.foreground]
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
@@ -58,8 +62,6 @@ final class TrackersNavigationController: UINavigationController {
     }
     
     private func setDatePicker() {
-        let datePicker = UIDatePicker()
-        
         datePicker.locale = Locale.current
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
