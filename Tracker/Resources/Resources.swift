@@ -69,8 +69,11 @@ enum Resources {
         static let blue = UIColor(rgb: 0x3772E7)
         static let red = UIColor(rgb: 0xF56B6C)
         static let emojiCollectionBackground = UIColor(rgb: 0xE6E8EB)
+        static let green = UIColor(rgb: 0x2FD058)
         static let whiteAlpha = UIColor(rgb: 0xFFFFFF, a: 0.3)
         
+        static let buttonFilters = UIColor.color(light: UIColor(rgb: 0x3772E7),
+                                        dark: UIColor(rgb: 0xFFFFFF))
         static let background = UIColor.color(light: UIColor(rgb: 0xFFFFFF),
                                               dark: UIColor(rgb: 0x1A1B22))
         

@@ -132,6 +132,21 @@ final class TrackersViewController: UIViewController {
         trackerStoreManager?.trackersIsEmpty() ?? true
     }
     
+    private func setFilteredStateForButton() {
+        filtersButton.backgroundColor = .clear
+        filtersButton.tintColor = Resources.Colors.buttonFilters
+        filtersButton.setTitleColor(Resources.Colors.buttonFilters, for: .normal)
+        filtersButton.layer.borderWidth = 2
+        filtersButton.layer.borderColor = Resources.Colors.blue.cgColor
+    }
+    
+    private func setNoFilteredStateForButton() {
+        filtersButton.backgroundColor = Resources.Colors.blue
+        filtersButton.tintColor = Resources.Colors.alwaysWhite
+        filtersButton.setTitleColor(Resources.Colors.alwaysWhite, for: .normal)
+        filtersButton.layer.borderWidth = 0
+    }
+    
     @objc func buttonFiltersTapped() {
         let filtersVC = FiltersViewController()
         filtersVC.delegate = self
@@ -176,6 +191,12 @@ extension TrackersViewController: HelperTrackersCollectionViewDelegate {
 extension TrackersViewController/*: Protocol*/ {
     func setFilter(filter: Filters) {
         self.filter = filter
+        
+        if filter != .all {
+            setFilteredStateForButton()
+        } else {
+            setNoFilteredStateForButton()
+        }
         
         if filter == .today {
             guard let nc = navigationController as? TrackersNavigationController else { return }
@@ -249,6 +270,7 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
         if filter == .today {
             filter = .all
             UserDefaults.standard.setValue(0, forKey: Resources.Keys.selectedFilter)
+            setNoFilteredStateForButton()
         }
         currentDate = date
         collectionHelper?.changeCurrentDate(date: date)
@@ -298,6 +320,11 @@ extension TrackersViewController {
         view.backgroundColor = Resources.Colors.background
         emptyView.translatesAutoresizingMaskIntoConstraints = false
         
+        if filter != .all {
+            setFilteredStateForButton()
+        } else {
+            setNoFilteredStateForButton()
+        }
         filtersButton.addTarget(self, action: #selector(buttonFiltersTapped), for: .touchUpInside)
         
         trackersCollection.dataSource = collectionHelper
