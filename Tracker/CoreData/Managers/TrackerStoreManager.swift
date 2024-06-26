@@ -213,21 +213,12 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     func categoryIsEmpty(in section: Int) -> Bool {
-        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
-        guard let count = trackerCoreData.category?.trackers?.count else {
-            return true
-        }
-        
-        return count == 0 ? true : false
+        return fetchedResultsController.sections?[section].objects?.isEmpty ?? true
     }
     
-    func categoryTitle(in section: Int) -> String {
-        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
-        guard let title = trackerCoreData.category?.title else {
-            return ""
-        }
-        
-        return title
+    func categoryTitle(at section: Int) -> String {
+        #warning("Сами трекеры в правельном порядке отображаются, а категории не в правильном")
+        return fetchedResultsController.sections?[section].name ?? ""
     }
 }
 

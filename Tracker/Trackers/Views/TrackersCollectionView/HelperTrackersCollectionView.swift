@@ -112,7 +112,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         if trackerStoreManager.categoryIsEmpty(in: indexPath.section) {
             return view
         } else {
-            let categoryName = trackerStoreManager.categoryTitle(in: indexPath.section)
+            let categoryName = trackerStoreManager.categoryTitle(at: indexPath.section)
             view.configure(text: categoryName, leadingAnchor: 12)
         }
         
