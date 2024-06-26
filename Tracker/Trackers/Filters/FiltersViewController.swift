@@ -18,11 +18,13 @@ final class FiltersViewController: UIViewController {
     // MARK: Properties
     
     private let filters = Resources.Mocks.filters
+    weak var delegate: TrackersViewController?
     
     private var selectedFilter: Filters = .all {
         didSet {
             UserDefaults.standard.setValue(selectedFilter.rawValue,
                                            forKey: Resources.Keys.selectedFilter)
+            delegate?.setFilter(filter: selectedFilter)
         }
     }
     

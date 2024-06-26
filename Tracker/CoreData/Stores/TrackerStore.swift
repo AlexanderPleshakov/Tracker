@@ -206,7 +206,7 @@ final class TrackerStore {
         return trackerCoreData.first
     }
     
-    func createTrackersFetchRequest(with day: Day, and text: String?, date: Date, completionType: CompletionType = .completed) -> NSFetchRequest<TrackerCoreData> {
+    func createTrackersFetchRequest(with day: Day, and text: String?, date: Date, completionType: CompletionType = .any) -> NSFetchRequest<TrackerCoreData> {
         guard let day = daysStore.fetchDay(with: Day.shortName(by: day.rawValue)) else {
             fatalError("Неправильно передан день в setupFetchedResultsController")
         }
@@ -278,8 +278,10 @@ final class TrackerStore {
     }
 }
 
-extension TrackerStore {
-    enum CompletionType {
-        case completed, uncompleted, any
-    }
+
+enum CompletionType: Int {
+    case any = 0
+    case completed = 2
+    case uncompleted = 3
 }
+

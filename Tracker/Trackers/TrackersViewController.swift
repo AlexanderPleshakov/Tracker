@@ -14,6 +14,7 @@ final class TrackersViewController: UIViewController {
     private var trackerStoreManager: TrackerStoreManager?
     private var searchText: String? = nil
     private var lastNumberOfSections = 0
+    private var filter: Filters = .all
     
     // MARK: Views
     
@@ -63,6 +64,9 @@ final class TrackersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var rawValue = UserDefaults.standard.value(forKey: Resources.Keys.selectedFilter) as? Int
+        filter = Filters(rawValue: rawValue ?? 0) ?? .all
+        
         setupCollection()
         
         configure()
@@ -78,9 +82,10 @@ final class TrackersViewController: UIViewController {
         )
         trackerStoreManager?.delegate = self
         
-        trackerStoreManager?.setupFetchedResultsController(
-            with: getCurrentWeekday(),
-            and: searchText,
+        trackerStoreManager?.setFilter(
+            filter: filter,
+            day: getCurrentWeekday(),
+            text: searchText,
             date: currentDate
         )
         
@@ -123,6 +128,7 @@ final class TrackersViewController: UIViewController {
     
     @objc func buttonFiltersTapped() {
         let filtersVC = FiltersViewController()
+        filtersVC.delegate = self
         let filtersNC = UINavigationController(rootViewController: filtersVC)
         present(filtersNC, animated: true)
     }
@@ -156,6 +162,21 @@ extension TrackersViewController: HelperTrackersCollectionViewDelegate {
                 self?.filtersButton.alpha = 1
             }
         }
+    }
+}
+
+// MARK: Extension
+
+extension TrackersViewController/*: Protocol*/ {
+    func setFilter(filter: Filters) {
+        self.filter = filter
+        trackerStoreManager?.setFilter(
+            filter: filter,
+            day: getCurrentWeekday(),
+            text: searchText,
+            date: currentDate
+        )
+        trackersCollection.reloadData()
     }
 }
 
@@ -214,9 +235,10 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     func dateWasChanged(date: Date) {
         currentDate = date
         collectionHelper?.changeCurrentDate(date: date)
-        trackerStoreManager?.setupFetchedResultsController(
-            with: getCurrentWeekday(),
-            and: searchText,
+        trackerStoreManager?.setFilter(
+            filter: filter,
+            day: getCurrentWeekday(),
+            text: searchText,
             date: currentDate
         )
         
@@ -242,9 +264,10 @@ extension TrackersViewController: UISearchResultsUpdating {
             self.searchText = nil
         }
         
-        trackerStoreManager?.setupFetchedResultsController(
-            with: getCurrentWeekday(),
-            and: searchText,
+        trackerStoreManager?.setFilter(
+            filter: filter,
+            day: getCurrentWeekday(),
+            text: searchText,
             date: currentDate
         )
         reloadCollectionAndSetup()
