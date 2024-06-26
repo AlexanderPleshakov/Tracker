@@ -57,7 +57,13 @@ final class TrackersViewController: UIViewController {
         return button
     }()
     
-    private let stubView = StubView(text: NSLocalizedString("stub.trackers", comment: "Stub for empty trackers"))
+    private let stubView = StubView(
+        text: NSLocalizedString("stub.trackers", comment: "Stub for empty trackers")
+    )
+    private let filtersStubView = StubView(
+        text: NSLocalizedString("stub.search", comment: ""),
+        image: Resources.Images.searchStub
+    )
     
     // MARK: Life Cycle
 
@@ -194,6 +200,7 @@ extension TrackersViewController/*: Protocol*/ {
 extension TrackersViewController: NewTrackerViewControllerDelegate {
     func addTracker(tracker: Tracker, category: TrackerCategory) {
         trackerStoreManager?.create(tracker: tracker, category: category)
+        //reloadCollectionAndSetup()
     }
 }
 
@@ -201,12 +208,8 @@ extension TrackersViewController: NewTrackerViewControllerDelegate {
 
 extension TrackersViewController: TrackerStoreManagerDelegate {
     func addTracker(at indexPath: IndexPath) {
-        if stubView.isHidden == false {
-            stubView.removeFromSuperview()
-            addTrackersCollection()
-        }
-        
-        trackersCollection.reloadData()
+        removeStub()
+        reloadCollectionAndSetup()
     }
     
     func updateTracker(at indexPath: IndexPath) {
@@ -219,7 +222,8 @@ extension TrackersViewController: TrackerStoreManagerDelegate {
             trackersCollection.performBatchUpdates({
                 trackersCollection.deleteSections(IndexSet(integer: indexPath.section))
             }, completion: { [weak self] _ in
-                self?.addStubAndRemoveCollection()
+                guard let self else { return }
+                self.addStubAndRemoveCollection(stubAddingMethod: self.addStubView)
             })
         } else {
             trackersCollection.performBatchUpdates({
@@ -306,16 +310,38 @@ extension TrackersViewController {
     
     private func setupSubviews() {
         guard let trackerStoreManager else { return }
-        if trackersIsEmpty() {
-            addStubAndRemoveCollection()
-        } else  {
-            addTrackersCollection()
-        }
-        
         showFiltersButton()
         if trackerStoreManager.trackersIsEmpty(in: getCurrentWeekday(), or: currentDate) {
+            addStubAndRemoveCollection(stubAddingMethod: addStubView)
             hideFiltersButton()
+            return
         }
+        
+        if trackersIsEmpty() {
+            addStubAndRemoveCollection(stubAddingMethod: addFiltersStubView)
+        } else  {
+            removeStub()
+            addTrackersCollection()
+        }
+    }
+    
+    private func removeStub() {
+        if stubView.isDescendant(of: view) {
+            stubView.removeFromSuperview()
+        }
+        
+        if filtersStubView.isDescendant(of: view) {
+            filtersStubView.removeFromSuperview()
+        }
+    }
+    
+    private func addStubAndRemoveCollection(stubAddingMethod: () -> Void) {
+        if trackersCollection.isDescendant(of: view) {
+            trackersCollection.removeFromSuperview()
+        }
+        removeStub()
+        stubAddingMethod()
+        view.bringSubviewToFront(filtersButton)
     }
     
     private func addEmptyView() {
@@ -327,14 +353,6 @@ extension TrackersViewController {
             emptyView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             emptyView.heightAnchor.constraint(equalToConstant: 0),
         ])
-    }
-    
-    private func addStubAndRemoveCollection() {
-        if trackersCollection.isDescendant(of: view) {
-            trackersCollection.removeFromSuperview()
-        }
-        addStubView()
-        view.bringSubviewToFront(filtersButton)
     }
     
     private func addTrackersCollection() {
@@ -362,12 +380,24 @@ extension TrackersViewController {
     
     private func addStubView() {
         view.addSubview(stubView)
+        hideFiltersButton()
         
         NSLayoutConstraint.activate([
             stubView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stubView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             stubView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             stubView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+        ])
+    }
+    
+    private func addFiltersStubView() {
+        view.addSubview(filtersStubView)
+        
+        NSLayoutConstraint.activate([
+            filtersStubView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            filtersStubView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            filtersStubView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            filtersStubView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
 }

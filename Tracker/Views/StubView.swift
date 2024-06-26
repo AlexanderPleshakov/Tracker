@@ -30,16 +30,17 @@ final class StubView: UIView {
     }()
     
     private let stubImage: UIImageView = {
-        let imageView = UIImageView(image: Resources.Images.stubTrackersImage)
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
     }()
     
-    init(text: String) {
+    init(text: String, image: UIImage = Resources.Images.stubTrackersImage) {
         super.init(frame: .zero)
         
+        stubImage.image = image
         textLabel.text = text
         configure()
     }
