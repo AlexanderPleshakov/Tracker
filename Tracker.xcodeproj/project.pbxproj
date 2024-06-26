@@ -75,6 +75,7 @@
 		16F6593D2BEFD53E00DA7164 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */; };
 		16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659402BF025F500DA7164 /* NewCategoryViewController.swift */; };
 		16FF63342C14D1650096A1A8 /* DaysStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF63332C14D1650096A1A8 /* DaysStore.swift */; };
+		16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FA2C2C3CF900E4B412 /* Filters.swift */; };
 		695846D22C173A1900D43908 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 695846D02C173A1900D43908 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,7 @@
 		16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		16F659402BF025F500DA7164 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		16FF63332C14D1650096A1A8 /* DaysStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysStore.swift; sourceTree = "<group>"; };
+		16FFA6FA2C2C3CF900E4B412 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		695846D12C173A1900D43908 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -448,6 +450,7 @@
 				16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */,
 				16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */,
 				16F659342BEF853A00DA7164 /* Day.swift */,
+				16FFA6FA2C2C3CF900E4B412 /* Filters.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				16152B532C13880A007E5A29 /* CategoryStoreManager.swift in Sources */,
 				166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */,
 				167AF6AF2C1C8703007FEA49 /* TimetableViewModel.swift in Sources */,
+				16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */,
 				16818AC32BED798F0025D5D4 /* HabitOrEventViewController.swift in Sources */,
 				16F659332BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift in Sources */,
 				16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */,

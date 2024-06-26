@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum Filters: Int {
-    case all = 0
-    case today = 1
-    case completed
-    case uncompleted
-}
 
 final class FiltersViewController: UIViewController {
     // MARK: Properties
