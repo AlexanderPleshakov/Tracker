@@ -48,6 +48,16 @@ final class TrackerStore {
         return tracker
     }
     
+    func trackersIsEmpty(in day: Day, or date: Date) -> Bool {
+        let request = createTrackersFetchRequest(with: day, and: nil, date: date, completionType: .any)
+        
+        guard let trackers = try? context.fetch(request) else {
+            return true
+        }
+        
+        return trackers.isEmpty
+    }
+    
     func trackersCount(day: Day, date: Date, text: String?) -> Int {
         let request = createTrackersFetchRequest(with: day, and: text, date: date)
         

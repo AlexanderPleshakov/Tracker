@@ -67,6 +67,10 @@ final class TrackerStoreManager: NSObject {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
     
+    func trackersIsEmpty(in day: Day, or date: Date) -> Bool {
+        trackerStore.trackersIsEmpty(in: day, or: date)
+    }
+    
     func deleteTracker(by id: UUID) {
         trackerStore.deleteTracker(by: id)
     }

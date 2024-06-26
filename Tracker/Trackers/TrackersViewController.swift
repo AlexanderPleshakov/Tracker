@@ -305,10 +305,16 @@ extension TrackersViewController {
     }
     
     private func setupSubviews() {
+        guard let trackerStoreManager else { return }
         if trackersIsEmpty() {
             addStubAndRemoveCollection()
-        } else {
+        } else  {
             addTrackersCollection()
+            showFiltersButton()
+        }
+        
+        if trackerStoreManager.trackersIsEmpty(in: getCurrentWeekday(), or: currentDate) {
+            hideFiltersButton()
         }
     }
     
