@@ -5,6 +5,10 @@
         <attribute name="title" attributeType="String"/>
         <relationship name="trackers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="category" inverseEntity="TrackerCoreData"/>
     </entity>
+    <entity name="CompletedDate" representedClassName="CompletedDate" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="trackers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrackerCoreData" inverseName="completedDates" inverseEntity="TrackerCoreData"/>
+    </entity>
     <entity name="DayCoreData" representedClassName="DayCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="day" attributeType="String"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -18,6 +22,7 @@
         <attribute name="realCategoryName" optional="YES" attributeType="String"/>
         <attribute name="trackerId" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryCoreData" inverseName="trackers" inverseEntity="CategoryCoreData"/>
+        <relationship name="completedDates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CompletedDate" inverseName="trackers" inverseEntity="CompletedDate"/>
         <relationship name="schedule" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCoreData" inverseName="trackers" inverseEntity="DayCoreData"/>
     </entity>
     <entity name="TrackerRecordCoreData" representedClassName="TrackerRecordCoreData" syncable="YES" codeGenerationType="class">

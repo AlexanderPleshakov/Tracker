@@ -15,6 +15,7 @@ final class TrackerStore {
     private let dataManager = CoreDataManager.shared
     private let categoryStore: CategoryStore
     private let daysStore: DaysStore
+    private let trackerRecordStore: TrackerRecordStore
     
     private let pinnedCategoryTitle = NSLocalizedString("pinned", comment: "")
     
@@ -24,6 +25,7 @@ final class TrackerStore {
         self.context = context
         self.categoryStore = CategoryStore(context: context)
         self.daysStore = DaysStore(context: context)
+        self.trackerRecordStore = TrackerRecordStore(context: context)
     }
     
     convenience init() {
@@ -192,7 +194,7 @@ final class TrackerStore {
         return NSSet(array: days)
     }
     
-    private func fetchTrackerCoreData(by id: UUID) -> TrackerCoreData? {
+    func fetchTrackerCoreData(by id: UUID) -> TrackerCoreData? {
         let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
         
         fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(TrackerCoreData.trackerId), id as CVarArg)
@@ -204,7 +206,7 @@ final class TrackerStore {
         return trackerCoreData.first
     }
     
-    func createTrackersFetchRequest(with day: Day, and text: String?, date: Date) -> NSFetchRequest<TrackerCoreData> {
+    func createTrackersFetchRequest(with day: Day, and text: String?, date: Date, completionType: CompletionType = .completed) -> NSFetchRequest<TrackerCoreData> {
         guard let day = daysStore.fetchDay(with: Day.shortName(by: day.rawValue)) else {
             fatalError("Неправильно передан день в setupFetchedResultsController")
         }
@@ -218,22 +220,25 @@ final class TrackerStore {
         
         fetchRequest.sortDescriptors = [isPinnedSort, titlesSort]
         
+        let completionPredicate = getCompletionPredicate(type: completionType, date: date)
         let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
         let countDaysPredicate = NSPredicate(format: "schedule.@count == 0")
+        
         let strippedTargetDate = stripTime(from: date) ?? Date()
-        let datePredicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@",
-                                        strippedTargetDate as CVarArg,
-                                        Calendar.current.date(
-                                            byAdding: .day,
-                                            value: 1,
-                                            to: strippedTargetDate)! as CVarArg)
+        let datePredicate = NSPredicate(
+            format: "creationDate >= %@ AND creationDate < %@",
+            strippedTargetDate as CVarArg,
+            Calendar.current.date(byAdding: .day, value: 1, to: strippedTargetDate)! as CVarArg
+        )
         let compoundEventPredicate = NSCompoundPredicate(
             andPredicateWithSubpredicates: [datePredicate, countDaysPredicate]
         )
         
         if text == nil {
             let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundEventPredicate, dayPredicate])
-            fetchRequest.predicate = compoundPredicate
+            let compoundPredicateWithCompletion = NSCompoundPredicate(andPredicateWithSubpredicates: [compoundPredicate, completionPredicate])
+            
+            fetchRequest.predicate = compoundPredicateWithCompletion
         } else {
             let searchPredicate = NSPredicate(format: "name CONTAINS[c] %@", text ?? "")
             
@@ -241,14 +246,40 @@ final class TrackerStore {
             let compoundSearchEventPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [compoundEventPredicate, searchPredicate])
             
             let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundSearchEventPredicate, compoundFilterPredicate])
+            let compoundPredicateWithCompletion = NSCompoundPredicate(andPredicateWithSubpredicates: [compoundPredicate, completionPredicate])
             
-            fetchRequest.predicate = compoundPredicate
+            fetchRequest.predicate = compoundPredicateWithCompletion
         }
         
         return fetchRequest
     }
     
+    private func getCompletionPredicate(type: CompletionType, date: Date) -> NSPredicate {
+        let strippedTargetDate = stripTime(from: date) ?? Date()
+        let completionPredicate: NSPredicate
+        switch type {
+        case .any:
+            completionPredicate = NSPredicate(value: true)
+        case .completed:
+            completionPredicate = NSPredicate(
+                format: "SUBQUERY(completedDates, $cd, $cd.date >= %@ AND $cd.date < %@).@count > 0",
+                strippedTargetDate as CVarArg,
+                Calendar.current.date(byAdding: .day, value: 1, to: strippedTargetDate)! as CVarArg
+            )
+        case .uncompleted:
+            completionPredicate = NSPredicate(value: true)
+        }
+        
+        return completionPredicate
+    }
+    
     private func stripTime(from date: Date) -> Date? {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: date))
+    }
+}
+
+extension TrackerStore {
+    enum CompletionType {
+        case completed, uncompleted, any
     }
 }
