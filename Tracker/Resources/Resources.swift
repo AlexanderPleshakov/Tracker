@@ -11,6 +11,7 @@ enum Resources {
     
     enum Keys {
         static let onboardingWasShown = "OnboardingWasShown"
+        static let selectedFilter = "SelectedFilter"
     }
     
     enum Mocks {
@@ -36,6 +37,12 @@ enum Resources {
         static let emojies: [Character] = ["🙂", "😻", "🌺", "🐶", "❤️", "😱",
                                         "😇", "😡", "🥶", "🤔", "🙌", "🍔",
                                         "🥦", "🏓", "🥇", "🎸", "🏝", "😪"]
+        static let filters: [String] = [
+            NSLocalizedString("allTrackers", comment: ""),
+            NSLocalizedString("trackersForToday", comment: ""),
+            NSLocalizedString("completed", comment: ""),
+            NSLocalizedString("uncompleted", comment: "")
+        ]
     }
     
     enum Images {
@@ -43,6 +50,7 @@ enum Resources {
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
         static let addButton = UIImage(named: "AddButton") ?? UIImage()
         static let stubTrackersImage = UIImage(named: "StubImage") ?? UIImage()
+        static let searchStub = UIImage(named: "SearchStub") ?? UIImage()
         static let checkmark = UIImage(named: "TCheckmark") ?? UIImage()
         static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
         static let completeTrackerButton = UIImage(named: "AddTracker") ?? UIImage()
@@ -61,8 +69,11 @@ enum Resources {
         static let blue = UIColor(rgb: 0x3772E7)
         static let red = UIColor(rgb: 0xF56B6C)
         static let emojiCollectionBackground = UIColor(rgb: 0xE6E8EB)
+        static let green = UIColor(rgb: 0x2FD058)
         static let whiteAlpha = UIColor(rgb: 0xFFFFFF, a: 0.3)
         
+        static let buttonFilters = UIColor.color(light: UIColor(rgb: 0x3772E7),
+                                        dark: UIColor(rgb: 0xFFFFFF))
         static let background = UIColor.color(light: UIColor(rgb: 0xFFFFFF),
                                               dark: UIColor(rgb: 0x1A1B22))
         

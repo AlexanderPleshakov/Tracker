@@ -24,12 +24,21 @@ final class TrackerStoreManager: NSObject {
     
     private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>!
     
+    private var day: Day? = nil
+    private var text: String? = nil
+    private var date: Date? = nil
+    
+    private var lastCompletion: CompletionType
+    
     // MARK: Init
     
     init(trackerStore: TrackerStore, categoryStore: CategoryStore) {
         self.trackerStore = trackerStore
         self.categoryStore = categoryStore
         self.daysStore = DaysStore()
+        var rawValue = UserDefaults.standard.value(forKey: Resources.Keys.selectedFilter) as? Int
+        rawValue = rawValue == 1 ? 0 : rawValue
+        lastCompletion = CompletionType(rawValue: rawValue ?? 0) ?? .any
     }
     
     // MARK: Methods
@@ -58,6 +67,10 @@ final class TrackerStoreManager: NSObject {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
     
+    func trackersIsEmpty(in day: Day, or date: Date) -> Bool {
+        trackerStore.trackersIsEmpty(in: day, or: date)
+    }
+    
     func deleteTracker(by id: UUID) {
         trackerStore.deleteTracker(by: id)
     }
@@ -78,14 +91,36 @@ final class TrackerStoreManager: NSObject {
         trackerStore.update(tracker: tracker, category: category)
     }
     
-    private var day: Day? = nil
-    private var text: String? = nil
-    private var date: Date? = nil
-    
-    
-    func setupFetchedResultsController(with day: Day, and text: String?, date: Date) {
+    func setFilter(filter: Filters, day: Day, text: String?, date: Date) {
+        switch filter {
+        case .all, .today:
+            setupFetchedResultsController(
+                with: day,
+                and: text,
+                date: date,
+                completionType: .any
+            )
+        case .completed:
+            setupFetchedResultsController(
+                with: day,
+                and: text,
+                date: date,
+                completionType: .completed
+            )
+        case .uncompleted:
+            setupFetchedResultsController(
+                with: day,
+                and: text,
+                date: date,
+                completionType: .uncompleted
+            )
+        }
+    }
+
+    func setupFetchedResultsController(with day: Day, and text: String?, date: Date, completionType: CompletionType) {
+        lastCompletion = completionType
         fetchedResultsController = {
-            let fetchRequest = trackerStore.createTrackersFetchRequest(with: day, and: text, date: date)
+            let fetchRequest = trackerStore.createTrackersFetchRequest(with: day, and: text, date: date, completionType: completionType)
             
             self.day = day
             self.text = text
@@ -140,7 +175,12 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         guard let index, let actionType else {
             delegate?.forceReload()
             if let day, let date {
-                setupFetchedResultsController(with: day, and: text, date: date)
+                setupFetchedResultsController(
+                    with: day,
+                    and: text,
+                    date: date,
+                    completionType: lastCompletion
+                )
             }
             return
         }
@@ -173,21 +213,12 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     func categoryIsEmpty(in section: Int) -> Bool {
-        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
-        guard let count = trackerCoreData.category?.trackers?.count else {
-            return true
-        }
-        
-        return count == 0 ? true : false
+        return fetchedResultsController.sections?[section].objects?.isEmpty ?? true
     }
     
-    func categoryTitle(in section: Int) -> String {
-        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
-        guard let title = trackerCoreData.category?.title else {
-            return ""
-        }
-        
-        return title
+    func categoryTitle(at section: Int) -> String {
+        #warning("Сами трекеры в правельном порядке отображаются, а категории не в правильном")
+        return fetchedResultsController.sections?[section].name ?? ""
     }
 }
 

@@ -112,7 +112,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
         if trackerStoreManager.categoryIsEmpty(in: indexPath.section) {
             return view
         } else {
-            let categoryName = trackerStoreManager.categoryTitle(in: indexPath.section)
+            let categoryName = trackerStoreManager.categoryTitle(at: indexPath.section)
             view.configure(text: categoryName, leadingAnchor: 12)
         }
         
@@ -206,6 +206,17 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                 }
             ])
         })
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let scrollViewHeight = scrollView.frame.size.height
+        if offsetY > contentHeight - scrollViewHeight - 2 {
+            delegate?.hideFiltersButton()
+        } else {
+            delegate?.showFiltersButton()
+        }
     }
     
     private func createPreviewProvider(for cell: TrackersCollectionViewCell) -> UIViewController {

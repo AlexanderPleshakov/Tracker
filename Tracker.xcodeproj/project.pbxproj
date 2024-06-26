@@ -62,6 +62,7 @@
 		16AFE7CA2BEBEDA200F4FDFF /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */; };
 		16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */; };
 		16AFE7CF2BEBF0DC00F4FDFF /* TrackerRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */; };
+		16D2BFE72C2AF0FA0064806A /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2BFE62C2AF0FA0064806A /* FiltersViewController.swift */; };
 		16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */; };
 		16F659282BEE8B1100DA7164 /* TrackerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659272BEE8B1100DA7164 /* TrackerType.swift */; };
 		16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */; };
@@ -74,6 +75,8 @@
 		16F6593D2BEFD53E00DA7164 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */; };
 		16F659412BF025F500DA7164 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F659402BF025F500DA7164 /* NewCategoryViewController.swift */; };
 		16FF63342C14D1650096A1A8 /* DaysStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF63332C14D1650096A1A8 /* DaysStore.swift */; };
+		16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FA2C2C3CF900E4B412 /* Filters.swift */; };
+		16FFA6FD2C2C3D4700E4B412 /* CompletionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */; };
 		695846D22C173A1900D43908 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 695846D02C173A1900D43908 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +149,7 @@
 		16AFE7C92BEBEDA200F4FDFF /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerCategory.swift; sourceTree = "<group>"; };
 		16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerRecord.swift; sourceTree = "<group>"; };
+		16D2BFE62C2AF0FA0064806A /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		16F659242BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitAndEventTableViewHelper.swift; sourceTree = "<group>"; };
 		16F659272BEE8B1100DA7164 /* TrackerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerType.swift; sourceTree = "<group>"; };
 		16F6592A2BEE99CB00DA7164 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 		16F6593C2BEFD53E00DA7164 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		16F659402BF025F500DA7164 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		16FF63332C14D1650096A1A8 /* DaysStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysStore.swift; sourceTree = "<group>"; };
+		16FFA6FA2C2C3CF900E4B412 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionType.swift; sourceTree = "<group>"; };
 		695846D12C173A1900D43908 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -413,6 +419,7 @@
 		16AFE79E2BE6551B00F4FDFF /* Trackers */ = {
 			isa = PBXGroup;
 			children = (
+				16D2BFE52C2AF0DF0064806A /* Filters */,
 				16818ABE2BED36C10025D5D4 /* Protocols */,
 				16AFE7A22BE8E97400F4FDFF /* Views */,
 				1630D3CE2BE4C00F00A59A82 /* TrackersViewController.swift */,
@@ -445,8 +452,18 @@
 				16AFE7CC2BEBF08A00F4FDFF /* TrackerCategory.swift */,
 				16AFE7CE2BEBF0DC00F4FDFF /* TrackerRecord.swift */,
 				16F659342BEF853A00DA7164 /* Day.swift */,
+				16FFA6FA2C2C3CF900E4B412 /* Filters.swift */,
+				16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		16D2BFE52C2AF0DF0064806A /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				16D2BFE62C2AF0FA0064806A /* FiltersViewController.swift */,
+			);
+			path = Filters;
 			sourceTree = "<group>";
 		};
 		16F659262BEE63C200DA7164 /* Helpers */ = {
@@ -603,6 +620,7 @@
 				16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */,
 				16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */,
 				167C97D62C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift in Sources */,
+				16FFA6FD2C2C3D4700E4B412 /* CompletionType.swift in Sources */,
 				167AF6AA2C1C6805007FEA49 /* Binding .swift in Sources */,
 				16152B512C138630007E5A29 /* CategoryStore.swift in Sources */,
 				16152B5E2C13BBCC007E5A29 /* TrackerStoreManagerDelegate.swift in Sources */,
@@ -639,6 +657,7 @@
 				1651B62F2C151F3500C2493C /* TrackerRecordStore.swift in Sources */,
 				167C97D92C0FDAD1005266D6 /* EmojiAndColorsCollectionViewDelegate.swift in Sources */,
 				166EAAE02BFCAE8A004FD58B /* EmojiView.swift in Sources */,
+				16D2BFE72C2AF0FA0064806A /* FiltersViewController.swift in Sources */,
 				16F6592D2BEE9C7400DA7164 /* BasicLargeButton.swift in Sources */,
 				166EAADD2BFCABC5004FD58B /* TrackersCollectionViewCell.swift in Sources */,
 				16F659302BEEA4E100DA7164 /* HabitAndEventTableViewDelegate.swift in Sources */,
@@ -649,6 +668,7 @@
 				16152B532C13880A007E5A29 /* CategoryStoreManager.swift in Sources */,
 				166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */,
 				167AF6AF2C1C8703007FEA49 /* TimetableViewModel.swift in Sources */,
+				16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */,
 				16818AC32BED798F0025D5D4 /* HabitOrEventViewController.swift in Sources */,
 				16F659332BEEAA7900DA7164 /* HabitOrEventViewControllerDelegate.swift in Sources */,
 				16F6592B2BEE99CB00DA7164 /* TimetableViewController.swift in Sources */,

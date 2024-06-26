@@ -16,6 +16,13 @@ trackers = "Трекеры";
 statistic = "Статистика";
 search = "Поиск";
 
+// Filters
+filters = "Фильтры";
+allTrackers = "Все трекеры";
+trackersForToday = "Трекеры на сегодня";
+completed = "Завершенные";
+uncompleted = "Незавершенные";
+
 // Context menu
 pin = "Закрепить";
 unpin = "Открепить";
