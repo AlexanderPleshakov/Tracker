@@ -16,6 +16,8 @@ final class TrackersViewController: UIViewController {
     private var lastNumberOfSections = 0
     private var filter: Filters = .all
     
+    private let analyticsService = AnalyticsService()
+    
     // MARK: Views
     
     private var collectionHelper: HelperTrackersCollectionView?
@@ -77,6 +79,16 @@ final class TrackersViewController: UIViewController {
         
         configure()
         reloadCollectionAndSetup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analyticsService.report(event: "open", params: ["screen": "Main"])
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        analyticsService.report(event: "close", params: ["screen": "Main"])
     }
     
     // MARK: Methods
@@ -148,6 +160,7 @@ final class TrackersViewController: UIViewController {
     }
     
     @objc func buttonFiltersTapped() {
+        analyticsService.report(event: "click", params: ["screen": "Main", "item": "filter"])
         let filtersVC = FiltersViewController()
         filtersVC.delegate = self
         let filtersNC = UINavigationController(rootViewController: filtersVC)
@@ -221,7 +234,6 @@ extension TrackersViewController/*: Protocol*/ {
 extension TrackersViewController: NewTrackerViewControllerDelegate {
     func addTracker(tracker: Tracker, category: TrackerCategory) {
         trackerStoreManager?.create(tracker: tracker, category: category)
-        //reloadCollectionAndSetup()
     }
 }
 
@@ -289,6 +301,7 @@ extension TrackersViewController: TrackersNavigationControllerDelegate {
     }
     
     func addButtonTapped() {
+        analyticsService.report(event: "click", params: ["screen": "Main", "item": "add_track"])
         let viewController = NewTrackerViewController(currentDate: currentDate)
         viewController.delegate = self
         let nav = UINavigationController(rootViewController: viewController)

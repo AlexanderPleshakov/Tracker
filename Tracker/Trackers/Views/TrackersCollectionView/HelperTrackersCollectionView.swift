@@ -18,6 +18,7 @@ final class HelperTrackersCollectionView: NSObject  {
     private let params: GeometricParams
     
     weak var delegate: HelperTrackersCollectionViewDelegate?
+    private let analyticsService = AnalyticsService()
     
     // MARK: Init
     
@@ -42,11 +43,13 @@ final class HelperTrackersCollectionView: NSObject  {
 
 extension HelperTrackersCollectionView: TrackersCellDelegate {
     func completeTracker(id: UUID) {
+        analyticsService.report(event: "click", params: ["screen": "Main", "item": "track"])
         let completedTracker = TrackerRecord(id: id, date: currentDate)
         trackerRecordStore.add(trackerRecord: completedTracker)
     }
     
     func incompleteTracker(id: UUID) {
+        analyticsService.report(event: "click", params: ["screen": "Main", "item": "track"])
         trackerRecordStore.delete(id: id, date: currentDate)
     }
 }
@@ -178,6 +181,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                     }
                 },
                 UIAction(title: NSLocalizedString("edit", comment: "edit tracker")) { [weak self] _ in
+                    self?.analyticsService.report(event: "click", params: ["screen": "Main", "item": "edit"])
                     guard let self,
                           let id = cell.trackerId,
                           let tracker = trackerStoreManager.fetchTracker(by: id),
@@ -189,6 +193,7 @@ extension HelperTrackersCollectionView: UICollectionViewDelegateFlowLayout {
                 UIAction(title: NSLocalizedString("delete", comment: "delete tracker"),
                          attributes: .destructive) { [weak self] _ in
                     guard let self else { return }
+                    analyticsService.report(event: "click", params: ["screen": "Main", "item": "delete"])
                              
                     let actionHandler = { [weak self] in
                         guard let id = cell.trackerId, let self else { return }
