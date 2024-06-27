@@ -78,6 +78,7 @@
 		16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FA2C2C3CF900E4B412 /* Filters.swift */; };
 		16FFA6FD2C2C3D4700E4B412 /* CompletionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */; };
 		16FFA6FF2C2CCB1F00E4B412 /* StatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FE2C2CCB1F00E4B412 /* StatisticTableViewCell.swift */; };
+		16FFA7022C2DAFB400E4B412 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA7012C2DAFB400E4B412 /* AnalyticsService.swift */; };
 		23311F2B8AFC04333EFB2FDE /* Pods_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 927458B7926FAC08E4C555D0 /* Pods_Tracker.framework */; };
 		3BDC598E6A8A1D858BDFEBBB /* Pods_TrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A14F27E232BE272E4171DB /* Pods_TrackerTests.framework */; };
 		695846D22C173A1900D43908 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 695846D02C173A1900D43908 /* DataModel.xcdatamodeld */; };
@@ -169,6 +170,7 @@
 		16FFA6FA2C2C3CF900E4B412 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionType.swift; sourceTree = "<group>"; };
 		16FFA6FE2C2CCB1F00E4B412 /* StatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewCell.swift; sourceTree = "<group>"; };
+		16FFA7012C2DAFB400E4B412 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		24A14F27E232BE272E4171DB /* Pods_TrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		695846D12C173A1900D43908 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		7A117E30D74A9F2C17D83CBA /* Pods-Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tracker.release.xcconfig"; path = "Target Support Files/Pods-Tracker/Pods-Tracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				167AF6822C1B05F0007FEA49 /* Onboarding */,
 				16F6592E2BEE9DC700DA7164 /* Views */,
 				16AFE7CB2BEBF05600F4FDFF /* Models */,
+				16FFA7002C2DAF9900E4B412 /* Services */,
 				16AFE79E2BE6551B00F4FDFF /* Trackers */,
 				16818ABF2BED6C5B0025D5D4 /* TrackerCreation */,
 				16AFE79F2BE6553100F4FDFF /* Statistic */,
@@ -521,6 +524,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		16FFA7002C2DAF9900E4B412 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				16FFA7012C2DAFB400E4B412 /* AnalyticsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4F2A01CD4611410080254C3F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16AFE7CD2BEBF08A00F4FDFF /* TrackerCategory.swift in Sources */,
+				16FFA7022C2DAFB400E4B412 /* AnalyticsService.swift in Sources */,
 				16F659392BEF8E1400DA7164 /* TimetableTableViewCell.swift in Sources */,
 				16F659252BEE5F3300DA7164 /* HabitAndEventTableViewHelper.swift in Sources */,
 				167C97D62C08D230005266D6 /* EmojiOrColorCollectionViewCell.swift in Sources */,
