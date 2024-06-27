@@ -12,6 +12,7 @@ enum Resources {
     enum Keys {
         static let onboardingWasShown = "OnboardingWasShown"
         static let selectedFilter = "SelectedFilter"
+        static let completedTrackers = "CompletedTrackers"
     }
     
     enum Mocks {
@@ -49,8 +50,11 @@ enum Resources {
         static let tracksTab = UIImage(named: "TabTracks") ?? UIImage()
         static let statisticTab = UIImage(named: "TabStatistic") ?? UIImage()
         static let addButton = UIImage(named: "AddButton") ?? UIImage()
+        
         static let stubTrackersImage = UIImage(named: "StubImage") ?? UIImage()
         static let searchStub = UIImage(named: "SearchStub") ?? UIImage()
+        static let statisticStub = UIImage(named: "StatisticStub") ?? UIImage()
+        
         static let checkmark = UIImage(named: "TCheckmark") ?? UIImage()
         static let resetTextField = UIImage(named: "ResetTextField") ?? UIImage()
         static let completeTrackerButton = UIImage(named: "AddTracker") ?? UIImage()

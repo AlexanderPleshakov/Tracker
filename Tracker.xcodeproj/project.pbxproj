@@ -77,6 +77,7 @@
 		16FF63342C14D1650096A1A8 /* DaysStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FF63332C14D1650096A1A8 /* DaysStore.swift */; };
 		16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FA2C2C3CF900E4B412 /* Filters.swift */; };
 		16FFA6FD2C2C3D4700E4B412 /* CompletionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */; };
+		16FFA6FF2C2CCB1F00E4B412 /* StatisticTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFA6FE2C2CCB1F00E4B412 /* StatisticTableViewCell.swift */; };
 		695846D22C173A1900D43908 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 695846D02C173A1900D43908 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +165,7 @@
 		16FF63332C14D1650096A1A8 /* DaysStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysStore.swift; sourceTree = "<group>"; };
 		16FFA6FA2C2C3CF900E4B412 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		16FFA6FC2C2C3D4700E4B412 /* CompletionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionType.swift; sourceTree = "<group>"; };
+		16FFA6FE2C2CCB1F00E4B412 /* StatisticTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTableViewCell.swift; sourceTree = "<group>"; };
 		695846D12C173A1900D43908 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -431,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				16AFE79C2BE654D600F4FDFF /* StatisticViewController.swift */,
+				16FFA6FE2C2CCB1F00E4B412 /* StatisticTableViewCell.swift */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				167AF6B12C1C9134007FEA49 /* NewTrackerViewModel.swift in Sources */,
 				16F6593B2BEF995A00DA7164 /* DisclosureTableViewCell.swift in Sources */,
 				16152B532C13880A007E5A29 /* CategoryStoreManager.swift in Sources */,
+				16FFA6FF2C2CCB1F00E4B412 /* StatisticTableViewCell.swift in Sources */,
 				166EAAE92BFD5373004FD58B /* SectionHeaderView.swift in Sources */,
 				167AF6AF2C1C8703007FEA49 /* TimetableViewModel.swift in Sources */,
 				16FFA6FB2C2C3CFA00E4B412 /* Filters.swift in Sources */,
