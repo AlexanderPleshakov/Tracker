@@ -37,7 +37,7 @@ final class TrackerTests: XCTestCase {
     func testTrackersCollectionNoCompletedCellLight() throws {
         let cell = TrackersCollectionViewCell(frame: CGRect(x: 0, y: 0, width: 167, height: 132))
         let tracker = Tracker(id: UUID(), name: "Test", color: 0x46E69D, emoji: "👽", timetable: [.monday], creationDate: Date())
-        cell.configure(tracker: tracker, isCompleted: false, completedDays: 3, date: Date())
+        cell.configure(tracker: tracker, isCompleted: false, completedDays: 3, date: Date(), isPinned: false)
         
         assertSnapshots(of: cell, as: [.image(traits: .init(userInterfaceStyle: .light))])
     }
@@ -45,7 +45,7 @@ final class TrackerTests: XCTestCase {
     func testTrackersCollectionCompletedCellLight() throws {
         let cell = TrackersCollectionViewCell(frame: CGRect(x: 0, y: 0, width: 167, height: 132))
         let tracker = Tracker(id: UUID(), name: "Test", color: 0x46E69D, emoji: "👽", timetable: [.monday], creationDate: Date())
-        cell.configure(tracker: tracker, isCompleted: true, completedDays: 3, date: Date())
+        cell.configure(tracker: tracker, isCompleted: true, completedDays: 3, date: Date(), isPinned: false)
         
         assertSnapshots(of: cell, as: [.image(traits: .init(userInterfaceStyle: .light))])
     }
@@ -115,7 +115,7 @@ final class TrackerTests: XCTestCase {
     func testTrackersCollectionNoCompletedCellDark() throws {
         let cell = TrackersCollectionViewCell(frame: CGRect(x: 0, y: 0, width: 167, height: 132))
         let tracker = Tracker(id: UUID(), name: "Test", color: 0x46E69D, emoji: "👽", timetable: [.monday], creationDate: Date())
-        cell.configure(tracker: tracker, isCompleted: false, completedDays: 3, date: Date())
+        cell.configure(tracker: tracker, isCompleted: false, completedDays: 3, date: Date(), isPinned: false)
         
         assertSnapshots(of: cell, as: [.image(traits: .init(userInterfaceStyle: .dark))])
     }
@@ -123,7 +123,7 @@ final class TrackerTests: XCTestCase {
     func testTrackersCollectionCompletedCellDark() throws {
         let cell = TrackersCollectionViewCell(frame: CGRect(x: 0, y: 0, width: 167, height: 132))
         let tracker = Tracker(id: UUID(), name: "Test", color: 0x46E69D, emoji: "👽", timetable: [.monday], creationDate: Date())
-        cell.configure(tracker: tracker, isCompleted: true, completedDays: 3, date: Date())
+        cell.configure(tracker: tracker, isCompleted: true, completedDays: 3, date: Date(), isPinned: false)
         
         assertSnapshots(of: cell, as: [.image(traits: .init(userInterfaceStyle: .dark))])
     }
