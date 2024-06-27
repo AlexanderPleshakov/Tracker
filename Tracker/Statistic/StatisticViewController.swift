@@ -30,17 +30,19 @@ final class StatisticViewController: UIViewController {
         configureUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if getCount() == 0 {
+            tableView.removeFromSuperview()
+            setupStub()
+            return
+        }
         
         if !tableView.isDescendant(of: view) {
             removeStub()
             setupTable()
         } else {
-            if getCount() == 0 {
-                tableView.removeFromSuperview()
-                setupStub()
-            }
             tableView.reloadData()
         }
     }
@@ -127,7 +129,7 @@ extension StatisticViewController {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+        if let _ = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
             setupTable()
         } else {
             setupStub()
