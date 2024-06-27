@@ -106,7 +106,6 @@ final class CategoryStore {
         guard let categoriesCoreData = try? context.fetch(request),
               let category = categoriesCoreData.first
         else {
-            print("Categories core data is nil in updatePinnedTitleIfNeeded()")
             return
         }
         
