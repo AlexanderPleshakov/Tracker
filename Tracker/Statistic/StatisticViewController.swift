@@ -30,7 +30,30 @@ final class StatisticViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if !tableView.isDescendant(of: view) {
+            removeStub()
+            setupTable()
+        } else {
+            if getCount() == 0 {
+                tableView.removeFromSuperview()
+                setupStub()
+            }
+            tableView.reloadData()
+        }
+    }
+    
     // MARK: Methods
+    
+    private func getCount() -> Int {
+        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+            return count
+        } else {
+            return 0
+        }
+    }
 }
 
 // MARK: UITableViewDataSource
@@ -53,7 +76,7 @@ extension StatisticViewController: UITableViewDataSource {
         }
         
         cell.setTitle(text: "Трекеров завершено")
-        cell.setCount(count: 5)
+        cell.setCount(count: getCount())
         
         return cell
     }
@@ -103,8 +126,18 @@ extension StatisticViewController {
         [stub, tableView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
-        //setupStub()
-        setupTable()
+        
+        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+            setupTable()
+        } else {
+            setupStub()
+        }
+    }
+    
+    private func removeStub() {
+        if stub.isDescendant(of: view) {
+            stub.removeFromSuperview()
+        }
     }
     
     private func setupStub() {

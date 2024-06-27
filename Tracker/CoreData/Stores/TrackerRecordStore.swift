@@ -89,9 +89,16 @@ final class TrackerRecordStore {
     }
     
     func completeTracker(id: UUID, date: Date) {
+        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+            UserDefaults.standard.setValue(count + 1, forKey: Resources.Keys.completedTrackers)
+        } else {
+            UserDefaults.standard.setValue(1, forKey: Resources.Keys.completedTrackers)
+        }
+        
         guard let tracker = fetchTrackerCoreData(by: id) else {
             return
         }
+        
         let completedDate = CompletedDate(context: context)
         completedDate.date = date
         let completed = tracker.completedDates?.adding(completedDate)
@@ -102,6 +109,10 @@ final class TrackerRecordStore {
     }
     
     func incompleteTracker(id: UUID, date: Date) {
+        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+            UserDefaults.standard.setValue(count - 1, forKey: Resources.Keys.completedTrackers)
+        }
+        
         guard let tracker = fetchTrackerCoreData(by: id) else {
             return
         }
