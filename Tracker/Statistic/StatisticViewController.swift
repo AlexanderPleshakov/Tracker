@@ -77,7 +77,8 @@ extension StatisticViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.setTitle(text: "Трекеров завершено")
+        cell.setTitle(text: NSLocalizedString("trackersCompleted",
+                                              comment: "Trackers completed cell title for statistic"))
         cell.setCount(count: getCount())
         
         return cell

@@ -16,6 +16,9 @@ trackers = "Трекеры";
 statistic = "Статистика";
 search = "Поиск";
 
+// Statistic
+trackersCompleted = "Трекеров завершено";
+
 // Filters
 filters = "Фильтры";
 allTrackers = "Все трекеры";

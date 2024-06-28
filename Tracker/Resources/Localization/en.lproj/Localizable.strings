@@ -16,6 +16,9 @@ trackers = "Trackers";
 statistic = "Statistic";
 search = "Search";
 
+// Statistic
+trackersCompleted = "Trackers completed";
+
 // Filters
 filters = "Filters";
 allTrackers = "All trackers";
