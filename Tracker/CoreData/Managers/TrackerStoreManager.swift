@@ -217,7 +217,6 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     func categoryTitle(at section: Int) -> String {
-        #warning("Сами трекеры в правельном порядке отображаются, а категории не в правильном")
         return fetchedResultsController.sections?[section].name ?? ""
     }
 }
