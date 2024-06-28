@@ -49,11 +49,20 @@ extension ImageResource {
     /// The "Logo" asset catalog image resource.
     static let logo = ImageResource(name: "Logo", bundle: resourceBundle)
 
+    /// The "Pin" asset catalog image resource.
+    static let pin = ImageResource(name: "Pin", bundle: resourceBundle)
+
     /// The "RedImage" asset catalog image resource.
     static let red = ImageResource(name: "RedImage", bundle: resourceBundle)
 
     /// The "ResetTextField" asset catalog image resource.
     static let resetTextField = ImageResource(name: "ResetTextField", bundle: resourceBundle)
+
+    /// The "SearchStub" asset catalog image resource.
+    static let searchStub = ImageResource(name: "SearchStub", bundle: resourceBundle)
+
+    /// The "StatisticStub" asset catalog image resource.
+    static let statisticStub = ImageResource(name: "StatisticStub", bundle: resourceBundle)
 
     /// The "StubImage" asset catalog image resource.
     static let stub = ImageResource(name: "StubImage", bundle: resourceBundle)
@@ -175,6 +184,15 @@ extension AppKit.NSImage {
 #endif
     }
 
+    /// The "Pin" asset catalog image.
+    static var pin: AppKit.NSImage {
+#if !targetEnvironment(macCatalyst)
+        .init(resource: .pin)
+#else
+        .init()
+#endif
+    }
+
     /// The "RedImage" asset catalog image.
     static var red: AppKit.NSImage {
 #if !targetEnvironment(macCatalyst)
@@ -188,6 +206,24 @@ extension AppKit.NSImage {
     static var resetTextField: AppKit.NSImage {
 #if !targetEnvironment(macCatalyst)
         .init(resource: .resetTextField)
+#else
+        .init()
+#endif
+    }
+
+    /// The "SearchStub" asset catalog image.
+    static var searchStub: AppKit.NSImage {
+#if !targetEnvironment(macCatalyst)
+        .init(resource: .searchStub)
+#else
+        .init()
+#endif
+    }
+
+    /// The "StatisticStub" asset catalog image.
+    static var statisticStub: AppKit.NSImage {
+#if !targetEnvironment(macCatalyst)
+        .init(resource: .statisticStub)
 #else
         .init()
 #endif
@@ -282,6 +318,15 @@ extension UIKit.UIImage {
 #endif
     }
 
+    /// The "Pin" asset catalog image.
+    static var pin: UIKit.UIImage {
+#if !os(watchOS)
+        .init(resource: .pin)
+#else
+        .init()
+#endif
+    }
+
     /// The "RedImage" asset catalog image.
     static var red: UIKit.UIImage {
 #if !os(watchOS)
@@ -295,6 +340,24 @@ extension UIKit.UIImage {
     static var resetTextField: UIKit.UIImage {
 #if !os(watchOS)
         .init(resource: .resetTextField)
+#else
+        .init()
+#endif
+    }
+
+    /// The "SearchStub" asset catalog image.
+    static var searchStub: UIKit.UIImage {
+#if !os(watchOS)
+        .init(resource: .searchStub)
+#else
+        .init()
+#endif
+    }
+
+    /// The "StatisticStub" asset catalog image.
+    static var statisticStub: UIKit.UIImage {
+#if !os(watchOS)
+        .init(resource: .statisticStub)
 #else
         .init()
 #endif

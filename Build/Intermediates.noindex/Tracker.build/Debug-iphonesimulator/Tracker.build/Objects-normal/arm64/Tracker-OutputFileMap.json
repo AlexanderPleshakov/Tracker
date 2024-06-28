@@ -25,6 +25,26 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoryCoreData+CoreDataProperties.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoryCoreData+CoreDataProperties~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/CompletedDate+CoreDataClass.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass~partial.swiftmodule"
+  },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/CompletedDate+CoreDataProperties.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/DataModel+CoreDataModel.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DataModel+CoreDataModel.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DataModel+CoreDataModel.d",
@@ -235,6 +255,16 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/UITabBar + TopBorder~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/CompletionType.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Day.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Day.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Day.d",
@@ -244,6 +274,16 @@
     "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Day.o",
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Day.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Day~partial.swiftmodule"
+  },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Filters.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters~partial.swiftmodule"
   },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/GeometricParams.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.swiftconstvalues",
@@ -335,6 +375,26 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/SceneDelegate.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/SceneDelegate~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Services/AnalyticsService.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService~partial.swiftmodule"
+  },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Statistic/StatisticTableViewCell.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Statistic/StatisticViewController.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.d",
@@ -365,6 +425,16 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/HabitOrEventViewController.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/NewCategoryViewController.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewCategoryViewController.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewCategoryViewController.d",
@@ -374,16 +444,6 @@
     "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewCategoryViewController.o",
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewCategoryViewController.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewCategoryViewController~partial.swiftmodule"
-  },
-  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/NewHabitOrEventViewController.swift" : {
-    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.swiftconstvalues",
-    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.d",
-    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.dia",
-    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.o",
-    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.bc",
-    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.o",
-    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.swiftdeps",
-    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController~partial.swiftmodule"
   },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/NewTrackerViewController.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewController.swiftconstvalues",
@@ -435,15 +495,15 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitAndEventTableViewDelegate.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitAndEventTableViewDelegate~partial.swiftmodule"
   },
-  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/NewHabitOrEventViewControllerDelegate.swift" : {
-    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.swiftconstvalues",
-    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.d",
-    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.dia",
-    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.o",
-    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.bc",
-    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.o",
-    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.swiftdeps",
-    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate~partial.swiftmodule"
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/HabitOrEventViewControllerDelegate.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate~partial.swiftmodule"
   },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/NewTrackerViewControllerDelegate.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.swiftconstvalues",
@@ -565,6 +625,26 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TextFieldWithPadding~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Filters/FiltersViewController.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController~partial.swiftmodule"
+  },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Protocols/HelperTrackersCollectionViewDelegate.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Protocols/TrackersCellDelegate.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersCellDelegate.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersCellDelegate.d",
@@ -625,6 +705,16 @@
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/SectionHeaderView.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/SectionHeaderView~partial.swiftmodule"
   },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/Views/TrackerColorCellView.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView~partial.swiftmodule"
+  },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/Views/TrackersCollectionViewCell.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersCollectionViewCell.swiftconstvalues",
     "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersCollectionViewCell.d",
@@ -654,6 +744,16 @@
     "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/BasicLargeButton.o",
     "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/BasicLargeButton.swiftdeps",
     "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/BasicLargeButton~partial.swiftmodule"
+  },
+  "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Views/DeleteActionSheet.swift" : {
+    "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.swiftconstvalues",
+    "dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.d",
+    "diagnostics" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.dia",
+    "index-unit-output-path" : "/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.o",
+    "llvm-bc" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.bc",
+    "object" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.o",
+    "swift-dependencies" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.swiftdeps",
+    "swiftmodule" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet~partial.swiftmodule"
   },
   "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Views/StubView.swift" : {
     "const-values" : "/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StubView.swiftconstvalues",

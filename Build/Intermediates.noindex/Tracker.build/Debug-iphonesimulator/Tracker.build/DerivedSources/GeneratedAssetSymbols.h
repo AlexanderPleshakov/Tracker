@@ -27,11 +27,20 @@ static NSString * const ACImageNameDoneTracker AC_SWIFT_PRIVATE = @"DoneTracker"
 /// The "Logo" asset catalog image resource.
 static NSString * const ACImageNameLogo AC_SWIFT_PRIVATE = @"Logo";
 
+/// The "Pin" asset catalog image resource.
+static NSString * const ACImageNamePin AC_SWIFT_PRIVATE = @"Pin";
+
 /// The "RedImage" asset catalog image resource.
 static NSString * const ACImageNameRedImage AC_SWIFT_PRIVATE = @"RedImage";
 
 /// The "ResetTextField" asset catalog image resource.
 static NSString * const ACImageNameResetTextField AC_SWIFT_PRIVATE = @"ResetTextField";
+
+/// The "SearchStub" asset catalog image resource.
+static NSString * const ACImageNameSearchStub AC_SWIFT_PRIVATE = @"SearchStub";
+
+/// The "StatisticStub" asset catalog image resource.
+static NSString * const ACImageNameStatisticStub AC_SWIFT_PRIVATE = @"StatisticStub";
 
 /// The "StubImage" asset catalog image resource.
 static NSString * const ACImageNameStubImage AC_SWIFT_PRIVATE = @"StubImage";

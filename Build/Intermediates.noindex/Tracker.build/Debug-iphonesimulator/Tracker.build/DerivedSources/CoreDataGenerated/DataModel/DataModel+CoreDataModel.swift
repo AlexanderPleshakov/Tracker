@@ -2,7 +2,7 @@
 //  DataModel+CoreDataModel.swift
 //  
 //
-//  Created by Александр Плешаков on 17.06.2024.
+//  Created by Александр Плешаков on 28.06.2024.
 //
 //  This file was automatically generated and should not be edited.
 //

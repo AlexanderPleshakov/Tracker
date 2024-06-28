@@ -71,6 +71,16 @@
 			<key>catalogPath</key>
 			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
 			<key>objcSymbol</key>
+			<string>ACImageNamePin</string>
+			<key>relativePath</key>
+			<string>./Trackers/Pin.imageset</string>
+			<key>swiftSymbol</key>
+			<string>pin</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
+			<key>objcSymbol</key>
 			<string>ACImageNameRedImage</string>
 			<key>relativePath</key>
 			<string>./Onboarding/RedImage.imageset</string>
@@ -91,9 +101,29 @@
 			<key>catalogPath</key>
 			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
 			<key>objcSymbol</key>
+			<string>ACImageNameSearchStub</string>
+			<key>relativePath</key>
+			<string>./Stubs/SearchStub.imageset</string>
+			<key>swiftSymbol</key>
+			<string>searchStub</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameStatisticStub</string>
+			<key>relativePath</key>
+			<string>./Stubs/StatisticStub.imageset</string>
+			<key>swiftSymbol</key>
+			<string>statisticStub</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
+			<key>objcSymbol</key>
 			<string>ACImageNameStubImage</string>
 			<key>relativePath</key>
-			<string>./Trackers/StubImage.imageset</string>
+			<string>./Stubs/StubImage.imageset</string>
 			<key>swiftSymbol</key>
 			<string>stub</string>
 		</dict>
