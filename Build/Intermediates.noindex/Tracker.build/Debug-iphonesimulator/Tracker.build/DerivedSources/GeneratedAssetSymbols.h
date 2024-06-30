@@ -9,32 +9,8 @@
 /// The resource bundle ID.
 static NSString * const ACBundleID AC_SWIFT_PRIVATE = @"ru.AlexanderPleshakov.Tracker";
 
-/// The "TBlack" asset catalog color resource.
-static NSString * const ACColorNameTBlack AC_SWIFT_PRIVATE = @"TBlack";
-
 /// The "TBlue" asset catalog color resource.
 static NSString * const ACColorNameTBlue AC_SWIFT_PRIVATE = @"TBlue";
-
-/// The "TButtonRed" asset catalog color resource.
-static NSString * const ACColorNameTButtonRed AC_SWIFT_PRIVATE = @"TButtonRed";
-
-/// The "TCellBackgroundGray" asset catalog color resource.
-static NSString * const ACColorNameTCellBackgroundGray AC_SWIFT_PRIVATE = @"TCellBackgroundGray";
-
-/// The "TLightGray" asset catalog color resource.
-static NSString * const ACColorNameTLightGray AC_SWIFT_PRIVATE = @"TLightGray";
-
-/// The "TSearchBackgroundGray" asset catalog color resource.
-static NSString * const ACColorNameTSearchBackgroundGray AC_SWIFT_PRIVATE = @"TSearchBackgroundGray";
-
-/// The "TSearchTextGray" asset catalog color resource.
-static NSString * const ACColorNameTSearchTextGray AC_SWIFT_PRIVATE = @"TSearchTextGray";
-
-/// The "TWhite" asset catalog color resource.
-static NSString * const ACColorNameTWhite AC_SWIFT_PRIVATE = @"TWhite";
-
-/// The "TWhite30" asset catalog color resource.
-static NSString * const ACColorNameTWhite30 AC_SWIFT_PRIVATE = @"TWhite30";
 
 /// The "AddButton" asset catalog image resource.
 static NSString * const ACImageNameAddButton AC_SWIFT_PRIVATE = @"AddButton";
@@ -51,11 +27,20 @@ static NSString * const ACImageNameDoneTracker AC_SWIFT_PRIVATE = @"DoneTracker"
 /// The "Logo" asset catalog image resource.
 static NSString * const ACImageNameLogo AC_SWIFT_PRIVATE = @"Logo";
 
+/// The "Pin" asset catalog image resource.
+static NSString * const ACImageNamePin AC_SWIFT_PRIVATE = @"Pin";
+
 /// The "RedImage" asset catalog image resource.
 static NSString * const ACImageNameRedImage AC_SWIFT_PRIVATE = @"RedImage";
 
 /// The "ResetTextField" asset catalog image resource.
 static NSString * const ACImageNameResetTextField AC_SWIFT_PRIVATE = @"ResetTextField";
+
+/// The "SearchStub" asset catalog image resource.
+static NSString * const ACImageNameSearchStub AC_SWIFT_PRIVATE = @"SearchStub";
+
+/// The "StatisticStub" asset catalog image resource.
+static NSString * const ACImageNameStatisticStub AC_SWIFT_PRIVATE = @"StatisticStub";
 
 /// The "StubImage" asset catalog image resource.
 static NSString * const ACImageNameStubImage AC_SWIFT_PRIVATE = @"StubImage";

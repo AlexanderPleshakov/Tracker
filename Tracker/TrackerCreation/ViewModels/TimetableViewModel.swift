@@ -8,6 +8,8 @@
 import Foundation
 
 final class TimetableViewModel {
+    // MARK: Properties
+    
     let allDays: [Day] = Resources.Mocks.weekdays
     let days = Resources.Mocks.weekdaysStrings
     private(set) var selectedDays: Set<Day> = [] {
@@ -17,7 +19,7 @@ final class TimetableViewModel {
     }
     var selectedDaysArray: [Day] {
         get {
-            getArraySelectedDays()
+            return getArraySelectedDays()
         }
     }
     
@@ -28,6 +30,14 @@ final class TimetableViewModel {
     }
     
     var selectedDaysBinding: Binding<String>?
+    
+    // MARK: Init
+    
+    init(selectedDays: [Day] = []) {
+        self.selectedDays = Set(selectedDays)
+    }
+    
+    // MARK: Methods
     
     func add(_ day: Day) {
         selectedDays.insert(day)
@@ -51,11 +61,11 @@ final class TimetableViewModel {
     private func getDaysString(days: [Day]) -> String {
         var text: String
         if days.count == 7 {
-            text = "Каждый день"
+            text = NSLocalizedString("everyDay", comment: "")
             return text
         }
         
-        let values = days.map { $0.rawValue }
+        let values = days.map { Day.shortName(by: $0.rawValue) }
         
         text = values.joined(separator: ", ")
         return text

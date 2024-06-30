@@ -40,7 +40,7 @@ struct Tracker: CustomStringConvertible {
     }
     
     init(coreDataTracker: TrackerCoreData) {
-        guard let id = coreDataTracker.id,
+        guard let id = coreDataTracker.trackerId,
               let name = coreDataTracker.name,
               let emoji = coreDataTracker.emoji?.first,
               let creationDate = coreDataTracker.creationDate
@@ -51,7 +51,7 @@ struct Tracker: CustomStringConvertible {
         let days = coreDataTracker.schedule?.allObjects as? [DayCoreData]
 
         let schedule = days?.map {
-            Day(rawValue: $0.day ?? "") ?? .monday
+            Day(shortName: $0.day ?? "") ?? .monday
         }
         
         self.id = id

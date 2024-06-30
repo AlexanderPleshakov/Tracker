@@ -11,8 +11,8 @@ final class NewTrackerViewController: UIViewController {
     // MARK: Properties
     
     weak var delegate: NewTrackerViewControllerDelegate?
-    private let newHabitButton = BasicLargeButton(title: "Привычка")
-    private let newEventButton = BasicLargeButton(title: "Нерегулярное событие")
+    private let newHabitButton = BasicLargeButton(title: NSLocalizedString("habit", comment: "Create habit button"))
+    private let newEventButton = BasicLargeButton(title: NSLocalizedString("event", comment: "Create event button"))
     private let currentDate: Date
     
     // MARK: Init
@@ -38,7 +38,7 @@ final class NewTrackerViewController: UIViewController {
     
     @objc private func newHabitButtonTapped() {
         let viewModel = NewTrackerViewModel(type: .habit, date: currentDate)
-        let habitViewController = NewHabitOrEventViewController(viewModel: viewModel)
+        let habitViewController = HabitOrEventViewController(viewModel: viewModel)
         habitViewController.delegate = self
         let habitNav = UINavigationController(rootViewController: habitViewController)
         present(habitNav, animated: true)
@@ -46,7 +46,7 @@ final class NewTrackerViewController: UIViewController {
     
     @objc private func newEventButtonTapped() {
         let viewModel = NewTrackerViewModel(type: .event, date: currentDate)
-        let eventViewController = NewHabitOrEventViewController(viewModel: viewModel)
+        let eventViewController = HabitOrEventViewController(viewModel: viewModel)
         eventViewController.delegate = self
         let eventNav = UINavigationController(rootViewController: eventViewController)
         present(eventNav, animated: true)
@@ -55,7 +55,7 @@ final class NewTrackerViewController: UIViewController {
 
 // MARK: NewHabitOrEventViewControllerDelegate
 
-extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
+extension NewTrackerViewController: HabitOrEventViewControllerDelegate {
     func closeController() {
         self.dismiss(animated: true)
     }
@@ -65,14 +65,14 @@ extension NewTrackerViewController: NewHabitOrEventViewControllerDelegate {
 
 extension NewTrackerViewController {
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         newHabitButton.addTarget(self, action: #selector(newHabitButtonTapped), for: .touchUpInside)
         newEventButton.addTarget(self, action: #selector(newEventButtonTapped), for: .touchUpInside)
         
-        title = Resources.Titles.newTrackerTitle
+        title = NSLocalizedString("newTracker.title", comment: "New tracker title")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
-            .foregroundColor: Resources.Colors.black ?? .black
+            .foregroundColor: Resources.Colors.foreground
         ]
         
         setupSubviews()

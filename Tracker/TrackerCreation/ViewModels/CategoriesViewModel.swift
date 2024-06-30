@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CategoriesViewModel: NewCategoryStoreManagerDelegate {
+final class CategoriesViewModel: NewCategoryStoreManagerDelegate, CategoriesViewModelProtocol {
     
     private let manager: CategoryStoreManager
     private(set) var selectedCategory: TrackerCategory? = nil {
@@ -26,17 +26,18 @@ final class CategoriesViewModel: NewCategoryStoreManagerDelegate {
     
     // MARK: Init
     
-    init(categoryStore: CategoryStore) {
+    init(categoryStore: CategoryStore, selectedCategory: TrackerCategory? = nil) {
         
         let manager = CategoryStoreManager(categoryStore: categoryStore)
         
         self.manager = manager
         manager.delegate = self
         self.categories = fetchCategories()
+        self.selectedCategory = selectedCategory
     }
     
-    convenience init() {
-        self.init(categoryStore: CategoryStore())
+    convenience init(selectedCategory: TrackerCategory? = nil) {
+        self.init(categoryStore: CategoryStore(), selectedCategory: selectedCategory)
     }
     
     // MARK: Methods

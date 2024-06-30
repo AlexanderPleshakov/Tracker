@@ -14,7 +14,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		GwYIagBldVxUzSOYEffIJq/FCa8=
+		2gP2vG3zla38PSaOuFWSmwrnUxQ=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
@@ -30,11 +30,35 @@
 		</data>
 		<key>DataModel.momd/DataModel.mom</key>
 		<data>
-		OWYPi8TvUEU2ibWwqsUcUJH81Tk=
+		1usUeAcSKqdnHMBERa0wybSy3hc=
 		</data>
 		<key>DataModel.momd/VersionInfo.plist</key>
 		<data>
-		Op2iEbGEvFFOqabddq4Lr6sktps=
+		+FcVApbZrDm0mMlirS9cEpSG63k=
+		</data>
+		<key>Frameworks/YandexMobileMetrica.framework/Info.plist</key>
+		<data>
+		PyaGbPyAcq0Yy20Y50X+6x5y4PM=
+		</data>
+		<key>Frameworks/YandexMobileMetrica.framework/YandexMobileMetrica</key>
+		<data>
+		HLZ6RPhvbOLM1asG4Pn7CJ2rHsk=
+		</data>
+		<key>Frameworks/YandexMobileMetrica.framework/_CodeSignature/CodeResources</key>
+		<data>
+		TzzUj9ji/ckXr+ZcGy4CtT+lpGA=
+		</data>
+		<key>Frameworks/YandexMobileMetricaCrashes.framework/Info.plist</key>
+		<data>
+		iJlmnzNdsECpqf5/I7oKzBOblqQ=
+		</data>
+		<key>Frameworks/YandexMobileMetricaCrashes.framework/YandexMobileMetricaCrashes</key>
+		<data>
+		SNVlN0LxNG2aqL1cT0vv2C2ftdo=
+		</data>
+		<key>Frameworks/YandexMobileMetricaCrashes.framework/_CodeSignature/CodeResources</key>
+		<data>
+		WA5TU7aeiNGVEfs9ZpVX7W52yfo=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -44,6 +68,54 @@
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
 		</data>
+		<key>PlugIns/TrackerTests.xctest/Info.plist</key>
+		<data>
+		r1VEUIbFfLaXtgiY+HP0BrWvFQo=
+		</data>
+		<key>PlugIns/TrackerTests.xctest/TrackerTests</key>
+		<data>
+		uixK1To9IPFtD8CAjfmsPGgx7+g=
+		</data>
+		<key>PlugIns/TrackerTests.xctest/_CodeSignature/CodeResources</key>
+		<data>
+		5FBP2x5okUaHY/6uYbFdyWFCOKM=
+		</data>
+		<key>en.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yX3E2cxgQHzVtHxH8Ph2/O+HEq8=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>en.lproj/Localizable.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1z9wOdy79AyAgwOeYn8odZLaRC4=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>ru.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			69ndYoKTQ2sANfYKGfh0T1epz1Q=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>ru.lproj/Localizable.stringsdict</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dD+vphpXuuf2ll1Nn5eeJ9iMg+A=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -65,7 +137,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zGjsR36Hk86/0HK6iUz1x5OWbpDRQa6qxIMtkmGSW0A=
+			s4+U9nlAtNmsJwI1PcnE8l50SI8nW6Aa2xM50Rrq92k=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
@@ -93,15 +165,114 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			revcnxs0mav8wTDQLnI9GfSC3CkVCqutAMx3iDMfyy8=
+			pw8Nm6LEBMGtRiFNC8TXzwNbA9jwgZb41Nz1zMSa/Rw=
 			</data>
 		</dict>
 		<key>DataModel.momd/VersionInfo.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			X+ngxuk9m9wKvydTiRUQ9iym3a5kETi5e3qRYA+8ksg=
+			rk0eTG+pDGl5m0hPiUOd2xBzBdsBDBfmmZGB4AreFmQ=
 			</data>
+		</dict>
+		<key>Frameworks/YandexMobileMetrica.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			96V+PHj8Jsll3YDd2RbimutnEmMZMqH6nmofNaT5boA=
+			</data>
+		</dict>
+		<key>Frameworks/YandexMobileMetrica.framework/YandexMobileMetrica</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VRygm7Nhc4SJsnDd6/dHyOibDBqHaTzUOCNEpugRicg=
+			</data>
+		</dict>
+		<key>Frameworks/YandexMobileMetrica.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			868H0wvKKTmzSeMuiexB3JDN9Y6W5lTBGnW4V0qn1Go=
+			</data>
+		</dict>
+		<key>Frameworks/YandexMobileMetricaCrashes.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			XvoR6aVy5ROZ0nDWw9wynCwNk86qxSsVJFQg0Ovvqx4=
+			</data>
+		</dict>
+		<key>Frameworks/YandexMobileMetricaCrashes.framework/YandexMobileMetricaCrashes</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			9Cc9NoEt89dtgO92jUkE2NszBdHUL+p02fUH785fboQ=
+			</data>
+		</dict>
+		<key>Frameworks/YandexMobileMetricaCrashes.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sqMYCl4qYfxL7FkB76cq7ozGHx+KjKPzzm6o+vpoPrQ=
+			</data>
+		</dict>
+		<key>PlugIns/TrackerTests.xctest/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			L7qXdu4FwGJvJagJ6KPugoF+gGIWVyRqoHO/lnQuRN0=
+			</data>
+		</dict>
+		<key>PlugIns/TrackerTests.xctest/TrackerTests</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2TgLoiKYxiT32Wbw/ym7X2NgrS2QGluAtVTx3n2d8OA=
+			</data>
+		</dict>
+		<key>PlugIns/TrackerTests.xctest/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+vzuGejyJSL8RrHuIIJeuiZoF9wdxn2cVakiAE9Rf+g=
+			</data>
+		</dict>
+		<key>en.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0kkcGBtNROecE1Hd6YHs9mTpjxKr4uZwveYXk9h0uRc=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>en.lproj/Localizable.stringsdict</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2gNGSpV9eO8o58VH3WpA3+zJX5Jd5OFAOo7ZNbfWBmA=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>ru.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			d1bAvDpKjoeJwOouHdTaQPonVshzkQT4KBovQTIZt9A=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>ru.lproj/Localizable.stringsdict</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sBnKDvC3SccfauxPY3DJaip37UrERHLB/NBHFaHNzhI=
+			</data>
+			<key>optional</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>rules</key>

@@ -2,7 +2,7 @@
 //  CategoryCoreData+CoreDataClass.swift
 //  
 //
-//  Created by Александр Плешаков on 14.06.2024.
+//  Created by Александр Плешаков on 28.06.2024.
 //
 //  This file was automatically generated and should not be edited.
 //

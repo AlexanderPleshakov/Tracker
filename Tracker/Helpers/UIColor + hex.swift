@@ -25,4 +25,16 @@ extension UIColor {
             a: a
         )
     }
+    
+    static func color(light: UIColor, dark: UIColor) -> UIColor {
+        let color = UIColor { (traits: UITraitCollection) -> UIColor in
+            if traits.userInterfaceStyle == .light {
+                return light
+            } else {
+                return dark
+            }
+        }
+        
+        return color
+    }
 }

@@ -1,7 +1,9 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerCategory.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/AnalyticsService.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TimetableTableViewCell.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitAndEventTableViewHelper.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiOrColorCollectionViewCell.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletionType.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Binding\ .swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoryStore.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManagerDelegate.swiftconstvalues
@@ -20,9 +22,12 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/OnboardingPageViewController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersNavigationController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStore.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HelperTrackersCollectionViewDelegate.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Tracker.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerColorCellView.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerStoreManager.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewController.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DeleteActionSheet.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticViewController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/GeometricParams.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewControllerDelegate.swiftconstvalues
@@ -34,6 +39,7 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerRecordStore.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiAndColorsCollectionViewDelegate.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/EmojiView.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/FiltersViewController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/BasicLargeButton.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersCollectionViewCell.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitAndEventTableViewDelegate.swiftconstvalues
@@ -42,19 +48,24 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewTrackerViewModel.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DisclosureTableViewCell.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoryStoreManager.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/StatisticTableViewCell.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/SectionHeaderView.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TimetableViewModel.swiftconstvalues
-/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewController.swiftconstvalues
-/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewHabitOrEventViewControllerDelegate.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Filters.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewController.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/HabitOrEventViewControllerDelegate.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TimetableViewController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/NewCategoryViewController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/Day.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/InputFieldTableViewCell.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModelProtocol.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackersCellDelegate.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoriesViewModel.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/SplashViewController.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoryCoreData+CoreDataClass.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CategoryCoreData+CoreDataProperties.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataClass.swiftconstvalues
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/CompletedDate+CoreDataProperties.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DayCoreData+CoreDataClass.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/DayCoreData+CoreDataProperties.swiftconstvalues
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/Objects-normal/arm64/TrackerCoreData+CoreDataClass.swiftconstvalues

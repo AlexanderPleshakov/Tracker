@@ -14,19 +14,21 @@ final class HabitAndEventTableViewHelper: NSObject {
     
     private var category: String? = nil
     private var days: String? = nil
+    private var trackerName: String? = nil
     
     private let warningLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Resources.Colors.buttonRed
-        label.text = "Ограничение 38 символов"
+        label.textColor = Resources.Colors.red
+        label.text = NSLocalizedString("characterLimit", comment: "Character input limit")
         label.textAlignment = .center
         
         return label
     }()
     
-    init(type: TrackerType, delegate: HabitAndEventTableViewDelegate) {
+    init(type: TrackerType, delegate: HabitAndEventTableViewDelegate, trackerName: String? = nil) {
         self.numbersOfRows = type == TrackerType.habit ? [1, 2] : [1, 1]
         self.delegateController = delegate
+        self.trackerName = trackerName
     }
     
     func addWarning() {
@@ -40,7 +42,7 @@ final class HabitAndEventTableViewHelper: NSObject {
     }
     
     func textChanged(newText: String?) {
-        delegateController.changeCategoryTitle(text: newText)
+        delegateController.changeTrackerTitle(text: newText)
     }
     
     func changeCategory(category: String?) {
@@ -134,6 +136,7 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
             }
             
             cell.delegate = self
+            cell.setText(trackerName)
             
             return cell
         } else {
@@ -148,10 +151,10 @@ extension HabitAndEventTableViewHelper: UITableViewDataSource {
             let detailText: String
             
             if indexPath.row == 0 {
-                cellText = "Категория"
+                cellText = NSLocalizedString("category", comment: "Category cell")
                 detailText = category ?? ""
             } else {
-                cellText = "Расписание"
+                cellText = NSLocalizedString("schedule", comment: "Category cell")
                 detailText = days ?? ""
             }
             

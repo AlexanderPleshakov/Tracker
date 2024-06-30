@@ -37,7 +37,7 @@ final class DaysStore {
         let days = Resources.Mocks.weekdays
         days.forEach { day in
             let dayCoreData = DayCoreData(context: context)
-            dayCoreData.day = day.rawValue
+            dayCoreData.day = Day.shortName(by: day.rawValue)
             
             save()
         }
@@ -54,6 +54,8 @@ final class DaysStore {
         if days.isEmpty {
             createDays()
         }
+        
+        updateDays()
     }
     
     func fetchDay(with rawValue: String) -> DayCoreData? {
@@ -65,5 +67,31 @@ final class DaysStore {
         }
         
         return days.first
+    }
+    
+    private func deleteDays() {
+        let request = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
+        
+        guard let days = try? context.fetch(request) else {
+            return
+        }
+        
+        days.forEach {
+            context.delete($0)
+        }
+    }
+    
+    private func updateDays() {
+        let request = NSFetchRequest<DayCoreData>(entityName: "DayCoreData")
+        
+        guard let days = try? context.fetch(request) else {
+            return
+        }
+        
+        for i in 0..<7 {
+            days[i].day = Resources.Mocks.shortDays[i]
+        }
+        
+        save()
     }
 }

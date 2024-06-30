@@ -11,7 +11,7 @@ final class TrackersNavigationController: UINavigationController {
     // MARK: Properties
     
     weak var delegateController: TrackersNavigationControllerDelegate!
-    
+    private let datePicker = UIDatePicker()
     
     // MARK: Init
     
@@ -30,7 +30,7 @@ final class TrackersNavigationController: UINavigationController {
     
     func navBarConfig() {
         delegateController.navigationController?.navigationBar.shadowImage = UIImage()
-        delegateController.navigationController?.navigationBar.backgroundColor = Resources.Colors.white
+        delegateController.navigationController?.navigationBar.backgroundColor = Resources.Colors.background
         delegateController.navigationController?.navigationBar.isTranslucent = false
         
         delegateController.navigationItem.hidesSearchBarWhenScrolling = false
@@ -42,11 +42,15 @@ final class TrackersNavigationController: UINavigationController {
         setSearchBar()
     }
     
+    func setDate(date: Date) {
+        datePicker.setDate(date, animated: true)
+    }
+    
     private func setTitle() {
-        delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.black ?? .black]
+        delegateController.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Resources.Colors.foreground]
         delegateController.navigationController?.navigationBar.prefersLargeTitles = true
         
-        delegateController.navigationItem.title = "Трекеры"
+        delegateController.navigationItem.title = NSLocalizedString("trackers", comment: "Trackers title")
     }
     
     private func setAddButton() {
@@ -54,32 +58,41 @@ final class TrackersNavigationController: UINavigationController {
                                                                               style: .plain,
                                                                               target: self,
                                                                               action: #selector(addButtonTapped))
-        delegateController.navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.black
+        delegateController.navigationItem.leftBarButtonItem?.tintColor = Resources.Colors.foreground
     }
     
     private func setDatePicker() {
-        let datePicker = UIDatePicker()
-        
-        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.locale = Locale.current
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .compact
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        datePicker.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        datePicker.widthAnchor.constraint(equalToConstant: 110).isActive = true
         
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
         datePicker.tintColor = Resources.Colors.blue
+        
+        datePicker.backgroundColor = Resources.Colors.datePicker
+        datePicker.layer.cornerRadius = 8
+        datePicker.layer.masksToBounds = true
+        
+        datePicker.overrideUserInterfaceStyle = .light
         
         delegateController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePicker)
     }
     
     private func setSearchBar() {
         let search = UISearchController(searchResultsController: nil)
-        search.searchBar.placeholder = "Поиск"
-        search.searchBar.setValue("Отменить", forKey: "cancelButtonText")
+        search.searchBar.placeholder = NSLocalizedString("search", comment: "Search bar placeholder")
+        search.searchBar.setValue(NSLocalizedString("cancel", comment: "Cancel search button"), forKey: "cancelButtonText")
         search.searchResultsUpdater = delegateController
         search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.searchTextField.backgroundColor = Resources.Colors.searchBackgroundGray
+        search.searchBar.searchTextField.attributedPlaceholder =  NSAttributedString.init(
+            string: NSLocalizedString("search", comment: "Search bar placeholder"),
+            attributes: [NSAttributedString.Key.foregroundColor:Resources.Colors.searchText])
+        search.searchBar.searchTextField.leftView?.tintColor = Resources.Colors.searchText
         
         delegateController.navigationItem.searchController = search
     }

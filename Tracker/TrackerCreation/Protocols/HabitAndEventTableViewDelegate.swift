@@ -11,6 +11,6 @@ protocol HabitAndEventTableViewDelegate: NSObject {
     func presentTimetable()
     func presentCategories()
     func reloadTable(isAdding: Bool)
-    func changeCategoryTitle(text: String?)
+    func changeTrackerTitle(text: String?)
     func getCell(at indexPath: IndexPath) -> UITableViewCell?
 }

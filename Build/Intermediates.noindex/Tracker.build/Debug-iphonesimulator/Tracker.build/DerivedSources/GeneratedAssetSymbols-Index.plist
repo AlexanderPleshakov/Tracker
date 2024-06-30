@@ -8,91 +8,11 @@
 			<key>catalogPath</key>
 			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
 			<key>objcSymbol</key>
-			<string>ACColorNameTBlack</string>
-			<key>relativePath</key>
-			<string>./Colors/TBlack.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tBlack</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
 			<string>ACColorNameTBlue</string>
 			<key>relativePath</key>
 			<string>./Colors/TBlue.colorset</string>
 			<key>swiftSymbol</key>
 			<string>tBlue</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTButtonRed</string>
-			<key>relativePath</key>
-			<string>./Colors/TButtonRed.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tButtonRed</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTCellBackgroundGray</string>
-			<key>relativePath</key>
-			<string>./Colors/TCellBackgroundGray.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tCellBackgroundGray</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTLightGray</string>
-			<key>relativePath</key>
-			<string>./Colors/TLightGray.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tLightGray</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTSearchBackgroundGray</string>
-			<key>relativePath</key>
-			<string>./Colors/TSearchBackgroundGray.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tSearchBackgroundGray</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTSearchTextGray</string>
-			<key>relativePath</key>
-			<string>./Colors/TSearchTextGray.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tSearchTextGray</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTWhite</string>
-			<key>relativePath</key>
-			<string>./Colors/TWhite.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tWhite</string>
-		</dict>
-		<dict>
-			<key>catalogPath</key>
-			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
-			<key>objcSymbol</key>
-			<string>ACColorNameTWhite30</string>
-			<key>relativePath</key>
-			<string>./Colors/TWhite30.colorset</string>
-			<key>swiftSymbol</key>
-			<string>tWhite30</string>
 		</dict>
 	</array>
 	<key>images</key>
@@ -151,6 +71,16 @@
 			<key>catalogPath</key>
 			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
 			<key>objcSymbol</key>
+			<string>ACImageNamePin</string>
+			<key>relativePath</key>
+			<string>./Trackers/Pin.imageset</string>
+			<key>swiftSymbol</key>
+			<string>pin</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
+			<key>objcSymbol</key>
 			<string>ACImageNameRedImage</string>
 			<key>relativePath</key>
 			<string>./Onboarding/RedImage.imageset</string>
@@ -171,9 +101,29 @@
 			<key>catalogPath</key>
 			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
 			<key>objcSymbol</key>
+			<string>ACImageNameSearchStub</string>
+			<key>relativePath</key>
+			<string>./Stubs/SearchStub.imageset</string>
+			<key>swiftSymbol</key>
+			<string>searchStub</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameStatisticStub</string>
+			<key>relativePath</key>
+			<string>./Stubs/StatisticStub.imageset</string>
+			<key>swiftSymbol</key>
+			<string>statisticStub</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Resources/Assets.xcassets</string>
+			<key>objcSymbol</key>
 			<string>ACImageNameStubImage</string>
 			<key>relativePath</key>
-			<string>./Trackers/StubImage.imageset</string>
+			<string>./Stubs/StubImage.imageset</string>
 			<key>swiftSymbol</key>
 			<string>stub</string>
 		</dict>

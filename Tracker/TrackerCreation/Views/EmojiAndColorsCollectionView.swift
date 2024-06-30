@@ -38,7 +38,7 @@ final class EmojiAndColorsCollectionView: UICollectionView {
     // MARK: Methods
     
     private func configure() {
-        backgroundColor = Resources.Colors.white
+        backgroundColor = Resources.Colors.background
         
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
@@ -53,6 +53,23 @@ final class EmojiAndColorsCollectionView: UICollectionView {
         
         dataSource = self
         delegate = self
+    }
+    
+    private func selectColor(for cell: EmojiOrColorCollectionViewCell, indexPath: IndexPath) {
+        lastSelectedColorCell = cell
+        colorIsSelected = true
+        cell.layer.borderColor = UIColor(rgb: colors[indexPath.row], a: 0.3).cgColor
+        cell.layer.borderWidth = 3
+        
+        viewModel.changeSelectedColor(new: colors[indexPath.row])
+    }
+    
+    private func selectEmoji(for cell: EmojiOrColorCollectionViewCell, indexPath: IndexPath) {
+        lastSelectedEmojiCell = cell
+        emojiIsSelected = true
+        cell.backgroundColor = Resources.Colors.emojiCollectionBackground
+        
+        viewModel.changeSelectedEmoji(new: emojies[indexPath.row])
     }
 }
 
@@ -80,8 +97,21 @@ extension EmojiAndColorsCollectionView: UICollectionViewDataSource {
         
         if indexPath.section == 0 {
             cell.configure(with: emojies[indexPath.row])
+
+            if let emoji = viewModel.oldSelectedEmoji {
+                let indexPathEmoji = IndexPath(item: emojies.firstIndex(of: emoji) ?? 0, section: 0)
+                if indexPathEmoji == indexPath {
+                    selectEmoji(for: cell, indexPath: indexPath)
+                }
+            }
         } else {
             cell.configure(with: colors[indexPath.row])
+            if let color = viewModel.oldSelectedColor {
+                let indexPathColor = IndexPath(item: colors.firstIndex(of: color) ?? 0, section: 1)
+                if indexPathColor == indexPath {
+                    selectColor(for: cell, indexPath: indexPath)
+                }
+            }
         }
         
         return cell
@@ -101,7 +131,10 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
             return UICollectionReusableView()
         }
         
-        let headerText = (indexPath.section == 0) ? "Emoji" : "Цвет"
+        let headerText = (indexPath.section == 0) ?
+        NSLocalizedString("emoji", comment: "") :
+        NSLocalizedString("color", comment: "")
+        
         view.configure(text: headerText, leadingAnchor: 28)
         
         return view
@@ -140,22 +173,13 @@ extension EmojiAndColorsCollectionView: UICollectionViewDelegateFlowLayout {
                 lastSelectedEmojiCell?.backgroundColor = .clear
             }
             
-            lastSelectedEmojiCell = cell
-            emojiIsSelected = true
-            cell.backgroundColor = Resources.Colors.colorsCollectionBackground
-            
-            viewModel.changeSelectedEmoji(new: emojies[indexPath.row])
+            selectEmoji(for: cell, indexPath: indexPath)
         } else {
             if colorIsSelected {
                 lastSelectedColorCell?.layer.borderWidth = 0
             }
             
-            lastSelectedColorCell = cell
-            colorIsSelected = true
-            cell.layer.borderColor = UIColor(rgb: colors[indexPath.row], a: 0.3).cgColor
-            cell.layer.borderWidth = 3
-            
-            viewModel.changeSelectedColor(new: colors[indexPath.row])
+            selectColor(for: cell, indexPath: indexPath)
         }
     }
 }

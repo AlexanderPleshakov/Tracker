@@ -1,7 +1,9 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/TrackerCategory.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Services/AnalyticsService.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/Cells/TimetableTableViewCell.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Helpers/HabitAndEventTableViewHelper.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/Cells/EmojiOrColorCollectionViewCell.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/CompletionType.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Helpers/Binding\ .swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Stores/CategoryStore.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Protocols/TrackerStoreManagerDelegate.swift
@@ -20,9 +22,12 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Onboarding/OnboardingPageViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersNavigationController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Stores/TrackerStore.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Protocols/HelperTrackersCollectionViewDelegate.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Tracker.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/Views/TrackerColorCellView.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Managers/TrackerStoreManager.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/CategoriesViewController.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Views/DeleteActionSheet.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Statistic/StatisticViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/GeometricParams.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/NewTrackerViewControllerDelegate.swift
@@ -34,6 +39,7 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Stores/TrackerRecordStore.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/Protocols/EmojiAndColorsCollectionViewDelegate.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/Views/EmojiView.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Filters/FiltersViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Views/BasicLargeButton.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/Views/TrackersCollectionViewCell.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/HabitAndEventTableViewDelegate.swift
@@ -42,19 +48,24 @@
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/NewTrackerViewModel.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/Cells/DisclosureTableViewCell.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/CoreData/Managers/CategoryStoreManager.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Statistic/StatisticTableViewCell.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Views/TrackersCollectionView/Views/SectionHeaderView.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/TimetableViewModel.swift
-/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/NewHabitOrEventViewController.swift
-/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/NewHabitOrEventViewControllerDelegate.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Filters.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/HabitOrEventViewController.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Protocols/HabitOrEventViewControllerDelegate.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/TimetableViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Controllers/NewCategoryViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Models/Day.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/Views/Cells/InputFieldTableViewCell.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/CategoriesViewModelProtocol.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Trackers/Protocols/TrackersCellDelegate.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/TrackerCreation/ViewModels/CategoriesViewModel.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Tracker/Onboarding/SplashViewController.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/CategoryCoreData+CoreDataClass.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/CategoryCoreData+CoreDataProperties.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/CompletedDate+CoreDataClass.swift
+/Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/CompletedDate+CoreDataProperties.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/DayCoreData+CoreDataClass.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/DayCoreData+CoreDataProperties.swift
 /Users/aleksandrplesakov/Documents/Swift/2024/Tracker/Build/Intermediates.noindex/Tracker.build/Debug-iphonesimulator/Tracker.build/DerivedSources/CoreDataGenerated/DataModel/TrackerCoreData+CoreDataClass.swift

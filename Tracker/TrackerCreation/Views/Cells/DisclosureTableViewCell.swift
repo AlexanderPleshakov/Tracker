@@ -19,7 +19,7 @@ final class DisclosureTableViewCell: UITableViewCell {
         accessoryType = .disclosureIndicator
         textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         detailTextLabel?.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        detailTextLabel?.textColor = Resources.Colors.searchTextGray
+        detailTextLabel?.textColor = Resources.Colors.secondaryGray
     }
     
     required init?(coder: NSCoder) {
@@ -27,13 +27,13 @@ final class DisclosureTableViewCell: UITableViewCell {
     }
     
     func changeTimetableSubtitle(days: String?) {
-        if textLabel?.text == "Расписание" {
+        if textLabel?.text == NSLocalizedString("schedule", comment: "") {
             detailTextLabel?.text = days
         }
     }
     
     func changeCategorySubtitle(subtitle: String) {
-        if textLabel?.text == "Категория" {
+        if textLabel?.text == NSLocalizedString("category", comment: "") {
             detailTextLabel?.text = subtitle
         }
     }

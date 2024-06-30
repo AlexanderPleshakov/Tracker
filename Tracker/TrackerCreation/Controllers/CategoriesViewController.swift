@@ -10,11 +10,11 @@ import UIKit
 final class CategoriesViewController: UIViewController {
     // MARK: Properties
     
-    private var viewModel: CategoriesViewModel
+    private var viewModel: CategoriesViewModelProtocol
     
     // MARK: Init
     
-    init(viewModel: CategoriesViewModel) {
+    init(viewModel: CategoriesViewModelProtocol) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
@@ -26,10 +26,10 @@ final class CategoriesViewController: UIViewController {
     
     // MARK: Views
     
-    private let addButton: UIButton = BasicLargeButton(title: "Добавить категорию")
+    private let addButton: UIButton = BasicLargeButton(title: NSLocalizedString("addCategory", comment: "Categories title"))
     
     private let stubView: StubView = {
-        let stubView = StubView(text: "Привычки и события можно\nобъединить по смыслу")
+        let stubView = StubView(text: NSLocalizedString("stub.categories", comment: "Stub"))
         stubView.textLabel.textAlignment = .center
         stubView.textLabel.numberOfLines = 2
         
@@ -151,19 +151,19 @@ extension CategoriesViewController: UITableViewDelegate {
 
 extension CategoriesViewController {
     private func configure() {
-        view.backgroundColor = Resources.Colors.white
+        view.backgroundColor = Resources.Colors.background
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.backgroundColor = Resources.Colors.white
+        tableView.backgroundColor = Resources.Colors.background
         
         addButton.addTarget(self, action: #selector(buttonAddTapped), for: .touchUpInside)
         
-        title = Resources.Titles.categoriesTitle
+        title = NSLocalizedString("categories.title", comment: "Categories title")
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [
             .font: UIFont.systemFont(ofSize: 16, weight: .medium),
-            .foregroundColor: Resources.Colors.black ?? .black
+            .foregroundColor: Resources.Colors.foreground
         ]
         
         setupSubviews()

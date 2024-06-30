@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+
 final class TrackerStoreManager: NSObject {
     // MARK: Properties
     
@@ -18,9 +19,16 @@ final class TrackerStoreManager: NSObject {
     private let daysStore: DaysStore
     
     private let context = CoreDataManager.shared.persistentContainer.viewContext
-    private var insertedIndex: IndexPath? = nil
+    private var index: IndexPath? = nil
+    private var actionType: TrackerCellAction? = nil
     
     private var fetchedResultsController: NSFetchedResultsController<TrackerCoreData>!
+    
+    private var day: Day? = nil
+    private var text: String? = nil
+    private var date: Date? = nil
+    
+    private var lastCompletion: CompletionType
     
     // MARK: Init
     
@@ -28,6 +36,9 @@ final class TrackerStoreManager: NSObject {
         self.trackerStore = trackerStore
         self.categoryStore = categoryStore
         self.daysStore = DaysStore()
+        var rawValue = UserDefaults.standard.value(forKey: Resources.Keys.selectedFilter) as? Int
+        rawValue = rawValue == 1 ? 0 : rawValue
+        lastCompletion = CompletionType(rawValue: rawValue ?? 0) ?? .any
     }
     
     // MARK: Methods
@@ -40,13 +51,80 @@ final class TrackerStoreManager: NSObject {
         categoryStore.fetchAll()
     }
     
+    func pinTracker(with id: UUID?) {
+        trackerStore.pinTracker(id: id)
+    }
+    
+    func unpinTracker(with id: UUID?) {
+        trackerStore.unpinTracker(id: id)
+    }
+    
+    func isPinnedTracker(with id: UUID?) -> Bool? {
+        trackerStore.trackerIsPinned(id: id)
+    }
+    
     func trackersIsEmpty() -> Bool {
         fetchedResultsController.fetchedObjects?.isEmpty ?? true
     }
     
-    func setupFetchedResultsController(with day: Day, and text: String?, date: Date) {
+    func trackersIsEmpty(in day: Day, or date: Date) -> Bool {
+        trackerStore.trackersIsEmpty(in: day, or: date)
+    }
+    
+    func deleteTracker(by id: UUID) {
+        trackerStore.deleteTracker(by: id)
+    }
+    
+    func fetchTracker(by id: UUID) -> Tracker? {
+        trackerStore.fetchTracker(by: id)
+    }
+    
+    func fetchCategory(by trackerId: UUID) -> TrackerCategory? {
+        trackerStore.fetchCategory(by: trackerId)
+    }
+    
+    func fetchRealCategory(by trackerId: UUID?) -> TrackerCategory? {
+        trackerStore.fetchRealCategory(trackerId: trackerId)
+    }
+    
+    func update(tracker: Tracker, category: TrackerCategory) {
+        trackerStore.update(tracker: tracker, category: category)
+    }
+    
+    func setFilter(filter: Filters, day: Day, text: String?, date: Date) {
+        switch filter {
+        case .all, .today:
+            setupFetchedResultsController(
+                with: day,
+                and: text,
+                date: date,
+                completionType: .any
+            )
+        case .completed:
+            setupFetchedResultsController(
+                with: day,
+                and: text,
+                date: date,
+                completionType: .completed
+            )
+        case .uncompleted:
+            setupFetchedResultsController(
+                with: day,
+                and: text,
+                date: date,
+                completionType: .uncompleted
+            )
+        }
+    }
+
+    func setupFetchedResultsController(with day: Day, and text: String?, date: Date, completionType: CompletionType) {
+        lastCompletion = completionType
         fetchedResultsController = {
-            let fetchRequest = createFetchRequest(with: day, and: text, date: date)
+            let fetchRequest = trackerStore.createTrackersFetchRequest(with: day, and: text, date: date, completionType: completionType)
+            
+            self.day = day
+            self.text = text
+            self.date = date
             
             let fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: fetchRequest,
@@ -66,48 +144,6 @@ final class TrackerStoreManager: NSObject {
             return fetchedResultsController
         }()
     }
-    
-    private func createFetchRequest(with day: Day, and text: String?, date: Date) -> NSFetchRequest<TrackerCoreData> {
-        guard let day = daysStore.fetchDay(with: day.rawValue) else {
-            fatalError("Неправильно передан день в setupFetchedResultsController")
-        }
-        
-        let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(TrackerCoreData.category.title), ascending: false)]
-        
-        let dayPredicate = NSPredicate(format: "ANY schedule == %@", day)
-        let countDaysPredicate = NSPredicate(format: "schedule.@count == 0")
-        let strippedTargetDate = stripTime(from: date) ?? Date()
-        let datePredicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@",
-                                        strippedTargetDate as CVarArg,
-                                        Calendar.current.date(
-                                            byAdding: .day,
-                                            value: 1,
-                                            to: strippedTargetDate)! as CVarArg)
-        let compoundEventPredicate = NSCompoundPredicate(
-            andPredicateWithSubpredicates: [datePredicate, countDaysPredicate]
-        )
-        
-        if text == nil {
-            let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundEventPredicate, dayPredicate])
-            fetchRequest.predicate = compoundPredicate
-        } else {
-            let searchPredicate = NSPredicate(format: "name CONTAINS[c] %@", text ?? "")
-            
-            let compoundFilterPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [dayPredicate, searchPredicate])
-            let compoundSearchEventPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [compoundEventPredicate, searchPredicate])
-            
-            let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [compoundSearchEventPredicate, compoundFilterPredicate])
-            
-            fetchRequest.predicate = compoundPredicate
-        }
-        
-        return fetchRequest
-    }
-    
-    private func stripTime(from date: Date) -> Date? {
-        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: date))
-    }
 }
 
 // MARK: NSFetchedResultsControllerDelegate
@@ -117,20 +153,49 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let indexPath = newIndexPath {
-                insertedIndex = indexPath
+                index = indexPath
+                actionType = .insert
             }
+        case .delete:
+            if let indexPath = indexPath {
+                index = indexPath
+                actionType = .delete
+            }
+        case .update:
+            if let indexPath = newIndexPath {
+                index = indexPath
+            }
+            actionType = .update
         default:
             break
         }
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
-        guard let insertedIndex = insertedIndex else {
-            print("insertedIndex is nil")
+        guard let index, let actionType else {
+            delegate?.forceReload()
+            if let day, let date {
+                setupFetchedResultsController(
+                    with: day,
+                    and: text,
+                    date: date,
+                    completionType: lastCompletion
+                )
+            }
             return
         }
-        delegate?.addTracker(at: insertedIndex)
-        self.insertedIndex = nil
+        
+        switch actionType {
+        case .insert:
+            delegate?.addTracker(at: index)
+        case .update:
+            delegate?.updateTracker(at: index)
+        case .delete:
+            delegate?.deleteTracker(at: index)
+        }
+        
+        self.actionType = nil
+        self.index = nil
     }
     
     var numberOfSections: Int {
@@ -148,20 +213,18 @@ extension TrackerStoreManager: NSFetchedResultsControllerDelegate {
     }
     
     func categoryIsEmpty(in section: Int) -> Bool {
-        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
-        guard let count = trackerCoreData.category?.trackers?.count else {
-            return true
-        }
-        
-        return count == 0 ? true : false
+        return fetchedResultsController.sections?[section].objects?.isEmpty ?? true
     }
     
-    func categoryTitle(in section: Int) -> String {
-        let trackerCoreData = fetchedResultsController.object(at: IndexPath(row: 0, section: section))
-        guard let title = trackerCoreData.category?.title else {
-            return ""
-        }
-        
-        return title
+    func categoryTitle(at section: Int) -> String {
+        return fetchedResultsController.sections?[section].name ?? ""
+    }
+}
+
+// MARK: TrackerCellAction
+
+extension TrackerStoreManager {
+    enum TrackerCellAction {
+        case insert, delete, update
     }
 }

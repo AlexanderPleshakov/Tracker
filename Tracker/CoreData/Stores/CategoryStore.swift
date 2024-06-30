@@ -18,6 +18,8 @@ final class CategoryStore {
     
     init(context: NSManagedObjectContext) {
         self.context = context
+        
+        updatePinnedTitleIfNeeded()
     }
     
     convenience init() {
@@ -36,12 +38,44 @@ final class CategoryStore {
         
         categoryCoreData.title = category.title
         categoryCoreData.trackers = []
+        categoryCoreData.isPinned = false
         
         save()
     }
     
+    func fetchCategoryCoreData(by title: String) -> CategoryCoreData? {
+        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(CategoryCoreData.title), title)
+        
+        guard let categoriesCoreData = try? context.fetch(request) else {
+            print("Categories core data is nil in create(tracker:)")
+            return nil
+        }
+        
+        return categoriesCoreData.first
+    }
+    
+    func fetchCategory(by title: String) -> TrackerCategory? {
+        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(CategoryCoreData.title), title)
+        
+        guard let categoriesCoreData = try? context.fetch(request) else {
+            print("Categories core data is nil in create(tracker:)")
+            return nil
+        }
+        
+        let trackersCoreData = categoriesCoreData.first?.trackers?.allObjects as? [TrackerCoreData]
+        let trackers = trackersCoreData?.map { Tracker(coreDataTracker: $0) }
+        
+        return TrackerCategory(title: title, trackers: trackers ?? [])
+    }
+    
     func fetchAll() -> [TrackerCategory] {
         let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        let pinnedCategoryName = NSLocalizedString("pinned", comment: "")
+        request.predicate = NSPredicate(format: "%K != %@",
+                                             #keyPath(CategoryCoreData.title),
+                                             pinnedCategoryName)
         
         guard let categoriesCoreData = try? context.fetch(request) else {
             print("Categories core data is nil in fetchAll()")
@@ -60,5 +94,25 @@ final class CategoryStore {
         }
         
         return categories
+    }
+    
+    private func updatePinnedTitleIfNeeded() {
+        let pinnedCategoryName = NSLocalizedString("pinned", comment: "")
+        let request = NSFetchRequest<CategoryCoreData>(entityName: "CategoryCoreData")
+        request.predicate = NSPredicate(format: "%K == %@",
+                                        #keyPath(CategoryCoreData.isPinned),
+                                        NSNumber(value: true))
+        
+        guard let categoriesCoreData = try? context.fetch(request),
+              let category = categoriesCoreData.first
+        else {
+            return
+        }
+        
+        if category.title != pinnedCategoryName {
+            category.title = pinnedCategoryName
+            
+            save()
+        }
     }
 }

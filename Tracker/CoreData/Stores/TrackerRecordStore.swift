@@ -68,8 +68,9 @@ final class TrackerRecordStore {
         
         trackerRecordCoreData.trackerID = trackerRecord.id
         trackerRecordCoreData.date = trackerRecord.date
-        
         save()
+        
+        completeTracker(id: trackerRecord.id, date: trackerRecord.date)
     }
     
     func delete(id: UUID, date: Date) {
@@ -78,8 +79,71 @@ final class TrackerRecordStore {
         }
         
         context.delete(trackerCoreData)
+        save()
+        
+        incompleteTracker(id: id, date: date)
+    }
+    
+    func trackerIsCompleted(id: UUID?) -> Bool {
+        return true
+    }
+    
+    func completeTracker(id: UUID, date: Date) {
+        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+            UserDefaults.standard.setValue(count + 1, forKey: Resources.Keys.completedTrackers)
+        } else {
+            UserDefaults.standard.setValue(1, forKey: Resources.Keys.completedTrackers)
+        }
+        
+        guard let tracker = fetchTrackerCoreData(by: id) else {
+            return
+        }
+        
+        let completedDate = CompletedDate(context: context)
+        completedDate.date = date
+        let completed = tracker.completedDates?.adding(completedDate)
+        
+        tracker.completedDates = NSSet(set: completed ?? [completedDate])
         
         save()
+    }
+    
+    func incompleteTracker(id: UUID, date: Date) {
+        if let count = UserDefaults.standard.object(forKey: Resources.Keys.completedTrackers) as? Int {
+            UserDefaults.standard.setValue(count - 1, forKey: Resources.Keys.completedTrackers)
+        }
+        
+        guard let tracker = fetchTrackerCoreData(by: id) else {
+            return
+        }
+        guard let strippedTargetDate = stripTime(from: date) else { return }
+        
+        let datePredicate = NSPredicate(
+            format: "date >= %@ AND date < %@",
+            strippedTargetDate as CVarArg,
+            Calendar.current.date(byAdding: .day, value: 1, to: strippedTargetDate)! as CVarArg
+        )
+        
+        guard
+            let completedDates = tracker.completedDates?.filtered(using: datePredicate),
+            let completedDate = completedDates.first as? CompletedDate
+        else { return }
+        
+        context.delete(completedDate)
+        
+        save()
+    }
+    
+    private func fetchTrackerCoreData(by id: UUID) -> TrackerCoreData? {
+        let fetchRequest = NSFetchRequest<TrackerCoreData>(entityName: "TrackerCoreData")
+        
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(TrackerCoreData.trackerId), id as CVarArg)
+        
+        guard let trackerCoreData = try? context.fetch(fetchRequest) as [TrackerCoreData] else {
+            return nil
+        }
+        
+        return trackerCoreData.first
     }
     
     private func fetchTrackerRecord(by id: UUID, and date: Date) -> TrackerRecordCoreData? {
